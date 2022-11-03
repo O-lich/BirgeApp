@@ -22,21 +22,29 @@ class CustomButton {
 }
 
 class BlueButton extends StatelessWidget {
-  const BlueButton({required this.child, required this.onPressed, super.key});
-
   final Widget child;
   final void Function() onPressed;
+  final double width;
+
+  const BlueButton(
+      {required this.child,
+      required this.onPressed,
+      required this.width,
+      super.key});
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onPressed,
-      child: Container(
-        decoration: CustomButton.buttonDecoration(context),
-        child: ElevatedButton(
-          style: CustomButton().buttonStyle(50, 350),
-          onPressed: () {},
-          child: child,
+    return SizedBox(
+      width: width,
+      child: InkWell(
+        onTap: onPressed,
+        child: Container(
+          decoration: CustomButton.buttonDecoration(context),
+          child: ElevatedButton(
+            style: CustomButton().buttonStyle(50, 350),
+            onPressed: () {},
+            child: child,
+          ),
         ),
       ),
     );

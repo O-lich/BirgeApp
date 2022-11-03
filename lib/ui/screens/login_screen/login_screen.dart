@@ -1,3 +1,4 @@
+import 'package:birge_app/domain/model/login_model.dart';
 import 'package:birge_app/ui/style/button/button.dart';
 import 'package:birge_app/ui/style/text_field/text_field.dart';
 import 'package:birge_app/ui/style/text_style/text_style.dart';
@@ -50,6 +51,7 @@ class LoginScreen extends StatelessWidget {
               ),
               spacerHeight(60),
               BlueButton(
+                width: width,
                 onPressed: () {},
                 child: const Text(
                   LoginScreenStrings.enterButton,
@@ -102,9 +104,7 @@ class LoginScreen extends StatelessWidget {
               hintText: content,
             ),
             validator: (value) {
-              if (value!.isEmpty) {
-                return validator;
-              }
+              LoginModel(value: value, response: validator).validator();
               return null;
             },
             controller: controller,
