@@ -29,7 +29,6 @@ class BlueButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //double widthScreen = MediaQuery.of(context).size.width;
     return InkWell(
       onTap: onPressed,
       child: Container(
@@ -53,7 +52,6 @@ class TransparentButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //double widthScreen = MediaQuery.of(context).size.width;
     return InkWell(
       onTap: onPressed,
       child: Padding(
