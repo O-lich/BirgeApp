@@ -19,12 +19,12 @@ class MyApp extends StatelessWidget {
       return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          textTheme: GoogleFonts.sourceSansProTextTheme(
+          textTheme: GoogleFonts.interTextTheme(
             Theme.of(context).textTheme,
           ),
-          primarySwatch: generateMaterialColor(color: const Color(0xFF414bb2)),
+          primarySwatch: generateMaterialColor(color: const Color(0xFF006FFD)),
         ),
-        home: ArticlesScreen(),
+        home: SplashScreen(),
       );
     });
   }

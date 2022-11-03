@@ -1,4 +1,3 @@
-import 'package:birge_app/domain/model/login_model.dart';
 import 'package:birge_app/ui/style/button/button.dart';
 import 'package:birge_app/ui/style/text_field/text_field.dart';
 import 'package:birge_app/ui/style/text_style/text_style.dart';
@@ -7,6 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../const/strings.dart';
+import '../../../domain/model/login_model.dart';
+import '../../widgets/buttons.dart';
+import '../../widgets/widgets.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -83,35 +85,5 @@ class LoginScreen extends StatelessWidget {
 
   Widget spacerHeight(double height) {
     return SizedBox(height: height);
-  }
-
-  Widget newFormField(double width, BuildContext context, String title,
-      String content, String validator, TextEditingController controller) {
-    return SizedBox(
-      width: width,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: Text(
-              title,
-            ),
-          ),
-          TextFormField(
-            decoration: CustomDecoration.textFieldStyle(
-              context,
-              hintText: content,
-            ),
-            validator: (value) {
-              LoginModel(value: value, response: validator).validator();
-              return null;
-            },
-            controller: controller,
-            textInputAction: TextInputAction.next,
-          ),
-        ],
-      ),
-    );
   }
 }
