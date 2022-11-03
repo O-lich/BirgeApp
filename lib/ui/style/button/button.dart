@@ -11,11 +11,61 @@ class CustomButton {
   ButtonStyle buttonStyle(double height, double width) {
     return ButtonStyle(
       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-        const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.elliptical(10, 10))),
+        const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.elliptical(10, 10))),
       ),
       minimumSize: MaterialStateProperty.all(Size(width, height)),
       backgroundColor: MaterialStateProperty.all(Colors.transparent),
       shadowColor: MaterialStateProperty.all(Colors.transparent),
+    );
+  }
+}
+
+class BlueButton extends StatelessWidget {
+  const BlueButton({required this.child, required this.onPressed, super.key});
+
+  final Widget child;
+  final void Function() onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    //double widthScreen = MediaQuery.of(context).size.width;
+    return InkWell(
+      onTap: onPressed,
+      child: Container(
+        decoration: CustomButton.buttonDecoration(context),
+        child: ElevatedButton(
+          style: CustomButton().buttonStyle(50, 350),
+          onPressed: () {},
+          child: child,
+        ),
+      ),
+    );
+  }
+}
+
+class TransparentButton extends StatelessWidget {
+  const TransparentButton(
+      {required this.child, required this.onPressed, super.key});
+
+  final Widget child;
+  final void Function() onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    //double widthScreen = MediaQuery.of(context).size.width;
+    return InkWell(
+      onTap: onPressed,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 30),
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: TextButton(
+            onPressed: () {},
+            child: child,
+          ),
+        ),
+      ),
     );
   }
 }
