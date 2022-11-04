@@ -1,6 +1,6 @@
 abstract class Strings {
   static const appName = 'Birge';
-  static const welcome = 'Добро пожаловать в $appName!';
+  static const welcome = 'Добро пожаловать!';
   static const pleaseEnterEmail = 'Пожалуйста, введите свой e-mail';
   static const pleaseEnterPwd = 'Пожалуйста, введите пароль';
   static const enterButton = 'Войти';
@@ -14,7 +14,7 @@ abstract class Strings {
 
 abstract class LoginScreenStrings {
   static const appName = 'Birge';
-  static const welcome = 'Добро пожаловать в $appName!';
+  static const welcome = 'Добро пожаловать!';
   static const pleaseEnterEmail = 'Пожалуйста, введите свой e-mail';
   static const pleaseEnterPwd = 'Пожалуйста, введите пароль';
   static const enterButton = 'Войти';
@@ -24,6 +24,10 @@ abstract class LoginScreenStrings {
   static const enterPassword = 'Введите пароль';
   static const email = 'Почта';
   static const password = 'Пароль';
+  static const dontHaveAcc = 'Нет аккаунта? ';
+  static const signUp = 'Зарегистрируйтесь';
+  static const continueWith = 'Или продолжить с';
+
 }
 
 abstract class SplashScreenStrings {

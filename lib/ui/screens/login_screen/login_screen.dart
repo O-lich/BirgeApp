@@ -1,12 +1,8 @@
-import 'package:birge_app/ui/style/button/button.dart';
-import 'package:birge_app/ui/style/text_field/text_field.dart';
 import 'package:birge_app/ui/style/text_style/text_style.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-
 import '../../../const/strings.dart';
-import '../../../domain/model/login_model.dart';
 import '../../widgets/buttons.dart';
 import '../../widgets/widgets.dart';
 
@@ -25,11 +21,18 @@ class LoginScreen extends StatelessWidget {
           width: Device.width,
           child: Column(
             children: [
-              spacerHeight(100),
-              Text(LoginScreenStrings.welcome,
-                  style: CustomBlueTextStyle(context, size: 40.0),
+              spacerHeight(20),
+              Padding(
+                padding: const EdgeInsets.all(30),
+                child: Image.asset('assets/images/welcome_image.jpg'),
+              ),
+              const Text(LoginScreenStrings.welcome,
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center),
-              spacerHeight(40),
+              spacerHeight(20),
               Form(
                 key: _formKey,
                 child: Column(
@@ -51,39 +54,46 @@ class LoginScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              spacerHeight(60),
+              TransparentButton(
+                onPressed: () {},
+                child: Text(
+                  LoginScreenStrings.forgotPwd,
+                  style: CustomBlueTextStyle(context, size: 14),
+                ),
+              ),
               BlueButton(
                 width: width,
                 onPressed: () {},
                 child: const Text(
                   LoginScreenStrings.enterButton,
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                  style: TextStyle(fontSize:14, fontWeight: FontWeight.w500),
                 ),
               ),
               spacerHeight(20),
-              TransparentButton(
-                onPressed: () {},
-                child: Text(
-                  LoginScreenStrings.forgotPwd,
-                  style: CustomBlueTextStyle(context, size: 16),
-                ),
+              Text.rich(
+                TextSpan(children: [
+                  const TextSpan(text: LoginScreenStrings.dontHaveAcc, style: TextStyle(fontSize: 14)),
+                  TextSpan(
+                      text: LoginScreenStrings.signUp,
+                      style: CustomBlueTextStyle(context, size: 14),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {}),
+                ]),
               ),
               spacerHeight(20),
-              TransparentButton(
-                onPressed: () {},
-                child: Text(
-                  LoginScreenStrings.personalInfo,
-                  style: CustomBlueTextStyle(context, size: 16),
-                ),
-              ),
+             SizedBox(
+               height: 100,
+               child:  Column(
+                 children: [
+                   const Text(LoginScreenStrings.continueWith),
+                   Expanded(flex: 3, child: socialCircles()),
+                 ],
+               ),
+             )
             ],
           ),
         ),
       ),
     );
-  }
-
-  Widget spacerHeight(double height) {
-    return SizedBox(height: height);
   }
 }

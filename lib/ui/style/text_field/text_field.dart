@@ -6,12 +6,12 @@ class CustomDecoration {
     return InputDecoration(
         contentPadding: const EdgeInsets.all(10),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.elliptical(4, 4)),
+          borderRadius: BorderRadius.all(Radius.elliptical(12, 12)),
           borderSide: BorderSide(color: Theme.of(context).primaryColor,),
         ),
         enabledBorder: const OutlineInputBorder(
           borderSide: BorderSide(color: Colors.grey),
-          borderRadius: BorderRadius.all(Radius.elliptical(4, 4)),
+          borderRadius: BorderRadius.all(Radius.elliptical(12, 12)),
         ),
         errorBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.red.shade300),

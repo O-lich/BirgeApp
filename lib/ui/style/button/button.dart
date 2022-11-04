@@ -4,7 +4,7 @@ class CustomButton {
   static BoxDecoration buttonDecoration(BuildContext context) {
     return BoxDecoration(
       color: Theme.of(context).primaryColor,
-      borderRadius: const BorderRadius.all(Radius.elliptical(4, 4)),
+      borderRadius: const BorderRadius.all(Radius.elliptical(12, 12)),
     );
   }
 
@@ -12,7 +12,7 @@ class CustomButton {
     return ButtonStyle(
       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
         const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.elliptical(10, 10))),
+            borderRadius: BorderRadius.all(Radius.elliptical(20, 20))),
       ),
       minimumSize: MaterialStateProperty.all(Size(width, height)),
       backgroundColor: MaterialStateProperty.all(Colors.transparent),
