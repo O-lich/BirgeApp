@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:birge_app/ui/screens/login_screen/login_screen.dart';
+import 'package:birge_app/ui/screens/onboarding_screen/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import '../../style/colors/app_colors.dart';
 
@@ -28,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen>  with TickerProviderStateMi
     Timer(
         const Duration(seconds: 3),
         () => Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (BuildContext context) => LoginScreen())));
+            builder: (BuildContext context) => OnBoardingScreen())));
   }
   @override
   dispose() {

@@ -1,17 +1,3 @@
-abstract class Strings {
-  static const appName = 'Birge';
-  static const welcome = 'Добро пожаловать!';
-  static const pleaseEnterEmail = 'Пожалуйста, введите свой e-mail';
-  static const pleaseEnterPwd = 'Пожалуйста, введите пароль';
-  static const enterButton = 'Войти';
-  static const forgotPwd = 'Забыли пароль?';
-  static const personalInfo = 'Личная информация';
-  static const enterEmail = 'Введите e-mail';
-  static const enterPassword = 'Введите пароль';
-  static const email = 'Почта';
-  static const password = 'Пароль';
-}
-
 abstract class LoginScreenStrings {
   static const appName = 'Birge';
   static const welcome = 'Добро пожаловать!';
@@ -105,4 +91,10 @@ abstract class PlanScreenStrings {
   static const date = 'Выберите дату';
   static const what = 'Задача';
   static const task = 'Напишите что хотите сделать';
+}
+
+abstract class OnBoardingScreenStrings {
+  static const youAreNotAlone = 'Вы не одиноки, мы поможем вам';
+  static const weAreHere = 'Чувствуете себя подавленным? Мы здесь, чтобы поддержать вас.';
+  static const goOn = 'Дальше';
 }
