@@ -95,6 +95,9 @@ abstract class PlanScreenStrings {
 
 abstract class OnBoardingScreenStrings {
   static const youAreNotAlone = 'Вы не одиноки, мы поможем вам';
-  static const weAreHere = 'Чувствуете себя подавленным? Мы здесь, чтобы поддержать вас.';
+  static const weAreHere =
+      'Чувствуете себя подавленным? Мы здесь, чтобы поддержать вас.';
   static const goOn = 'Дальше';
+  static const imageImage = 'assets/images/onboarding_image.jpg';
+  static const imageArrow = 'assets/images/arrow.png';
 }
