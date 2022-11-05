@@ -98,3 +98,20 @@ abstract class OnBoardingScreenStrings {
   static const weAreHere = 'Чувствуете себя подавленным? Мы здесь, чтобы поддержать вас.';
   static const goOn = 'Дальше';
 }
+
+abstract class SignupScreenStrings {
+  static const registration = 'Регистрация';
+  static const registrationSubtitle = 'Создайте учётную запись, чтобы начать';
+  static const name = 'Имя';
+  static const enterName = 'Введите имя';
+  static const plsEnterName = 'Пожалуйста, введите имя';
+  static const email = 'Почта';
+  static const emailExample = 'name@email.com';
+  static const plsEnterEmail = 'Пожалуйста, введите e-mail';
+  static const password = 'Пароль';
+  static const createPwd = 'Создайте пароль';
+  static const plsEnterPwd = 'Пожалуйста, введите пароль';
+  static const confirmPwd = 'Подтвердите пароль';
+  static const plsConfirmPwd = 'Пожалуйста, подтвердите пароль';
+  static const signUp = 'Зарегистрироваться';
+}

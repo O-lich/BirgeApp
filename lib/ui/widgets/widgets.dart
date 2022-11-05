@@ -1,5 +1,4 @@
 import 'package:birge_app/ui/widgets/social_network_button.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../domain/model/login_model.dart';
@@ -30,7 +29,7 @@ Widget newFormField(
             hintText: hintText,
           ),
           validator: (value) {
-            LoginModel(value: value, response: responseValidator).validator();
+            LoginViewModel(value: value, response: responseValidator).validator();
             return null;
           },
           controller: controller,

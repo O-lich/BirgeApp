@@ -1,8 +1,8 @@
-class LoginViewModel {
+class SignUpViewModel {
   final String? value;
   final String response;
 
-  LoginViewModel({required this.value, required this.response});
+  SignUpViewModel({required this.value, required this.response});
 
   String? validator() {
     if (value!.isEmpty) {

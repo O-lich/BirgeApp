@@ -11,10 +11,10 @@ class LoginScreen extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
 
   @override
   Widget build(BuildContext context) {
-    final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
     return Scaffold(
       body: SingleChildScrollView(
         child: SizedBox(
@@ -43,7 +43,7 @@ class LoginScreen extends StatelessWidget {
                         LoginScreenStrings.email,
                         LoginScreenStrings.enterEmail,
                         LoginScreenStrings.pleaseEnterEmail,
-                        _emailController),
+                        _emailController,),
                     newFormField(
                         width,
                         context,
