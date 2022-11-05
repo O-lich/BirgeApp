@@ -3,6 +3,7 @@ import 'package:birge_app/ui/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/strings.dart';
+import '../../../domain/model/signup_model.dart';
 
 class SignupScreen extends StatelessWidget {
   SignupScreen({Key? key}) : super(key: key);
@@ -12,6 +13,7 @@ class SignupScreen extends StatelessWidget {
   final _passwordController = TextEditingController();
   final _passwordAgainController = TextEditingController();
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
+  final signUpViewModel = SignUpViewModel();
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,9 @@ class SignupScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(SignupScreenStrings.registration, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                    const Text(SignupScreenStrings.registration,
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold)),
                     spacerHeight(10),
                     const Text(SignupScreenStrings.registrationSubtitle),
                   ],
@@ -42,29 +46,34 @@ class SignupScreen extends StatelessWidget {
                           context,
                           SignupScreenStrings.name,
                           SignupScreenStrings.enterName,
-                          SignupScreenStrings.plsEnterName,
-                          _nameController),
+                          _nameController,
+                          signUpViewModel.validator(_nameController.text,
+                              SignupScreenStrings.plsEnterName)),
                       newFormField(
                           width,
                           context,
                           SignupScreenStrings.email,
                           SignupScreenStrings.emailExample,
-                          SignupScreenStrings.plsEnterEmail,
-                          _emailController),
+                          _emailController,
+                          signUpViewModel.validator(_emailController.text,
+                              SignupScreenStrings.plsEnterEmail)),
                       newFormField(
                           width,
                           context,
                           SignupScreenStrings.password,
                           SignupScreenStrings.createPwd,
-                          SignupScreenStrings.plsEnterPwd,
-                          _passwordController),
+                          _passwordController,
+                          signUpViewModel.validator(_passwordController.text,
+                              SignupScreenStrings.plsEnterPwd)),
                       newFormField(
                           width,
                           context,
                           SignupScreenStrings.confirmPwd,
                           SignupScreenStrings.confirmPwd,
-                          SignupScreenStrings.plsConfirmPwd,
-                          _passwordAgainController),
+                          _passwordAgainController,
+                          signUpViewModel.validator(
+                              _passwordAgainController.text,
+                              SignupScreenStrings.plsConfirmPwd)),
                     ],
                   )),
               spacerHeight(20),

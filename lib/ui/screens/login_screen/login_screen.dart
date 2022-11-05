@@ -1,3 +1,4 @@
+import 'package:birge_app/domain/model/login_model.dart';
 import 'package:birge_app/ui/style/text_style/text_style.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ class LoginScreen extends StatelessWidget {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
+  final loginViewModel = LoginViewModel();
 
   @override
   Widget build(BuildContext context) {
@@ -42,15 +44,15 @@ class LoginScreen extends StatelessWidget {
                         context,
                         LoginScreenStrings.email,
                         LoginScreenStrings.enterEmail,
-                        LoginScreenStrings.pleaseEnterEmail,
-                        _emailController,),
+                        _emailController,
+                        loginViewModel.validator(_emailController.text, LoginScreenStrings.pleaseEnterEmail)),
                     newFormField(
                         width,
                         context,
                         LoginScreenStrings.password,
                         LoginScreenStrings.enterPassword,
-                        LoginScreenStrings.pleaseEnterPwd,
-                        _passwordController),
+                        _passwordController,
+                        loginViewModel.validator(_passwordController.text, LoginScreenStrings.pleaseEnterPwd)),
                   ],
                 ),
               ),
@@ -66,30 +68,31 @@ class LoginScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text(
                   LoginScreenStrings.enterButton,
-                  style: TextStyle(fontSize:14, fontWeight: FontWeight.w500),
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
                 ),
               ),
               spacerHeight(20),
               Text.rich(
                 TextSpan(children: [
-                  const TextSpan(text: LoginScreenStrings.dontHaveAcc, style: TextStyle(fontSize: 14)),
+                  const TextSpan(
+                      text: LoginScreenStrings.dontHaveAcc,
+                      style: TextStyle(fontSize: 14)),
                   TextSpan(
                       text: LoginScreenStrings.signUp,
                       style: CustomBlueTextStyle(context, size: 14),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {}),
+                      recognizer: TapGestureRecognizer()..onTap = () {}),
                 ]),
               ),
               spacerHeight(20),
-             SizedBox(
-               height: 100,
-               child:  Column(
-                 children: [
-                   const Text(LoginScreenStrings.continueWith),
-                   Expanded(flex: 3, child: socialCircles()),
-                 ],
-               ),
-             )
+              SizedBox(
+                height: 100,
+                child: Column(
+                  children: [
+                    const Text(LoginScreenStrings.continueWith),
+                    Expanded(flex: 3, child: socialCircles()),
+                  ],
+                ),
+              )
             ],
           ),
         ),
