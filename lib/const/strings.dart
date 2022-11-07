@@ -1,17 +1,3 @@
-abstract class Strings {
-  static const appName = 'Birge';
-  static const welcome = 'Добро пожаловать!';
-  static const pleaseEnterEmail = 'Пожалуйста, введите свой e-mail';
-  static const pleaseEnterPwd = 'Пожалуйста, введите пароль';
-  static const enterButton = 'Войти';
-  static const forgotPwd = 'Забыли пароль?';
-  static const personalInfo = 'Личная информация';
-  static const enterEmail = 'Введите e-mail';
-  static const enterPassword = 'Введите пароль';
-  static const email = 'Почта';
-  static const password = 'Пароль';
-}
-
 abstract class LoginScreenStrings {
   static const appName = 'Birge';
   static const welcome = 'Добро пожаловать!';
@@ -27,7 +13,7 @@ abstract class LoginScreenStrings {
   static const dontHaveAcc = 'Нет аккаунта? ';
   static const signUp = 'Зарегистрируйтесь';
   static const continueWith = 'Или продолжить с';
-
+  static const imageLogin = 'assets/images/welcome_image.jpg';
 }
 
 abstract class SplashScreenStrings {
@@ -105,4 +91,30 @@ abstract class PlanScreenStrings {
   static const date = 'Выберите дату';
   static const what = 'Задача';
   static const task = 'Напишите что хотите сделать';
+}
+
+abstract class OnBoardingScreenStrings {
+  static const youAreNotAlone = 'Вы не одиноки, мы поможем вам';
+  static const weAreHere =
+      'Чувствуете себя подавленным? Мы здесь, чтобы поддержать вас.';
+  static const goOn = 'Дальше';
+  static const imageImage = 'assets/images/onboarding_image.jpg';
+  static const imageArrow = 'assets/images/arrow.png';
+}
+
+abstract class SignupScreenStrings {
+  static const registration = 'Регистрация';
+  static const registrationSubtitle = 'Создайте учётную запись, чтобы начать';
+  static const name = 'Имя';
+  static const enterName = 'Введите имя';
+  static const plsEnterName = 'Пожалуйста, введите имя';
+  static const email = 'Почта';
+  static const emailExample = 'name@email.com';
+  static const plsEnterEmail = 'Пожалуйста, введите e-mail';
+  static const password = 'Пароль';
+  static const createPwd = 'Создайте пароль';
+  static const plsEnterPwd = 'Пожалуйста, введите пароль';
+  static const confirmPwd = 'Подтвердите пароль';
+  static const plsConfirmPwd = 'Пожалуйста, подтвердите пароль';
+  static const signUp = 'Зарегистрироваться';
 }
