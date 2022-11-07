@@ -9,7 +9,7 @@ TextStyle CustomBlueTextStyle(
       color: color, fontSize: fontSize, fontWeight: fontWeight);
 }
 
-class MyTextStyle {
+class CommonTextStyle {
   static final mainHeader = CustomBlueTextStyle(
       color: Colors.black, fontSize: 40, fontWeight: FontWeight.bold);
   static final mainText = CustomBlueTextStyle(

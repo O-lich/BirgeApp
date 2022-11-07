@@ -22,7 +22,7 @@ class OnBoardingScreen extends StatelessWidget {
               spacerHeight(20),
               Text(
                 OnBoardingScreenStrings.youAreNotAlone,
-                style: MyTextStyle.onboardingText,
+                style: CommonTextStyle.onboardingText,
               ),
               spacerHeight(20),
               const Text(OnBoardingScreenStrings.weAreHere),

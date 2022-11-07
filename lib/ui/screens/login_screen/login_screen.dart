@@ -29,7 +29,7 @@ class LoginScreen extends StatelessWidget {
                 child: Image.asset(LoginScreenStrings.imageLogin),
               ),
               Text(LoginScreenStrings.welcome,
-                  style: MyTextStyle.mainHeader, textAlign: TextAlign.center),
+                  style: CommonTextStyle.mainHeader, textAlign: TextAlign.center),
               spacerHeight(20),
               Form(
                 key: _formKey,
@@ -56,7 +56,7 @@ class LoginScreen extends StatelessWidget {
                 onPressed: () {},
                 child: Text(
                   LoginScreenStrings.forgotPwd,
-                  style: MyTextStyle.transparentButton,
+                  style: CommonTextStyle.transparentButton,
                 ),
               ),
               BlueButton(
@@ -64,7 +64,7 @@ class LoginScreen extends StatelessWidget {
                 onPressed: () {},
                 child: Text(
                   LoginScreenStrings.enterButton,
-                  style: MyTextStyle.blueButton,
+                  style: CommonTextStyle.blueButton,
                 ),
               ),
               spacerHeight(20),
@@ -73,7 +73,7 @@ class LoginScreen extends StatelessWidget {
                   const TextSpan(text: LoginScreenStrings.dontHaveAcc, style: TextStyle(fontSize: 14)),
                   TextSpan(
                       text: LoginScreenStrings.signUp,
-                      style: MyTextStyle.transparentButton,
+                      style: CommonTextStyle.transparentButton,
                       recognizer: TapGestureRecognizer()..onTap = () {}),
                 ]),
               ),
