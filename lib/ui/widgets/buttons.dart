@@ -20,6 +20,7 @@ class BlueButton extends StatelessWidget {
     return InkWell(
       onTap: onPressed,
       child: Container(
+        width: width,
         decoration: CustomButton.buttonDecoration(context),
         child: ElevatedButton(
           style: CustomButton().buttonStyle(50, 350),

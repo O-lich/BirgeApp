@@ -24,11 +24,9 @@ abstract class SplashScreenStrings {
 
 abstract class MainScreenStrings {
   static const question = 'Какая помощь вам нужна?';
-  static const choose = 'Выберите то, что вам нужно';
   static const meditationButton = 'Медитация';
-  static const testsButton = 'Психологические тесты';
+  static const therapistButton = 'Психолог';
   static const planButton = 'Составить план';
-  static const helpButton = 'Анонимная помощь от профессионала';
   static const diaryButton = 'Дневник';
 }
 
@@ -83,14 +81,25 @@ abstract class MeditationsScreenStrings {
   static const stress = 'Снятие стресса';
 }
 
-abstract class PlanScreenStrings {
+abstract class TaskScreenStrings {
   static const plan = 'Составьте план';
   static const rate = 'Важность этой задачи';
   static const rating = 'Оцените от 1 до 10';
   static const when = 'Когда нужно закончить?';
   static const date = 'Выберите дату';
-  static const what = 'Задача';
-  static const task = 'Напишите что хотите сделать';
+  static const title = 'Название задачи';
+  static const subtitle = 'Напишите что хотите сделать';
+  static const add = 'Добавить';
+}
+
+abstract class DiaryScreenStrings {
+  static const diary = 'Дневник';
+  static const exampleTitle = 'Пример';
+  static const exampleSubtitle =
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
+  static const exampleDiaryNote =
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum';
+  static const hintText = 'Как прошел Ваш день?';
 }
 
 abstract class OnBoardingScreenStrings {
@@ -100,7 +109,6 @@ abstract class OnBoardingScreenStrings {
   static const goOn = 'Дальше';
   static const imageImage = 'assets/images/onboarding_image.jpg';
   static const imageArrow = 'assets/images/arrow.png';
-
 }
 
 abstract class SignupScreenStrings {

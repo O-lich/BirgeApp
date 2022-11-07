@@ -11,7 +11,9 @@ TextStyle CustomBlueTextStyle(
 
 class CommonTextStyle {
   static final mainHeader = CustomBlueTextStyle(
-      color: Colors.black, fontSize: 40, fontWeight: FontWeight.bold);
+      color: const Color(0xff101368),
+      fontSize: 24,
+      fontWeight: FontWeight.w900);
   static final mainText = CustomBlueTextStyle(
       color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold);
   static final onboardingText = CustomBlueTextStyle(
@@ -19,7 +21,9 @@ class CommonTextStyle {
   static final blueButton = CustomBlueTextStyle(
       color: const Color(0xffffffff),
       fontSize: 14,
-      fontWeight: FontWeight.w500);
+      fontWeight: FontWeight.w600);
   static final transparentButton = CustomBlueTextStyle(
-      color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500);
+      color: const Color(0xff006FFD),
+      fontSize: 14,
+      fontWeight: FontWeight.w600);
 }
