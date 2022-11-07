@@ -4,6 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/strings.dart';
+import '../../style/colors/app_colors.dart';
 import '../../widgets/buttons.dart';
 import '../../widgets/calendar.dart';
 import '../../widgets/widgets.dart';
@@ -16,7 +17,7 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffEAF2FF),
+      backgroundColor: backgroundColor,
       body: SingleChildScrollView(
         child: SizedBox(
           width: Device.width,

@@ -1,7 +1,5 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../style/button/button.dart';
 
 class BlueButton extends StatelessWidget {
