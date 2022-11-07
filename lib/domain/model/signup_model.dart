@@ -1,10 +1,5 @@
 class SignUpViewModel {
-  final String? value;
-  final String response;
-
-  SignUpViewModel({required this.value, required this.response});
-
-  String? validator() {
+  String? validator(String? value, String response) {
     if (value!.isEmpty) {
       return response;
     } else {

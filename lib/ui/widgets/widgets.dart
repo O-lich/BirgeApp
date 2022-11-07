@@ -10,8 +10,8 @@ Widget newFormField(
     BuildContext context,
     String title,
     String hintText,
-    String responseValidator,
-    TextEditingController controller) {
+    TextEditingController controller,
+    String? validation) {
   return SizedBox(
     width: width,
     child: Column(
@@ -29,7 +29,7 @@ Widget newFormField(
             hintText: hintText,
           ),
           validator: (value) {
-            LoginViewModel(value: value, response: responseValidator).validator();
+            validation;
             return null;
           },
           controller: controller,
