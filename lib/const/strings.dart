@@ -13,7 +13,7 @@ abstract class LoginScreenStrings {
   static const dontHaveAcc = 'Нет аккаунта? ';
   static const signUp = 'Зарегистрируйтесь';
   static const continueWith = 'Или продолжить с';
-
+  static const imageLogin = 'assets/images/welcome_image.jpg';
 }
 
 abstract class SplashScreenStrings {
@@ -95,8 +95,11 @@ abstract class PlanScreenStrings {
 
 abstract class OnBoardingScreenStrings {
   static const youAreNotAlone = 'Вы не одиноки, мы поможем вам';
-  static const weAreHere = 'Чувствуете себя подавленным? Мы здесь, чтобы поддержать вас.';
+  static const weAreHere =
+      'Чувствуете себя подавленным? Мы здесь, чтобы поддержать вас.';
   static const goOn = 'Дальше';
+  static const imageImage = 'assets/images/onboarding_image.jpg';
+  static const imageArrow = 'assets/images/arrow.png';
 }
 
 abstract class SignupScreenStrings {

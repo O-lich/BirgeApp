@@ -1,3 +1,4 @@
+import 'package:birge_app/ui/style/text_style/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/strings.dart';
@@ -17,18 +18,22 @@ class OnBoardingScreen extends StatelessWidget {
           child: Column(
             children: [
               spacerHeight(20),
-              Image.asset('assets/images/onboarding_image.jpg'),
+              Image.asset(OnBoardingScreenStrings.imageImage),
               spacerHeight(20),
-              const Text(OnBoardingScreenStrings.youAreNotAlone, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),),
+              Text(
+                OnBoardingScreenStrings.youAreNotAlone,
+                style: MyTextStyle.onboardingText,
+              ),
               spacerHeight(20),
               const Text(OnBoardingScreenStrings.weAreHere),
               spacerHeight(20),
-              Image.asset('assets/images/arrow.png'),
+              Image.asset(OnBoardingScreenStrings.imageArrow),
               spacerHeight(20),
               BlueButton(
-                onPressed: () {  },
+                onPressed: () {},
                 width: width,
-                child: const Text(OnBoardingScreenStrings.goOn),)
+                child: const Text(OnBoardingScreenStrings.goOn),
+              )
             ],
           ),
         ),

@@ -24,24 +24,20 @@ class LoginScreen extends StatelessWidget {
               spacerHeight(20),
               Padding(
                 padding: const EdgeInsets.all(30),
-                child: Image.asset('assets/images/welcome_image.jpg'),
+                child: Image.asset(LoginScreenStrings.imageLogin),
               ),
-              const Text(LoginScreenStrings.welcome,
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.center),
+              Text(LoginScreenStrings.welcome,
+                  style: MyTextStyle.mainHeader, textAlign: TextAlign.center),
               spacerHeight(20),
               Form(
                 key: _formKey,
                 child: Column(
                   children: [
                     newFormField(
-                        width,
-                        context,
-                        LoginScreenStrings.email,
-                        LoginScreenStrings.enterEmail,
+                      width,
+                      context,
+                      LoginScreenStrings.email,
+                      LoginScreenStrings.enterEmail,
                         LoginScreenStrings.pleaseEnterEmail,
                         _emailController,),
                     newFormField(
@@ -58,15 +54,15 @@ class LoginScreen extends StatelessWidget {
                 onPressed: () {},
                 child: Text(
                   LoginScreenStrings.forgotPwd,
-                  style: CustomBlueTextStyle(context, size: 14),
+                  style: MyTextStyle.transparentButton,
                 ),
               ),
               BlueButton(
                 width: width,
                 onPressed: () {},
-                child: const Text(
+                child: Text(
                   LoginScreenStrings.enterButton,
-                  style: TextStyle(fontSize:14, fontWeight: FontWeight.w500),
+                  style: MyTextStyle.blueButton,
                 ),
               ),
               spacerHeight(20),
@@ -75,9 +71,8 @@ class LoginScreen extends StatelessWidget {
                   const TextSpan(text: LoginScreenStrings.dontHaveAcc, style: TextStyle(fontSize: 14)),
                   TextSpan(
                       text: LoginScreenStrings.signUp,
-                      style: CustomBlueTextStyle(context, size: 14),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {}),
+                      style: MyTextStyle.transparentButton,
+                      recognizer: TapGestureRecognizer()..onTap = () {}),
                 ]),
               ),
               spacerHeight(20),
