@@ -1,3 +1,4 @@
+import 'package:birge_app/ui/style/text_style/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/strings.dart';
@@ -19,9 +20,9 @@ class OnBoardingScreen extends StatelessWidget {
               spacerHeight(20),
               Image.asset(OnBoardingScreenStrings.imageImage),
               spacerHeight(20),
-              const Text(
+              Text(
                 OnBoardingScreenStrings.youAreNotAlone,
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style: CommonTextStyle.onboardingText,
               ),
               spacerHeight(20),
               const Text(OnBoardingScreenStrings.weAreHere),

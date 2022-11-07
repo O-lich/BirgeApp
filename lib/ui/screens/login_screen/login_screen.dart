@@ -1,3 +1,4 @@
+import 'package:birge_app/domain/model/login_model.dart';
 import 'package:birge_app/ui/style/text_style/text_style.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -11,10 +12,11 @@ class LoginScreen extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
+  final loginViewModel = LoginViewModel();
 
   @override
   Widget build(BuildContext context) {
-    final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
     return Scaffold(
       body: SingleChildScrollView(
         child: SizedBox(
@@ -24,14 +26,10 @@ class LoginScreen extends StatelessWidget {
               spacerHeight(20),
               Padding(
                 padding: const EdgeInsets.all(30),
-                child: Image.asset('assets/images/welcome_image.jpg'),
+                child: Image.asset(LoginScreenStrings.imageLogin),
               ),
-              const Text(LoginScreenStrings.welcome,
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.center),
+              Text(LoginScreenStrings.welcome,
+                  style: CommonTextStyle.mainHeader, textAlign: TextAlign.center),
               spacerHeight(20),
               Form(
                 key: _formKey,
@@ -42,15 +40,15 @@ class LoginScreen extends StatelessWidget {
                         context,
                         LoginScreenStrings.email,
                         LoginScreenStrings.enterEmail,
-                        LoginScreenStrings.pleaseEnterEmail,
-                        _emailController),
+                        _emailController,
+                        loginViewModel.validator(_emailController.text, LoginScreenStrings.pleaseEnterEmail)),
                     newFormField(
                         width,
                         context,
                         LoginScreenStrings.password,
                         LoginScreenStrings.enterPassword,
-                        LoginScreenStrings.pleaseEnterPwd,
-                        _passwordController),
+                        _passwordController,
+                        loginViewModel.validator(_passwordController.text, LoginScreenStrings.pleaseEnterPwd)),
                   ],
                 ),
               ),
@@ -58,15 +56,15 @@ class LoginScreen extends StatelessWidget {
                 onPressed: () {},
                 child: Text(
                   LoginScreenStrings.forgotPwd,
-                  style: CustomBlueTextStyle(context, size: 14),
+                  style: CommonTextStyle.transparentButton,
                 ),
               ),
               BlueButton(
                 width: width,
                 onPressed: () {},
-                child: const Text(
+                child: Text(
                   LoginScreenStrings.enterButton,
-                  style: TextStyle(fontSize:14, fontWeight: FontWeight.w500),
+                  style: CommonTextStyle.blueButton,
                 ),
               ),
               spacerHeight(20),
@@ -75,21 +73,20 @@ class LoginScreen extends StatelessWidget {
                   const TextSpan(text: LoginScreenStrings.dontHaveAcc, style: TextStyle(fontSize: 14)),
                   TextSpan(
                       text: LoginScreenStrings.signUp,
-                      style: CustomBlueTextStyle(context, size: 14),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {}),
+                      style: CommonTextStyle.transparentButton,
+                      recognizer: TapGestureRecognizer()..onTap = () {}),
                 ]),
               ),
               spacerHeight(20),
-             SizedBox(
-               height: 100,
-               child:  Column(
-                 children: [
-                   const Text(LoginScreenStrings.continueWith),
-                   Expanded(flex: 3, child: socialCircles()),
-                 ],
-               ),
-             )
+              SizedBox(
+                height: 100,
+                child: Column(
+                  children: [
+                    const Text(LoginScreenStrings.continueWith),
+                    Expanded(flex: 3, child: socialCircles()),
+                  ],
+                ),
+              )
             ],
           ),
         ),

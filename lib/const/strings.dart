@@ -13,7 +13,7 @@ abstract class LoginScreenStrings {
   static const dontHaveAcc = 'Нет аккаунта? ';
   static const signUp = 'Зарегистрируйтесь';
   static const continueWith = 'Или продолжить с';
-
+  static const imageLogin = 'assets/images/welcome_image.jpg';
 }
 
 abstract class SplashScreenStrings {
@@ -100,4 +100,23 @@ abstract class OnBoardingScreenStrings {
   static const goOn = 'Дальше';
   static const imageImage = 'assets/images/onboarding_image.jpg';
   static const imageArrow = 'assets/images/arrow.png';
+  static const imageImage = 'assets/images/onboarding_image.jpg';
+  static const imageArrow = 'assets/images/arrow.png';
+}
+
+abstract class SignupScreenStrings {
+  static const registration = 'Регистрация';
+  static const registrationSubtitle = 'Создайте учётную запись, чтобы начать';
+  static const name = 'Имя';
+  static const enterName = 'Введите имя';
+  static const plsEnterName = 'Пожалуйста, введите имя';
+  static const email = 'Почта';
+  static const emailExample = 'name@email.com';
+  static const plsEnterEmail = 'Пожалуйста, введите e-mail';
+  static const password = 'Пароль';
+  static const createPwd = 'Создайте пароль';
+  static const plsEnterPwd = 'Пожалуйста, введите пароль';
+  static const confirmPwd = 'Подтвердите пароль';
+  static const plsConfirmPwd = 'Пожалуйста, подтвердите пароль';
+  static const signUp = 'Зарегистрироваться';
 }
