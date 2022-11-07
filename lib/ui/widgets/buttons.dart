@@ -1,7 +1,5 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../style/button/button.dart';
 
 class BlueButton extends StatelessWidget {
@@ -20,6 +18,7 @@ class BlueButton extends StatelessWidget {
     return InkWell(
       onTap: onPressed,
       child: Container(
+        width: width,
         decoration: CustomButton.buttonDecoration(context),
         child: ElevatedButton(
           style: CustomButton().buttonStyle(50, 350),

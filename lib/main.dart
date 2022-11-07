@@ -1,3 +1,4 @@
+import 'package:birge_app/ui/screens/login_screen/login_screen.dart';
 import 'package:birge_app/ui/screens/signup_screen/signup_screen.dart';
 import 'package:birge_app/ui/screens/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
           ),
           primarySwatch: generateMaterialColor(color: const Color(0xFF006FFD)),
         ),
-        home: SignupScreen(),
+        home: LoginScreen(),
       );
     });
   }

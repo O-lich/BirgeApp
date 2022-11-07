@@ -5,13 +5,8 @@ import '../../domain/model/login_model.dart';
 import '../style/colors/social_network_colors.dart';
 import '../style/text_field/text_field.dart';
 
-Widget newFormField(
-    double width,
-    BuildContext context,
-    String title,
-    String hintText,
-    TextEditingController controller,
-    String? validation) {
+Widget newFormField(double width, BuildContext context, String title,
+    String hintText, TextEditingController controller, String? validation) {
   return SizedBox(
     width: width,
     child: Column(

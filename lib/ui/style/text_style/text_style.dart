@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../colors/app_colors.dart';
+
 TextStyle CustomBlueTextStyle(
     {required double fontSize,
     required FontWeight? fontWeight,
@@ -11,15 +13,19 @@ TextStyle CustomBlueTextStyle(
 
 class CommonTextStyle {
   static final mainHeader = CustomBlueTextStyle(
-      color: Colors.black, fontSize: 40, fontWeight: FontWeight.bold);
+      color: mainHeaderColor,
+      fontSize: 24,
+      fontWeight: FontWeight.w900);
   static final mainText = CustomBlueTextStyle(
       color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold);
   static final onboardingText = CustomBlueTextStyle(
       color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold);
   static final blueButton = CustomBlueTextStyle(
-      color: const Color(0xffffffff),
+      color:  Colors.white,
       fontSize: 14,
-      fontWeight: FontWeight.w500);
+      fontWeight: FontWeight.w600);
   static final transparentButton = CustomBlueTextStyle(
-      color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500);
+      color: transparentButtonColor,
+      fontSize: 14,
+      fontWeight: FontWeight.w600);
 }
