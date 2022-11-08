@@ -127,3 +127,18 @@ abstract class SignupScreenStrings {
   static const plsConfirmPwd = 'Пожалуйста, подтвердите пароль';
   static const signUp = 'Зарегистрироваться';
 }
+
+abstract class BottomBarStrings {
+  static const menu = 'Меню';
+  static const articles = 'Статьи';
+  static const psychologist = 'Психолог';
+}
+
+abstract class PasswordRecoveryScreenStrings {
+  static const changePassword = 'Изменить пароль';
+  static const enterEmail = 'Введите e-mail, указанный при регистрации';
+  static const getLink = 'Получить ссылку для восстановления пароля';
+  static const plsEnterEmail = 'Пожалуйста, введите e-mail';
+  static const instructionsSent = 'Мы отправили ссылку для восстановления пароля на вашу почту. Вы получите её в течение 2-х минут';
+  static const okButton = 'Ок';
+}

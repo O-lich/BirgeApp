@@ -1,3 +1,4 @@
+import 'package:birge_app/ui/style/text_style/text_style.dart';
 import 'package:birge_app/ui/widgets/buttons.dart';
 import 'package:birge_app/ui/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -29,9 +30,8 @@ class SignupScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(SignupScreenStrings.registration,
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold)),
+                     Text(SignupScreenStrings.registration,
+                        style: CommonTextStyle.secondHeader),
                     spacerHeight(10),
                     const Text(SignupScreenStrings.registrationSubtitle),
                   ],

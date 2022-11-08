@@ -8,7 +8,7 @@ TextStyle CustomBlueTextStyle(
     required FontWeight? fontWeight,
     required Color color}) {
   return GoogleFonts.inter(
-      color: color, fontSize: fontSize, fontWeight: fontWeight);
+      color: color, fontSize: fontSize, fontWeight: fontWeight,);
 }
 
 class CommonTextStyle {
@@ -16,6 +16,7 @@ class CommonTextStyle {
       color: mainHeaderColor,
       fontSize: 24,
       fontWeight: FontWeight.w900);
+  static final secondHeader = CustomBlueTextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black);
   static final mainText = CustomBlueTextStyle(
       color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold);
   static final onboardingText = CustomBlueTextStyle(
@@ -25,7 +26,10 @@ class CommonTextStyle {
       fontSize: 14,
       fontWeight: FontWeight.w600);
   static final transparentButton = CustomBlueTextStyle(
-      color: transparentButtonColor,
+      color: mainAppColor,
       fontSize: 14,
       fontWeight: FontWeight.w600);
+  static final meditationTitle = CustomBlueTextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: Colors.black,);
+  static final bottomBarItem = CustomBlueTextStyle(fontSize: 12, fontWeight: FontWeight.normal, color: Colors.grey,);
+  static final bottomBarItemSelected = CustomBlueTextStyle(fontSize: 12, fontWeight: FontWeight.w900, color: Colors.black,);
 }
