@@ -41,7 +41,7 @@ class SignupScreen extends StatelessWidget {
                   key: _formKey,
                   child: Column(
                     children: [
-                      newFormField(
+                      customFormField(
                           width,
                           context,
                           SignupScreenStrings.name,
@@ -49,7 +49,7 @@ class SignupScreen extends StatelessWidget {
                           _nameController,
                           signUpViewModel.validator(_nameController.text,
                               SignupScreenStrings.plsEnterName)),
-                      newFormField(
+                      customFormField(
                           width,
                           context,
                           SignupScreenStrings.email,
@@ -57,7 +57,7 @@ class SignupScreen extends StatelessWidget {
                           _emailController,
                           signUpViewModel.validator(_emailController.text,
                               SignupScreenStrings.plsEnterEmail)),
-                      newFormField(
+                      customFormField(
                           width,
                           context,
                           SignupScreenStrings.password,
@@ -65,7 +65,7 @@ class SignupScreen extends StatelessWidget {
                           _passwordController,
                           signUpViewModel.validator(_passwordController.text,
                               SignupScreenStrings.plsEnterPwd)),
-                      newFormField(
+                      customFormField(
                           width,
                           context,
                           SignupScreenStrings.confirmPwd,

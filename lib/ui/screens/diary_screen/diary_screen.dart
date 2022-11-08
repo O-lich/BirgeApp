@@ -83,7 +83,9 @@ class DiaryScreen extends StatelessWidget {
             ),
             actions: [
               TextButton(
-                onPressed: () {},
+                onPressed: () async {
+                  Navigator.pop(context);
+                },
                 child: const Text(TaskScreenStrings.add),
               )
             ],

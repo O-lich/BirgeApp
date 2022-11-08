@@ -17,68 +17,75 @@ class PasswordRecoveryScreen extends StatelessWidget {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 31),
-          child: SizedBox(
-            height: 350,
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  spacerHeight(50),
-                  Text(PasswordRecoveryScreenStrings.changePassword,
-                      style: CommonTextStyle.secondHeader),
-                  const Text(PasswordRecoveryScreenStrings.enterEmail),
-                  newFormField(
-                      width,
-                      context,
-                      SignupScreenStrings.email,
-                      SignupScreenStrings.emailExample,
-                      _emailController,
-                      recoveryViewModel.validator(_emailController.text,
-                          PasswordRecoveryScreenStrings.plsEnterEmail)),
-                  BlueButton(
-                      onPressed: () => _showDialog(context),
-                      width: width,
-                      child: const Text(PasswordRecoveryScreenStrings.getLink))
-                ],
-              ),
+        child: SizedBox(
+          height: 350,
+          child: Align(
+            alignment: Alignment.topLeft,
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                spacerHeight(50),
+                Text(PasswordRecoveryScreenStrings.changePassword,
+                    style: CommonTextStyle.secondHeader),
+                const Text(PasswordRecoveryScreenStrings.enterEmail),
+                customFormField(
+                    width,
+                    context,
+                    SignupScreenStrings.email,
+                    SignupScreenStrings.emailExample,
+                    _emailController,
+                    recoveryViewModel.validator(_emailController.text,
+                        PasswordRecoveryScreenStrings.plsEnterEmail)),
+                BlueButton(
+                    onPressed: () => _showDialog(context),
+                    width: width,
+                    child: Text(
+                      PasswordRecoveryScreenStrings.getLink,
+                      style: CommonTextStyle.blueButton,
+                      textAlign: TextAlign.center,
+                    ))
+              ],
             ),
           ),
+        ),
       ),
     );
   }
-  Future _showDialog (BuildContext context) => showGeneralDialog(
-    context: context,
-    barrierDismissible: false,
-    transitionBuilder: (context, a1, a2, widget) {
-      return Transform.scale(
-        scale: a1.value,
-        child: Opacity(
-            opacity: a1.value,
-            child: AlertDialog(
-              shape: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16.0)),
-              content: const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 25.0, horizontal: 10.0),
-                  child: Text(PasswordRecoveryScreenStrings.instructionsSent)
+
+  Future _showDialog(BuildContext context) => showGeneralDialog(
+        context: context,
+        barrierDismissible: false,
+        transitionBuilder: (context, a1, a2, widget) {
+          return Transform.scale(
+            scale: a1.value,
+            child: Opacity(
+              opacity: a1.value,
+              child: AlertDialog(
+                shape: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(16.0)),
+                content: const Padding(
+                    padding:
+                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                    child:
+                        Text(PasswordRecoveryScreenStrings.instructionsSent)),
+                actions: [
+                  TextButton(
+                    onPressed: () async {
+                      Navigator.pop(context);
+                    },
+                    child: const Text(PasswordRecoveryScreenStrings.okButton),
+                  )
+                ],
               ),
-              actions: [
-                TextButton(
-                  onPressed: () async {
-                    Navigator.pop(context);
-                  },
-                  child:  const Text(PasswordRecoveryScreenStrings.okButton),
-                )
-              ],
-            )),
+            ),
+          );
+        },
+        transitionDuration: const Duration(milliseconds: 200),
+        pageBuilder: (BuildContext context, Animation<double> animation,
+            Animation<double> secondaryAnimation) {
+          return const Text('data');
+        },
       );
-    },
-    transitionDuration: const Duration(milliseconds: 200),
-    pageBuilder: (BuildContext context, Animation<double> animation,
-        Animation<double> secondaryAnimation) {
-      return const Text('data');
-    },
-  );
 }

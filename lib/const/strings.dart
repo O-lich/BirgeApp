@@ -79,6 +79,7 @@ abstract class MeditationsScreenStrings {
   static const relax = 'Успокойся и расслабься';
   static const sleep = 'Для сна';
   static const stress = 'Снятие стресса';
+  static const search = 'Поиск';
 }
 
 abstract class TaskScreenStrings {
