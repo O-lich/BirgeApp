@@ -35,20 +35,22 @@ class LoginScreen extends StatelessWidget {
                 key: _formKey,
                 child: Column(
                   children: [
-                    newFormField(
+                    customFormField(
                         width,
                         context,
                         LoginScreenStrings.email,
                         LoginScreenStrings.enterEmail,
                         _emailController,
-                        loginViewModel.validator(_emailController.text, LoginScreenStrings.pleaseEnterEmail)),
-                    newFormField(
+                        loginViewModel.validator(_emailController.text,
+                            LoginScreenStrings.pleaseEnterEmail)),
+                    customFormField(
                         width,
                         context,
                         LoginScreenStrings.password,
                         LoginScreenStrings.enterPassword,
                         _passwordController,
-                        loginViewModel.validator(_passwordController.text, LoginScreenStrings.pleaseEnterPwd)),
+                        loginViewModel.validator(_passwordController.text,
+                            LoginScreenStrings.pleaseEnterPwd)),
                   ],
                 ),
               ),

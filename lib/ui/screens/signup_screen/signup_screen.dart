@@ -1,3 +1,4 @@
+import 'package:birge_app/ui/style/text_style/text_style.dart';
 import 'package:birge_app/ui/widgets/buttons.dart';
 import 'package:birge_app/ui/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -29,9 +30,8 @@ class SignupScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(SignupScreenStrings.registration,
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold)),
+                     Text(SignupScreenStrings.registration,
+                        style: CommonTextStyle.secondHeader),
                     spacerHeight(10),
                     const Text(SignupScreenStrings.registrationSubtitle),
                   ],
@@ -41,7 +41,7 @@ class SignupScreen extends StatelessWidget {
                   key: _formKey,
                   child: Column(
                     children: [
-                      newFormField(
+                      customFormField(
                           width,
                           context,
                           SignupScreenStrings.name,
@@ -49,7 +49,7 @@ class SignupScreen extends StatelessWidget {
                           _nameController,
                           signUpViewModel.validator(_nameController.text,
                               SignupScreenStrings.plsEnterName)),
-                      newFormField(
+                      customFormField(
                           width,
                           context,
                           SignupScreenStrings.email,
@@ -57,7 +57,7 @@ class SignupScreen extends StatelessWidget {
                           _emailController,
                           signUpViewModel.validator(_emailController.text,
                               SignupScreenStrings.plsEnterEmail)),
-                      newFormField(
+                      customFormField(
                           width,
                           context,
                           SignupScreenStrings.password,
@@ -65,7 +65,7 @@ class SignupScreen extends StatelessWidget {
                           _passwordController,
                           signUpViewModel.validator(_passwordController.text,
                               SignupScreenStrings.plsEnterPwd)),
-                      newFormField(
+                      customFormField(
                           width,
                           context,
                           SignupScreenStrings.confirmPwd,

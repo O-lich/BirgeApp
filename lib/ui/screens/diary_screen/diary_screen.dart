@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/strings.dart';
 import '../../style/colors/app_colors.dart';
-import '../../widgets/buttons.dart';
 import '../../widgets/widgets.dart';
 
 class DiaryScreen extends StatelessWidget {
@@ -32,7 +31,7 @@ class DiaryScreen extends StatelessWidget {
                   textAlign: TextAlign.center),
               spacerHeight(50),
               ListView.builder(
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: 3,
                   itemBuilder: (_, index) {
@@ -84,7 +83,9 @@ class DiaryScreen extends StatelessWidget {
             ),
             actions: [
               TextButton(
-                onPressed: () {},
+                onPressed: () async {
+                  Navigator.pop(context);
+                },
                 child: const Text(TaskScreenStrings.add),
               )
             ],

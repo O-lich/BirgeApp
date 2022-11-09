@@ -15,16 +15,13 @@ class BlueButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onPressed,
-      child: Container(
-        width: width,
-        decoration: CustomButton.buttonDecoration(context),
-        child: ElevatedButton(
-          style: CustomButton().buttonStyle(50, 350),
-          onPressed: () {},
-          child: child,
-        ),
+    return Container(
+      width: width,
+      decoration: CustomButton.buttonDecoration(context),
+      child: ElevatedButton(
+        style: CustomButton().buttonStyle(50, 350),
+        onPressed: onPressed,
+        child: child,
       ),
     );
   }
@@ -39,16 +36,13 @@ class TransparentButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onPressed,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30),
-        child: Align(
-          alignment: Alignment.centerLeft,
-          child: TextButton(
-            onPressed: () {},
-            child: child,
-          ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30),
+      child: Align(
+        alignment: Alignment.centerLeft,
+        child: TextButton(
+          onPressed: onPressed,
+          child: child,
         ),
       ),
     );
