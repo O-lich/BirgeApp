@@ -1,9 +1,7 @@
-import 'package:birge_app/ui/screens/bottom_bar_screen/bottom_bar_screen.dart';
-import 'package:birge_app/ui/screens/login_screen/login_screen.dart';
+import 'package:birge_app/const/strings.dart';
+import 'package:birge_app/ui/screens/articles_screen/articles_screen.dart';
 import 'package:birge_app/ui/screens/meditations_screen/meditations_screen.dart';
-import 'package:birge_app/ui/screens/password_recovery_screen/password_recovery_screen.dart';
-import 'package:birge_app/ui/screens/signup_screen/signup_screen.dart';
-import 'package:birge_app/ui/screens/splash_screen/splash_screen.dart';
+import 'package:birge_app/ui/screens/single_article_screen/single_article_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:material_color_generator/material_color_generator.dart';
@@ -28,7 +26,7 @@ class MyApp extends StatelessWidget {
           ),
           primarySwatch: generateMaterialColor(color: const Color(0xFF006FFD)),
         ),
-        home: PasswordRecoveryScreen(),
+        home: SingleArticleScreen(image: 'assets/images/articles_image_1.png', title: 'Тревога', article: DiaryScreenStrings.exampleDiaryNote,),
       );
     });
   }

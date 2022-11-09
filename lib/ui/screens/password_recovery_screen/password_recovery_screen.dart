@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../domain/model/recovery_model.dart';
 import '../../style/text_style/text_style.dart';
+import '../../widgets/custom_form_field.dart';
 
 class PasswordRecoveryScreen extends StatelessWidget {
   PasswordRecoveryScreen({Key? key}) : super(key: key);
@@ -30,14 +31,15 @@ class PasswordRecoveryScreen extends StatelessWidget {
                 Text(PasswordRecoveryScreenStrings.changePassword,
                     style: CommonTextStyle.secondHeader),
                 const Text(PasswordRecoveryScreenStrings.enterEmail),
-                customFormField(
-                    width,
-                    context,
-                    SignupScreenStrings.email,
-                    SignupScreenStrings.emailExample,
-                    _emailController,
-                    recoveryViewModel.validator(_emailController.text,
-                        PasswordRecoveryScreenStrings.plsEnterEmail)),
+                CustomFormField(
+                  width: width,
+                  context: context,
+                  title: SignupScreenStrings.email,
+                  hintText: SignupScreenStrings.emailExample,
+                  controller: _emailController,
+                  validation: recoveryViewModel.validator(_emailController.text,
+                      PasswordRecoveryScreenStrings.plsEnterEmail),
+                ),
                 BlueButton(
                     onPressed: () => _showDialog(context),
                     width: width,

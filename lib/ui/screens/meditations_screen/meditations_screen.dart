@@ -3,8 +3,8 @@ import 'package:birge_app/const/strings.dart';
 import 'package:birge_app/ui/style/text_style/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../const/app_images.dart';
 import '../../style/colors/app_colors.dart';
-import '../../widgets/custom_form_field.dart';
 import '../../widgets/meditation_screen_widget.dart';
 import '../../widgets/widgets.dart';
 
@@ -14,16 +14,6 @@ class MeditationsScreen extends StatelessWidget {
   final List<Map> meditationsList =
       List.generate(30, (index) => {"id": index, "name": "Meditation $index"})
           .toList();
-
-  final List<String> meditationsImages = [
-    'assets/images/meditation_image_1.png',
-    'assets/images/meditation_image_2.png',
-    'assets/images/meditation_image_3.png',
-    'assets/images/meditation_image_4.png',
-    'assets/images/meditation_image_5.png',
-    'assets/images/meditation_image_6.png',
-    'assets/images/meditation_image_7.png',
-  ];
 
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
   final _searchController = TextEditingController();

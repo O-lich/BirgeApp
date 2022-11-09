@@ -8,7 +8,7 @@ import '../../../const/strings.dart';
 class BottomBarScreen extends StatelessWidget {
   BottomBarScreen({Key? key}) : super(key: key);
   final int _selectedIndex = 0;
-  final screens = [MainScreen(), const ArticlesScreen(), const ArticlesScreen()];
+  final screens = [MainScreen(), ArticlesScreen(), ArticlesScreen()];
 
   // void _onItemTapped(int index) {
   //   setState(() {
