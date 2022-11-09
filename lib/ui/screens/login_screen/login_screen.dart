@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/strings.dart';
 import '../../widgets/buttons.dart';
+import '../../widgets/custom_form_field.dart';
 import '../../widgets/widgets.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -29,28 +30,33 @@ class LoginScreen extends StatelessWidget {
                 child: Image.asset(LoginScreenStrings.imageLogin),
               ),
               Text(LoginScreenStrings.welcome,
-                  style: CommonTextStyle.mainHeader, textAlign: TextAlign.center),
+                  style: CommonTextStyle.mainHeader,
+                  textAlign: TextAlign.center),
               spacerHeight(20),
               Form(
                 key: _formKey,
                 child: Column(
                   children: [
-                    customFormField(
-                        width,
-                        context,
-                        LoginScreenStrings.email,
-                        LoginScreenStrings.enterEmail,
-                        _emailController,
-                        loginViewModel.validator(_emailController.text,
-                            LoginScreenStrings.pleaseEnterEmail)),
-                    customFormField(
-                        width,
-                        context,
-                        LoginScreenStrings.password,
-                        LoginScreenStrings.enterPassword,
-                        _passwordController,
-                        loginViewModel.validator(_passwordController.text,
-                            LoginScreenStrings.pleaseEnterPwd)),
+                    CustomFormField(
+                      width: width,
+                      context: context,
+                      title: LoginScreenStrings.email,
+                      hintText: LoginScreenStrings.enterEmail,
+                      controller: _emailController,
+                      validation: loginViewModel.validator(
+                          _emailController.text,
+                          LoginScreenStrings.pleaseEnterEmail),
+                    ),
+                    CustomFormField(
+                      width: width,
+                      context: context,
+                      title: LoginScreenStrings.password,
+                      hintText: LoginScreenStrings.enterPassword,
+                      controller: _passwordController,
+                      validation: loginViewModel.validator(
+                          _passwordController.text,
+                          LoginScreenStrings.pleaseEnterPwd),
+                    ),
                   ],
                 ),
               ),
@@ -72,7 +78,9 @@ class LoginScreen extends StatelessWidget {
               spacerHeight(20),
               Text.rich(
                 TextSpan(children: [
-                  const TextSpan(text: LoginScreenStrings.dontHaveAcc, style: TextStyle(fontSize: 14)),
+                  const TextSpan(
+                      text: LoginScreenStrings.dontHaveAcc,
+                      style: TextStyle(fontSize: 14)),
                   TextSpan(
                       text: LoginScreenStrings.signUp,
                       style: CommonTextStyle.transparentButton,

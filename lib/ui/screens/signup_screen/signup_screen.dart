@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/strings.dart';
 import '../../../domain/model/signup_model.dart';
+import '../../widgets/custom_form_field.dart';
 
 class SignupScreen extends StatelessWidget {
   SignupScreen({Key? key}) : super(key: key);
@@ -30,7 +31,7 @@ class SignupScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                     Text(SignupScreenStrings.registration,
+                    Text(SignupScreenStrings.registration,
                         style: CommonTextStyle.secondHeader),
                     spacerHeight(10),
                     const Text(SignupScreenStrings.registrationSubtitle),
@@ -41,39 +42,46 @@ class SignupScreen extends StatelessWidget {
                   key: _formKey,
                   child: Column(
                     children: [
-                      customFormField(
-                          width,
-                          context,
-                          SignupScreenStrings.name,
-                          SignupScreenStrings.enterName,
-                          _nameController,
-                          signUpViewModel.validator(_nameController.text,
-                              SignupScreenStrings.plsEnterName)),
-                      customFormField(
-                          width,
-                          context,
-                          SignupScreenStrings.email,
-                          SignupScreenStrings.emailExample,
-                          _emailController,
-                          signUpViewModel.validator(_emailController.text,
-                              SignupScreenStrings.plsEnterEmail)),
-                      customFormField(
-                          width,
-                          context,
-                          SignupScreenStrings.password,
-                          SignupScreenStrings.createPwd,
-                          _passwordController,
-                          signUpViewModel.validator(_passwordController.text,
-                              SignupScreenStrings.plsEnterPwd)),
-                      customFormField(
-                          width,
-                          context,
-                          SignupScreenStrings.confirmPwd,
-                          SignupScreenStrings.confirmPwd,
-                          _passwordAgainController,
-                          signUpViewModel.validator(
-                              _passwordAgainController.text,
-                              SignupScreenStrings.plsConfirmPwd)),
+                      CustomFormField(
+                        width: width,
+                        context: context,
+                        title: SignupScreenStrings.name,
+                        hintText: SignupScreenStrings.enterName,
+                        controller: _nameController,
+                        validation: signUpViewModel.validator(
+                            _nameController.text,
+                            SignupScreenStrings.plsEnterName),
+                      ),
+                      CustomFormField(
+                        width: width,
+                        context: context,
+                        title: SignupScreenStrings.email,
+                        hintText: SignupScreenStrings.emailExample,
+                        controller: _emailController,
+                        validation: signUpViewModel.validator(
+                            _emailController.text,
+                            SignupScreenStrings.plsEnterEmail),
+                      ),
+                      CustomFormField(
+                        width: width,
+                        context: context,
+                        title: SignupScreenStrings.password,
+                        hintText: SignupScreenStrings.createPwd,
+                        controller: _passwordController,
+                        validation: signUpViewModel.validator(
+                            _passwordController.text,
+                            SignupScreenStrings.plsEnterPwd),
+                      ),
+                      CustomFormField(
+                        width: width,
+                        context: context,
+                        title: SignupScreenStrings.confirmPwd,
+                        hintText: SignupScreenStrings.confirmPwd,
+                        controller: _passwordAgainController,
+                        validation: signUpViewModel.validator(
+                            _passwordAgainController.text,
+                            SignupScreenStrings.plsConfirmPwd),
+                      ),
                     ],
                   )),
               spacerHeight(20),

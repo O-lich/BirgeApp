@@ -4,14 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:birge_app/ui/style/text_style/text_style.dart';
 import '../articles_screen/articles_screen.dart';
 import '../../../const/strings.dart';
+import '../help_screen/help_screen.dart';
 
 class BottomBarScreen extends StatelessWidget {
   BottomBarScreen({Key? key}) : super(key: key);
   final int _selectedIndex = 0;
   final screens = [
     MainScreen(),
-    const ArticlesScreen(),
-    const ArticlesScreen()
+    ArticlesScreen(),
+    HelpScreen(),
   ];
 
   // void _onItemTapped(int index) {

@@ -85,6 +85,10 @@ abstract class ArticlesScreenStrings {
   static const bullying = 'Буллинг';
 }
 
+abstract class SingleArticleScreenStrings {
+  static const continueReading = 'Читать дальше';
+}
+
 abstract class MeditationsScreenStrings {
   static const meditations = 'Медитация';
   static const rain = 'Звуки дождя';
