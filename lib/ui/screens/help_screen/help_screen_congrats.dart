@@ -42,7 +42,12 @@ class HelpCongratsScreen extends StatelessWidget {
                   spacerHeight(20),
                   BlueButton(
                     width: width / 2,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        '/bottom_bar',
+                      );
+                    },
                     child: Text(
                       HelpScreenStrings.goMain,
                       style: CommonTextStyle.blueButton,

@@ -30,7 +30,12 @@ class OnBoardingScreen extends StatelessWidget {
               Image.asset(OnBoardingScreenStrings.imageArrow),
               spacerHeight(20),
               BlueButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    '/login_screen',
+                  );
+                },
                 width: width,
                 child: const Text(OnBoardingScreenStrings.goOn),
               )

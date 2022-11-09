@@ -54,8 +54,8 @@ class MeditationsScreen extends StatelessWidget {
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     gridDelegate:
-                        const SliverGridDelegateWithMaxCrossAxisExtent(
-                            maxCrossAxisExtent: 200,
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
                             childAspectRatio: 1.0,
                             crossAxisSpacing: 10,
                             mainAxisSpacing: 10),

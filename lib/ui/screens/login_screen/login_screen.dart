@@ -61,7 +61,12 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
               TransparentButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    '/password_recovery_screen',
+                  );
+                },
                 child: Text(
                   LoginScreenStrings.forgotPwd,
                   style: CommonTextStyle.transparentButton,
@@ -69,7 +74,12 @@ class LoginScreen extends StatelessWidget {
               ),
               BlueButton(
                 width: width,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    '/bottom_bar',
+                  );
+                },
                 child: Text(
                   LoginScreenStrings.enterButton,
                   style: CommonTextStyle.blueButton,
@@ -84,7 +94,13 @@ class LoginScreen extends StatelessWidget {
                   TextSpan(
                       text: LoginScreenStrings.signUp,
                       style: CommonTextStyle.transparentButton,
-                      recognizer: TapGestureRecognizer()..onTap = () {}),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          Navigator.pushNamed(
+                            context,
+                            '/signup_screen',
+                          );
+                        }),
                 ]),
               ),
               spacerHeight(20),

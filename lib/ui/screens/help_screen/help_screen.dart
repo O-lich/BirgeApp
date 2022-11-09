@@ -69,7 +69,12 @@ class HelpScreen extends StatelessWidget {
               spacerHeight(50),
               BlueButton(
                 width: width / 2,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    '/help_signup_screen',
+                  );
+                },
                 child: Text(
                   HelpScreenStrings.sighUp,
                   style: CommonTextStyle.blueButton,

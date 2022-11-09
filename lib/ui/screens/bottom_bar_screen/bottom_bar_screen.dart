@@ -2,18 +2,19 @@ import 'package:birge_app/ui/screens/main_screen/main_screen.dart';
 import 'package:birge_app/ui/style/colors/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:birge_app/ui/style/text_style/text_style.dart';
+import '../../../domain/model/bottom_bar_model.dart';
 import '../articles_screen/articles_screen.dart';
 import '../../../const/strings.dart';
 import '../help_screen/help_screen.dart';
 
 class BottomBarScreen extends StatelessWidget {
-  BottomBarScreen({Key? key}) : super(key: key);
-  final int _selectedIndex = 0;
-  final screens = [
+  final bottomBarViewModel = BottomBarViewModel(selectedIndex: 0, screens: [
     MainScreen(),
     ArticlesScreen(),
     HelpScreen(),
-  ];
+  ]);
+
+  BottomBarScreen({Key? key}) : super(key: key);
 
   // void _onItemTapped(int index) {
   //   setState(() {
@@ -26,7 +27,7 @@ class BottomBarScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          screens[_selectedIndex],
+          bottomBarViewModel.screens[bottomBarViewModel.selectedIndex],
           Positioned(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -95,12 +96,14 @@ class BottomBarScreen extends StatelessWidget {
             label: BottomBarStrings.psychologist,
           ),
         ],
-        currentIndex: _selectedIndex,
+        currentIndex: bottomBarViewModel.selectedIndex,
         selectedItemColor: Colors.black,
         unselectedItemColor: Colors.grey,
         selectedLabelStyle: CommonTextStyle.bottomBarItemSelected,
         unselectedLabelStyle: CommonTextStyle.bottomBarItem,
-        onTap: null, //onItemTapped
+        onTap: (index) {
+          bottomBarViewModel.changeIndex(index);
+        }, //onItemTapped
       ),
     );
   }

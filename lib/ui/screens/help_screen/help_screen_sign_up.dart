@@ -53,7 +53,12 @@ class HelpSignUpScreen extends StatelessWidget {
               ),
               Calendar(onDateChanged: () {}, width: width),
               BlueButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    '/help_congrats_screen',
+                  );
+                },
                 width: width / 2,
                 child: Text(
                   HelpScreenStrings.goFurther,

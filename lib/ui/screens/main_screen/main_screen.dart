@@ -33,7 +33,12 @@ class MainScreen extends StatelessWidget {
                 children: [
                   BlueButton(
                     width: width / 2,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        '/meditations_screen',
+                      );
+                    },
                     child: Text(
                       MainScreenStrings.meditationButton,
                       style: CommonTextStyle.blueButton,
@@ -55,7 +60,12 @@ class MainScreen extends StatelessWidget {
                 children: [
                   BlueButton(
                     width: width / 2,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        '/help_screen',
+                      );
+                    },
                     child: Text(
                       MainScreenStrings.therapistButton,
                       style: CommonTextStyle.blueButton,
@@ -63,7 +73,12 @@ class MainScreen extends StatelessWidget {
                   ),
                   BlueButton(
                     width: width / 2,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        '/diary_screen',
+                      );
+                    },
                     child: Text(
                       MainScreenStrings.diaryButton,
                       style: CommonTextStyle.blueButton,
