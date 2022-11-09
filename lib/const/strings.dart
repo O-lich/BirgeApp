@@ -31,10 +31,24 @@ abstract class MainScreenStrings {
 }
 
 abstract class HelpScreenStrings {
-  static const callButton = 'Позвонить';
-  static const consult = 'Анонимная консультация';
-  static const consultButton = 'Записаться на консультацию';
-  static const number = '112';
+  static const hello = 'Привет!';
+  static const helloText =
+      'Меня зовут - Айша! Рада с тобой познакомится, жду не дождусь узнать тебя по ближе.';
+  static const therapist = 'О нашем психологе:';
+  static const therapistAbout =
+      'Вам не хватает мотивации что-либо делать или просто наплевать на то, что происходит вокруг вас. Это часто длится долго. У вас может отсутствовать желание делать что-либо, что связано с мышлением или вашими эмоциями. Каждый человек в тот или иной момент теряет интерес к вещам, но когда это происходит часто, это может повлиять на ваши отношения, вашу работу и вашу способность наслаждаться жизнью.';
+  static const sighUp = 'Записаться';
+  static const goBack = 'Вернуться назад';
+  static const imageHello = 'assets/images/help_screen_image.png';
+  static const imageCongrats = 'assets/images/help_screen_image_congrats.png';
+  static const sighingUp = 'Запись';
+  static const email = 'Почта';
+  static const name = 'Имя';
+  static const date = 'Дата';
+  static const create = 'Создайте учетную запись, чтобы начать';
+  static const goFurther = 'Далее';
+  static const congrats = 'Поздравляю';
+  static const goMain = 'Вернуться на главную';
 }
 
 abstract class ProfileScreenStrings {
@@ -144,6 +158,7 @@ abstract class PasswordRecoveryScreenStrings {
   static const enterEmail = 'Введите e-mail, указанный при регистрации';
   static const getLink = 'Получить ссылку для восстановления пароля';
   static const plsEnterEmail = 'Пожалуйста, введите e-mail';
-  static const instructionsSent = 'Мы отправили ссылку для восстановления пароля на вашу почту. Вы получите её в течение 2-х минут';
+  static const instructionsSent =
+      'Мы отправили ссылку для восстановления пароля на вашу почту. Вы получите её в течение 2-х минут';
   static const okButton = 'Ок';
 }

@@ -8,7 +8,11 @@ import '../../../const/strings.dart';
 class BottomBarScreen extends StatelessWidget {
   BottomBarScreen({Key? key}) : super(key: key);
   final int _selectedIndex = 0;
-  final screens = [MainScreen(), ArticlesScreen(), ArticlesScreen()];
+  final screens = [
+    MainScreen(),
+    ArticlesScreen(),
+    HelpScreen(),
+  ];
 
   // void _onItemTapped(int index) {
   //   setState(() {
@@ -23,16 +27,18 @@ class BottomBarScreen extends StatelessWidget {
         children: [
           screens[_selectedIndex],
           Positioned(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  _bottomBar()
-                ],
-              ))
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                _bottomBar(),
+              ],
+            ),
+          ),
         ],
       ),
     );
   }
+
   Widget _bottomBar() {
     return SizedBox(
       height: 88,
@@ -40,43 +46,56 @@ class BottomBarScreen extends StatelessWidget {
         showUnselectedLabels: true,
         backgroundColor: Colors.white,
         type: BottomNavigationBarType.fixed,
-        items:  const <BottomNavigationBarItem>[
+        items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            activeIcon: Padding(padding: EdgeInsets.all(8), child: Icon(
-              Icons.messenger_rounded,
-              color: mainAppColor,
-            ),),
-            icon: Padding(padding: EdgeInsets.all(8), child: Icon(
-              Icons.messenger_rounded,
-              color: Colors.grey,
-            )),
+            activeIcon: Padding(
+              padding: EdgeInsets.all(8),
+              child: Icon(
+                Icons.messenger_rounded,
+                color: mainAppColor,
+              ),
+            ),
+            icon: Padding(
+                padding: EdgeInsets.all(8),
+                child: Icon(
+                  Icons.messenger_rounded,
+                  color: Colors.grey,
+                )),
             label: BottomBarStrings.menu,
           ),
           BottomNavigationBarItem(
-            activeIcon: Padding(padding: EdgeInsets.all(8), child:Icon(
-              Icons.person,
-              color: mainAppColor,
-            )),
-            icon: Padding(padding: EdgeInsets.all(8), child:Icon(
-              Icons.person,
-              color: Colors.grey,
-            )),
+            activeIcon: Padding(
+                padding: EdgeInsets.all(8),
+                child: Icon(
+                  Icons.person,
+                  color: mainAppColor,
+                )),
+            icon: Padding(
+                padding: EdgeInsets.all(8),
+                child: Icon(
+                  Icons.person,
+                  color: Colors.grey,
+                )),
             label: BottomBarStrings.articles,
           ),
           BottomNavigationBarItem(
-            activeIcon: Padding(padding: EdgeInsets.all(8), child:Icon(
-              Icons.settings,
-              color: mainAppColor,
-            )),
-            icon: Padding(padding: EdgeInsets.all(8), child:Icon(
-              Icons.settings,
-              color: Colors.grey,
-            )),
+            activeIcon: Padding(
+                padding: EdgeInsets.all(8),
+                child: Icon(
+                  Icons.settings,
+                  color: mainAppColor,
+                )),
+            icon: Padding(
+                padding: EdgeInsets.all(8),
+                child: Icon(
+                  Icons.settings,
+                  color: Colors.grey,
+                )),
             label: BottomBarStrings.psychologist,
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor:Colors.black,
+        selectedItemColor: Colors.black,
         unselectedItemColor: Colors.grey,
         selectedLabelStyle: CommonTextStyle.bottomBarItemSelected,
         unselectedLabelStyle: CommonTextStyle.bottomBarItem,
