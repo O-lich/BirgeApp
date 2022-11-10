@@ -7,23 +7,27 @@ class MeditationsScreenStore = _MeditationsScreenStore
     with _$MeditationsScreenStore;
 
 abstract class _MeditationsScreenStore with Store {
-  //List searchList = [];
+  final List meditationsList = ['relax', 'breath', 'feel', 'think', 'live'];
+  List newList = [];
+
   // Наблюдаемое, при изменении которого, обновятся все наблюдатели (Observers)
   @observable
-  TextEditingController searchController = TextEditingController();
+  List searchList = [];
 
   // Action -- метод, в котором вы обновляете данные. Если обновляются сразу
   // несколько observables, то все наблюдатели будут уведомлены только после
   // всех вычислений.
   @action
-  void search(String text, List meditationsList, List searchList) {
-    final String queryString = searchController.text;
+  void search(String text) {
+    final String queryString = text;
     if (queryString.isNotEmpty) {
       for (final meditation in meditationsList) {
-        if (meditation.values.contains(queryString)) {
-          searchList.add(meditation);
+        if (meditation.contains(queryString)) {
+          newList.add(meditation);
+          searchList = newList;
         } else {
-          searchList.remove(meditation);
+          newList.remove(meditation);
+          searchList = newList;
         }
       }
     } else {

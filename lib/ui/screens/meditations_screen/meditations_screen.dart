@@ -17,11 +17,11 @@ class MeditationsScreen extends StatelessWidget {
   //     List.generate(30, (index) => {"id": index, "name": "Meditation $index"})
   //         .toList();
 
-  final List meditationsList = ['relax', 'breath', 'feel', 'think', 'live'];
-
   final width = Device.orientation == Orientation.landscape ? 80.w : 40.h;
-  List searchList = [];
+
+  //List searchList = [];
   final _meditationsViewModel = MeditationsScreenStore();
+  final _searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -39,13 +39,11 @@ class MeditationsScreen extends StatelessWidget {
                 padding: EdgeInsets.symmetric(
                     horizontal: (Device.width - width) / 8),
                 child: Observer(builder: (_) {
-                  final data = _meditationsViewModel.searchController;
                   return TextField(
                     onChanged: (text) {
-                      _meditationsViewModel.search(
-                          text, meditationsList, searchList);
+                      _meditationsViewModel.search(_searchController.text);
                     },
-                    controller: data,
+                    controller: _searchController,
                     decoration: const InputDecoration(
                       hintText: MeditationsScreenStrings.search,
                       prefixIcon: Icon(Icons.search),
@@ -60,11 +58,10 @@ class MeditationsScreen extends StatelessWidget {
                 }),
               ),
               Observer(builder: (_) {
-                final data = _meditationsViewModel.searchController;
                 return Container(
                   padding: EdgeInsets.symmetric(
                       horizontal: (Device.width - width) / 8),
-                  child: data.text.isEmpty
+                  child: _searchController.text.isEmpty
                       ? GridView.builder(
                           scrollDirection: Axis.vertical,
                           physics: const NeverScrollableScrollPhysics(),
@@ -75,17 +72,19 @@ class MeditationsScreen extends StatelessWidget {
                                   childAspectRatio: 1.0,
                                   crossAxisSpacing: 10,
                                   mainAxisSpacing: 10),
-                          itemCount: meditationsList.length,
+                          itemCount:
+                              _meditationsViewModel.meditationsList.length,
                           itemBuilder: (BuildContext ctx, index) {
                             return MeditationScreenWidget(
                               image: image(),
-                              title: meditationsList[index],
+                              title:
+                                  _meditationsViewModel.meditationsList[index],
                               onPressed: () {},
                               width: width,
                             );
                           })
                       : GridView.builder(
-                          scrollDirection: Axis.vertical,
+                      scrollDirection: Axis.vertical,
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                           gridDelegate:
@@ -94,11 +93,11 @@ class MeditationsScreen extends StatelessWidget {
                                   childAspectRatio: 1.0,
                                   crossAxisSpacing: 10,
                                   mainAxisSpacing: 10),
-                          itemCount: searchList.length,
+                          itemCount: _meditationsViewModel.searchList.length,
                           itemBuilder: (BuildContext ctx, index) {
                             return MeditationScreenWidget(
                               image: image(),
-                              title: searchList[index],
+                              title: _meditationsViewModel.searchList[index],
                               onPressed: () {},
                               width: width,
                             );
