@@ -42,6 +42,7 @@ class DiaryScreen extends StatelessWidget {
                         subtitle: DiaryScreenStrings.exampleSubtitle);
                   }),
               DiaryTextField(onEditingComplete: () {}, width: width),
+              spacerHeight(20),
             ],
           ),
         ),

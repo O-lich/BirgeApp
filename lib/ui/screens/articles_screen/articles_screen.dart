@@ -27,7 +27,8 @@ class ArticlesScreen extends StatelessWidget {
                   textAlign: TextAlign.center),
               spacerHeight(20),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                padding: EdgeInsets.symmetric(
+                    horizontal: (Device.width - width) / 8),
                 child: GridView.builder(
                     scrollDirection: Axis.vertical,
                     physics: const NeverScrollableScrollPhysics(),
@@ -52,7 +53,7 @@ class ArticlesScreen extends StatelessWidget {
                         title: articlesList[index]["name"],
                       );
                     }),
-              )
+              ),
             ],
           ),
         ),

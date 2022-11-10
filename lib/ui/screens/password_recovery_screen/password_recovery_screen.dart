@@ -17,7 +17,7 @@ class PasswordRecoveryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 31),
+        padding: EdgeInsets.symmetric(horizontal: (Device.width - width) / 2),
         child: SizedBox(
           child: Align(
             alignment: Alignment.topLeft,
@@ -30,6 +30,7 @@ class PasswordRecoveryScreen extends StatelessWidget {
                     style: CommonTextStyle.secondHeader),
                 spacerHeight(10),
                 const Text(PasswordRecoveryScreenStrings.enterEmail),
+                spacerHeight(10),
                 CustomFormField(
                   width: width,
                   context: context,
@@ -41,13 +42,15 @@ class PasswordRecoveryScreen extends StatelessWidget {
                 ),
                 spacerHeight(20),
                 BlueButton(
-                    onPressed: () => _showDialog(context),
-                    width: width,
-                    child: Text(
-                      PasswordRecoveryScreenStrings.getLink,
-                      style: CommonTextStyle.blueButton,
-                      textAlign: TextAlign.center,
-                    ))
+                  onPressed: () => _showDialog(context),
+                  width: width,
+                  child: Text(
+                    PasswordRecoveryScreenStrings.getLink,
+                    style: CommonTextStyle.blueButton,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                spacerHeight(20),
               ],
             ),
           ),

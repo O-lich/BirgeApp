@@ -27,7 +27,11 @@ class LoginScreen extends StatelessWidget {
               spacerHeight(20),
               Padding(
                 padding: const EdgeInsets.all(30),
-                child: Image.asset(LoginScreenStrings.imageLogin, height: width / 1.5, width: width / 1.5,),
+                child: Image.asset(
+                  LoginScreenStrings.imageLogin,
+                  height: width / 1.5,
+                  width: width / 1.5,
+                ),
               ),
               Text(LoginScreenStrings.welcome,
                   style: CommonTextStyle.mainHeader,
@@ -60,18 +64,19 @@ class LoginScreen extends StatelessWidget {
                   ],
                 ),
               ),
-          TransparentButton(
-              onPressed: () {
-                Navigator.pushNamed(
-                  context,
-                  '/password_recovery_screen',
-                );
-              },
-              child: Text(
-                LoginScreenStrings.forgotPwd,
-                style: CommonTextStyle.transparentButton,
+              TransparentButton(
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    '/password_recovery_screen',
+                  );
+                },
+                width: width,
+                child: Text(
+                  LoginScreenStrings.forgotPwd,
+                  style: CommonTextStyle.transparentButton,
+                ),
               ),
-            ),
               BlueButton(
                 width: width,
                 onPressed: () {

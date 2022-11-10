@@ -58,6 +58,7 @@ class HelpCongratsScreen extends StatelessWidget {
                   ),
                 ],
               ),
+              spacerHeight(20),
             ],
           ),
         ),

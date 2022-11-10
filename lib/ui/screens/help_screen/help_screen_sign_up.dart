@@ -28,37 +28,38 @@ class HelpSignUpScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  spacerHeight(50),
-                  Text(HelpScreenStrings.sighingUp,
-                      style: CommonTextStyle.secondHeader),
-                  spacerHeight(10),
-                  Text(HelpScreenStrings.create, style: CommonTextStyle.mainText),
-                  spacerHeight(20),
-                  CustomFormField(
-                    width: width,
-                    controller: _nameController,
-                    validation:
-                    HelpSignUpViewModel().validator('value', 'response'),
-                    title: HelpScreenStrings.name,
-                    hintText: HelpScreenStrings.name,
-                    context: context,
-                  ),
-                  CustomFormField(
-                    width: width,
-                    controller: _emailController,
-                    validation:
-                    HelpSignUpViewModel().validator('value', 'response'),
-                    title: HelpScreenStrings.email,
-                    hintText: HelpScreenStrings.email,
-                    context: context,
-                  ),
-                  spacerHeight(20),
-                  Text(
-                    HelpScreenStrings.date,
-                  ),
-                  Calendar(onDateChanged: () {}, width: width),
-                  spacerHeight(20),
-                ],
+                    spacerHeight(50),
+                    Text(HelpScreenStrings.sighingUp,
+                        style: CommonTextStyle.secondHeader),
+                    spacerHeight(10),
+                    Text(HelpScreenStrings.create,
+                        style: CommonTextStyle.mainText),
+                    spacerHeight(10),
+                    CustomFormField(
+                      width: width,
+                      controller: _nameController,
+                      validation:
+                          HelpSignUpViewModel().validator('value', 'response'),
+                      title: HelpScreenStrings.name,
+                      hintText: HelpScreenStrings.name,
+                      context: context,
+                    ),
+                    CustomFormField(
+                      width: width,
+                      controller: _emailController,
+                      validation:
+                          HelpSignUpViewModel().validator('value', 'response'),
+                      title: HelpScreenStrings.email,
+                      hintText: HelpScreenStrings.email,
+                      context: context,
+                    ),
+                    spacerHeight(10),
+                    Text(
+                      HelpScreenStrings.date,
+                    ),
+                    Calendar(onDateChanged: () {}, width: width),
+                    spacerHeight(10),
+                  ],
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -80,18 +81,19 @@ class HelpSignUpScreen extends StatelessWidget {
                   spacerHeight(20),
                   BlueButton(
                     onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    width: width / 2,
-                    child: Text(
-                      HelpScreenStrings.goBack,
-                      style: CommonTextStyle.blueButton,
-                      textAlign: TextAlign.center,
+                        Navigator.of(context).pop();
+                      },
+                      width: width / 2,
+                      child: Text(
+                        HelpScreenStrings.goBack,
+                        style: CommonTextStyle.blueButton,
+                        textAlign: TextAlign.center,
+                      ),
                     ),
-                  ),
-                ],
-              )
-            ],
+                  ],
+                ),
+                spacerHeight(20),
+              ],
           )
         ),
       ),

@@ -87,6 +87,7 @@ class HelpScreen extends StatelessWidget {
                   style: CommonTextStyle.blueButton,
                 ),
               ),
+              spacerHeight(20),
             ],
           ),
         ),

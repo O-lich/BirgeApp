@@ -96,6 +96,7 @@ class MainScreen extends StatelessWidget {
                 width: width,
                 onDateChanged: () {},
               ),
+              spacerHeight(90),
             ],
           ),
         ),

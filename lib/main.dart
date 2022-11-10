@@ -1,5 +1,6 @@
 import 'package:birge_app/const/strings.dart';
 import 'package:birge_app/ui/screens/articles_screen/articles_screen.dart';
+import 'package:birge_app/ui/screens/articles_screen/single_article_screen.dart';
 import 'package:birge_app/ui/screens/bottom_bar_screen/bottom_bar_screen.dart';
 import 'package:birge_app/ui/screens/diary_screen/diary_screen.dart';
 import 'package:birge_app/ui/screens/help_screen/help_screen.dart';
@@ -10,7 +11,6 @@ import 'package:birge_app/ui/screens/main_screen/main_screen.dart';
 import 'package:birge_app/ui/screens/meditations_screen/meditations_screen.dart';
 import 'package:birge_app/ui/screens/password_recovery_screen/password_recovery_screen.dart';
 import 'package:birge_app/ui/screens/signup_screen/signup_screen.dart';
-import 'package:birge_app/ui/screens/single_article_screen/single_article_screen.dart';
 import 'package:birge_app/ui/screens/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -48,9 +48,9 @@ class MyApp extends StatelessWidget {
             '/diary_screen': (context) => DiaryScreen(),
             '/articles_screen': (context) => ArticlesScreen(),
             '/single_article_screen': (context) => SingleArticleScreen(
-                  image: '',
-                  title: '',
-                  article: '',
+                  image: HelpScreenStrings.imageHello,
+                  title: DiaryScreenStrings.exampleTitle,
+                  article: DiaryScreenStrings.exampleDiaryNote,
                 ),
             '/help_screen': (context) => HelpScreen(),
             '/help_signup_screen': (context) => HelpSignUpScreen(),

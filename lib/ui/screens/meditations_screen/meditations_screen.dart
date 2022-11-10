@@ -23,58 +23,54 @@ class MeditationsScreen extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: SizedBox(
-          child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: (Device.width - width) / 4),
             child: Column(
-              children: [
-                spacerHeight(50),
-                Text(MeditationsScreenStrings.meditations,
-                    style: CommonTextStyle.mainHeader,
-                    textAlign: TextAlign.center),
-                spacerHeight(20),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  child: TextField(
-                    onChanged: (value) {},
-                    controller: _searchController,
-                    decoration: const InputDecoration(
-                      hintText: MeditationsScreenStrings.search,
-                      prefixIcon: Icon(Icons.search),
-                      filled: true,
-                      fillColor: backgroundColor,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                        borderSide: BorderSide.none,
-                      ),
-                    ),
+          children: [
+            spacerHeight(50),
+            Text(MeditationsScreenStrings.meditations,
+                style: CommonTextStyle.mainHeader, textAlign: TextAlign.center),
+            spacerHeight(20),
+            Padding(
+              padding:
+                  EdgeInsets.symmetric(horizontal: (Device.width - width) / 8),
+              child: TextField(
+                onChanged: (value) {},
+                controller: _searchController,
+                decoration: const InputDecoration(
+                  hintText: MeditationsScreenStrings.search,
+                  prefixIcon: Icon(Icons.search),
+                  filled: true,
+                  fillColor: backgroundColor,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                    borderSide: BorderSide.none,
                   ),
                 ),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: GridView.builder(
-                      scrollDirection: Axis.vertical,
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      gridDelegate:
-                      const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          childAspectRatio: 1.0,
-                          crossAxisSpacing: 10,
-                          mainAxisSpacing: 10),
-                      itemCount: meditationsList.length,
-                      itemBuilder: (BuildContext ctx, index) {
-                        return MeditationScreenWidget(
-                          image: image(),
-                          meditationName: meditationsList[index]["name"],
-                          onPressed: () {},
-                          width: width,
-                        );
-                      }),
-                ),
-              ],
+              ),
             ),
-          )
-        ),
+            Container(
+              padding:
+                  EdgeInsets.symmetric(horizontal: (Device.width - width) / 8),
+              child: GridView.builder(
+                  scrollDirection: Axis.vertical,
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 1.0,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10),
+                  itemCount: meditationsList.length,
+                  itemBuilder: (BuildContext ctx, index) {
+                    return MeditationScreenWidget(
+                      image: image(),
+                      title: meditationsList[index]["name"],
+                      onPressed: () {},
+                      width: width,
+                    );
+                  }),
+            ),
+          ],
+        )),
       ),
     );
   }

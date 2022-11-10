@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import '../style/button/button.dart';
 
 class BlueButton extends StatelessWidget {
@@ -8,9 +9,9 @@ class BlueButton extends StatelessWidget {
 
   const BlueButton(
       {required this.child,
-        required this.onPressed,
-        required this.width,
-        super.key});
+      required this.onPressed,
+      required this.width,
+      super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,16 +28,20 @@ class BlueButton extends StatelessWidget {
 }
 
 class TransparentButton extends StatelessWidget {
-  const TransparentButton(
-      {required this.child, required this.onPressed, super.key});
-
+  final double width;
   final Widget child;
   final void Function() onPressed;
+
+  const TransparentButton(
+      {required this.child,
+      required this.onPressed,
+      super.key,
+      required this.width});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30),
+      padding: EdgeInsets.symmetric(horizontal: (Device.width - width) / 2),
       child: Align(
         alignment: Alignment.centerLeft,
         child: TextButton(
