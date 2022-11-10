@@ -22,19 +22,22 @@ class BottomBarScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          Screens[_bottomBarViewModel.selectedIndex],
-          Positioned(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                _bottomBar(),
-              ],
+      body: Observer(builder: (_) {
+        final data = _bottomBarViewModel.selectedIndex;
+        return Stack(
+          children: [
+            Screens[data],
+            Positioned(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  _bottomBar(),
+                ],
+              ),
             ),
-          ),
-        ],
-      ),
+          ],
+        );
+      }),
     );
   }
 
