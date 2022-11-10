@@ -7,7 +7,7 @@ class MeditationsScreenStore = _MeditationsScreenStore
     with _$MeditationsScreenStore;
 
 abstract class _MeditationsScreenStore with Store {
-  final List meditationsList = ['relax', 'breath', 'feel', 'think', 'live'];
+  final meditationsList = ['relax', 'breath', 'feel', 'think', 'live'];
   List newList = [];
 
   // Наблюдаемое, при изменении которого, обновятся все наблюдатели (Observers)
@@ -20,17 +20,9 @@ abstract class _MeditationsScreenStore with Store {
   @action
   void search(String text) {
     if (text.isNotEmpty) {
-      for (final meditation in meditationsList) {
-        if (meditation.contains(text)) {
-          newList.add(meditation);
-          searchList = newList;
-        } else {
-          newList.remove(meditation);
-          searchList = newList;
-        }
-      }
+      searchList = meditationsList.where((element) => element.contains(text)).toList();
     } else {
-      searchList.clear();
+      searchList = meditationsList;
     }
   }
 }

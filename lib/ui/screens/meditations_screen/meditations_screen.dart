@@ -13,10 +13,6 @@ import 'meditations_screen_store.dart';
 class MeditationsScreen extends StatelessWidget {
   MeditationsScreen({Key? key}) : super(key: key);
 
-  // final List<Map> meditationsList =
-  //     List.generate(30, (index) => {"id": index, "name": "Meditation $index"})
-  //         .toList();
-
   final width = Device.orientation == Orientation.landscape ? 80.w : 40.h;
   final _meditationsViewModel = MeditationsScreenStore();
   final _searchController = TextEditingController();
@@ -56,47 +52,27 @@ class MeditationsScreen extends StatelessWidget {
               Container(
                 padding: EdgeInsets.symmetric(
                     horizontal: (Device.width - width) / 8),
-                child: _searchController.text.isEmpty
-                    ? GridView.builder(
-                        scrollDirection: Axis.vertical,
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
-                                childAspectRatio: 1.0,
-                                crossAxisSpacing: 10,
-                                mainAxisSpacing: 10),
-                        itemCount: _meditationsViewModel.meditationsList.length,
-                        itemBuilder: (BuildContext ctx, index) {
-                          return MeditationScreenWidget(
-                            image: image(),
-                            title: _meditationsViewModel.meditationsList[index],
-                            onPressed: () {},
-                            width: width,
-                          );
-                        })
-                    : Observer(builder: (_) {
-                        return GridView.builder(
-                            scrollDirection: Axis.vertical,
-                            physics: const NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 2,
-                                    childAspectRatio: 1.0,
-                                    crossAxisSpacing: 10,
-                                    mainAxisSpacing: 10),
-                            itemCount: _meditationsViewModel.searchList.length,
-                            itemBuilder: (BuildContext ctx, index) {
-                              return MeditationScreenWidget(
-                                image: image(),
-                                title: _meditationsViewModel.searchList[index],
-                                onPressed: () {},
-                                width: width,
-                              );
-                            });
-                      }),
+                child: Observer(builder: (_) {
+                  return GridView.builder(
+                      scrollDirection: Axis.vertical,
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      gridDelegate:
+                      const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          childAspectRatio: 1.0,
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 10),
+                      itemCount: _meditationsViewModel.searchList.length,
+                      itemBuilder: (BuildContext ctx, index) {
+                        return MeditationScreenWidget(
+                          image: image(),
+                          title: _meditationsViewModel.searchList[index],
+                          onPressed: () {},
+                          width: width,
+                        );
+                      });
+                }),
               ),
             ],
           ),
