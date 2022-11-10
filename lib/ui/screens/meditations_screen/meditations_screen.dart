@@ -1,12 +1,13 @@
 import 'dart:math';
 import 'package:birge_app/const/strings.dart';
 import 'package:birge_app/ui/style/text_style/text_style.dart';
+import 'package:birge_app/ui/widgets/random_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/app_images.dart';
 import '../../style/colors/app_colors.dart';
-import '../../widgets/meditation_screen_widget.dart';
+import '../../widgets/cards_grid_view_widget.dart';
 import '../../widgets/widgets.dart';
 import 'meditations_screen_store.dart';
 
@@ -65,7 +66,7 @@ class MeditationsScreen extends StatelessWidget {
                           mainAxisSpacing: 10),
                       itemCount: _meditationsViewModel.searchList.length,
                       itemBuilder: (BuildContext ctx, index) {
-                        return MeditationScreenWidget(
+                        return CardsGridViewWidget(
                           image: image(),
                           title: _meditationsViewModel.searchList[index],
                           onPressed: () {},
@@ -74,13 +75,13 @@ class MeditationsScreen extends StatelessWidget {
                       });
                 }),
               ),
+              spacerHeight(20),
             ],
           ),
         ),
       ),
     );
   }
-
   AssetImage image() {
     int min = 0;
     int max = meditationsImages.length - 1;

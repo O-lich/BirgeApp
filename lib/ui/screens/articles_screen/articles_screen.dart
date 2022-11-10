@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/app_images.dart';
 import '../../style/text_style/text_style.dart';
+import '../../widgets/cards_grid_view_widget.dart';
 import '../../widgets/widgets.dart';
 
 class ArticlesScreen extends StatelessWidget {
@@ -41,7 +42,7 @@ class ArticlesScreen extends StatelessWidget {
                             crossAxisSpacing: 10,
                             mainAxisSpacing: 10),
                     itemBuilder: (BuildContext ctx, index) {
-                      return ArticlesWidget(
+                      return CardsGridViewWidget(
                         image: image(),
                         onPressed: () {
                           Navigator.pushNamed(
@@ -54,6 +55,7 @@ class ArticlesScreen extends StatelessWidget {
                       );
                     }),
               ),
+              spacerHeight(100),
             ],
           ),
         ),

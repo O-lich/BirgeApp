@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../style/colors/app_colors.dart';
 import '../style/text_style/text_style.dart';
-
+//do not use now
 class ArticlesWidget extends StatelessWidget {
   final AssetImage image;
   final void Function() onPressed;

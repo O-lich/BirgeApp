@@ -9,7 +9,7 @@ class SingleArticleScreenStore = _SingleArticleScreenStore
 abstract class _SingleArticleScreenStore with Store {
   // Наблюдаемое, при изменении которого, обновятся все наблюдатели (Observers)
   @observable
-  bool isFavorite = true;
+  bool isFavorite = false;
 
   // Action -- метод, в котором вы обновляете данные. Если обновляются сразу
   // несколько observables, то все наблюдатели будут уведомлены только после
