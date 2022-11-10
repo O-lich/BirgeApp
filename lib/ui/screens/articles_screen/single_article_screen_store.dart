@@ -1,27 +1,29 @@
+import 'package:flutter/cupertino.dart';
 import 'package:mobx/mobx.dart';
 
-part 'meditations_screen_store.g.dart';
+part 'single_article_screen_store.g.dart';
 
-const meditationsList = ['relax', 'breath', 'feel', 'think', 'live'];
+class SingleArticleScreenStore = _SingleArticleScreenStore
+    with _$SingleArticleScreenStore;
 
-class MeditationsScreenStore = _MeditationsScreenStore
-    with _$MeditationsScreenStore;
-
-abstract class _MeditationsScreenStore with Store {
+abstract class _SingleArticleScreenStore with Store {
   // Наблюдаемое, при изменении которого, обновятся все наблюдатели (Observers)
   @observable
-  List<String> searchList = meditationsList;
+  bool isFavorite = false;
 
   // Action -- метод, в котором вы обновляете данные. Если обновляются сразу
   // несколько observables, то все наблюдатели будут уведомлены только после
   // всех вычислений.
   @action
-  void search(String text) {
-    if (text.isEmpty) {
-      searchList = meditationsList;
+  void changeFavorite() {
+    isFavorite = !isFavorite;
+  }
+
+  Icon? changeIcon(bool isFavorite, Icon redIcon, Icon blackIcon) {
+    if (isFavorite = true) {
+      return redIcon;
     } else {
-      searchList =
-          meditationsList.where((element) => element.contains(text)).toList();
+      return blackIcon;
     }
   }
 }

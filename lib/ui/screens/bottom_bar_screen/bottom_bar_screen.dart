@@ -3,7 +3,6 @@ import 'package:birge_app/ui/style/colors/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:birge_app/ui/style/text_style/text_style.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import '../../../domain/model/bottom_bar_model.dart';
 import '../articles_screen/articles_screen.dart';
 import '../../../const/strings.dart';
 import '../help_screen/help_screen.dart';
