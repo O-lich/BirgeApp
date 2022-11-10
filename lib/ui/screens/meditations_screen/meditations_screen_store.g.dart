@@ -13,13 +13,13 @@ mixin _$MeditationsScreenStore on _MeditationsScreenStore, Store {
       Atom(name: '_MeditationsScreenStore.searchList', context: context);
 
   @override
-  List<dynamic> get searchList {
+  List<String> get searchList {
     _$searchListAtom.reportRead();
     return super.searchList;
   }
 
   @override
-  set searchList(List<dynamic> value) {
+  set searchList(List<String> value) {
     _$searchListAtom.reportWrite(value, super.searchList, () {
       super.searchList = value;
     });

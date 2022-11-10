@@ -9,8 +9,6 @@ class MeditationsScreenStore = _MeditationsScreenStore
     with _$MeditationsScreenStore;
 
 abstract class _MeditationsScreenStore with Store {
-  List newList = [];
-
   // Наблюдаемое, при изменении которого, обновятся все наблюдатели (Observers)
   @observable
   List<String> searchList = meditationsList;
@@ -20,10 +18,20 @@ abstract class _MeditationsScreenStore with Store {
   // всех вычислений.
   @action
   void search(String text) {
-    if (text.isNotEmpty) {
-      searchList = meditationsList.where((element) => element.contains(text)).toList();
-    } else {
+    if (text.isEmpty) {
       searchList = meditationsList;
+    } else {
+      searchList =
+          meditationsList.where((element) => element.contains(text)).toList();
+      ;
     }
   }
+// void search(String text) {
+//   if (text.isNotEmpty) {
+//     searchList =
+//         meditationsList.where((element) => element.contains(text)).toList();
+//   } else {
+//     searchList = meditationsList;
+//   }
+// }
 }
