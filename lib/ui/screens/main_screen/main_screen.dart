@@ -46,7 +46,12 @@ class MainScreen extends StatelessWidget {
                   ),
                   BlueButton(
                     width: width / 2,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        '/articles_screen',
+                      );
+                    },
                     child: Text(
                       MainScreenStrings.planButton,
                       style: CommonTextStyle.blueButton,
