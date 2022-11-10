@@ -11,7 +11,7 @@ import 'bottom_bar_screen_store.dart';
 
 class BottomBarScreen extends StatelessWidget {
   final _bottomBarViewModel = BottomBarScreenStore();
-  final Screens = [
+  final screens = [
     MainScreen(),
     ArticlesScreen(),
     HelpScreen(),
@@ -26,7 +26,7 @@ class BottomBarScreen extends StatelessWidget {
         final data = _bottomBarViewModel.selectedIndex;
         return Stack(
           children: [
-            Screens[data],
+            screens[data],
             Positioned(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
