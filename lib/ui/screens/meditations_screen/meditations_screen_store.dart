@@ -23,7 +23,6 @@ abstract class _MeditationsScreenStore with Store {
     } else {
       searchList =
           meditationsList.where((element) => element.contains(text)).toList();
-      ;
     }
   }
 }
