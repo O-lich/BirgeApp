@@ -26,12 +26,4 @@ abstract class _MeditationsScreenStore with Store {
       ;
     }
   }
-// void search(String text) {
-//   if (text.isNotEmpty) {
-//     searchList =
-//         meditationsList.where((element) => element.contains(text)).toList();
-//   } else {
-//     searchList = meditationsList;
-//   }
-// }
 }
