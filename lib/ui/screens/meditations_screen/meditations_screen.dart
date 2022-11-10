@@ -15,7 +15,7 @@ class MeditationsScreen extends StatelessWidget {
       List.generate(30, (index) => {"id": index, "name": "Meditation $index"})
           .toList();
 
-  final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
+  final width = Device.orientation == Orientation.landscape ? 80.w : 40.h;
   final _searchController = TextEditingController();
 
   @override
@@ -23,54 +23,57 @@ class MeditationsScreen extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: SizedBox(
-          child: Column(
-            children: [
-              spacerHeight(50),
-              Text(MeditationsScreenStrings.meditations,
-                  style: CommonTextStyle.mainHeader,
-                  textAlign: TextAlign.center),
-              spacerHeight(20),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                child: TextField(
-                  onChanged: (value) {},
-                  controller: _searchController,
-                  decoration: const InputDecoration(
-                    hintText: MeditationsScreenStrings.search,
-                    prefixIcon: Icon(Icons.search),
-                    filled: true,
-                    fillColor: backgroundColor,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                      borderSide: BorderSide.none,
+          child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: (Device.width - width) / 4),
+            child: Column(
+              children: [
+                spacerHeight(50),
+                Text(MeditationsScreenStrings.meditations,
+                    style: CommonTextStyle.mainHeader,
+                    textAlign: TextAlign.center),
+                spacerHeight(20),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child: TextField(
+                    onChanged: (value) {},
+                    controller: _searchController,
+                    decoration: const InputDecoration(
+                      hintText: MeditationsScreenStrings.search,
+                      prefixIcon: Icon(Icons.search),
+                      filled: true,
+                      fillColor: backgroundColor,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                        borderSide: BorderSide.none,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: GridView.builder(
-                    scrollDirection: Axis.vertical,
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            childAspectRatio: 1.0,
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 10),
-                    itemCount: meditationsList.length,
-                    itemBuilder: (BuildContext ctx, index) {
-                      return MeditationScreenWidget(
-                        image: image(),
-                        meditationName: meditationsList[index]["name"],
-                        onPressed: () {},
-                        width: width,
-                      );
-                    }),
-              ),
-            ],
-          ),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: GridView.builder(
+                      scrollDirection: Axis.vertical,
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      gridDelegate:
+                      const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          childAspectRatio: 1.0,
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 10),
+                      itemCount: meditationsList.length,
+                      itemBuilder: (BuildContext ctx, index) {
+                        return MeditationScreenWidget(
+                          image: image(),
+                          meditationName: meditationsList[index]["name"],
+                          onPressed: () {},
+                          width: width,
+                        );
+                      }),
+                ),
+              ],
+            ),
+          )
         ),
       ),
     );

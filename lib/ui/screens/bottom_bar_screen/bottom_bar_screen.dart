@@ -16,12 +16,6 @@ class BottomBarScreen extends StatelessWidget {
 
   BottomBarScreen({Key? key}) : super(key: key);
 
-  // void _onItemTapped(int index) {
-  //   setState(() {
-  //     _selectedIndex = index;
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,66 +39,66 @@ class BottomBarScreen extends StatelessWidget {
     return SizedBox(
       height: 88,
       child: BottomNavigationBar(
-        showUnselectedLabels: true,
-        backgroundColor: Colors.white,
-        type: BottomNavigationBarType.fixed,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            activeIcon: Padding(
-              padding: EdgeInsets.all(8),
-              child: Icon(
-                Icons.messenger_rounded,
-                color: mainAppColor,
-              ),
-            ),
-            icon: Padding(
+          showUnselectedLabels: true,
+          backgroundColor: Colors.white,
+          type: BottomNavigationBarType.fixed,
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              activeIcon: Padding(
                 padding: EdgeInsets.all(8),
                 child: Icon(
                   Icons.messenger_rounded,
-                  color: Colors.grey,
-                )),
-            label: BottomBarStrings.menu,
-          ),
-          BottomNavigationBarItem(
-            activeIcon: Padding(
-                padding: EdgeInsets.all(8),
-                child: Icon(
-                  Icons.person,
                   color: mainAppColor,
-                )),
-            icon: Padding(
-                padding: EdgeInsets.all(8),
-                child: Icon(
-                  Icons.person,
-                  color: Colors.grey,
-                )),
-            label: BottomBarStrings.articles,
+                ),
+              ),
+              icon: Padding(
+                  padding: EdgeInsets.all(8),
+                  child: Icon(
+                    Icons.messenger_rounded,
+                    color: Colors.grey,
+                  )),
+              label: BottomBarStrings.menu,
+            ),
+            BottomNavigationBarItem(
+              activeIcon: Padding(
+                  padding: EdgeInsets.all(8),
+                  child: Icon(
+                    Icons.person,
+                    color: mainAppColor,
+                  )),
+              icon: Padding(
+                  padding: EdgeInsets.all(8),
+                  child: Icon(
+                    Icons.person,
+                    color: Colors.grey,
+                  )),
+              label: BottomBarStrings.articles,
+            ),
+            BottomNavigationBarItem(
+              activeIcon: Padding(
+                  padding: EdgeInsets.all(8),
+                  child: Icon(
+                    Icons.settings,
+                    color: mainAppColor,
+                  )),
+              icon: Padding(
+                  padding: EdgeInsets.all(8),
+                  child: Icon(
+                    Icons.settings,
+                    color: Colors.grey,
+                  )),
+              label: BottomBarStrings.psychologist,
+            ),
+          ],
+          currentIndex: bottomBarViewModel.selectedIndex,
+          selectedItemColor: Colors.black,
+          unselectedItemColor: Colors.grey,
+          selectedLabelStyle: CommonTextStyle.bottomBarItemSelected,
+          unselectedLabelStyle: CommonTextStyle.bottomBarItem,
+          onTap: (index) {
+            bottomBarViewModel.changeIndex(index);
+          } //onItemTapped
           ),
-          BottomNavigationBarItem(
-            activeIcon: Padding(
-                padding: EdgeInsets.all(8),
-                child: Icon(
-                  Icons.settings,
-                  color: mainAppColor,
-                )),
-            icon: Padding(
-                padding: EdgeInsets.all(8),
-                child: Icon(
-                  Icons.settings,
-                  color: Colors.grey,
-                )),
-            label: BottomBarStrings.psychologist,
-          ),
-        ],
-        currentIndex: bottomBarViewModel.selectedIndex,
-        selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.grey,
-        selectedLabelStyle: CommonTextStyle.bottomBarItemSelected,
-        unselectedLabelStyle: CommonTextStyle.bottomBarItem,
-        onTap: (index) {
-          bottomBarViewModel.changeIndex(index);
-        }, //onItemTapped
-      ),
     );
   }
 }

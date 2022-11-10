@@ -19,17 +19,16 @@ class PasswordRecoveryScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 31),
         child: SizedBox(
-          height: 350,
           child: Align(
             alignment: Alignment.topLeft,
             child: Column(
               mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 spacerHeight(50),
                 Text(PasswordRecoveryScreenStrings.changePassword,
                     style: CommonTextStyle.secondHeader),
+                spacerHeight(10),
                 const Text(PasswordRecoveryScreenStrings.enterEmail),
                 CustomFormField(
                   width: width,
@@ -40,6 +39,7 @@ class PasswordRecoveryScreen extends StatelessWidget {
                   validation: recoveryViewModel.validator(_emailController.text,
                       PasswordRecoveryScreenStrings.plsEnterEmail),
                 ),
+                spacerHeight(20),
                 BlueButton(
                     onPressed: () => _showDialog(context),
                     width: width,

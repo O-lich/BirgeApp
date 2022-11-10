@@ -13,35 +13,38 @@ class OnBoardingScreen extends StatelessWidget {
     final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
     return Scaffold(
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(30),
-          child: Column(
-            children: [
-              spacerHeight(20),
-              Image.asset(OnBoardingScreenStrings.imageImage),
-              spacerHeight(20),
-              Text(
-                OnBoardingScreenStrings.youAreNotAlone,
-                style: CommonTextStyle.onboardingText,
-              ),
-              spacerHeight(20),
-              const Text(OnBoardingScreenStrings.weAreHere),
-              spacerHeight(20),
-              Image.asset(OnBoardingScreenStrings.imageArrow),
-              spacerHeight(20),
-              BlueButton(
-                onPressed: () {
-                  Navigator.pushNamed(
-                    context,
-                    '/login_screen',
-                  );
-                },
-                width: width,
-                child: const Text(OnBoardingScreenStrings.goOn),
-              )
-            ],
+        child: SizedBox(
+          width: Device.width,
+          child: Padding(
+            padding: const EdgeInsets.all(30),
+            child: Column(
+              children: [
+                spacerHeight(20),
+                Image.asset(OnBoardingScreenStrings.imageImage, height: Device.orientation == Orientation.landscape ? 50.w : 40.h, width: width,),
+                spacerHeight(20),
+                Text(
+                  OnBoardingScreenStrings.youAreNotAlone,
+                  style: CommonTextStyle.onboardingText,
+                ),
+                spacerHeight(20),
+                const Text(OnBoardingScreenStrings.weAreHere),
+                spacerHeight(20),
+                Image.asset(OnBoardingScreenStrings.imageArrow),
+                spacerHeight(20),
+                BlueButton(
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      '/login_screen',
+                    );
+                  },
+                  width: width,
+                  child: const Text(OnBoardingScreenStrings.goOn),
+                )
+              ],
+            ),
           ),
-        ),
+        )
       ),
     );
   }

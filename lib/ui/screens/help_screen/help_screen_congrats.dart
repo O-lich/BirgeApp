@@ -33,7 +33,9 @@ class HelpCongratsScreen extends StatelessWidget {
                 children: [
                   BlueButton(
                     width: width / 2,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
                     child: Text(
                       HelpScreenStrings.goBack,
                       style: CommonTextStyle.blueButton,
