@@ -19,10 +19,9 @@ abstract class _MeditationsScreenStore with Store {
   // всех вычислений.
   @action
   void search(String text) {
-    final String queryString = text;
-    if (queryString.isNotEmpty) {
+    if (text.isNotEmpty) {
       for (final meditation in meditationsList) {
-        if (meditation.contains(queryString)) {
+        if (meditation.contains(text)) {
           newList.add(meditation);
           searchList = newList;
         } else {

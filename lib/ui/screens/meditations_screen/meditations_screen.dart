@@ -18,8 +18,6 @@ class MeditationsScreen extends StatelessWidget {
   //         .toList();
 
   final width = Device.orientation == Orientation.landscape ? 80.w : 40.h;
-
-  //List searchList = [];
   final _meditationsViewModel = MeditationsScreenStore();
   final _searchController = TextEditingController();
 
