@@ -38,72 +38,68 @@ class MeditationsScreen extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(
                     horizontal: (Device.width - width) / 8),
-                child: Observer(builder: (_) {
-                  return TextField(
-                    onChanged: (text) {
-                      _meditationsViewModel.search(_searchController.text);
-                    },
-                    controller: _searchController,
-                    decoration: const InputDecoration(
-                      hintText: MeditationsScreenStrings.search,
-                      prefixIcon: Icon(Icons.search),
-                      filled: true,
-                      fillColor: backgroundColor,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                        borderSide: BorderSide.none,
-                      ),
+                child: TextField(
+                  onChanged: (text) {
+                    _meditationsViewModel.search(_searchController.text);
+                  },
+                  controller: _searchController,
+                  decoration: const InputDecoration(
+                    hintText: MeditationsScreenStrings.search,
+                    prefixIcon: Icon(Icons.search),
+                    filled: true,
+                    fillColor: backgroundColor,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                      borderSide: BorderSide.none,
                     ),
-                  );
-                }),
+                  ),
+                ),
               ),
-              Observer(builder: (_) {
-                return Container(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: (Device.width - width) / 8),
-                  child: _searchController.text.isEmpty
-                      ? GridView.builder(
-                          scrollDirection: Axis.vertical,
-                          physics: const NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  childAspectRatio: 1.0,
-                                  crossAxisSpacing: 10,
-                                  mainAxisSpacing: 10),
-                          itemCount:
-                              _meditationsViewModel.meditationsList.length,
-                          itemBuilder: (BuildContext ctx, index) {
-                            return MeditationScreenWidget(
-                              image: image(),
-                              title:
-                                  _meditationsViewModel.meditationsList[index],
-                              onPressed: () {},
-                              width: width,
-                            );
-                          })
-                      : GridView.builder(
-                      scrollDirection: Axis.vertical,
-                          physics: const NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  childAspectRatio: 1.0,
-                                  crossAxisSpacing: 10,
-                                  mainAxisSpacing: 10),
-                          itemCount: _meditationsViewModel.searchList.length,
-                          itemBuilder: (BuildContext ctx, index) {
-                            return MeditationScreenWidget(
-                              image: image(),
-                              title: _meditationsViewModel.searchList[index],
-                              onPressed: () {},
-                              width: width,
-                            );
-                          }),
-                );
-              }),
+              Container(
+                padding: EdgeInsets.symmetric(
+                    horizontal: (Device.width - width) / 8),
+                child: _searchController.text.isEmpty
+                    ? GridView.builder(
+                        scrollDirection: Axis.vertical,
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                childAspectRatio: 1.0,
+                                crossAxisSpacing: 10,
+                                mainAxisSpacing: 10),
+                        itemCount: _meditationsViewModel.meditationsList.length,
+                        itemBuilder: (BuildContext ctx, index) {
+                          return MeditationScreenWidget(
+                            image: image(),
+                            title: _meditationsViewModel.meditationsList[index],
+                            onPressed: () {},
+                            width: width,
+                          );
+                        })
+                    : Observer(builder: (_) {
+                        return GridView.builder(
+                            scrollDirection: Axis.vertical,
+                            physics: const NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    childAspectRatio: 1.0,
+                                    crossAxisSpacing: 10,
+                                    mainAxisSpacing: 10),
+                            itemCount: _meditationsViewModel.searchList.length,
+                            itemBuilder: (BuildContext ctx, index) {
+                              return MeditationScreenWidget(
+                                image: image(),
+                                title: _meditationsViewModel.searchList[index],
+                                onPressed: () {},
+                                width: width,
+                              );
+                            });
+                      }),
+              ),
             ],
           ),
         ),
