@@ -26,7 +26,7 @@ abstract class MainScreenStrings {
   static const question = 'Какая помощь вам нужна?';
   static const meditationButton = 'Медитация';
   static const therapistButton = 'Психолог';
-  static const planButton = 'Составить план';
+  static const planButton = 'Статьи'; //comment to the client
   static const diaryButton = 'Дневник';
 }
 

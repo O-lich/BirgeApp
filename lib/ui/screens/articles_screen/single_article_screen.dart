@@ -26,6 +26,7 @@ class SingleArticleScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: SizedBox(
           child: Padding(
@@ -43,10 +44,11 @@ class SingleArticleScreen extends StatelessWidget {
                       final data = _favoriteIcon.isFavorite;
                       return InkWell(
                         child: _favoriteIcon.changeIcon(
-                            data,
-                            Icon(Icons.favorite, color: Colors.red),
-                            Icon(Icons.favorite_border, color: Colors.black)),
-                        onTap: () => _favoriteIcon.changeFavorite,
+                          data,
+                          Icon(Icons.favorite, color: Colors.red),
+                          Icon(Icons.favorite_border, color: Colors.black),
+                        ),
+                        onTap: () => _favoriteIcon.changeFavorite(),
                       );
                     }),
                   ],
@@ -60,7 +62,7 @@ class SingleArticleScreen extends StatelessWidget {
                     style: const TextStyle(color: Colors.black),
                     trimMode: TrimMode.Line,
                     trimCollapsedText:
-                        SingleArticleScreenStrings.continueReading,
+                    SingleArticleScreenStrings.continueReading,
                     trimExpandedText: SingleArticleScreenStrings.hide),
                 spacerHeight(20),
               ],
