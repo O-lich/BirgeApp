@@ -3,16 +3,17 @@ import 'package:mobx/mobx.dart';
 
 part 'meditations_screen_store.g.dart';
 
+const meditationsList = ['relax', 'breath', 'feel', 'think', 'live'];
+
 class MeditationsScreenStore = _MeditationsScreenStore
     with _$MeditationsScreenStore;
 
 abstract class _MeditationsScreenStore with Store {
-  final meditationsList = ['relax', 'breath', 'feel', 'think', 'live'];
   List newList = [];
 
   // Наблюдаемое, при изменении которого, обновятся все наблюдатели (Observers)
   @observable
-  List searchList = [];
+  List<String> searchList = meditationsList;
 
   // Action -- метод, в котором вы обновляете данные. Если обновляются сразу
   // несколько observables, то все наблюдатели будут уведомлены только после
