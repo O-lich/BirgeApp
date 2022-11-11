@@ -16,21 +16,26 @@ class HelpTelegramScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: backgroundColor,
       body: SingleChildScrollView(
-        child: InkWell(
-          onTap: () {
-            _launchUrl(_urlTelegram);
-          },
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image(
-                height: 30,
-                image: NetworkImage(HelpScreenStrings.imageTelegram),
+        child: Column(
+          children: [
+            spacerHeight(50),
+            InkWell(
+              onTap: () {
+                _launchUrl(_urlTelegram);
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image(
+                    height: 30,
+                    image: NetworkImage(HelpScreenStrings.imageTelegram),
+                  ),
+                  spacerHeight(20),
+                  Text(HelpScreenStrings.chat),
+                ],
               ),
-              spacerHeight(20),
-              Text(HelpScreenStrings.chat),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

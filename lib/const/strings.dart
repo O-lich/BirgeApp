@@ -51,7 +51,7 @@ abstract class HelpScreenStrings {
   static const congrats = 'Поздравляю';
   static const goMain = 'Вернуться на главную';
   static const chat = 'Нажмите для перехода в чат с психологом';
-  static const urlTelegram = 'https://telegram.org/';
+  static const urlTelegram = 'https://t.me/owlguita/';
   static const imageTelegram =
       'https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Telegram_2019_Logo.svg/800px-Telegram_2019_Logo.svg.png';
 }
