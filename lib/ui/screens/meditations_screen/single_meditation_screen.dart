@@ -35,7 +35,7 @@ class _SingleMeditationScreenState extends State<SingleMeditationScreen> {
             right: 0,
             height: Device.height / 3,
             child: Container(
-              color: mainAppColor,
+              color: imageColor,
             ),
           ),
           Positioned(

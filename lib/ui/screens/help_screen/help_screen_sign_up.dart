@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../style/text_style/text_style.dart';
 import '../../widgets/custom_form_field.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HelpSignUpScreen extends StatelessWidget {
   HelpSignUpScreen({Key? key}) : super(key: key);
@@ -15,6 +16,7 @@ class HelpSignUpScreen extends StatelessWidget {
   final _emailController = TextEditingController();
   final _nameController = TextEditingController();
   final data = DateTime.now();
+  final Uri _url = Uri.parse(HelpScreenStrings.urlTelegram);
 
   @override
   Widget build(BuildContext context) {
@@ -22,85 +24,88 @@ class HelpSignUpScreen extends StatelessWidget {
       backgroundColor: backgroundColor,
       body: SingleChildScrollView(
         child: Padding(
-            padding:
-                EdgeInsets.symmetric(horizontal: (Device.width - width) / 2),
-            child: Column(
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    spacerHeight(50),
-                    Text(HelpScreenStrings.sighingUp,
-                        style: CommonTextStyle.secondHeader),
-                    spacerHeight(10),
-                    Text(HelpScreenStrings.create,
-                        style: CommonTextStyle.mainText),
-                    spacerHeight(10),
-                    CustomFormField(
-                      width: width,
-                      controller: _nameController,
-                      validation:
-                          HelpSignUpViewModel().validator('value', 'response'),
-                      title: HelpScreenStrings.name,
-                      hintText: HelpScreenStrings.name,
-                      context: context,
+          padding: EdgeInsets.symmetric(horizontal: (Device.width - width) / 2),
+          child: Column(
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  spacerHeight(50),
+                  Text(HelpScreenStrings.sighingUp,
+                      style: CommonTextStyle.secondHeader),
+                  spacerHeight(10),
+                  Text(HelpScreenStrings.create,
+                      style: CommonTextStyle.mainText),
+                  spacerHeight(10),
+                  CustomFormField(
+                    width: width,
+                    controller: _nameController,
+                    validation:
+                        HelpSignUpViewModel().validator('value', 'response'),
+                    title: HelpScreenStrings.name,
+                    hintText: HelpScreenStrings.name,
+                    context: context,
+                  ),
+                  CustomFormField(
+                    width: width,
+                    controller: _emailController,
+                    validation:
+                        HelpSignUpViewModel().validator('value', 'response'),
+                    title: HelpScreenStrings.email,
+                    hintText: HelpScreenStrings.email,
+                    context: context,
+                  ),
+                  spacerHeight(10),
+                  Text(
+                    HelpScreenStrings.date,
+                  ),
+                  Calendar(
+                    width: width,
+                    path: '/help_congrats_screen',
+                  ),
+                  spacerHeight(10),
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  BlueButton(
+                    onPressed: () {
+                      _launchUrl();
+                    },
+                    width: width / 2,
+                    child: Text(
+                      HelpScreenStrings.goFurther,
+                      style: CommonTextStyle.blueButton,
+                      textAlign: TextAlign.center,
                     ),
-                    CustomFormField(
-                      width: width,
-                      controller: _emailController,
-                      validation:
-                          HelpSignUpViewModel().validator('value', 'response'),
-                      title: HelpScreenStrings.email,
-                      hintText: HelpScreenStrings.email,
-                      context: context,
+                  ),
+                  spacerHeight(20),
+                  BlueButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    width: width / 2,
+                    child: Text(
+                      HelpScreenStrings.goBack,
+                      style: CommonTextStyle.blueButton,
+                      textAlign: TextAlign.center,
                     ),
-                    spacerHeight(10),
-                    Text(
-                      HelpScreenStrings.date,
-                    ),
-                    Calendar(
-                      width: width,
-                      path: '/help_congrats_screen',
-                    ),
-                    spacerHeight(10),
-                  ],
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    BlueButton(
-                      onPressed: () {
-                        Navigator.pushNamed(
-                          context,
-                          '/help_congrats_screen',
-                        );
-                      },
-                      width: width / 2,
-                      child: Text(
-                        HelpScreenStrings.goFurther,
-                        style: CommonTextStyle.blueButton,
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    spacerHeight(20),
-                    BlueButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      width: width / 2,
-                      child: Text(
-                        HelpScreenStrings.goBack,
-                        style: CommonTextStyle.blueButton,
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ],
-                ),
-                spacerHeight(20),
-              ],
-            )),
+                  ),
+                ],
+              ),
+              spacerHeight(20),
+            ],
+          ),
+        ),
       ),
     );
+  }
+
+  Future<void> _launchUrl() async {
+    if (!await launchUrl(_url)) {
+      throw 'Could not launch $_url';
+    }
   }
 }

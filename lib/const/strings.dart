@@ -49,6 +49,7 @@ abstract class HelpScreenStrings {
   static const goFurther = 'Далее';
   static const congrats = 'Поздравляю';
   static const goMain = 'Вернуться на главную';
+  static const urlTelegram = 'https://t.me/fioresat';
 }
 
 abstract class ProfileScreenStrings {
