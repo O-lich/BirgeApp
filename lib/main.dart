@@ -9,6 +9,7 @@ import 'package:birge_app/ui/screens/help_screen/help_screen_sign_up.dart';
 import 'package:birge_app/ui/screens/login_screen/login_screen.dart';
 import 'package:birge_app/ui/screens/main_screen/main_screen.dart';
 import 'package:birge_app/ui/screens/meditations_screen/meditations_screen.dart';
+import 'package:birge_app/ui/screens/meditations_screen/single_meditation_screen.dart';
 import 'package:birge_app/ui/screens/password_recovery_screen/password_recovery_screen.dart';
 import 'package:birge_app/ui/screens/signup_screen/signup_screen.dart';
 import 'package:birge_app/ui/screens/articles_screen/single_article_screen.dart';
@@ -53,6 +54,7 @@ class MyApp extends StatelessWidget {
                   title: DiaryScreenStrings.exampleTitle,
                   article: DiaryScreenStrings.exampleDiaryNote,
                 ),
+            '/single_meditation_screen': (context) => SingleMeditationScreen(),
             '/help_screen': (context) => HelpScreen(),
             '/help_signup_screen': (context) => HelpSignUpScreen(),
             '/help_congrats_screen': (context) => HelpCongratsScreen(),

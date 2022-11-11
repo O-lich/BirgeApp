@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'package:birge_app/const/strings.dart';
 import 'package:birge_app/ui/style/text_style/text_style.dart';
-import 'package:birge_app/ui/widgets/random_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -11,9 +10,14 @@ import '../../widgets/cards_grid_view_widget.dart';
 import '../../widgets/widgets.dart';
 import 'meditations_screen_store.dart';
 
-class MeditationsScreen extends StatelessWidget {
+class MeditationsScreen extends StatefulWidget {
   MeditationsScreen({Key? key}) : super(key: key);
 
+  @override
+  State<MeditationsScreen> createState() => _MeditationsScreenState();
+}
+
+class _MeditationsScreenState extends State<MeditationsScreen> {
   final width = Device.orientation == Orientation.landscape ? 80.w : 40.h;
   final _meditationsViewModel = MeditationsScreenStore();
   final _searchController = TextEditingController();
@@ -69,7 +73,12 @@ class MeditationsScreen extends StatelessWidget {
                         return CardsGridViewWidget(
                           image: image(),
                           title: _meditationsViewModel.searchList[index],
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(
+                              context,
+                              '/single_meditation_screen',
+                            );
+                          },
                           width: width,
                         );
                       });
@@ -82,6 +91,7 @@ class MeditationsScreen extends StatelessWidget {
       ),
     );
   }
+
   AssetImage image() {
     int min = 0;
     int max = meditationsImages.length - 1;
