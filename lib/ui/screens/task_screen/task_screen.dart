@@ -36,7 +36,6 @@ class TaskScreen extends StatelessWidget {
                       title: Text('Action'),
                     );
                   }),
-              DiaryTextField(onEditingComplete: () {}, width: width),
               spacerHeight(20),
             ],
           ),
