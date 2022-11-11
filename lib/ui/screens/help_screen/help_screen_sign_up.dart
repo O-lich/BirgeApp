@@ -72,7 +72,10 @@ class HelpSignUpScreen extends StatelessWidget {
                 children: [
                   BlueButton(
                     onPressed: () {
-                      _launchUrl();
+                      Navigator.pushNamed(
+                        context,
+                        '/help_telegram_screen',
+                      );
                     },
                     width: width / 2,
                     child: Text(
@@ -101,11 +104,5 @@ class HelpSignUpScreen extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Future<void> _launchUrl() async {
-    if (!await launchUrl(_url)) {
-      throw 'Could not launch $_url';
-    }
   }
 }

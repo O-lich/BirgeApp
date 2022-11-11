@@ -6,6 +6,7 @@ import 'package:birge_app/ui/screens/diary_screen/diary_screen.dart';
 import 'package:birge_app/ui/screens/help_screen/help_screen.dart';
 import 'package:birge_app/ui/screens/help_screen/help_screen_congrats.dart';
 import 'package:birge_app/ui/screens/help_screen/help_screen_sign_up.dart';
+import 'package:birge_app/ui/screens/help_screen/help_screen_telegram.dart';
 import 'package:birge_app/ui/screens/login_screen/login_screen.dart';
 import 'package:birge_app/ui/screens/main_screen/main_screen.dart';
 import 'package:birge_app/ui/screens/meditations_screen/meditations_screen.dart';
@@ -57,6 +58,7 @@ class MyApp extends StatelessWidget {
             '/single_meditation_screen': (context) => SingleMeditationScreen(),
             '/help_screen': (context) => HelpScreen(),
             '/help_signup_screen': (context) => HelpSignUpScreen(),
+            '/help_telegram_screen': (context) => HelpTelegramScreen(),
             '/help_congrats_screen': (context) => HelpCongratsScreen(),
           });
     });
