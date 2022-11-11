@@ -48,7 +48,7 @@ class MainScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.pushNamed(
                         context,
-                        '/articles_screen',
+                        '/task_screen',
                       );
                     },
                     child: Text(

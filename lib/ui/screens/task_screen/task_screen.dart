@@ -6,8 +6,8 @@ import '../../../const/strings.dart';
 import '../../style/colors/app_colors.dart';
 import '../../widgets/widgets.dart';
 
-class DiaryScreen extends StatelessWidget {
-  DiaryScreen({Key? key}) : super(key: key);
+class TaskScreen extends StatelessWidget {
+  TaskScreen({Key? key}) : super(key: key);
 
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
 
@@ -21,7 +21,7 @@ class DiaryScreen extends StatelessWidget {
           child: Column(
             children: [
               spacerHeight(50),
-              Text(DiaryScreenStrings.diary,
+              Text(TaskScreenStrings.plan,
                   style: CommonTextStyle.mainHeader,
                   textAlign: TextAlign.center),
               spacerHeight(50),
@@ -32,8 +32,8 @@ class DiaryScreen extends StatelessWidget {
                   itemBuilder: (_, index) {
                     return ListTile(
                       onTap: () {},
-                      leading: Icon(Icons.circle_outlined),
-                      title: Text('Todo'),
+                      leading: const Icon(Icons.circle_outlined),
+                      title: Text('Action'),
                     );
                   }),
               DiaryTextField(onEditingComplete: () {}, width: width),
