@@ -21,7 +21,7 @@ class SingleMeditationScreen extends StatefulWidget {
 class _SingleMeditationScreenState extends State<SingleMeditationScreen> {
   final height = Device.height;
   final width = Device.orientation == Orientation.landscape ? 70.w : 30.h;
-  final viewModel = SingleMeditationScreenStore();
+  final _singleMeditationViewModel = SingleMeditationScreenStore();
 
   @override
   Widget build(BuildContext context) {
@@ -58,13 +58,14 @@ class _SingleMeditationScreenState extends State<SingleMeditationScreen> {
                       style: CommonTextStyle.secondHeader,
                     ),
                     AudioWidget(
-                      position: viewModel.position,
-                      duration: viewModel.duration,
-                      isPlaying: viewModel.isPlaying,
-                      isRepeatMode: viewModel.isRepeat,
-                      onPlayModeChanged: viewModel.playingMode,
-                      onRepeatMode: viewModel.repeatMode,
-                      onSliderChanged: viewModel.onSliderChanged,
+                      position: _singleMeditationViewModel.position,
+                      duration: _singleMeditationViewModel.duration,
+                      isPlaying: _singleMeditationViewModel.isPlaying,
+                      isRepeatMode: _singleMeditationViewModel.isRepeat,
+                      onPlayModeChanged: _singleMeditationViewModel.playingMode,
+                      onRepeatMode: _singleMeditationViewModel.repeatMode,
+                      onSliderChanged:
+                          _singleMeditationViewModel.onSliderChanged,
                     )
                   ],
                 );

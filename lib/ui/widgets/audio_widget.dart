@@ -33,27 +33,32 @@ class AudioWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(position.toString().split('.')[0], style: CommonTextStyle.secondHeader),
-              Text(duration.toString().split('.')[0], style: CommonTextStyle.secondHeader),
+              Text(position.toString().split('.')[0],
+                  style: CommonTextStyle.secondHeader),
+              Text(duration.toString().split('.')[0],
+                  style: CommonTextStyle.secondHeader),
             ],
           ),
         ),
         slider(),
-        buttonSet()
+        buttonSet(),
       ],
     );
   }
 
   Widget startButton() {
     return IconButton(
-        padding: const EdgeInsets.only(bottom: 10),
         onPressed: onPlayModeChanged,
-        icon: Icon(isPlaying ? Icons.pause_circle_filled : Icons.play_circle_fill));
+        icon: Icon(
+            isPlaying ? Icons.pause_circle_outline : Icons.play_circle_outline,
+            color: mainAppColor,
+            size: 40));
   }
 
   Widget repeatButton() {
     return IconButton(
-      icon: Icon(Icons.repeat, color: isRepeatMode ? Colors.black : Colors.red),
+      icon: Icon(Icons.repeat,
+          color: isRepeatMode ? mainAppColor : backgroundColor, size: 40),
       onPressed: onRepeatMode,
     );
   }

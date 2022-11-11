@@ -61,7 +61,7 @@ abstract class _SingleMeditationScreenStore with Store {
     if (!isPlaying) {
       audioPlayer.play(UrlSource(path));
     } else {
-      audioPlayer.stop();
+      audioPlayer.pause();
     }
     isPlaying = !isPlaying;
   }
