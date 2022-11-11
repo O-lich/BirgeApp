@@ -40,49 +40,57 @@ abstract class _SingleMeditationScreenStore with Store {
   void onPlayerComplete() {
     position = const Duration(seconds: 0);
     if (isRepeat == true) {
-      isPlaying == true;
+      isPlaying = true;
     } else {
-      isPlaying == false;
-      isRepeat == false;
+      isPlaying = false;
+      isRepeat = false;
     }
   }
+
   @action
   void playingMode(AudioPlayer audioPlayer, String path) {
     if (isPlaying == false) {
-        audioPlayer.play(UrlSource(path));
-        isPlaying == true;
+      audioPlayer.play(UrlSource(path));
+      isPlaying = !isPlaying;
     } else if (isPlaying == true) {
-      isPlaying == false;
+      isPlaying = !isPlaying;
     }
   }
+
   @action
   Icon playPauseIconChange() {
-    return isPlaying == false
+    return (isPlaying == false)
         ? Icon(
-      _icons[0],
-      size: 50,
-      color: mainAppColor,
-    ) : Icon(_icons[1], size: 50, color: mainAppColor);
+            _icons[0],
+            size: 50,
+            color: mainAppColor,
+          )
+        : Icon(
+            _icons[1],
+            size: 50,
+            color: mainAppColor,
+          );
   }
 
   @action
   void repeatMode(AudioPlayer audioPlayer, Color iconColor) {
     if (isRepeat == false) {
       audioPlayer.setReleaseMode(ReleaseMode.loop);
-        isRepeat == true;
-        iconColor = Colors.red;
+      isRepeat = true;
+      iconColor = Colors.red;
     } else if (isRepeat == true) {
-        audioPlayer.setReleaseMode(ReleaseMode.release);
-        iconColor = Colors.black;
-        isRepeat == false;
-
+      audioPlayer.setReleaseMode(ReleaseMode.release);
+      iconColor = Colors.black;
+      isRepeat = false;
     }
   }
+
   @action
   void onSliderChanged(double value, AudioPlayer audioPlayer) {
     changeToSecond(value.toInt(), audioPlayer);
     value = value;
   }
+
   void changeToSecond(int second, AudioPlayer audioPlayer) {
     Duration newDuration = Duration(seconds: second);
     audioPlayer.seek(newDuration);
