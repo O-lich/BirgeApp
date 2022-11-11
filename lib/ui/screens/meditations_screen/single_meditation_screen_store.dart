@@ -6,22 +6,31 @@ import '../../style/colors/app_colors.dart';
 
 part 'single_meditation_screen_store.g.dart';
 
+const path = 'https://cdn.pixabay.com/audio/2022/04/14/audio_083f6fd7b4.mp3';
+
 class SingleMeditationScreenStore = _SingleMeditationScreenStore
     with _$SingleMeditationScreenStore;
 
 abstract class _SingleMeditationScreenStore with Store {
   // Наблюдаемое, при изменении которого, обновятся все наблюдатели (Observers)
   @observable
-  Duration duration = Duration();
-  Duration position = Duration();
+  Duration duration = const Duration();
+  @observable
+  Duration position = const Duration();
+  @observable
   bool isPlaying = false;
+  @observable
   bool isPaused = false;
+  @observable
   bool isRepeat = false;
   Color iconColor = Colors.black;
-  final List<IconData> _icons = [
-    Icons.play_circle_fill,
-    Icons.pause_circle_filled
-  ];
+  late final String author;
+  late final String title;
+  late AudioPlayer audioPlayer = AudioPlayer();
+
+  _SingleMeditationScreenStore() {
+    _initPlayer();
+  }
 
   // Action -- метод, в котором вы обновляете данные. Если обновляются сразу
   // несколько observables, то все наблюдатели будут уведомлены только после
@@ -48,51 +57,46 @@ abstract class _SingleMeditationScreenStore with Store {
   }
 
   @action
-  void playingMode(AudioPlayer audioPlayer, String path) {
-    if (isPlaying == false) {
+  void playingMode() {
+    if (!isPlaying) {
       audioPlayer.play(UrlSource(path));
-      isPlaying = !isPlaying;
-    } else if (isPlaying == true) {
-      isPlaying = !isPlaying;
+    } else {
+      audioPlayer.stop();
     }
+    isPlaying = !isPlaying;
   }
 
   @action
-  Icon playPauseIconChange() {
-    return (isPlaying == false)
-        ? Icon(
-            _icons[0],
-            size: 50,
-            color: mainAppColor,
-          )
-        : Icon(
-            _icons[1],
-            size: 50,
-            color: mainAppColor,
-          );
-  }
-
-  @action
-  void repeatMode(AudioPlayer audioPlayer, Color iconColor) {
-    if (isRepeat == false) {
+  void repeatMode() {
+    if (!isRepeat) {
       audioPlayer.setReleaseMode(ReleaseMode.loop);
-      isRepeat = true;
-      iconColor = Colors.red;
-    } else if (isRepeat == true) {
+    } else {
       audioPlayer.setReleaseMode(ReleaseMode.release);
-      iconColor = Colors.black;
-      isRepeat = false;
     }
+    isRepeat = !isRepeat;
   }
 
   @action
-  void onSliderChanged(double value, AudioPlayer audioPlayer) {
-    changeToSecond(value.toInt(), audioPlayer);
+  void onSliderChanged(double value) {
+    changeToSecond(value.toInt());
     value = value;
   }
 
-  void changeToSecond(int second, AudioPlayer audioPlayer) {
+  void changeToSecond(int second) {
     Duration newDuration = Duration(seconds: second);
     audioPlayer.seek(newDuration);
+  }
+
+  void _initPlayer() {
+    audioPlayer.onDurationChanged.listen((newDuration) {
+      changeDuration(newDuration);
+    });
+    audioPlayer.onPositionChanged.listen((newPosition) {
+      changePosition(newPosition);
+    });
+    audioPlayer.setSourceUrl(path);
+    audioPlayer.onPlayerComplete.listen((event) {
+      onPlayerComplete();
+    });
   }
 }

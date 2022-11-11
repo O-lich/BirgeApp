@@ -1,80 +1,60 @@
-import 'package:audioplayers/audioplayers.dart';
-import 'package:audioplayers/src/audioplayer.dart';
 import 'package:birge_app/ui/style/colors/app_colors.dart';
 import 'package:birge_app/ui/style/text_style/text_style.dart';
 import 'package:flutter/material.dart';
 
-import '../screens/meditations_screen/single_meditation_screen_store.dart';
+class AudioWidget extends StatelessWidget {
+  final Duration position;
+  final Duration duration;
+  final bool isPlaying;
+  final bool isRepeatMode;
+  final Function() onPlayModeChanged;
+  final Function() onRepeatMode;
+  final Function(double value) onSliderChanged;
 
-class AudioWidget extends StatefulWidget {
-  final AudioPlayer audioPlayer;
+  const AudioWidget({
+    Key? key,
+    required this.position,
+    required this.duration,
+    required this.isPlaying,
+    required this.isRepeatMode,
+    required this.onPlayModeChanged,
+    required this.onRepeatMode,
+    required this.onSliderChanged,
+  }) : super(key: key);
 
-  const AudioWidget({Key? key, required this.audioPlayer}) : super(key: key);
-
-  @override
-  State<AudioWidget> createState() => _AudioWidgetState();
-}
-
-class _AudioWidgetState extends State<AudioWidget> {
-
-  Color iconColor = Colors.black;
-  String path = 'https://cdn.pixabay.com/audio/2022/04/14/audio_083f6fd7b4.mp3';
-  final _singleMeditationViewModel = SingleMeditationScreenStore();
-
-  @override
-  void initState() {
-    super.initState();
-    widget.audioPlayer.onDurationChanged.listen((newDuration) {
-      _singleMeditationViewModel.changeDuration(newDuration);
-    });
-    widget.audioPlayer.onPositionChanged.listen((newPosition) {
-      _singleMeditationViewModel.changePosition(newPosition);
-    });
-    widget.audioPlayer.setSourceUrl(path);
-    widget.audioPlayer.onPlayerComplete.listen((event) {
-        _singleMeditationViewModel.onPlayerComplete();
-    });
-  }
+  Color get iconColor => Colors.black;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(_singleMeditationViewModel.position.toString().split('.')[0],
-                    style: CommonTextStyle.secondHeader),
-                Text(_singleMeditationViewModel.duration.toString().split('.')[0],
-                    style: CommonTextStyle.secondHeader),
-              ],
-            ),
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 20, right: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(position.toString().split('.')[0], style: CommonTextStyle.secondHeader),
+              Text(duration.toString().split('.')[0], style: CommonTextStyle.secondHeader),
+            ],
           ),
-          slider(),
-          buttonSet()
-        ],
-      ),
+        ),
+        slider(),
+        buttonSet()
+      ],
     );
   }
+
   Widget startButton() {
     return IconButton(
         padding: const EdgeInsets.only(bottom: 10),
-        onPressed: () {
-          _singleMeditationViewModel.playingMode(widget.audioPlayer, path);
-        },
-        icon: _singleMeditationViewModel.playPauseIconChange()
-    );
+        onPressed: onPlayModeChanged,
+        icon: Icon(isPlaying ? Icons.pause_circle_filled : Icons.play_circle_fill));
   }
 
   Widget repeatButton() {
     return IconButton(
-      icon: Icon(Icons.repeat, color: iconColor),
-      onPressed: () {
-        _singleMeditationViewModel.repeatMode(widget.audioPlayer, iconColor);
-      },
+      icon: Icon(Icons.repeat, color: isRepeatMode ? Colors.black : Colors.red),
+      onPressed: onRepeatMode,
     );
   }
 
@@ -82,25 +62,23 @@ class _AudioWidgetState extends State<AudioWidget> {
     return Slider(
       activeColor: mainAppColor,
       inactiveColor: Colors.grey,
-      value: _singleMeditationViewModel.position.inSeconds.toDouble(),
+      value: position.inSeconds.toDouble(),
       min: 0.0,
-      max: _singleMeditationViewModel.duration.inSeconds.toDouble(),
+      max: duration.inSeconds.toDouble(),
       onChanged: (double value) {
-        _singleMeditationViewModel.onSliderChanged(value, widget.audioPlayer);
+        onSliderChanged(value);
       },
     );
   }
 
   Widget buttonSet() {
-    return Container(
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          startButton(),
-          repeatButton(),
-        ],
-      ),
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        startButton(),
+        repeatButton(),
+      ],
     );
   }
 }

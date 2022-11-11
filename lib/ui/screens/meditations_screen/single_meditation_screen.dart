@@ -1,4 +1,6 @@
 import 'package:audioplayers/audioplayers.dart';
+import 'package:birge_app/ui/screens/articles_screen/single_article_screen_store.dart';
+import 'package:birge_app/ui/screens/meditations_screen/single_meditation_screen_store.dart';
 import 'package:birge_app/ui/style/colors/app_colors.dart';
 import 'package:birge_app/ui/style/text_style/text_style.dart';
 import 'package:birge_app/ui/widgets/audio_widget.dart';
@@ -8,7 +10,9 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class SingleMeditationScreen extends StatefulWidget {
-  const SingleMeditationScreen({Key? key,}) : super(key: key);
+  const SingleMeditationScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<SingleMeditationScreen> createState() => _SingleMeditationScreenState();
@@ -17,15 +21,7 @@ class SingleMeditationScreen extends StatefulWidget {
 class _SingleMeditationScreenState extends State<SingleMeditationScreen> {
   final height = Device.height;
   final width = Device.orientation == Orientation.landscape ? 70.w : 30.h;
-  late final String author;
-  late final String title;
-  late AudioPlayer audioPlayer;
-
-  @override
-  void initState() {
-    super.initState();
-    audioPlayer = AudioPlayer();
-  }
+  final viewModel = SingleMeditationScreenStore();
 
   @override
   Widget build(BuildContext context) {
@@ -48,37 +44,46 @@ class _SingleMeditationScreenState extends State<SingleMeditationScreen> {
             top: height * 0.2,
             height: height * 0.36,
             child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(40),
-                color: Colors.white
-              ),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(40), color: Colors.white),
               child: Observer(builder: (_) {
-                  return Column(
-                    children: [
-                      spacerHeight(height*0.1),
-                      Text('title', style: CommonTextStyle.mainHeader,),
-                      Text('author', style: CommonTextStyle.secondHeader,),
-                      AudioWidget(audioPlayer: audioPlayer)
-                    ],
-                  );
-                }
-              ),
+                return Column(
+                  children: [
+                    spacerHeight(height * 0.1),
+                    Text(
+                      'title',
+                      style: CommonTextStyle.mainHeader,
+                    ),
+                    Text(
+                      'author',
+                      style: CommonTextStyle.secondHeader,
+                    ),
+                    AudioWidget(
+                      position: viewModel.position,
+                      duration: viewModel.duration,
+                      isPlaying: viewModel.isPlaying,
+                      isRepeatMode: viewModel.isRepeat,
+                      onPlayModeChanged: viewModel.playingMode,
+                      onRepeatMode: viewModel.repeatMode,
+                      onSliderChanged: viewModel.onSliderChanged,
+                    )
+                  ],
+                );
+              }),
             ),
           ),
           Positioned(
-            top: height*0.12,
-            left: (width -10)/2,
-            right: (width -10)/2,
-            height: height*0.16,
+            top: height * 0.12,
+            left: (width - 10) / 2,
+            right: (width - 10) / 2,
+            height: height * 0.16,
             child: Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: Colors.white, width: 2),
-                image: const DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage('assets/images/meditation_image_1.png'),
-              )
-              ),
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(color: Colors.white, width: 2),
+                  image: const DecorationImage(
+                    fit: BoxFit.cover,
+                    image: AssetImage('assets/images/meditation_image_1.png'),
+                  )),
             ),
           )
         ],
