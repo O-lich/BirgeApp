@@ -29,11 +29,30 @@ class DiaryScreen extends StatelessWidget {
               Text(DiaryScreenStrings.diary,
                   style: CommonTextStyle.mainHeader,
                   textAlign: TextAlign.center),
-              spacerHeight(50),
+              spacerHeight(10),
               Text(args.date.toString().substring(0, 10),
-                  style: CommonTextStyle.mainHeader,
-                  textAlign: TextAlign.center),
+                  style: CommonTextStyle.mainText, textAlign: TextAlign.left),
               spacerHeight(50),
+              InkWell(
+                onTap: () {
+                  _showDialog(context);
+                },
+                child: Container(
+                  alignment: Alignment.bottomRight,
+                  width: width / 2,
+                  height: width / 2,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(color: Colors.white, width: 2),
+                    image: const DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage(HelpScreenStrings.imageEmpty),
+                    ),
+                  ),
+                  child: Icon(Icons.add_circle_outlined,
+                      color: mainAppColor, size: 40),
+                ),
+              ),
               ListView.builder(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
@@ -51,10 +70,6 @@ class DiaryScreen extends StatelessWidget {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => _showDialog(context),
-        child: const Icon(Icons.add),
-      ),
     );
   }
 
@@ -62,8 +77,6 @@ class DiaryScreen extends StatelessWidget {
       context: context,
       barrierDismissible: false,
       transitionBuilder: (context, a1, a2, widget) {
-        final titleController = TextEditingController();
-        final subtitleController = TextEditingController();
         return Transform.scale(
           scale: a1.value,
           child: Opacity(
@@ -72,25 +85,8 @@ class DiaryScreen extends StatelessWidget {
               shape:
                   OutlineInputBorder(borderRadius: BorderRadius.circular(16.0)),
               title: Text(
-                TaskScreenStrings.plan,
-                style: CommonTextStyle.mainHeader,
-              ),
-              content: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  TextField(
-                    controller: titleController,
-                    decoration: const InputDecoration(
-                        hintText: TaskScreenStrings.title),
-                  ),
-                  TextField(
-                    keyboardType: TextInputType.multiline,
-                    maxLines: null,
-                    controller: subtitleController,
-                    decoration: const InputDecoration(
-                        hintText: TaskScreenStrings.subtitle),
-                  ),
-                ],
+                'Выберите картинку из файла',
+                style: CommonTextStyle.secondHeader,
               ),
               actions: [
                 TextButton(

@@ -44,7 +44,8 @@ class _SingleMeditationScreenState extends State<SingleMeditationScreen> {
             top: height * 0.2,
             height: height * 0.36,
             child: Container(
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(40), color: Colors.white),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(40), color: Colors.white),
               child: Observer(builder: (_) {
                 return Column(
                   children: [
@@ -79,12 +80,13 @@ class _SingleMeditationScreenState extends State<SingleMeditationScreen> {
             height: height * 0.16,
             child: Container(
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: Colors.white, width: 2),
-                  image: const DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage('assets/images/meditation_image_1.png'),
-                  )),
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: Colors.white, width: 2),
+                image: const DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage('assets/images/meditation_image_1.png'),
+                ),
+              ),
             ),
           )
         ],

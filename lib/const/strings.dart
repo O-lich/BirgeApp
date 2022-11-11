@@ -41,6 +41,7 @@ abstract class HelpScreenStrings {
   static const goBack = 'Вернуться назад';
   static const imageHello = 'assets/images/help_screen_image.png';
   static const imageCongrats = 'assets/images/help_screen_image_congrats.png';
+  static const imageEmpty = 'assets/images/emptyImage.png';
   static const sighingUp = 'Запись';
   static const email = 'Почта';
   static const name = 'Имя';
