@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/strings.dart';
 import '../../style/colors/app_colors.dart';
+import '../../widgets/diary_screen_arguments.dart';
 import '../../widgets/widgets.dart';
 
 class DiaryScreen extends StatelessWidget {
@@ -14,6 +15,9 @@ class DiaryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final args =
+        ModalRoute.of(context)!.settings.arguments as DiaryScreenArguments;
+
     return Scaffold(
       backgroundColor: backgroundColor,
       body: SingleChildScrollView(
@@ -26,7 +30,7 @@ class DiaryScreen extends StatelessWidget {
                   style: CommonTextStyle.mainHeader,
                   textAlign: TextAlign.center),
               spacerHeight(50),
-              Text('Animation Place',
+              Text(args.date.toString().substring(0, 10),
                   style: CommonTextStyle.mainHeader,
                   textAlign: TextAlign.center),
               spacerHeight(50),
@@ -54,60 +58,55 @@ class DiaryScreen extends StatelessWidget {
     );
   }
 
-  Future _showDialog(BuildContext context) =>
-      showGeneralDialog(
-          context: context,
-          barrierDismissible: false,
-          transitionBuilder: (context, a1, a2, widget) {
-            final titleController = TextEditingController();
-            final subtitleController = TextEditingController();
-            return Transform.scale(
-              scale: a1.value,
-              child: Opacity(
-                opacity: a1.value,
-                child: AlertDialog(
-                  shape: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(16.0)),
-                  title: Text(
-                    TaskScreenStrings.plan,
-                    style: CommonTextStyle.mainHeader,
-                  ),
-                  content: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      TextField(
-                        controller: titleController,
-                        decoration:
-                        const InputDecoration(
-                            hintText: TaskScreenStrings.title),
-                      ),
-                      TextField(
-                        keyboardType: TextInputType.multiline,
-                        maxLines: null,
-                        controller: subtitleController,
-                        decoration: const InputDecoration(
-                            hintText: TaskScreenStrings.subtitle),
-                      ),
-                    ],
-                  ),
-                  actions: [
-                    TextButton(
-                      onPressed: () async {
-                        Navigator.pop(context);
-                      },
-                      child: const Text(TaskScreenStrings.add),
-                    )
-                  ],
-
-                ),
+  Future _showDialog(BuildContext context) => showGeneralDialog(
+      context: context,
+      barrierDismissible: false,
+      transitionBuilder: (context, a1, a2, widget) {
+        final titleController = TextEditingController();
+        final subtitleController = TextEditingController();
+        return Transform.scale(
+          scale: a1.value,
+          child: Opacity(
+            opacity: a1.value,
+            child: AlertDialog(
+              shape:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(16.0)),
+              title: Text(
+                TaskScreenStrings.plan,
+                style: CommonTextStyle.mainHeader,
               ),
-
-
-            );
-          },
-          transitionDuration: const Duration(milliseconds: 200),
-          pageBuilder: (BuildContext context, Animation<double> animation,
-              Animation<double> secondaryAnimation) {
-            return const Text('data');
-          });
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextField(
+                    controller: titleController,
+                    decoration: const InputDecoration(
+                        hintText: TaskScreenStrings.title),
+                  ),
+                  TextField(
+                    keyboardType: TextInputType.multiline,
+                    maxLines: null,
+                    controller: subtitleController,
+                    decoration: const InputDecoration(
+                        hintText: TaskScreenStrings.subtitle),
+                  ),
+                ],
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () async {
+                    Navigator.pop(context);
+                  },
+                  child: const Text(TaskScreenStrings.add),
+                )
+              ],
+            ),
+          ),
+        );
+      },
+      transitionDuration: const Duration(milliseconds: 200),
+      pageBuilder: (BuildContext context, Animation<double> animation,
+          Animation<double> secondaryAnimation) {
+        return const Text('data');
+      });
 }

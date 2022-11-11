@@ -1,12 +1,11 @@
-import 'package:birge_app/domain/model/login_model.dart';
 import 'package:birge_app/ui/style/text_style/text_style.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/strings.dart';
 import '../../style/colors/app_colors.dart';
 import '../../widgets/buttons.dart';
 import '../../widgets/calendar.dart';
+import '../../widgets/diary_screen_arguments.dart';
 import '../../widgets/widgets.dart';
 
 class MainScreen extends StatelessWidget {
@@ -82,6 +81,9 @@ class MainScreen extends StatelessWidget {
                       Navigator.pushNamed(
                         context,
                         '/diary_screen',
+                        arguments: DiaryScreenArguments(
+                          date: DateTime.now(),
+                        ),
                       );
                     },
                     child: Text(
@@ -94,7 +96,7 @@ class MainScreen extends StatelessWidget {
               spacerHeight(50),
               Calendar(
                 width: width,
-                onDateChanged: () {},
+                path: '/diary_screen',
               ),
               spacerHeight(100),
             ],

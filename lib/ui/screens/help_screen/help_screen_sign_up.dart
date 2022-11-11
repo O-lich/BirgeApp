@@ -14,6 +14,7 @@ class HelpSignUpScreen extends StatelessWidget {
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
   final _emailController = TextEditingController();
   final _nameController = TextEditingController();
+  final data = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +22,14 @@ class HelpSignUpScreen extends StatelessWidget {
       backgroundColor: backgroundColor,
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: (Device.width - width) / 2),
-          child: Column(
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+            padding:
+                EdgeInsets.symmetric(horizontal: (Device.width - width) / 2),
+            child: Column(
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
                     spacerHeight(50),
                     Text(HelpScreenStrings.sighingUp,
                         style: CommonTextStyle.secondHeader),
@@ -57,30 +59,33 @@ class HelpSignUpScreen extends StatelessWidget {
                     Text(
                       HelpScreenStrings.date,
                     ),
-                    Calendar(onDateChanged: () {}, width: width),
+                    Calendar(
+                      width: width,
+                      path: '/help_congrats_screen',
+                    ),
                     spacerHeight(10),
                   ],
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  BlueButton(
-                    onPressed: () {
-                      Navigator.pushNamed(
-                        context,
-                        '/help_congrats_screen',
-                      );
-                    },
-                    width: width / 2,
-                    child: Text(
-                      HelpScreenStrings.goFurther,
-                      style: CommonTextStyle.blueButton,
-                      textAlign: TextAlign.center,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    BlueButton(
+                      onPressed: () {
+                        Navigator.pushNamed(
+                          context,
+                          '/help_congrats_screen',
+                        );
+                      },
+                      width: width / 2,
+                      child: Text(
+                        HelpScreenStrings.goFurther,
+                        style: CommonTextStyle.blueButton,
+                        textAlign: TextAlign.center,
+                      ),
                     ),
-                  ),
-                  spacerHeight(20),
-                  BlueButton(
-                    onPressed: () {
+                    spacerHeight(20),
+                    BlueButton(
+                      onPressed: () {
                         Navigator.of(context).pop();
                       },
                       width: width / 2,
@@ -94,8 +99,7 @@ class HelpSignUpScreen extends StatelessWidget {
                 ),
                 spacerHeight(20),
               ],
-          )
-        ),
+            )),
       ),
     );
   }

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 import '../../const/strings.dart';
+import 'diary_screen_arguments.dart';
 
 class Calendar extends StatelessWidget {
-  final void Function() onDateChanged;
   final double width;
+  final String path;
 
-  const Calendar({required this.onDateChanged, required this.width, super.key});
+  const Calendar({required this.width, super.key, required this.path});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,13 @@ class Calendar extends StatelessWidget {
         firstDate: DateTime(2010, 8),
         lastDate: DateTime.now().add(Duration(days: 100000)),
         onDateChanged: (DateTime value) {
-          onDateChanged;
+          Navigator.pushNamed(
+            context,
+            path,
+            arguments: DiaryScreenArguments(
+              date: value,
+            ),
+          );
         },
       ),
     );
