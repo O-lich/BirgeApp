@@ -76,7 +76,7 @@ class _MeditationsScreenState extends State<MeditationsScreen> {
                           onPressed: () {
                             Navigator.pushNamed(
                               context,
-                              '/single_meditation_screen',
+                              '/new_single_meditation_screen',
                             );
                           },
                           width: width,

@@ -96,7 +96,7 @@ class MainScreen extends StatelessWidget {
               spacerHeight(50),
               Calendar(
                 width: width,
-                path: '/diary_screen',
+                path: '/diary_plan_choice_screen',
               ),
               spacerHeight(100),
             ],

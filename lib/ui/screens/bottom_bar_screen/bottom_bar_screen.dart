@@ -6,6 +6,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import '../articles_screen/articles_screen.dart';
 import '../../../const/strings.dart';
 import '../help_screen/help_screen.dart';
+import '../task_screen/task_screen.dart';
 import 'bottom_bar_screen_store.dart';
 
 class BottomBarScreen extends StatelessWidget {
@@ -14,6 +15,7 @@ class BottomBarScreen extends StatelessWidget {
     MainScreen(),
     ArticlesScreen(),
     HelpScreen(),
+    TaskScreen(),
   ];
 
   BottomBarScreen({Key? key}) : super(key: key);
@@ -95,6 +97,22 @@ class BottomBarScreen extends StatelessWidget {
                       color: Colors.grey,
                     )),
                 label: BottomBarStrings.psychologist,
+              ),
+              BottomNavigationBarItem(
+                activeIcon: Padding(
+                  padding: EdgeInsets.all(8),
+                  child: Icon(
+                    Icons.today,
+                    color: mainAppColor,
+                  ),
+                ),
+                icon: Padding(
+                    padding: EdgeInsets.all(8),
+                    child: Icon(
+                      Icons.today,
+                      color: Colors.grey,
+                    )),
+                label: BottomBarStrings.todo,
               ),
             ],
             currentIndex: data,

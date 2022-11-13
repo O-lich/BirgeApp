@@ -2,6 +2,7 @@ import 'package:birge_app/const/strings.dart';
 import 'package:birge_app/ui/screens/articles_screen/articles_screen.dart';
 import 'package:birge_app/ui/screens/articles_screen/single_article_screen.dart';
 import 'package:birge_app/ui/screens/bottom_bar_screen/bottom_bar_screen.dart';
+import 'package:birge_app/ui/screens/diary_plan_choice_screen/diary_plan_choice_screen.dart';
 import 'package:birge_app/ui/screens/diary_screen/diary_screen.dart';
 import 'package:birge_app/ui/screens/help_screen/help_screen.dart';
 import 'package:birge_app/ui/screens/help_screen/help_screen_congrats.dart';
@@ -10,6 +11,7 @@ import 'package:birge_app/ui/screens/help_screen/help_screen_telegram.dart';
 import 'package:birge_app/ui/screens/login_screen/login_screen.dart';
 import 'package:birge_app/ui/screens/main_screen/main_screen.dart';
 import 'package:birge_app/ui/screens/meditations_screen/meditations_screen.dart';
+import 'package:birge_app/ui/screens/meditations_screen/new_single_meditation_screen.dart';
 import 'package:birge_app/ui/screens/meditations_screen/single_meditation_screen.dart';
 import 'package:birge_app/ui/screens/password_recovery_screen/password_recovery_screen.dart';
 import 'package:birge_app/ui/screens/signup_screen/signup_screen.dart';
@@ -57,11 +59,13 @@ class MyApp extends StatelessWidget {
                   article: DiaryScreenStrings.exampleDiaryNote,
                 ),
             '/single_meditation_screen': (context) => SingleMeditationScreen(),
+            '/new_single_meditation_screen': (context) => NewSingleMeditationScreen(),
             '/help_screen': (context) => HelpScreen(),
             '/help_signup_screen': (context) => HelpSignUpScreen(),
             '/help_telegram_screen': (context) => HelpTelegramScreen(),
             '/help_congrats_screen': (context) => HelpCongratsScreen(),
             '/task_screen': (context) => TaskScreen(),
+            '/diary_plan_choice_screen': (context) => DiaryPlanChoiceScreen()
           });
     });
   }
