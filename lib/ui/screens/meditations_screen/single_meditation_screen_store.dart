@@ -2,8 +2,6 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
-import '../../style/colors/app_colors.dart';
-
 part 'single_meditation_screen_store.g.dart';
 
 const path = 'https://cdn.pixabay.com/audio/2022/04/14/audio_083f6fd7b4.mp3';
@@ -27,6 +25,7 @@ abstract class _SingleMeditationScreenStore with Store {
   late final String author;
   late final String title;
   late AudioPlayer audioPlayer = AudioPlayer();
+
 
   _SingleMeditationScreenStore() {
     _initPlayer();
