@@ -41,7 +41,7 @@ class DiaryScreen extends StatelessWidget {
                   border: Border.all(color: Colors.white, width: 2),
                   image: const DecorationImage(
                     fit: BoxFit.cover,
-                    image: AssetImage(DiaryScreenStrings.animation),
+                    image: AssetImage(DiaryScreenStrings.animationDiary),
                   ),
                 ),
               ),
