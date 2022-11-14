@@ -10,6 +10,8 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../const/strings.dart';
+import '../../../data/meditation_repository.dart';
+import '../../widgets/meditations_screen_arguments.dart';
 
 class SingleMeditationScreen extends StatefulWidget {
   const SingleMeditationScreen({
@@ -27,6 +29,8 @@ class _SingleMeditationScreenState extends State<SingleMeditationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final args =
+        ModalRoute.of(context)!.settings.arguments as MeditationScreenArguments;
     return Scaffold(
       backgroundColor: backgroundColor,
       body: Stack(
@@ -53,11 +57,11 @@ class _SingleMeditationScreenState extends State<SingleMeditationScreen> {
                   children: [
                     spacerHeight(height * 0.1),
                     Text(
-                      'title',
+                      args.title,
                       style: CommonTextStyle.mainHeader,
                     ),
                     Text(
-                      'author',
+                      args.author,
                       style: CommonTextStyle.secondHeader,
                     ),
                     AudioWidget(
@@ -68,7 +72,7 @@ class _SingleMeditationScreenState extends State<SingleMeditationScreen> {
                       onPlayModeChanged: _singleMeditationViewModel.playingMode,
                       onRepeatMode: _singleMeditationViewModel.repeatMode,
                       onSliderChanged:
-                          _singleMeditationViewModel.onSliderChanged,
+                      _singleMeditationViewModel.onSliderChanged,
                     )
                   ],
                 );
@@ -84,9 +88,10 @@ class _SingleMeditationScreenState extends State<SingleMeditationScreen> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(color: Colors.white, width: 2),
-                image: const DecorationImage(
+                image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: AssetImage('assets/images/meditation_image_1.png'),
+                  image: NetworkImage(args.image),
+                  //image: AssetImage('assets/images/meditation_image_1.png'),
                 ),
               ),
             ),

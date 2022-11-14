@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
+import '../../../data/meditation_repository.dart';
+
 part 'meditations_screen_store.g.dart';
 
-const meditationsList = ['relax', 'breath', 'feel', 'think', 'live'];
+final meditationsList = MeditationRepository
+    .getMeditationsTitles; //['relax', 'breath', 'feel', 'think', 'live'];
 
 class MeditationsScreenStore = _MeditationsScreenStore
     with _$MeditationsScreenStore;

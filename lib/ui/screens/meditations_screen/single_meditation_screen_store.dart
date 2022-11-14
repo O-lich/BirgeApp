@@ -22,8 +22,7 @@ abstract class _SingleMeditationScreenStore with Store {
   @observable
   bool isRepeat = false;
   Color iconColor = Colors.black;
-  late final String author;
-  late final String title;
+
   late AudioPlayer audioPlayer = AudioPlayer();
 
 

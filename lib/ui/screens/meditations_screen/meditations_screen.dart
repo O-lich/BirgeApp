@@ -5,10 +5,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/app_images.dart';
+import '../../../data/meditation_repository.dart';
 import '../../style/colors/app_colors.dart';
 import '../../widgets/cards_grid_view_widget.dart';
+import '../../widgets/meditations_screen_arguments.dart';
 import '../../widgets/widgets.dart';
 import 'meditations_screen_store.dart';
+
+final meditationsImagesList = MeditationRepository.getMeditationsImages;
+final meditationsLinksList = MeditationRepository.getMeditationsLinks;
+final meditationsTitlesList = MeditationRepository.getMeditationsTitles;
+final meditationsAuthorsList = MeditationRepository.getMeditationsAuthors;
 
 class MeditationsScreen extends StatefulWidget {
   MeditationsScreen({Key? key}) : super(key: key);
@@ -63,20 +70,26 @@ class _MeditationsScreenState extends State<MeditationsScreen> {
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       gridDelegate:
-                      const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          childAspectRatio: 1.0,
-                          crossAxisSpacing: 10,
-                          mainAxisSpacing: 10),
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              childAspectRatio: 1.0,
+                              crossAxisSpacing: 10,
+                              mainAxisSpacing: 10),
                       itemCount: _meditationsViewModel.searchList.length,
                       itemBuilder: (BuildContext ctx, index) {
                         return CardsGridViewWidget(
-                          image: image(),
+                          image: NetworkImage(meditationsImagesList[index]),
                           title: _meditationsViewModel.searchList[index],
                           onPressed: () {
                             Navigator.pushNamed(
                               context,
                               '/single_meditation_screen',
+                              arguments: MeditationScreenArguments(
+                                link: meditationsLinksList[index],
+                                image: meditationsImagesList[index],
+                                author: meditationsAuthorsList[index],
+                                title: meditationsTitlesList[index],
+                              ),
                             );
                           },
                           width: width,

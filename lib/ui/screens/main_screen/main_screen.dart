@@ -2,6 +2,7 @@ import 'package:birge_app/ui/style/text_style/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/strings.dart';
+import '../../../data/meditation_repository.dart';
 import '../../style/colors/app_colors.dart';
 import '../../widgets/buttons.dart';
 import '../../widgets/calendar.dart';

@@ -42,7 +42,7 @@ class ArticlesScreen extends StatelessWidget {
                             crossAxisSpacing: 10,
                             mainAxisSpacing: 10),
                     itemBuilder: (BuildContext ctx, index) {
-                      return CardsGridViewWidget(
+                      return ArticlesWidget(
                         image: image(),
                         onPressed: () {
                           Navigator.pushNamed(
