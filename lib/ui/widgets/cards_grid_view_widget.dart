@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import '../style/colors/app_colors.dart';
 import '../style/text_style/text_style.dart';
 
-class MeditationScreenWidget extends StatelessWidget {
+class CardsGridViewWidget extends StatelessWidget {
   final AssetImage image;
   final void Function() onPressed;
   final double width;
   final String title;
 
-  const MeditationScreenWidget(
+  const CardsGridViewWidget(
       {required this.image,
       required this.onPressed,
       required this.width,

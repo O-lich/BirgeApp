@@ -1,5 +1,7 @@
+import 'package:birge_app/ui/screens/articles_screen/single_article_screen_store.dart';
 import 'package:birge_app/ui/style/colors/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/strings.dart';
 import '../../../domain/model/favorite_icon_model.dart';
@@ -12,8 +14,7 @@ class SingleArticleScreen extends StatelessWidget {
   final String image;
   final String article;
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
-  final favoriteIcon = FavoriteIconViewModel();
-  bool isFavorite = false;
+  final _favoriteIcon = SingleArticleScreenStore();
 
   SingleArticleScreen({
     Key? key,
@@ -25,6 +26,7 @@ class SingleArticleScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: SizedBox(
           child: Padding(
@@ -38,11 +40,18 @@ class SingleArticleScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(title, style: CommonTextStyle.secondHeader),
-                    InkWell(
-                      child: const Icon(Icons.favorite_border, color: Colors.black),
-                      onTap: () => favoriteIcon.icon(true, const Icon(Icons.favorite, color: Colors.red)),
-                    ),
-                    ],
+                    Observer(builder: (_) {
+                      final data = _favoriteIcon.isFavorite;
+                      return InkWell(
+                        child: _favoriteIcon.changeIcon(
+                          data,
+                          Icon(Icons.favorite, color: Colors.red),
+                          Icon(Icons.favorite_border, color: Colors.black),
+                        ),
+                        onTap: () => _favoriteIcon.changeFavorite(),
+                      );
+                    }),
+                  ],
                 ),
                 spacerHeight(20),
                 ReadMoreText(article,
@@ -52,9 +61,9 @@ class SingleArticleScreen extends StatelessWidget {
                     lessStyle: CommonTextStyle.transparentButton,
                     style: const TextStyle(color: Colors.black),
                     trimMode: TrimMode.Line,
-                    trimCollapsedText: SingleArticleScreenStrings.continueReading,
+                    trimCollapsedText:
+                    SingleArticleScreenStrings.continueReading,
                     trimExpandedText: SingleArticleScreenStrings.hide),
-
                 spacerHeight(20),
               ],
             ),

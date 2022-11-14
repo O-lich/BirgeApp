@@ -7,7 +7,4 @@ class BottomBarViewModel {
     required this.selectedIndex,
   });
 
-  void changeIndex(int index) {
-    selectedIndex = index;
-  }
 }
