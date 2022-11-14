@@ -36,14 +36,15 @@ class CardsGridViewWidget extends StatelessWidget {
               height: width * 3 / 8,
               width: width / 2,
               decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(15),
-                    topRight: Radius.circular(15),
-                  ),
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: image,
-                  )),
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(15),
+                  topRight: Radius.circular(15),
+                ),
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: image,
+                ),
+              ),
             ),
             spacerHeight(10),
             Expanded(
