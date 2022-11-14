@@ -27,7 +27,11 @@ class LoginScreen extends StatelessWidget {
               spacerHeight(20),
               Padding(
                 padding: const EdgeInsets.all(30),
-                child: Image.asset(LoginScreenStrings.imageLogin),
+                child: Image.asset(
+                  LoginScreenStrings.imageLogin,
+                  height: width / 1.5,
+                  width: width / 1.5,
+                ),
               ),
               Text(LoginScreenStrings.welcome,
                   style: CommonTextStyle.mainHeader,
@@ -61,7 +65,13 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
               TransparentButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    '/password_recovery_screen',
+                  );
+                },
+                width: width,
                 child: Text(
                   LoginScreenStrings.forgotPwd,
                   style: CommonTextStyle.transparentButton,
@@ -69,7 +79,12 @@ class LoginScreen extends StatelessWidget {
               ),
               BlueButton(
                 width: width,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    '/bottom_bar',
+                  );
+                },
                 child: Text(
                   LoginScreenStrings.enterButton,
                   style: CommonTextStyle.blueButton,
@@ -84,7 +99,13 @@ class LoginScreen extends StatelessWidget {
                   TextSpan(
                       text: LoginScreenStrings.signUp,
                       style: CommonTextStyle.transparentButton,
-                      recognizer: TapGestureRecognizer()..onTap = () {}),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          Navigator.pushNamed(
+                            context,
+                            '/signup_screen',
+                          );
+                        }),
                 ]),
               ),
               spacerHeight(20),

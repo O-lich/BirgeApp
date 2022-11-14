@@ -27,27 +27,33 @@ class ArticlesScreen extends StatelessWidget {
                   textAlign: TextAlign.center),
               spacerHeight(20),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                padding: EdgeInsets.symmetric(
+                    horizontal: (Device.width - width) / 8),
                 child: GridView.builder(
                     scrollDirection: Axis.vertical,
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: articlesList.length,
                     gridDelegate:
-                        const SliverGridDelegateWithMaxCrossAxisExtent(
-                            maxCrossAxisExtent: 200,
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
                             childAspectRatio: 1.0,
                             crossAxisSpacing: 10,
                             mainAxisSpacing: 10),
                     itemBuilder: (BuildContext ctx, index) {
                       return ArticlesWidget(
                         image: image(),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(
+                            context,
+                            '/single_article_screen',
+                          );
+                        },
                         width: width,
                         title: articlesList[index]["name"],
                       );
                     }),
-              )
+              ),
             ],
           ),
         ),

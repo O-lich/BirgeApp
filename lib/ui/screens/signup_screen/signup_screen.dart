@@ -22,10 +22,10 @@ class SignupScreen extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 31),
+          padding: EdgeInsets.symmetric(horizontal: (Device.width - width) / 2),
           child: Column(
             children: [
-              spacerHeight(60),
+              spacerHeight(50),
               Align(
                 alignment: Alignment.topLeft,
                 child: Column(
@@ -38,6 +38,7 @@ class SignupScreen extends StatelessWidget {
                   ],
                 ),
               ),
+              spacerHeight(10),
               Form(
                   key: _formKey,
                   child: Column(
@@ -93,6 +94,7 @@ class SignupScreen extends StatelessWidget {
                   style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
                 ),
               ),
+              spacerHeight(20),
             ],
           ),
         ),

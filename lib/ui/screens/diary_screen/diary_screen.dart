@@ -42,6 +42,7 @@ class DiaryScreen extends StatelessWidget {
                         subtitle: DiaryScreenStrings.exampleSubtitle);
                   }),
               DiaryTextField(onEditingComplete: () {}, width: width),
+              spacerHeight(20),
             ],
           ),
         ),
@@ -53,43 +54,60 @@ class DiaryScreen extends StatelessWidget {
     );
   }
 
-  Future _showDialog(BuildContext context) => showGeneralDialog(
-        context: context,
-        barrierDismissible: false,
-        pageBuilder: (_, __, ___) {
-          final titleController = TextEditingController();
-          final subtitleController = TextEditingController();
-          return AlertDialog(
-            title: Text(
-              TaskScreenStrings.plan,
-              style: CommonTextStyle.mainHeader,
-            ),
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TextField(
-                  controller: titleController,
-                  decoration:
-                      const InputDecoration(hintText: TaskScreenStrings.title),
+  Future _showDialog(BuildContext context) =>
+      showGeneralDialog(
+          context: context,
+          barrierDismissible: false,
+          transitionBuilder: (context, a1, a2, widget) {
+            final titleController = TextEditingController();
+            final subtitleController = TextEditingController();
+            return Transform.scale(
+              scale: a1.value,
+              child: Opacity(
+                opacity: a1.value,
+                child: AlertDialog(
+                  shape: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16.0)),
+                  title: Text(
+                    TaskScreenStrings.plan,
+                    style: CommonTextStyle.mainHeader,
+                  ),
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      TextField(
+                        controller: titleController,
+                        decoration:
+                        const InputDecoration(
+                            hintText: TaskScreenStrings.title),
+                      ),
+                      TextField(
+                        keyboardType: TextInputType.multiline,
+                        maxLines: null,
+                        controller: subtitleController,
+                        decoration: const InputDecoration(
+                            hintText: TaskScreenStrings.subtitle),
+                      ),
+                    ],
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () async {
+                        Navigator.pop(context);
+                      },
+                      child: const Text(TaskScreenStrings.add),
+                    )
+                  ],
+
                 ),
-                TextField(
-                  keyboardType: TextInputType.multiline,
-                  maxLines: null,
-                  controller: subtitleController,
-                  decoration: const InputDecoration(
-                      hintText: TaskScreenStrings.subtitle),
-                ),
-              ],
-            ),
-            actions: [
-              TextButton(
-                onPressed: () async {
-                  Navigator.pop(context);
-                },
-                child: const Text(TaskScreenStrings.add),
-              )
-            ],
-          );
-        },
-      );
+              ),
+
+
+            );
+          },
+          transitionDuration: const Duration(milliseconds: 200),
+          pageBuilder: (BuildContext context, Animation<double> animation,
+              Animation<double> secondaryAnimation) {
+            return const Text('data');
+          });
 }

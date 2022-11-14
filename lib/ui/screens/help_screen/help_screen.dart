@@ -1,12 +1,8 @@
-import 'package:birge_app/domain/model/login_model.dart';
 import 'package:birge_app/ui/style/text_style/text_style.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/strings.dart';
-import '../../style/colors/app_colors.dart';
 import '../../widgets/buttons.dart';
-import '../../widgets/calendar.dart';
 import '../../widgets/widgets.dart';
 
 class HelpScreen extends StatelessWidget {
@@ -69,7 +65,12 @@ class HelpScreen extends StatelessWidget {
               spacerHeight(50),
               BlueButton(
                 width: width / 2,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    '/help_signup_screen',
+                  );
+                },
                 child: Text(
                   HelpScreenStrings.sighUp,
                   style: CommonTextStyle.blueButton,
@@ -78,12 +79,15 @@ class HelpScreen extends StatelessWidget {
               spacerHeight(20),
               BlueButton(
                 width: width / 2,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
                 child: Text(
                   HelpScreenStrings.goBack,
                   style: CommonTextStyle.blueButton,
                 ),
               ),
+              spacerHeight(20),
             ],
           ),
         ),

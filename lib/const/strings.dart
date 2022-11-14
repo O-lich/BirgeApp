@@ -86,7 +86,8 @@ abstract class ArticlesScreenStrings {
 }
 
 abstract class SingleArticleScreenStrings {
-  static const continueReading = 'Читать дальше';
+  static const continueReading = ' Читать далee';
+  static const hide = ' Скрыть';
 }
 
 abstract class MeditationsScreenStrings {

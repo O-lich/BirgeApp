@@ -8,14 +8,14 @@ class MeditationScreenWidget extends StatelessWidget {
   final AssetImage image;
   final void Function() onPressed;
   final double width;
-  final String meditationName;
+  final String title;
 
   const MeditationScreenWidget(
       {required this.image,
       required this.onPressed,
       required this.width,
       super.key,
-      required this.meditationName});
+      required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +48,7 @@ class MeditationScreenWidget extends StatelessWidget {
             ),
             spacerHeight(10),
             Text(
-              meditationName,
+              title,
               style: CommonTextStyle.meditationTitle,
               textAlign: TextAlign.center,
             ),
