@@ -5,7 +5,7 @@ import '../style/colors/app_colors.dart';
 import '../style/text_style/text_style.dart';
 
 class CardsGridViewWidget extends StatelessWidget {
-  final NetworkImage image;
+  final ImageProvider image;
   final void Function() onPressed;
   final double width;
   final String title;
@@ -35,14 +35,13 @@ class CardsGridViewWidget extends StatelessWidget {
             Container(
               height: width * 3 / 8,
               width: width / 2,
-              margin: EdgeInsets.only(top: 10),
               decoration: BoxDecoration(
                   borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(15),
                     topRight: Radius.circular(15),
                   ),
                   image: DecorationImage(
-                    fit: BoxFit.contain,
+                    fit: BoxFit.cover,
                     image: image,
                   )),
             ),

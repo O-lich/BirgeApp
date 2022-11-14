@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 import 'package:birge_app/domain/model/meditation_model.dart';
 import 'package:birge_app/ui/screens/meditations_screen/single_meditation_screen_store.dart';
 import 'package:birge_app/ui/style/colors/app_colors.dart';
@@ -9,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import '../../../const/app_images.dart';
 import '../../../const/strings.dart';
 import '../../../data/meditation_repository.dart';
 import '../../widgets/meditations_screen_arguments.dart';
@@ -48,22 +50,27 @@ class _SingleMeditationScreenState extends State<SingleMeditationScreen> {
             left: 0,
             right: 0,
             top: height * 0.2,
-            height: height * 0.36,
+            height: height * 0.45,
             child: Container(
+              padding: EdgeInsets.only(bottom: 20),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(40), color: Colors.white),
               child: Observer(builder: (_) {
                 return Column(
                   children: [
                     spacerHeight(height * 0.1),
-                    Text(
-                      args.title,
-                      style: CommonTextStyle.mainHeader,
+                    Expanded(
+                      child: Text(
+                        args.title,
+                        style: CommonTextStyle.mainHeader,
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                     Text(
                       args.author,
                       style: CommonTextStyle.secondHeader,
                     ),
+                    spacerHeight(10),
                     AudioWidget(
                       position: _singleMeditationViewModel.position,
                       duration: _singleMeditationViewModel.duration,
@@ -72,7 +79,7 @@ class _SingleMeditationScreenState extends State<SingleMeditationScreen> {
                       onPlayModeChanged: _singleMeditationViewModel.playingMode,
                       onRepeatMode: _singleMeditationViewModel.repeatMode,
                       onSliderChanged:
-                      _singleMeditationViewModel.onSliderChanged,
+                          _singleMeditationViewModel.onSliderChanged,
                     )
                   ],
                 );
@@ -88,16 +95,29 @@ class _SingleMeditationScreenState extends State<SingleMeditationScreen> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(color: Colors.white, width: 2),
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(args.image),
-                  //image: AssetImage('assets/images/meditation_image_1.png'),
-                ),
+                image: (args.image == SingleArticleScreenStrings.imageSimple)
+                    ? DecorationImage(
+                        fit: BoxFit.cover,
+                        image: image(),
+                      )
+                    : DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage(args.image),
+                      ),
               ),
             ),
           ),
         ],
       ),
     );
+  }
+
+  AssetImage image() {
+    int min = 0;
+    int max = meditationsImages.length - 1;
+    final random = Random();
+    int r = min + random.nextInt(max - min);
+    String randomImage = meditationsImages[r].toString();
+    return AssetImage(randomImage);
   }
 }

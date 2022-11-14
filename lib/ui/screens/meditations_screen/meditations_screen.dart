@@ -77,18 +77,38 @@ class _MeditationsScreenState extends State<MeditationsScreen> {
                               mainAxisSpacing: 10),
                       itemCount: _meditationsViewModel.searchList.length,
                       itemBuilder: (BuildContext ctx, index) {
-                        return CardsGridViewWidget(
-                          image: NetworkImage(meditationsImagesList[index]),
-                          title: _meditationsViewModel.searchList[index],
-                          onPressed: () {
-                            Navigator.pushNamed(
-                              context,
-                              '/single_meditation_screen',
-                              arguments: MeditationScreenArguments(
-                                link: meditationsLinksList[index],
-                                image: meditationsImagesList[index],
-                                author: meditationsAuthorsList[index],
-                                title: meditationsTitlesList[index],
+                        return (meditationsImagesList[index] ==
+                                SingleArticleScreenStrings.imageSimple)
+                            ? CardsGridViewWidget(
+                                image: image(),
+                                title: _meditationsViewModel.searchList[index],
+                                onPressed: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    '/single_meditation_screen',
+                                    arguments: MeditationScreenArguments(
+                                      link: meditationsLinksList[index],
+                                      image: meditationsImagesList[index],
+                                      author: meditationsAuthorsList[index],
+                                      title: meditationsTitlesList[index],
+                                    ),
+                                  );
+                                },
+                                width: width,
+                              )
+                            : CardsGridViewWidget(
+                                image:
+                                    NetworkImage(meditationsImagesList[index]),
+                                title: _meditationsViewModel.searchList[index],
+                                onPressed: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    '/single_meditation_screen',
+                                    arguments: MeditationScreenArguments(
+                                      link: meditationsLinksList[index],
+                                      image: meditationsImagesList[index],
+                                      author: meditationsAuthorsList[index],
+                                      title: meditationsTitlesList[index],
                               ),
                             );
                           },

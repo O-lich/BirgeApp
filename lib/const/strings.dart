@@ -93,6 +93,9 @@ abstract class ArticlesScreenStrings {
 abstract class SingleArticleScreenStrings {
   static const continueReading = ' Читать далee';
   static const hide = ' Скрыть';
+  static const imageSimple =
+      'https://cdn-icons-png.flaticon.com/512/1384/1384029.png';
+  static const imageMeditation = 'assets/images/meditation_image_1.png';
 }
 
 abstract class MeditationsScreenStrings {
