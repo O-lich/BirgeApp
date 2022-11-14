@@ -24,8 +24,9 @@ abstract class _MeditationsScreenStore with Store {
     if (text.isEmpty) {
       searchList = meditationsList;
     } else {
-      searchList =
-          meditationsList.where((element) => element.contains(text)).toList();
+      searchList = meditationsList
+          .where((element) => element.toLowerCase().contains(text))
+          .toList();
     }
   }
 }
