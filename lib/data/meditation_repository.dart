@@ -8,9 +8,9 @@ class MeditationRepository {
 
   List<MeditationModel> _meditations = [];
 
-  void init() {
+  static void init() {
     // json parse
-    _meditations = MeditationModel.fromJson(meditationsMap);
+    _meditations.add(MeditationModel.fromJson(meditationsMap));
     print(_meditations);
   }
 
