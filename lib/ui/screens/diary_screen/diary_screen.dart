@@ -33,30 +33,22 @@ class DiaryScreen extends StatelessWidget {
               Text(args.date.toString().substring(0, 10),
                   style: CommonTextStyle.mainText, textAlign: TextAlign.left),
               spacerHeight(50),
-              InkWell(
-                onTap: () {
-                  _showDialog(context);
-                },
-                child: Container(
-                  alignment: Alignment.bottomRight,
-                  width: width / 2,
-                  height: width / 2,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: Colors.white, width: 2),
-                    image: const DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage(HelpScreenStrings.imageEmpty),
-                    ),
+              Container(
+                width: width,
+                height: width / 1.5,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(color: Colors.white, width: 2),
+                  image: const DecorationImage(
+                    fit: BoxFit.cover,
+                    image: AssetImage(DiaryScreenStrings.animation),
                   ),
-                  child: Icon(Icons.add_circle_outlined,
-                      color: mainAppColor, size: 40),
                 ),
               ),
               ListView.builder(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: 3,
+                  itemCount: 2,
                   itemBuilder: (_, index) {
                     return DiaryListTile(
                         onTap: () {},
@@ -70,6 +62,10 @@ class DiaryScreen extends StatelessWidget {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => _showDialog(context),
+        child: const Icon(Icons.add),
+      ),
     );
   }
 
@@ -77,6 +73,8 @@ class DiaryScreen extends StatelessWidget {
       context: context,
       barrierDismissible: false,
       transitionBuilder: (context, a1, a2, widget) {
+        final titleController = TextEditingController();
+        final subtitleController = TextEditingController();
         return Transform.scale(
           scale: a1.value,
           child: Opacity(
@@ -85,8 +83,25 @@ class DiaryScreen extends StatelessWidget {
               shape:
                   OutlineInputBorder(borderRadius: BorderRadius.circular(16.0)),
               title: Text(
-                'Выберите картинку из файла',
-                style: CommonTextStyle.secondHeader,
+                TaskScreenStrings.plan,
+                style: CommonTextStyle.mainHeader,
+              ),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextField(
+                    controller: titleController,
+                    decoration: const InputDecoration(
+                        hintText: TaskScreenStrings.title),
+                  ),
+                  TextField(
+                    keyboardType: TextInputType.multiline,
+                    maxLines: null,
+                    controller: subtitleController,
+                    decoration: const InputDecoration(
+                        hintText: TaskScreenStrings.subtitle),
+                  ),
+                ],
               ),
               actions: [
                 TextButton(
