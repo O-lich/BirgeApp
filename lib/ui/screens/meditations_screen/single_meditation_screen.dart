@@ -30,9 +30,14 @@ class _SingleMeditationScreenState extends State<SingleMeditationScreen> {
   final _singleMeditationViewModel = SingleMeditationScreenStore();
 
   @override
+  void initState() {
+    super.initState();
+
+    initAudio();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final args =
-        ModalRoute.of(context)!.settings.arguments as MeditationScreenArguments;
     return Scaffold(
       backgroundColor: backgroundColor,
       body: Stack(
@@ -61,13 +66,13 @@ class _SingleMeditationScreenState extends State<SingleMeditationScreen> {
                     spacerHeight(height * 0.1),
                     Expanded(
                       child: Text(
-                        args.title,
+                        _singleMeditationViewModel.args.title,
                         style: CommonTextStyle.mainHeader,
                         textAlign: TextAlign.center,
                       ),
                     ),
                     Text(
-                      args.author,
+                      _singleMeditationViewModel.args.author,
                       style: CommonTextStyle.secondHeader,
                     ),
                     spacerHeight(10),
@@ -86,27 +91,31 @@ class _SingleMeditationScreenState extends State<SingleMeditationScreen> {
               }),
             ),
           ),
-          Positioned(
-            top: height * 0.12,
-            left: (width - 10) / 2,
-            right: (width - 10) / 2,
-            height: height * 0.16,
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: Colors.white, width: 2),
-                image: (args.image == SingleArticleScreenStrings.imageSimple)
-                    ? DecorationImage(
-                        fit: BoxFit.cover,
-                        image: image(),
-                      )
-                    : DecorationImage(
-                        fit: BoxFit.cover,
-                        image: NetworkImage(args.image),
-                      ),
+          Observer(builder: (_) {
+            return Positioned(
+              top: height * 0.12,
+              left: (width - 10) / 2,
+              right: (width - 10) / 2,
+              height: height * 0.16,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(color: Colors.white, width: 2),
+                  image: (_singleMeditationViewModel.args.image ==
+                          SingleArticleScreenStrings.imageSimple)
+                      ? DecorationImage(
+                          fit: BoxFit.cover,
+                          image: image(),
+                        )
+                      : DecorationImage(
+                          fit: BoxFit.cover,
+                          image: NetworkImage(
+                              _singleMeditationViewModel.args.image),
+                        ),
+                ),
               ),
-            ),
-          ),
+            );
+          }),
         ],
       ),
     );
@@ -119,5 +128,14 @@ class _SingleMeditationScreenState extends State<SingleMeditationScreen> {
     int r = min + random.nextInt(max - min);
     String randomImage = meditationsImages[r].toString();
     return AssetImage(randomImage);
+  }
+
+  void initAudio() async {
+    await Future.delayed(
+      Duration(seconds: 1),
+    );
+    final args =
+        ModalRoute.of(context)!.settings.arguments as MeditationScreenArguments;
+    _singleMeditationViewModel.initAudio(args);
   }
 }

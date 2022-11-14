@@ -5,8 +5,8 @@ import '../../../data/meditation_repository.dart';
 
 part 'meditations_screen_store.g.dart';
 
-final meditationsList = MeditationRepository
-    .getMeditationsTitles; //['relax', 'breath', 'feel', 'think', 'live'];
+final meditationsList =
+    MeditationRepository.getMeditations.map((e) => e.title).toList();
 
 class MeditationsScreenStore = _MeditationsScreenStore
     with _$MeditationsScreenStore;

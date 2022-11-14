@@ -2,9 +2,14 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
+import '../../../data/meditation_repository.dart';
+import '../../widgets/meditations_screen_arguments.dart';
+
 part 'single_meditation_screen_store.g.dart';
 
 const path = 'https://cdn.pixabay.com/audio/2022/04/14/audio_083f6fd7b4.mp3';
+final meditationsListLinks =
+    MeditationRepository.getMeditations.map((e) => e.link).toList();
 
 class SingleMeditationScreenStore = _SingleMeditationScreenStore
     with _$SingleMeditationScreenStore;
@@ -21,12 +26,16 @@ abstract class _SingleMeditationScreenStore with Store {
   bool isPaused = false;
   @observable
   bool isRepeat = false;
-  Color iconColor = Colors.black;
+  @observable
+  MeditationScreenArguments args =
+      MeditationScreenArguments(author: '', title: '', image: '', link: '');
 
+  Color iconColor = Colors.black;
   late AudioPlayer audioPlayer = AudioPlayer();
 
-
-  _SingleMeditationScreenStore() {
+  @action
+  void initAudio(MeditationScreenArguments argsFromScreen) {
+    args = argsFromScreen;
     _initPlayer();
   }
 
@@ -57,7 +66,7 @@ abstract class _SingleMeditationScreenStore with Store {
   @action
   void playingMode() {
     if (!isPlaying) {
-      audioPlayer.play(UrlSource(path));
+      audioPlayer.play(UrlSource(args.link));
     } else {
       audioPlayer.pause();
     }
@@ -92,7 +101,7 @@ abstract class _SingleMeditationScreenStore with Store {
     audioPlayer.onPositionChanged.listen((newPosition) {
       changePosition(newPosition);
     });
-    audioPlayer.setSourceUrl(path);
+    audioPlayer.setSourceUrl(args.link);
     audioPlayer.onPlayerComplete.listen((event) {
       onPlayerComplete();
     });
