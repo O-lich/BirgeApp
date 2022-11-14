@@ -158,7 +158,6 @@ abstract class BottomBarStrings {
   static const articles = 'Статьи';
   static const psychologist = 'Психолог';
   static const todo = 'Список планов';
-
 }
 
 abstract class PasswordRecoveryScreenStrings {
@@ -170,3 +169,21 @@ abstract class PasswordRecoveryScreenStrings {
       'Мы отправили ссылку для восстановления пароля на вашу почту. Вы получите её в течение 2-х минут';
   static const okButton = 'Ок';
 }
+
+const jsonMeditations = [
+  {
+    "link": "https://cdn.pixabay.com/audio/2022/10/30/audio_ba02fef115.mp3",
+    "image":
+        "https://cdn.pixabay.com/audio/2022/10/30/16-30-47-204_200x200.jpg",
+    "title": "Relaxing Music Vol.1",
+    "author": "RelaxingTime"
+  },
+  {
+    "link": "https://cdn.pixabay.com/audio/2022/11/06/audio_655ae1d2ad.mp3",
+    "title": "Relaxing Music Vol.2",
+    "author": "RelaxingTime"
+  }
+];
+
+// const jsonMeditations =
+//     '{"link": "https://cdn.pixabay.com/audio/2022/10/30/audio_ba02fef115.mp3","image": "https://cdn.pixabay.com/audio/2022/10/30/16-30-47-204_200x200.jpg","title": "Relaxing Music Vol.1","author": "RelaxingTime"}';

@@ -1,5 +1,5 @@
-import 'package:audioplayers/audioplayers.dart';
-import 'package:birge_app/ui/screens/articles_screen/single_article_screen_store.dart';
+import 'dart:convert';
+import 'package:birge_app/domain/model/meditation_model.dart';
 import 'package:birge_app/ui/screens/meditations_screen/single_meditation_screen_store.dart';
 import 'package:birge_app/ui/style/colors/app_colors.dart';
 import 'package:birge_app/ui/style/text_style/text_style.dart';
@@ -8,6 +8,8 @@ import 'package:birge_app/ui/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+
+import '../../../const/strings.dart';
 
 class SingleMeditationScreen extends StatefulWidget {
   const SingleMeditationScreen({
@@ -88,7 +90,7 @@ class _SingleMeditationScreenState extends State<SingleMeditationScreen> {
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );

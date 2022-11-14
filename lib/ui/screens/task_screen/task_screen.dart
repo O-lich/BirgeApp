@@ -1,5 +1,4 @@
 import 'package:birge_app/ui/style/text_style/text_style.dart';
-import 'package:birge_app/ui/widgets/diary_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/strings.dart';

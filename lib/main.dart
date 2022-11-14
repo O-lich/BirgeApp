@@ -22,7 +22,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:material_color_generator/material_color_generator.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import 'data/meditation_repository.dart';
+
 void main() {
+  //MeditationRepository.init();
   runApp(const MyApp());
 }
 
