@@ -25,7 +25,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'data/meditation_repository.dart';
 
 void main() {
-  //MeditationRepository.init();
+  MeditationRepository.init();
   runApp(const MyApp());
 }
 

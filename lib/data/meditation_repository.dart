@@ -6,7 +6,7 @@ import '../domain/model/meditation_model.dart';
 class MeditationRepository {
   Map<String, dynamic> meditationsMap = jsonDecode(jsonMeditations.toString());
 
-  List<MeditationModel> _meditations = [];
+  static List<MeditationModel> _meditations = [];
 
   static void init() {
     // json parse
