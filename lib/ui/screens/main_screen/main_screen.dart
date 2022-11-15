@@ -25,7 +25,7 @@ class MainScreen extends StatelessWidget {
           width: Device.width,
           child: Column(
             children: [
-              spacerHeight(20),
+              spacerHeight(50),
               Text(MainScreenStrings.question,
                   style: CommonTextStyle.mainHeader,
                   textAlign: TextAlign.center),

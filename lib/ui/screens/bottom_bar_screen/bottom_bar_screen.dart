@@ -73,13 +73,13 @@ class BottomBarScreen extends StatelessWidget {
                 activeIcon: Padding(
                     padding: EdgeInsets.all(8),
                     child: Icon(
-                      Icons.person,
+                      Icons.article_rounded,
                       color: mainAppColor,
                     )),
                 icon: Padding(
                     padding: EdgeInsets.all(8),
                     child: Icon(
-                      Icons.person,
+                      Icons.article_rounded,
                       color: Colors.grey,
                     )),
                 label: BottomBarStrings.articles,
@@ -88,16 +88,16 @@ class BottomBarScreen extends StatelessWidget {
                 activeIcon: Padding(
                     padding: EdgeInsets.all(8),
                     child: Icon(
-                      Icons.settings,
+                      Icons.person,
                       color: mainAppColor,
                     )),
                 icon: Padding(
                     padding: EdgeInsets.all(8),
                     child: Icon(
-                      Icons.settings,
+                      Icons.person,
                       color: Colors.grey,
                     )),
-                label: BottomBarStrings.psychologist,
+                label: BottomBarStrings.profile,
               ),
               BottomNavigationBarItem(
                 activeIcon: Padding(

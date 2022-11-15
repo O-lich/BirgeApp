@@ -20,11 +20,11 @@ abstract class _SingleArticleScreenStore with Store {
   }
 
   @action
-  Icon? changeIcon(bool isFavorite, Icon redIcon, Icon blackIcon) {
+  Icon? changeIcon(bool isFavorite, Icon activeIcon, Icon inactiveIcon) {
     if (isFavorite == true) {
-      return redIcon;
+      return activeIcon;
     } else {
-      return blackIcon;
+      return inactiveIcon;
     }
   }
 }

@@ -45,8 +45,8 @@ class SingleArticleScreen extends StatelessWidget {
                       return InkWell(
                         child: _favoriteIcon.changeIcon(
                           data,
-                          Icon(Icons.favorite, color: Colors.red),
-                          Icon(Icons.favorite_border, color: Colors.black),
+                          Icon(Icons.favorite, color: mainAppColor),
+                          Icon(Icons.favorite, color: backgroundColor),
                         ),
                         onTap: () => _favoriteIcon.changeFavorite(),
                       );

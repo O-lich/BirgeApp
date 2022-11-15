@@ -1,3 +1,4 @@
+import 'package:birge_app/firebase/firebase_helper.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -101,9 +102,7 @@ class ProfileScreen extends StatelessWidget {
         return const Text('data');
       });
 
-  Future<void> _signOut() async {
-    await FirebaseAuth.instance.signOut();
-  }
+
 
   Future _exitDialog(BuildContext context) => showGeneralDialog(
       context: context,
@@ -135,7 +134,7 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () {
-                        _signOut();
+                        FirebaseHelper.signOut();
                         Navigator.pushNamed(
                           context,
                           '/login_screen',

@@ -29,6 +29,8 @@ abstract class _SingleMeditationScreenStore with Store {
   @observable
   MeditationScreenArguments args =
       MeditationScreenArguments(author: '', title: '', image: '', link: '');
+  @observable
+  bool isFavorite = false;
 
   Color iconColor = Colors.black;
   late AudioPlayer audioPlayer = AudioPlayer();
@@ -87,6 +89,20 @@ abstract class _SingleMeditationScreenStore with Store {
   void onSliderChanged(double value) {
     changeToSecond(value.toInt());
     value = value;
+  }
+
+  @action
+  void changeFavorite() {
+    isFavorite = !isFavorite;
+  }
+
+  @action
+  Icon? changeIcon(Icon activeIcon, Icon inactiveIcon) {
+    if (isFavorite == true) {
+      return activeIcon;
+    } else {
+      return inactiveIcon;
+    }
   }
 
   void changeToSecond(int second) {

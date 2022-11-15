@@ -85,6 +85,9 @@ class _SingleMeditationScreenState extends State<SingleMeditationScreen> {
                       onRepeatMode: _singleMeditationViewModel.repeatMode,
                       onSliderChanged:
                           _singleMeditationViewModel.onSliderChanged,
+                      onFavoriteChanged: _singleMeditationViewModel.changeFavorite,
+                      isFavorite: _singleMeditationViewModel.isFavorite,
+                      favoriteIcon:_singleMeditationViewModel.changeIcon,
                     )
                   ],
                 );

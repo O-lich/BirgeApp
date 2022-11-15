@@ -169,7 +169,7 @@ abstract class SignupScreenStrings {
 abstract class BottomBarStrings {
   static const menu = 'Меню';
   static const articles = 'Статьи';
-  static const psychologist = 'Психолог';
+  static const profile = 'Профиль';
   static const todo = 'Список планов';
 }
 
@@ -186,7 +186,8 @@ abstract class PasswordRecoveryScreenStrings {
   static const getLink = 'Получить ссылку для восстановления пароля';
   static const plsEnterEmail = 'Пожалуйста, введите e-mail';
   static const instructionsSent =
-      'Мы отправили ссылку для восстановления пароля на вашу почту. Вы получите её в течение 2-х минут';
+      'Мы отправили ссылку для восстановления пароля на вашу почту. Вы получите её в течение 2-х минут. '
+      '\nНе забудьте проверить папку "Спам".';
   static const okButton = 'Ок';
 }
 

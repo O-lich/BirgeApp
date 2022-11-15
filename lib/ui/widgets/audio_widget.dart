@@ -2,16 +2,21 @@ import 'package:birge_app/ui/style/colors/app_colors.dart';
 import 'package:birge_app/ui/style/text_style/text_style.dart';
 import 'package:flutter/material.dart';
 
+import '../screens/articles_screen/single_article_screen_store.dart';
+
 class AudioWidget extends StatelessWidget {
   final Duration position;
   final Duration duration;
   final bool isPlaying;
   final bool isRepeatMode;
+  final bool isFavorite;
   final Function() onPlayModeChanged;
   final Function() onRepeatMode;
   final Function(double value) onSliderChanged;
+  final Function() onFavoriteChanged;
+  Icon? Function(Icon, Icon) favoriteIcon;
 
-  const AudioWidget({
+  AudioWidget({
     Key? key,
     required this.position,
     required this.duration,
@@ -20,6 +25,9 @@ class AudioWidget extends StatelessWidget {
     required this.onPlayModeChanged,
     required this.onRepeatMode,
     required this.onSliderChanged,
+    required this.onFavoriteChanged,
+    required this.isFavorite,
+    required this.favoriteIcon,
   }) : super(key: key);
 
   Color get iconColor => Colors.black;
@@ -55,6 +63,16 @@ class AudioWidget extends StatelessWidget {
             size: 40));
   }
 
+  Widget favoriteButton() {
+    return InkWell(
+      child: favoriteIcon(
+        Icon(Icons.favorite, color: mainAppColor, size: 40,),
+        Icon(Icons.favorite, color: backgroundColor, size: 40,),
+      ),
+      onTap: onFavoriteChanged
+    );
+  }
+
   Widget repeatButton() {
     return IconButton(
       icon: Icon(Icons.repeat,
@@ -81,6 +99,7 @@ class AudioWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
+        favoriteButton(),
         startButton(),
         repeatButton(),
       ],

@@ -39,4 +39,18 @@ class FirebaseHelper {
     }
     return false;
   }
+  static Future<void> signOut() async {
+    await FirebaseAuth.instance.signOut();
+  }
+
+  static Future resetPassword(String email) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'auth/invalid-email') {
+        print('Invalid email');
+      }
+      print(e);
+    }
+  }
 }
