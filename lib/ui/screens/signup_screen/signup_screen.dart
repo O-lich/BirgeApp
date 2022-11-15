@@ -69,6 +69,7 @@ class SignupScreen extends StatelessWidget {
                         hintText: SignupScreenStrings.emailExample,
                         controller: _emailController,
                         validator: (value) {
+                          print(signUpViewModel.validatorEmail(value));
                           return signUpViewModel.validatorEmail(value);
                         },
                         obscureText: false,

@@ -9,6 +9,8 @@ class SignUpScreenStore = _SignUpScreenStore with _$SignUpScreenStore;
 abstract class _SignUpScreenStore with Store {
   @observable
   String username = '';
+  @observable
+  String? email = '';
 
   RegExp numReg = RegExp(r".*[0-9].*");
   RegExp letterReg = RegExp(r".*[A-Za-z].*");
@@ -29,9 +31,10 @@ abstract class _SignUpScreenStore with Store {
 
   @action
   String? validatorEmail(String? value) {
-    if (value!.isEmpty) {
+    email = value;
+    if (email!.isEmpty) {
       return SignupScreenStrings.plsEnterEmail;
-    } else if (((!value.contains('@')) || (!value.contains('.')))) {
+    } else if (((!email!.contains('@')) || (!email!.contains('.')))) {
       return SignupScreenStrings.emailForm;
     } else {
       return null;

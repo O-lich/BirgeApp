@@ -25,6 +25,22 @@ mixin _$SignUpScreenStore on _SignUpScreenStore, Store {
     });
   }
 
+  late final _$emailAtom =
+      Atom(name: '_SignUpScreenStore.email', context: context);
+
+  @override
+  String? get email {
+    _$emailAtom.reportRead();
+    return super.email;
+  }
+
+  @override
+  set email(String? value) {
+    _$emailAtom.reportWrite(value, super.email, () {
+      super.email = value;
+    });
+  }
+
   late final _$_SignUpScreenStoreActionController =
       ActionController(name: '_SignUpScreenStore', context: context);
 
@@ -75,7 +91,8 @@ mixin _$SignUpScreenStore on _SignUpScreenStore, Store {
   @override
   String toString() {
     return '''
-username: ${username}
+username: ${username},
+email: ${email}
     ''';
   }
 }

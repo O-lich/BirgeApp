@@ -39,9 +39,8 @@ class PasswordRecoveryScreen extends StatelessWidget {
                   hintText: SignupScreenStrings.emailExample,
                   controller: _emailController,
                   validator: (value) {
-                    recoveryViewModel.validator(_emailController.text,
+                    return recoveryViewModel.validator(_emailController.text,
                         PasswordRecoveryScreenStrings.plsEnterEmail);
-                    return null;
                   },
                   obscureText: false,
                 ),
