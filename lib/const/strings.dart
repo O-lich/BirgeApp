@@ -173,6 +173,13 @@ abstract class BottomBarStrings {
   static const todo = 'Список планов';
 }
 
+abstract class Exit {
+  static const areYouSure =
+      'Вы уверены, что хотите выйти из системы? Вам нужно будет снова войти в систему, чтобы использовать приложение.';
+  static const leave = 'Выйти';
+  static const stay = 'Остаться';
+}
+
 abstract class PasswordRecoveryScreenStrings {
   static const changePassword = 'Изменить пароль';
   static const enterEmail = 'Введите e-mail, указанный при регистрации';

@@ -14,6 +14,8 @@ TextStyle CustomBlueTextStyle(
 class CommonTextStyle {
   static final mainHeader = CustomBlueTextStyle(
       color: mainHeaderColor, fontSize: 24, fontWeight: FontWeight.w900);
+  static final dialog = CustomBlueTextStyle(
+      color: mainHeaderColor, fontSize: 18, fontWeight: FontWeight.w500);
   static final secondHeader = CustomBlueTextStyle(
       fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black);
   static final mainText = CustomBlueTextStyle(
