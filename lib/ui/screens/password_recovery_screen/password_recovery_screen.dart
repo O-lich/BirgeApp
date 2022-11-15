@@ -37,8 +37,12 @@ class PasswordRecoveryScreen extends StatelessWidget {
                   title: SignupScreenStrings.email,
                   hintText: SignupScreenStrings.emailExample,
                   controller: _emailController,
-                  validation: recoveryViewModel.validator(_emailController.text,
-                      PasswordRecoveryScreenStrings.plsEnterEmail),
+                  validator: (value) {
+                    recoveryViewModel.validator(_emailController.text,
+                        PasswordRecoveryScreenStrings.plsEnterEmail);
+                    return null;
+                  },
+                  obscureText: false,
                 ),
                 spacerHeight(20),
                 BlueButton(

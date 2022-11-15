@@ -48,9 +48,12 @@ class LoginScreen extends StatelessWidget {
                       title: LoginScreenStrings.email,
                       hintText: LoginScreenStrings.enterEmail,
                       controller: _emailController,
-                      validation: loginViewModel.validator(
-                          _emailController.text,
-                          LoginScreenStrings.pleaseEnterEmail),
+                      validator: (value) {
+                        loginViewModel.validator(_emailController.text,
+                            LoginScreenStrings.pleaseEnterEmail);
+                        return null;
+                      },
+                      obscureText: false,
                     ),
                     CustomFormField(
                       width: width,
@@ -58,9 +61,12 @@ class LoginScreen extends StatelessWidget {
                       title: LoginScreenStrings.password,
                       hintText: LoginScreenStrings.enterPassword,
                       controller: _passwordController,
-                      validation: loginViewModel.validator(
-                          _passwordController.text,
-                          LoginScreenStrings.pleaseEnterPwd),
+                      validator: (value) {
+                        loginViewModel.validator(_passwordController.text,
+                            LoginScreenStrings.pleaseEnterPwd);
+                        return null;
+                      },
+                      obscureText: true,
                     ),
                   ],
                 ),

@@ -8,11 +8,11 @@ class SignUpScreenStore = _SignUpScreenStore
 
 abstract class _SignUpScreenStore with Store {
     @observable
-    late String username;
-    
-    @action
-    void setUsername(String value) {
-        username = value;
-    }
+  String username = '';
+
+  @action
+  void setUsername(String value) {
+    username = value;
+  }
 }
 

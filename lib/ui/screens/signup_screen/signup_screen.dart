@@ -3,6 +3,7 @@ import 'package:birge_app/ui/style/text_style/text_style.dart';
 import 'package:birge_app/ui/widgets/buttons.dart';
 import 'package:birge_app/ui/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/strings.dart';
 import '../../../domain/model/signup_model.dart';
@@ -19,7 +20,6 @@ class SignupScreen extends StatelessWidget {
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
   final signUpViewModel = SignUpViewModel();
   final signUpStore = SignUpScreenStore();
-  String _username = '';
 
   @override
   Widget build(BuildContext context) {
@@ -44,86 +44,102 @@ class SignupScreen extends StatelessWidget {
               ),
               spacerHeight(10),
               Form(
-                  key: _formKey,
-                  child: Column(
-                    children: [
-                      CustomFormField(
-                        width: width,
-                        context: context,
-                        title: SignupScreenStrings.name,
-                        hintText: SignupScreenStrings.enterName,
-                        controller: _nameController,
-                        validation: signUpViewModel.validator(
-                            _nameController.text,
-                            SignupScreenStrings.plsEnterName),
-                        onChanged: (value) => signUpStore.setUsername(value),
-                      ),
-                      CustomFormField(
-                        width: width,
-                        context: context,
-                        title: SignupScreenStrings.email,
-                        hintText: SignupScreenStrings.emailExample,
-                        controller: _emailController,
-                        validation: signUpViewModel.validator(
-                            _emailController.text,
-                            SignupScreenStrings.plsEnterEmail),
-                      ),
-                      CustomFormField(
-                        width: width,
-                        context: context,
-                        title: SignupScreenStrings.password,
-                        hintText: SignupScreenStrings.createPwd,
-                        controller: _passwordController,
-                        validation: signUpViewModel.validator(
-                            _passwordController.text,
-                            SignupScreenStrings.plsEnterPwd),
-                      ),
-                      CustomFormField(
-                        width: width,
-                        context: context,
-                        title: SignupScreenStrings.confirmPwd,
-                        hintText: SignupScreenStrings.confirmPwd,
-                        controller: _passwordAgainController,
-                        validation: signUpViewModel.validator(
-                            _passwordAgainController.text,
-                            SignupScreenStrings.plsConfirmPwd),
-                      ),
-                    ],
-                  )),
+                key: _formKey,
+                child: Column(
+                  children: [
+                    CustomFormField(
+                      width: width,
+                      context: context,
+                      title: SignupScreenStrings.name,
+                      hintText: SignupScreenStrings.enterName,
+                      controller: _nameController,
+                      validator: (value) {
+                        signUpViewModel.validator(_nameController.text,
+                            SignupScreenStrings.plsEnterName);
+                        return null;
+                      },
+                      onChanged: (value) => signUpStore.setUsername(value),
+                      obscureText: false,
+                    ),
+                    CustomFormField(
+                      width: width,
+                      context: context,
+                      title: SignupScreenStrings.email,
+                      hintText: SignupScreenStrings.emailExample,
+                      controller: _emailController,
+                      validator: (value) {
+                        signUpViewModel.validatorEmail(_emailController.text);
+                        return null;
+                      },
+                      obscureText: false,
+                    ),
+                    CustomFormField(
+                      width: width,
+                      context: context,
+                      title: SignupScreenStrings.password,
+                      hintText: SignupScreenStrings.createPwd,
+                      controller: _passwordController,
+                      validator: (value) {
+                        signUpViewModel.validatorPassword(
+                          _passwordController.text,
+                        );
+                        return null;
+                      },
+                      obscureText: true,
+                    ),
+                    CustomFormField(
+                      width: width,
+                      context: context,
+                      title: SignupScreenStrings.confirmPwd,
+                      hintText: SignupScreenStrings.confirmPwd,
+                      controller: _passwordAgainController,
+                      validator: (value) {
+                        signUpViewModel.validator(_passwordAgainController.text,
+                            SignupScreenStrings.plsConfirmPwd);
+                        return null;
+                      },
+                      obscureText: true,
+                    ),
+                  ],
+                ),
+              ),
               spacerHeight(20),
-              BlueButton(
-                width: width,
-                onPressed: () async {
-                  final email = _emailController.text;
-                  final password = _passwordController.text;
-                  final passwordAgain = _passwordAgainController.text;
-                  if (password == passwordAgain) {
-                    final success =
-                        await FirebaseHelper.signUp(email, password, _username);
-                    if (success) {
-                      Navigator.pushReplacementNamed(context, '/bottom_bar');
+              Observer(builder: (_) {
+                return BlueButton(
+                  width: width,
+                  onPressed: () async {
+                    final email = _emailController.text;
+                    final password = _passwordController.text;
+                    final passwordAgain = _passwordAgainController.text;
+                    if (password == passwordAgain) {
+                      final success = await FirebaseHelper.signUp(
+                          email, password, signUpStore.username);
+                      if (success) {
+                        Navigator.pushReplacementNamed(context, '/bottom_bar');
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            backgroundColor: Colors.red,
+                            content:
+                                Text(SignupScreenStrings.somethingWentWrong),
+                          ),
+                        );
+                      }
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           backgroundColor: Colors.red,
-                          content: Text(SignupScreenStrings.somethingWentWrong),
+                          content: Text(SignupScreenStrings.pwdsNotMatch),
                         ),
                       );
                     }
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        backgroundColor: Colors.red,
-                        content: Text(SignupScreenStrings.pwdsNotMatch),
-                      ),
-                    );
-                  }
-                },
-                child: const Text(
-                  SignupScreenStrings.signUp,
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-                ),
-              ),
+                  },
+                  child: const Text(
+                    SignupScreenStrings.signUp,
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                  ),
+                );
+              }),
               spacerHeight(20),
             ],
           ),

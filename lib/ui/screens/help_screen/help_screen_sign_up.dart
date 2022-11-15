@@ -41,23 +41,29 @@ class HelpSignUpScreen extends StatelessWidget {
                   CustomFormField(
                     width: width,
                     controller: _nameController,
-                    validation:
-                        HelpSignUpViewModel().validator('value', 'response'),
+                    validator: (value) {
+                      HelpSignUpViewModel().validator('value', 'response');
+                      return null;
+                    },
                     title: HelpScreenStrings.name,
                     hintText: HelpScreenStrings.name,
                     context: context,
+                    obscureText: false,
                   ),
                   CustomFormField(
                     width: width,
                     controller: _emailController,
-                    validation:
-                        HelpSignUpViewModel().validator('value', 'response'),
+                    validator: (value) {
+                      HelpSignUpViewModel().validator('value', 'response');
+                      return null;
+                    },
                     title: HelpScreenStrings.email,
                     hintText: HelpScreenStrings.email,
                     context: context,
+                    obscureText: false,
                   ),
                   spacerHeight(10),
-                  Text(
+                  const Text(
                     HelpScreenStrings.date,
                   ),
                   Calendar(

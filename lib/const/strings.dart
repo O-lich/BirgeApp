@@ -150,6 +150,8 @@ abstract class SignupScreenStrings {
   static const plsEnterName = 'Пожалуйста, введите имя';
   static const email = 'Почта';
   static const emailExample = 'name@email.com';
+  static const emailForm =
+      'E-mail должен иметь вид ${SignupScreenStrings.emailExample}';
   static const plsEnterEmail = 'Пожалуйста, введите e-mail';
   static const password = 'Пароль';
   static const createPwd = 'Создайте пароль';
@@ -159,6 +161,9 @@ abstract class SignupScreenStrings {
   static const signUp = 'Зарегистрироваться';
   static const somethingWentWrong = 'Что-то пошло не так';
   static const pwdsNotMatch = 'Пароли не совпадают';
+  static const longPwd = 'Пароль должен быть более 8 символов';
+  static const strongPwd =
+      'Пароль должен содержать хотя бы одну заглавную букву и хотя бы одну цифру';
 }
 
 abstract class BottomBarStrings {
