@@ -40,6 +40,39 @@ mixin _$SignUpScreenStore on _SignUpScreenStore, Store {
   }
 
   @override
+  String? validator(String? value, String response) {
+    final _$actionInfo = _$_SignUpScreenStoreActionController.startAction(
+        name: '_SignUpScreenStore.validator');
+    try {
+      return super.validator(value, response);
+    } finally {
+      _$_SignUpScreenStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  String? validatorEmail(String? value) {
+    final _$actionInfo = _$_SignUpScreenStoreActionController.startAction(
+        name: '_SignUpScreenStore.validatorEmail');
+    try {
+      return super.validatorEmail(value);
+    } finally {
+      _$_SignUpScreenStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  String? validatorPassword(String? value) {
+    final _$actionInfo = _$_SignUpScreenStoreActionController.startAction(
+        name: '_SignUpScreenStore.validatorPassword');
+    try {
+      return super.validatorPassword(value);
+    } finally {
+      _$_SignUpScreenStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 username: ${username}
