@@ -1,4 +1,5 @@
 import 'package:birge_app/ui/screens/main_screen/main_screen.dart';
+import 'package:birge_app/ui/screens/profile_screen/profile_screen.dart';
 import 'package:birge_app/ui/style/colors/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:birge_app/ui/style/text_style/text_style.dart';
@@ -14,7 +15,7 @@ class BottomBarScreen extends StatelessWidget {
   final screens = [
     MainScreen(),
     ArticlesScreen(),
-    HelpScreen(),
+    ProfileScreen(),
     TaskScreen(),
   ];
 

@@ -26,17 +26,6 @@ class MainScreen extends StatelessWidget {
           child: Column(
             children: [
               spacerHeight(20),
-              Padding(
-                padding: EdgeInsets.only(left: width, right: 10),
-                child: FloatingActionButton(
-                  heroTag: "exit",
-                  mini: true,
-                  onPressed: () {
-                    _showDialog(context);
-                  },
-                  child: const Icon(Icons.exit_to_app),
-                ),
-              ),
               Text(MainScreenStrings.question,
                   style: CommonTextStyle.mainHeader,
                   textAlign: TextAlign.center),
@@ -119,62 +108,4 @@ class MainScreen extends StatelessWidget {
       ),
     );
   }
-
-  Future<void> _signOut() async {
-    await FirebaseAuth.instance.signOut();
-  }
-
-  Future _showDialog(BuildContext context) => showGeneralDialog(
-      context: context,
-      barrierDismissible: false,
-      transitionBuilder: (context, a1, a2, widget) {
-        return Transform.scale(
-          scale: a1.value,
-          child: Opacity(
-            opacity: a1.value,
-            child: AlertDialog(
-              shape:
-                  OutlineInputBorder(borderRadius: BorderRadius.circular(16.0)),
-              title: Text(
-                Exit.areYouSure,
-                style: CommonTextStyle.dialog,
-              ),
-              actions: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: Text(
-                        Exit.stay,
-                        style: CommonTextStyle.transparentButton,
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        _signOut();
-                        Navigator.pushNamed(
-                          context,
-                          '/login_screen',
-                        );
-                      },
-                      child: Text(
-                        Exit.leave,
-                        style: CommonTextStyle.transparentButton,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-      transitionDuration: const Duration(milliseconds: 200),
-      pageBuilder: (BuildContext context, Animation<double> animation,
-          Animation<double> secondaryAnimation) {
-        return const Text('data');
-      });
 }
