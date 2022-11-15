@@ -48,7 +48,9 @@ class FirebaseHelper {
       await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'auth/invalid-email') {
-        print('Invalid email');
+        print('Неверный e-mail');
+      } else if (e.code == 'auth/user-not-found'){
+        print('Такого пользователя не существует');
       }
       print(e);
     }
