@@ -14,7 +14,6 @@ class AudioWidget extends StatelessWidget {
   final Function() onRepeatMode;
   final Function(double value) onSliderChanged;
   final Function() onFavoriteChanged;
-  Icon? Function(Icon, Icon) favoriteIcon;
 
   AudioWidget({
     Key? key,
@@ -27,7 +26,6 @@ class AudioWidget extends StatelessWidget {
     required this.onSliderChanged,
     required this.onFavoriteChanged,
     required this.isFavorite,
-    required this.favoriteIcon,
   }) : super(key: key);
 
   Color get iconColor => Colors.black;
@@ -64,14 +62,17 @@ class AudioWidget extends StatelessWidget {
   }
 
   Widget favoriteButton() {
-    return InkWell(
-      child: favoriteIcon(
-        Icon(Icons.favorite, color: mainAppColor, size: 40,),
-        Icon(Icons.favorite, color: backgroundColor, size: 40,),
-      ),
-      onTap: onFavoriteChanged
+    return IconButton(
+      icon: Icon(Icons.favorite,
+          color: isFavorite ? mainAppColor : backgroundColor, size: 40),
+      onPressed: onFavoriteChanged,
     );
   }
+
+  // Icon(
+  //     isFavorite ? Icons.favorite : Icons.favorite_border,
+  //     color: mainAppColor,
+  //     size: 40),
 
   Widget repeatButton() {
     return IconButton(

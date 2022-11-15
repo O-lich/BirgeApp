@@ -96,15 +96,6 @@ abstract class _SingleMeditationScreenStore with Store {
     isFavorite = !isFavorite;
   }
 
-  @action
-  Icon? changeIcon(Icon activeIcon, Icon inactiveIcon) {
-    if (isFavorite == true) {
-      return activeIcon;
-    } else {
-      return inactiveIcon;
-    }
-  }
-
   void changeToSecond(int second) {
     Duration newDuration = Duration(seconds: second);
     audioPlayer.seek(newDuration);

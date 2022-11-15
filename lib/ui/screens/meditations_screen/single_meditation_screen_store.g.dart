@@ -105,6 +105,22 @@ mixin _$SingleMeditationScreenStore on _SingleMeditationScreenStore, Store {
     });
   }
 
+  late final _$isFavoriteAtom =
+      Atom(name: '_SingleMeditationScreenStore.isFavorite', context: context);
+
+  @override
+  bool get isFavorite {
+    _$isFavoriteAtom.reportRead();
+    return super.isFavorite;
+  }
+
+  @override
+  set isFavorite(bool value) {
+    _$isFavoriteAtom.reportWrite(value, super.isFavorite, () {
+      super.isFavorite = value;
+    });
+  }
+
   late final _$_SingleMeditationScreenStoreActionController =
       ActionController(name: '_SingleMeditationScreenStore', context: context);
 
@@ -186,6 +202,17 @@ mixin _$SingleMeditationScreenStore on _SingleMeditationScreenStore, Store {
   }
 
   @override
+  void changeFavorite() {
+    final _$actionInfo = _$_SingleMeditationScreenStoreActionController
+        .startAction(name: '_SingleMeditationScreenStore.changeFavorite');
+    try {
+      return super.changeFavorite();
+    } finally {
+      _$_SingleMeditationScreenStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 duration: ${duration},
@@ -193,7 +220,8 @@ position: ${position},
 isPlaying: ${isPlaying},
 isPaused: ${isPaused},
 isRepeat: ${isRepeat},
-args: ${args}
+args: ${args},
+isFavorite: ${isFavorite}
     ''';
   }
 }
