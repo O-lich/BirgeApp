@@ -49,8 +49,7 @@ class MyApp extends StatelessWidget {
             primarySwatch:
                 generateMaterialColor(color: const Color(0xFF006FFD)),
           ),
-          //home: const SplashScreen(),
-          home: SignupScreen(),
+          home: const SplashScreen(),
           routes: {
             '/signup_screen': (context) => SignupScreen(),
             '/main_screen': (context) => MainScreen(),
