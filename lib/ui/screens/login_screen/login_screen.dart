@@ -4,6 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/strings.dart';
+import '../../../firebase/firebase_helper.dart';
 import '../../widgets/buttons.dart';
 import '../../widgets/custom_form_field.dart';
 import '../../widgets/widgets.dart';
@@ -79,11 +80,23 @@ class LoginScreen extends StatelessWidget {
               ),
               BlueButton(
                 width: width,
-                onPressed: () {
-                  Navigator.pushNamed(
-                    context,
-                    '/bottom_bar',
-                  );
+                onPressed: () async {
+                  final email = _emailController.text;
+                  final password = _passwordController.text;
+                  final success = await FirebaseHelper.login(email, password);
+                  if (success) {
+                    Navigator.pushNamed(
+                      context,
+                      '/bottom_bar',
+                    );
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        backgroundColor: Colors.red.shade300,
+                        content: const Text(LoginScreenStrings.wrongEmailOrPwd),
+                      ),
+                    );
+                  }
                 },
                 child: Text(
                   LoginScreenStrings.enterButton,
@@ -114,7 +127,7 @@ class LoginScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     const Text(LoginScreenStrings.continueWith),
-                    Expanded(flex: 3, child: socialCircles()),
+                    Expanded(flex: 3, child: socialCircles(context)),
                   ],
                 ),
               )

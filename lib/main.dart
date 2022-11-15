@@ -14,17 +14,21 @@ import 'package:birge_app/ui/screens/meditations_screen/meditations_screen.dart'
 import 'package:birge_app/ui/screens/meditations_screen/single_meditation_screen.dart';
 import 'package:birge_app/ui/screens/password_recovery_screen/password_recovery_screen.dart';
 import 'package:birge_app/ui/screens/signup_screen/signup_screen.dart';
-import 'package:birge_app/ui/screens/articles_screen/single_article_screen.dart';
 import 'package:birge_app/ui/screens/splash_screen/splash_screen.dart';
 import 'package:birge_app/ui/screens/task_screen/task_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:material_color_generator/material_color_generator.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-
 import 'data/meditation_repository.dart';
+import 'firebase/firebase_options.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   MeditationRepository.init();
   runApp(const MyApp());
 }
@@ -60,7 +64,7 @@ class MyApp extends StatelessWidget {
                   title: DiaryScreenStrings.exampleTitle,
                   article: DiaryScreenStrings.exampleDiaryNote,
                 ),
-            '/single_meditation_screen': (context) => SingleMeditationScreen(),
+            '/single_meditation_screen': (context) => const SingleMeditationScreen(),
             '/help_screen': (context) => HelpScreen(),
             '/help_signup_screen': (context) => HelpSignUpScreen(),
             '/help_telegram_screen': (context) => HelpTelegramScreen(),

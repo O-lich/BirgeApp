@@ -14,6 +14,7 @@ abstract class LoginScreenStrings {
   static const signUp = 'Зарегистрируйтесь';
   static const continueWith = 'Или продолжить с';
   static const imageLogin = 'assets/images/welcome_image.jpg';
+  static const wrongEmailOrPwd = 'Неправильное имя пользователя или пароль';
 }
 
 abstract class SplashScreenStrings {
@@ -156,6 +157,8 @@ abstract class SignupScreenStrings {
   static const confirmPwd = 'Подтвердите пароль';
   static const plsConfirmPwd = 'Пожалуйста, подтвердите пароль';
   static const signUp = 'Зарегистрироваться';
+  static const somethingWentWrong = 'Что-то пошло не так';
+  static const pwdsNotMatch = 'Пароли не совпадают';
 }
 
 abstract class BottomBarStrings {

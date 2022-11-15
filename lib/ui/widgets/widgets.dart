@@ -1,6 +1,7 @@
 import 'package:birge_app/ui/widgets/social_network_button.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../../firebase/auth/firebase_auth.dart';
 import '../style/colors/social_network_colors.dart';
 import '../style/text_field/text_field.dart';
 
@@ -38,13 +39,15 @@ Widget spacerHeight(double height) {
   return SizedBox(height: height);
 }
 
-Widget socialCircles() {
+Widget socialCircles(BuildContext context) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
       SocialNetworkButton.socialButtonCircle(
           googleColor, FontAwesomeIcons.googlePlusG,
-          iconColor: Colors.white, onTap: () {}),
+          iconColor: Colors.white, onTap: () {
+        Authentication.signinWithGoogle(context: context);
+      }),
       const SizedBox(
         width: 20,
       ),

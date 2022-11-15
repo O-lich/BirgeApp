@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "618921286918",
+    "project_id": "birgeapp-210dc",
+    "storage_bucket": "birgeapp-210dc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:618921286918:android:31c10196e2c13201bb1287",
+        "android_client_info": {
+          "package_name": "com.birge.birge_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "618921286918-ooff119pbqjm3ia6ntuaj6514e21tfsb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4JxacFGTrFlKScTnAeRN_ZTmshXLMWvw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "618921286918-ooff119pbqjm3ia6ntuaj6514e21tfsb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,3 +1,4 @@
+import 'package:birge_app/ui/screens/signup_screen/signup_screen_store.dart';
 import 'package:birge_app/ui/style/text_style/text_style.dart';
 import 'package:birge_app/ui/widgets/buttons.dart';
 import 'package:birge_app/ui/widgets/widgets.dart';
@@ -5,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/strings.dart';
 import '../../../domain/model/signup_model.dart';
+import '../../../firebase/firebase_helper.dart';
 import '../../widgets/custom_form_field.dart';
 
 class SignupScreen extends StatelessWidget {
@@ -16,6 +18,8 @@ class SignupScreen extends StatelessWidget {
   final _passwordAgainController = TextEditingController();
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
   final signUpViewModel = SignUpViewModel();
+  final signUpStore = SignUpScreenStore();
+  String _username = '';
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +56,7 @@ class SignupScreen extends StatelessWidget {
                         validation: signUpViewModel.validator(
                             _nameController.text,
                             SignupScreenStrings.plsEnterName),
+                        onChanged: (value) => signUpStore.setUsername(value),
                       ),
                       CustomFormField(
                         width: width,
@@ -88,7 +93,32 @@ class SignupScreen extends StatelessWidget {
               spacerHeight(20),
               BlueButton(
                 width: width,
-                onPressed: () {},
+                onPressed: () async {
+                  final email = _emailController.text;
+                  final password = _passwordController.text;
+                  final passwordAgain = _passwordAgainController.text;
+                  if (password == passwordAgain) {
+                    final success =
+                        await FirebaseHelper.signUp(email, password, _username);
+                    if (success) {
+                      Navigator.pushReplacementNamed(context, '/bottom_bar');
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          backgroundColor: Colors.red,
+                          content: Text(SignupScreenStrings.somethingWentWrong),
+                        ),
+                      );
+                    }
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        backgroundColor: Colors.red,
+                        content: Text(SignupScreenStrings.pwdsNotMatch),
+                      ),
+                    );
+                  }
+                },
                 child: const Text(
                   SignupScreenStrings.signUp,
                   style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
