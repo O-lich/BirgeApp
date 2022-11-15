@@ -55,9 +55,8 @@ class SignupScreen extends StatelessWidget {
                         hintText: SignupScreenStrings.enterName,
                         controller: _nameController,
                         validator: (value) {
-                          signUpViewModel.validator(
+                          return signUpViewModel.validator(
                               value, SignupScreenStrings.plsEnterName);
-                          return null;
                         },
                         onChanged: (value) =>
                             signUpViewModel.setUsername(value),
@@ -70,8 +69,7 @@ class SignupScreen extends StatelessWidget {
                         hintText: SignupScreenStrings.emailExample,
                         controller: _emailController,
                         validator: (value) {
-                          signUpViewModel.validatorEmail(value);
-                          return null;
+                          return signUpViewModel.validatorEmail(value);
                         },
                         obscureText: false,
                       ),
@@ -82,10 +80,9 @@ class SignupScreen extends StatelessWidget {
                         hintText: SignupScreenStrings.createPwd,
                         controller: _passwordController,
                         validator: (value) {
-                          signUpViewModel.validatorPassword(
+                          return signUpViewModel.validatorPassword(
                             value,
                           );
-                          return null;
                         },
                         obscureText: true,
                       ),
@@ -96,9 +93,8 @@ class SignupScreen extends StatelessWidget {
                         hintText: SignupScreenStrings.confirmPwd,
                         controller: _passwordAgainController,
                         validator: (value) {
-                          signUpViewModel.validator(
+                          return signUpViewModel.validator(
                               value, SignupScreenStrings.plsConfirmPwd);
-                          return null;
                         },
                         obscureText: true,
                       ),
