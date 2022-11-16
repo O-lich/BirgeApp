@@ -4,6 +4,6 @@ import '../model/article_model.dart';
 class ArticleInteractor {
   final ArticleRepository _repository = ArticleRepository();
 
-  Stream<List<ArticleModel>> get streamNotes =>
-      _repository.getArticlesStream();
+// Stream<List<ArticleModel>> get streamNotes =>
+//     _repository.getArticlesStream();
 }
