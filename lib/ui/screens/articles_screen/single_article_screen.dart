@@ -41,13 +41,13 @@ class SingleArticleScreen extends StatelessWidget {
                     Text(args.title, style: CommonTextStyle.secondHeader),
                     Observer(builder: (_) {
                       final data = _favoriteIcon.isFavorite;
-                      return InkWell(
-                        child: _favoriteIcon.changeIcon(
-                          data,
-                          Icon(Icons.favorite, color: mainAppColor),
-                          Icon(Icons.favorite, color: backgroundColor),
-                        ),
-                        onTap: () => _favoriteIcon.changeFavorite(),
+                      return IconButton(
+                        icon: Icon(Icons.favorite,
+                            color: data ? mainAppColor : backgroundColor,
+                            size: 40),
+                        onPressed: () {
+                          _favoriteIcon.changeFavorite();
+                        },
                       );
                     }),
                   ],
