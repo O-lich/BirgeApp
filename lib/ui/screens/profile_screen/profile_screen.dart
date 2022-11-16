@@ -52,44 +52,44 @@ class ProfileScreen extends StatelessWidget {
                   textAlign: TextAlign.center),
               spacerHeight(50),
               Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
-                  child: Align(
-                    alignment: Alignment.topLeft,
-                    child: FavoriteButton(
-                      onPressed: () {},
-                      width: width / 2,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Icon(Icons.favorite, color: Colors.red.shade200),
-                          Text(
-                            'Избранные статьи',
-                            style: CommonTextStyle.secondHeader,
-                          )
-                        ],
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                child: FavoriteButton(
+                  onPressed: () {},
+                  width: width / 2,
+                  child: Row(
+                    children: [
+                      Icon(Icons.favorite, color: Colors.red.shade200),
+                      SizedBox(width: 10),
+                      Expanded(
+                        child: Text(
+                          'Избранные статьи',
+                          style: CommonTextStyle.blueButton,
+                        ),
                       ),
-                    ),
-                  )),
+                    ],
+                  ),
+                ),
+              ),
               spacerHeight(20),
               Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
-                  child: Align(
-                    alignment: Alignment.topLeft,
-                    child: FavoriteButton(
-                      onPressed: () {},
-                      width: width / 2,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Icon(Icons.favorite, color: Colors.red.shade200),
-                          Text(
-                            'Избранные медитации',
-                            style: CommonTextStyle.secondHeader,
-                          )
-                        ],
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                child: FavoriteButton(
+                  onPressed: () {},
+                  width: width / 2,
+                  child: Row(
+                    children: [
+                      Icon(Icons.favorite, color: Colors.red.shade200),
+                      SizedBox(width: 10),
+                      Expanded(
+                        child: Text(
+                          'Избранные медитации',
+                          style: CommonTextStyle.blueButton,
+                        ),
                       ),
-                    ),
-                  )),
+                    ],
+                  ),
+                ),
+              ),
               spacerHeight(50),
               BlueButton(
                 width: width / 2,

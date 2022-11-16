@@ -69,7 +69,7 @@ class FavoriteButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: width,
-      decoration: CustomButton.buttonDecoration(context, backgroundColor),
+      decoration: CustomButton.buttonDecoration(context, imageColor),
       child: ElevatedButton(
         style: CustomButton().buttonStyle(50, 350),
         onPressed: onPressed,
