@@ -51,6 +51,46 @@ class ProfileScreen extends StatelessWidget {
                   style: CommonTextStyle.mainHeader,
                   textAlign: TextAlign.center),
               spacerHeight(50),
+              Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: FavoriteButton(
+                      onPressed: () {},
+                      width: width / 2,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Icon(Icons.favorite, color: Colors.red.shade200),
+                          Text(
+                            'Избранные статьи',
+                            style: CommonTextStyle.secondHeader,
+                          )
+                        ],
+                      ),
+                    ),
+                  )),
+              spacerHeight(20),
+              Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: FavoriteButton(
+                      onPressed: () {},
+                      width: width / 2,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Icon(Icons.favorite, color: Colors.red.shade200),
+                          Text(
+                            'Избранные медитации',
+                            style: CommonTextStyle.secondHeader,
+                          )
+                        ],
+                      ),
+                    ),
+                  )),
+              spacerHeight(50),
               BlueButton(
                 width: width / 2,
                 onPressed: () {
@@ -101,8 +141,6 @@ class ProfileScreen extends StatelessWidget {
           Animation<double> secondaryAnimation) {
         return const Text('data');
       });
-
-
 
   Future _exitDialog(BuildContext context) => showGeneralDialog(
       context: context,

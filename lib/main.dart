@@ -25,6 +25,7 @@ import 'data/repository/article_repository.dart';
 import 'data/repository/meditation_repository.dart';
 import 'firebase/firebase_options.dart';
 
+
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -37,7 +38,6 @@ void main() async{
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {

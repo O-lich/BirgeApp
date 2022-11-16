@@ -1,3 +1,4 @@
+import 'package:birge_app/const/app_images.dart';
 import 'package:birge_app/domain/model/article_model.dart';
 import 'package:birge_app/ui/screens/articles_screen/single_article_screen_store.dart';
 import 'package:birge_app/ui/style/colors/app_colors.dart';
@@ -7,6 +8,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/strings.dart';
 import '../../../domain/model/favorite_icon_model.dart';
 import '../../style/text_style/text_style.dart';
+import '../../widgets/random_image.dart';
 import '../../widgets/widgets.dart';
 import 'package:readmore/readmore.dart';
 
@@ -33,7 +35,7 @@ class SingleArticleScreen extends StatelessWidget {
             child: Column(
               children: [
                 spacerHeight(50),
-                Image.asset(image),
+                RandomImage(images: articlesImages),
                 spacerHeight(20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
