@@ -21,7 +21,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:material_color_generator/material_color_generator.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'data/meditation_repository.dart';
+import 'data/repository/meditation_repository.dart';
 import 'firebase/firebase_options.dart';
 
 void main() async{

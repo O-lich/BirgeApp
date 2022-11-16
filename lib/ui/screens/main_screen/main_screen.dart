@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/strings.dart';
-import '../../../data/meditation_repository.dart';
+import '../../../data/repository/meditation_repository.dart';
 import '../../style/colors/app_colors.dart';
 import '../../widgets/buttons.dart';
 import '../../widgets/calendar.dart';

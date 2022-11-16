@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/app_images.dart';
-import '../../../data/meditation_repository.dart';
+import '../../../data/repository/meditation_repository.dart';
 import '../../style/colors/app_colors.dart';
 import '../../widgets/cards_grid_view_widget.dart';
 import '../../widgets/meditations_screen_arguments.dart';

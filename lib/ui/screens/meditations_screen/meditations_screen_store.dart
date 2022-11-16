@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
-import '../../../data/meditation_repository.dart';
+import '../../../data/repository/meditation_repository.dart';
 
 part 'meditations_screen_store.g.dart';
 

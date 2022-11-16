@@ -12,7 +12,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../const/app_images.dart';
 import '../../../const/strings.dart';
-import '../../../data/meditation_repository.dart';
+import '../../../data/repository/meditation_repository.dart';
 import '../../widgets/meditations_screen_arguments.dart';
 
 class SingleMeditationScreen extends StatefulWidget {

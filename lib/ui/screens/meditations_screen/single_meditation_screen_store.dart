@@ -2,7 +2,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
-import '../../../data/meditation_repository.dart';
+import '../../../data/repository/meditation_repository.dart';
 import '../../widgets/meditations_screen_arguments.dart';
 
 part 'single_meditation_screen_store.g.dart';

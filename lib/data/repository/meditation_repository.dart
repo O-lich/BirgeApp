@@ -1,6 +1,6 @@
 import 'dart:convert';
-import '../const/strings.dart';
-import '../domain/model/meditation_model.dart';
+import '../../const/strings.dart';
+import '../../domain/model/meditation_model.dart';
 
 class MeditationRepository {
   static List meditationsMap = jsonDecode(jsonMeditations.toString());
