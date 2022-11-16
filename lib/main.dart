@@ -63,8 +63,6 @@ class MyApp extends StatelessWidget {
             '/articles_screen': (context) => ArticlesScreen(),
             '/single_article_screen': (context) => SingleArticleScreen(
                   image: HelpScreenStrings.imageHello,
-                  title: DiaryScreenStrings.exampleTitle,
-                  article: DiaryScreenStrings.exampleDiaryNote,
                 ),
             '/single_meditation_screen': (context) => const SingleMeditationScreen(),
             '/help_screen': (context) => HelpScreen(),

@@ -1,3 +1,4 @@
+import 'package:birge_app/domain/model/article_model.dart';
 import 'package:birge_app/ui/screens/articles_screen/single_article_screen_store.dart';
 import 'package:birge_app/ui/style/colors/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -10,21 +11,19 @@ import '../../widgets/widgets.dart';
 import 'package:readmore/readmore.dart';
 
 class SingleArticleScreen extends StatelessWidget {
-  final String title;
   final String image;
-  final String article;
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
   final _favoriteIcon = SingleArticleScreenStore();
 
   SingleArticleScreen({
     Key? key,
     required this.image,
-    required this.title,
-    required this.article,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments as ArticleModel;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -39,7 +38,7 @@ class SingleArticleScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(title, style: CommonTextStyle.secondHeader),
+                    Text(args.title, style: CommonTextStyle.secondHeader),
                     Observer(builder: (_) {
                       final data = _favoriteIcon.isFavorite;
                       return InkWell(
@@ -54,7 +53,7 @@ class SingleArticleScreen extends StatelessWidget {
                   ],
                 ),
                 spacerHeight(20),
-                ReadMoreText(article,
+                ReadMoreText(args.content,
                     trimLines: 3,
                     colorClickableText: mainAppColor,
                     moreStyle: CommonTextStyle.transparentButton,
@@ -62,7 +61,7 @@ class SingleArticleScreen extends StatelessWidget {
                     style: const TextStyle(color: Colors.black),
                     trimMode: TrimMode.Line,
                     trimCollapsedText:
-                    SingleArticleScreenStrings.continueReading,
+                        SingleArticleScreenStrings.continueReading,
                     trimExpandedText: SingleArticleScreenStrings.hide),
                 spacerHeight(20),
               ],
