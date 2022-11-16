@@ -41,6 +41,38 @@ mixin _$SignUpScreenStore on _SignUpScreenStore, Store {
     });
   }
 
+  late final _$passwordAtom =
+      Atom(name: '_SignUpScreenStore.password', context: context);
+
+  @override
+  String? get password {
+    _$passwordAtom.reportRead();
+    return super.password;
+  }
+
+  @override
+  set password(String? value) {
+    _$passwordAtom.reportWrite(value, super.password, () {
+      super.password = value;
+    });
+  }
+
+  late final _$passwordConfirmAtom =
+      Atom(name: '_SignUpScreenStore.passwordConfirm', context: context);
+
+  @override
+  String? get passwordConfirm {
+    _$passwordConfirmAtom.reportRead();
+    return super.passwordConfirm;
+  }
+
+  @override
+  set passwordConfirm(String? value) {
+    _$passwordConfirmAtom.reportWrite(value, super.passwordConfirm, () {
+      super.passwordConfirm = value;
+    });
+  }
+
   late final _$_SignUpScreenStoreActionController =
       ActionController(name: '_SignUpScreenStore', context: context);
 
@@ -92,7 +124,9 @@ mixin _$SignUpScreenStore on _SignUpScreenStore, Store {
   String toString() {
     return '''
 username: ${username},
-email: ${email}
+email: ${email},
+password: ${password},
+passwordConfirm: ${passwordConfirm}
     ''';
   }
 }

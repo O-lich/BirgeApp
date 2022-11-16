@@ -1,9 +1,9 @@
 import 'package:birge_app/const/strings.dart';
+import 'package:birge_app/ui/screens/password_recovery_screen/password_recovery_screen_store.dart';
 import 'package:birge_app/ui/widgets/buttons.dart';
 import 'package:birge_app/ui/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../domain/model/recovery_model.dart';
 import '../../../firebase/firebase_helper.dart';
 import '../../style/text_style/text_style.dart';
 import '../../widgets/custom_form_field.dart';
@@ -12,7 +12,8 @@ class PasswordRecoveryScreen extends StatelessWidget {
   PasswordRecoveryScreen({Key? key}) : super(key: key);
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
   final _emailController = TextEditingController();
-  final recoveryViewModel = RecoveryViewModel();
+  final recoveryViewModel = PasswordRecoveryScreenStore();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -22,44 +23,46 @@ class PasswordRecoveryScreen extends StatelessWidget {
         child: SizedBox(
           child: Align(
             alignment: Alignment.topLeft,
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                spacerHeight(50),
-                Text(PasswordRecoveryScreenStrings.changePassword,
-                    style: CommonTextStyle.secondHeader),
-                spacerHeight(10),
-                const Text(PasswordRecoveryScreenStrings.enterEmail),
-                spacerHeight(10),
-                CustomFormField(
-                  width: width,
-                  context: context,
-                  title: SignupScreenStrings.email,
-                  hintText: SignupScreenStrings.emailExample,
-                  controller: _emailController,
-                  validator: (value) {
-                    return recoveryViewModel.validator(_emailController.text,
-                        PasswordRecoveryScreenStrings.plsEnterEmail);
-                  },
-                  obscureText: false,
-                ),
-                spacerHeight(20),
-                BlueButton(
-                  onPressed: () {
-                    FirebaseHelper.resetPassword(_emailController.text);
-                    _showDialog(context);
-                  },
-                  width: width,
-                  child: Text(
-                    PasswordRecoveryScreenStrings.getLink,
-                    style: CommonTextStyle.blueButton,
-                    textAlign: TextAlign.center,
+            child: Form(
+              key: _formKey,
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  spacerHeight(50),
+                  Text(PasswordRecoveryScreenStrings.changePassword,
+                      style: CommonTextStyle.secondHeader),
+                  spacerHeight(10),
+                  const Text(PasswordRecoveryScreenStrings.enterEmail),
+                  spacerHeight(10),
+                  CustomFormField(
+                    width: width,
+                    context: context,
+                    title: SignupScreenStrings.email,
+                    hintText: SignupScreenStrings.emailExample,
+                    controller: _emailController,
+                    validator: (value) {
+                      return recoveryViewModel.validatorEmail(value);
+                    },
+                    obscureText: false,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                   ),
-                ),
-                spacerHeight(20),
-              ],
-            ),
+                  spacerHeight(20),
+                  BlueButton(
+                    onPressed: () async {
+                        _showDialog(context);
+                    },
+                    width: width,
+                    child: Text(
+                      PasswordRecoveryScreenStrings.getLink,
+                      style: CommonTextStyle.blueButton,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  spacerHeight(20),
+                ],
+              ),
+            )
           ),
         ),
       ),

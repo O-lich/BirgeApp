@@ -8,11 +8,15 @@ class PasswordRecoveryScreenStore = _PasswordRecoveryScreenStore
     with _$PasswordRecoveryScreenStore;
 
 abstract class _PasswordRecoveryScreenStore with Store {
+  @observable
+  String? email = '';
+
   @action
   String? validatorEmail(String? value) {
-    if (value!.isEmpty) {
+    email = value;
+    if (email!.isEmpty) {
       return SignupScreenStrings.plsEnterEmail;
-    } else if (((!value.contains('@')) || (!value.contains('.')))) {
+    } else if (((!email!.contains('@')) || (!email!.contains('.')))) {
       return SignupScreenStrings.emailForm;
     } else {
       return null;

@@ -56,11 +56,12 @@ class SignupScreen extends StatelessWidget {
                         controller: _nameController,
                         validator: (value) {
                           return signUpViewModel.validator(
-                              value, SignupScreenStrings.plsEnterName);
+                              value!, SignupScreenStrings.plsEnterName);
                         },
                         onChanged: (value) =>
                             signUpViewModel.setUsername(value),
                         obscureText: false,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
                       ),
                       CustomFormField(
                         width: width,
@@ -69,9 +70,10 @@ class SignupScreen extends StatelessWidget {
                         hintText: SignupScreenStrings.emailExample,
                         controller: _emailController,
                         validator: (value) {
-                          print(signUpViewModel.validatorEmail(value));
+                          //print(signUpViewModel.validatorEmail(value));
                           return signUpViewModel.validatorEmail(value);
                         },
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
                         obscureText: false,
                       ),
                       CustomFormField(
@@ -85,6 +87,7 @@ class SignupScreen extends StatelessWidget {
                             value,
                           );
                         },
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
                         obscureText: true,
                       ),
                       CustomFormField(
@@ -98,6 +101,7 @@ class SignupScreen extends StatelessWidget {
                               value, SignupScreenStrings.plsConfirmPwd);
                         },
                         obscureText: true,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
                       ),
                     ],
                   ),

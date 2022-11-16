@@ -160,6 +160,7 @@ abstract class SignupScreenStrings {
   static const plsConfirmPwd = 'Пожалуйста, подтвердите пароль';
   static const signUp = 'Зарегистрироваться';
   static const somethingWentWrong = 'Что-то пошло не так';
+  static const userExists = 'Пользователь с таким e-mail уже зарегистрирован';
   static const pwdsNotMatch = 'Пароли не совпадают';
   static const longPwd = 'Пароль должен быть более 8 символов';
   static const strongPwd =

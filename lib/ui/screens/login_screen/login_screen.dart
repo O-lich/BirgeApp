@@ -1,4 +1,3 @@
-import 'package:birge_app/domain/model/login_model.dart';
 import 'package:birge_app/ui/style/text_style/text_style.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +7,7 @@ import '../../../firebase/firebase_helper.dart';
 import '../../widgets/buttons.dart';
 import '../../widgets/custom_form_field.dart';
 import '../../widgets/widgets.dart';
+import 'login_screen_store.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -15,7 +15,7 @@ class LoginScreen extends StatelessWidget {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
-  final loginViewModel = LoginViewModel();
+  final loginViewModel = LoginScreenStore();
 
   @override
   Widget build(BuildContext context) {
@@ -49,10 +49,9 @@ class LoginScreen extends StatelessWidget {
                       hintText: LoginScreenStrings.enterEmail,
                       controller: _emailController,
                       validator: (value) {
-                        loginViewModel.validator(_emailController.text,
-                            LoginScreenStrings.pleaseEnterEmail);
-                        return null;
+                        return loginViewModel.validatorEmail(value);
                       },
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
                       obscureText: false,
                     ),
                     CustomFormField(
@@ -62,10 +61,10 @@ class LoginScreen extends StatelessWidget {
                       hintText: LoginScreenStrings.enterPassword,
                       controller: _passwordController,
                       validator: (value) {
-                        loginViewModel.validator(_passwordController.text,
-                            LoginScreenStrings.pleaseEnterPwd);
-                        return null;
+                        return loginViewModel.validatorPassword(value);
+
                       },
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
                       obscureText: true,
                     ),
                   ],

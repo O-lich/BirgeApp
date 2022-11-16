@@ -2,27 +2,21 @@ import 'package:mobx/mobx.dart';
 
 import '../../../const/strings.dart';
 
-part 'signup_screen_store.g.dart';
+part 'login_screen_store.g.dart';
 
-class SignUpScreenStore = _SignUpScreenStore with _$SignUpScreenStore;
+class LoginScreenStore = _LoginScreenStore with _$LoginScreenStore;
 
-abstract class _SignUpScreenStore with Store {
-  @observable
-  String username = '';
+abstract class _LoginScreenStore with Store {
+
   @observable
   String? email = '';
+
   @observable
   String? password = '';
-  @observable
-  String? passwordConfirm = '';
 
   RegExp numReg = RegExp(r".*[0-9].*");
   RegExp letterReg = RegExp(r".*[A-Za-z].*");
 
-  @action
-  void setUsername(String value) {
-    username = value;
-  }
 
   @action
   String? validator(String? value, String response) {
@@ -50,10 +44,6 @@ abstract class _SignUpScreenStore with Store {
     password = value;
     if (password!.isEmpty) {
       return SignupScreenStrings.plsEnterPwd;
-    } else if (password!.length < 8) {
-      return SignupScreenStrings.longPwd;
-    } else if (!letterReg.hasMatch(password!) || !numReg.hasMatch(password!)) {
-      return SignupScreenStrings.strongPwd;
     } else {
       return null;
     }
