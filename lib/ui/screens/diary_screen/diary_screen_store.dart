@@ -4,12 +4,13 @@ import 'package:birge_app/ui/screens/diary_screen/diary_interactor.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../../domain/model/day_review_model.dart';
+
 part 'diary_screen_store.g.dart';
 
 class DiaryScreenStore = _DiaryScreenStore with _$DiaryScreenStore;
 
 abstract class _DiaryScreenStore with Store {
-  final DiaryInteractor _diaryInteractor = DiaryInteractor();
+  final DiaryInteractor _diaryInteractor = DiaryInteractor(date: '2022-11-17');
   final DayReviewInteractor _dayReviewInteractor = DayReviewInteractor();
 
   @observable

@@ -52,7 +52,7 @@ class _DiaryPlanChoiceScreenState extends State<DiaryPlanChoiceScreen> {
                         context,
                         '/diary_screen',
                         arguments: DiaryScreenArguments(
-                          date: DateTime.now(),
+                          date: args.date,
                         ),
                       );
                     },

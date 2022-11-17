@@ -7,15 +7,20 @@ class DiaryRepository {
   final _diary = <DiaryModel>[];
   List<DiaryModel> get diary => _diary;
 
-  Stream<List<DiaryModel>> getUserNotesStream() async* {
+  Stream<List<DiaryModel>> getUserNotesStream(String date) async* {
     final userId = FirebaseAuth.instance.currentUser?.uid;
-    final ref = FirebaseDatabase.instance.ref("notes/$userId");
+    final ref = FirebaseDatabase.instance.ref("notes/$userId/$date");
     await for (final event in ref.onValue) {
       final map = event.snapshot.value as Map<dynamic, dynamic>?;
       if (map != null) {
         final List<DiaryModel> notes = [];
         map.forEach((key, value) {
-          notes.add(DiaryModel(userId: userId, title: value['title'], subtitle: value['subtitle'], id: key));
+          notes.add(DiaryModel(
+              userId: userId,
+              title: value['title'],
+              subtitle: value['subtitle'],
+              id: key,
+              date: date));
         });
         yield notes;
       }
@@ -23,8 +28,12 @@ class DiaryRepository {
   }
   Future create(DiaryModel diaryNoteModel) async {
     final userId = diaryNoteModel.userId;
-    final ref = FirebaseDatabase.instance.ref("notes/$userId");
-    await ref.push().set(<String, Object>{"title": diaryNoteModel.title, "subtitle": diaryNoteModel.subtitle});
+    final date = diaryNoteModel.date.toString().substring(0, 10);
+    final ref = FirebaseDatabase.instance.ref("notes/$userId/$date");
+    await ref.push().set(<String, Object>{
+      "title": diaryNoteModel.title,
+      "subtitle": diaryNoteModel.subtitle
+    });
   }
 }
 
