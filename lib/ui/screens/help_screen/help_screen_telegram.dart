@@ -10,7 +10,9 @@ import '../../widgets/widgets.dart';
 class HelpTelegramScreen extends StatelessWidget {
   HelpTelegramScreen({Key? key}) : super(key: key);
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
-  final Uri _urlTelegram = Uri.parse(HelpScreenStrings.urlTelegram);
+
+  final Uri _urlTelegram =
+      Uri.parse("whatsapp://send?phone=+phone&text=${Uri.parse("Привет")}");
 
   @override
   Widget build(BuildContext context) {
