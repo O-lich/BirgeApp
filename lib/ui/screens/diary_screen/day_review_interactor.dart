@@ -5,7 +5,7 @@ import 'day_review_repository.dart';
 class DayReviewInteractor {
   final DayReviewRepository _repository = DayReviewRepository();
 
-  Stream<List<DayReviewModel>> get streamDayReview =>
+  Stream<DayReviewModel> get streamDayReview =>
       _repository.getUserDailyReviewStream();
   void addNote(DayReviewModel dayReviewNote) => _repository.create(dayReviewNote);
 }

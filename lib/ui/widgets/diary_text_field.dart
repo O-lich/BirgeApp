@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import '../../const/strings.dart';
 
 class DiaryTextField extends StatelessWidget {
-  final void Function() onEditingComplete;
   final double width;
+  final TextEditingController controller;
 
   const DiaryTextField(
-      {required this.onEditingComplete, required this.width, super.key});
-    // ToDo Add controller to store in Firebase
+      {required this.width, super.key, required this.controller});
+
+  // ToDo Add controller to store in Firebase
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,13 +20,12 @@ class DiaryTextField extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.elliptical(12, 12)),
       ),
       child: TextFormField(
+        controller: controller,
         keyboardType: TextInputType.multiline,
         maxLines: null,
         cursorColor: const Color(0xFF006FFD),
         decoration: const InputDecoration.collapsed(
             hintText: DiaryScreenStrings.hintText),
-//validator: validator,
-        onEditingComplete: onEditingComplete,
       ),
     );
   }

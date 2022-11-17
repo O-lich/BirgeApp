@@ -16,7 +16,8 @@ abstract class _DiaryScreenStore with Store {
   List<DiaryModel> value = [];
 
   @observable
-  List<DayReviewModel> reviewValue = [];
+  DayReviewModel reviewValue =
+      DayReviewModel(userId: '', date: DateTime.now(), id: '', text: '');
 
   @action
   getData() {
@@ -26,7 +27,8 @@ abstract class _DiaryScreenStore with Store {
   }
 
   @action
-  void addDiaryNote(DiaryModel diaryNote) => _diaryInteractor.addNote(diaryNote);
+  void addDiaryNote(DiaryModel diaryNote) =>
+      _diaryInteractor.addNote(diaryNote);
 
   @action
   getReviewData() {
@@ -35,7 +37,7 @@ abstract class _DiaryScreenStore with Store {
     });
   }
 
-  @action
-  void addDayReview(DayReviewModel dayReview) => _dayReviewInteractor.addNote(dayReview);
+// @action
+// void addDayReview(DayReviewModel dayReview) => _dayReviewInteractor.addNote(dayReview);
 
 }

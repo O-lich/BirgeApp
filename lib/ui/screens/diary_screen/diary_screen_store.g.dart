@@ -29,13 +29,13 @@ mixin _$DiaryScreenStore on _DiaryScreenStore, Store {
       Atom(name: '_DiaryScreenStore.reviewValue', context: context);
 
   @override
-  List<DayReviewModel> get reviewValue {
+  DayReviewModel get reviewValue {
     _$reviewValueAtom.reportRead();
     return super.reviewValue;
   }
 
   @override
-  set reviewValue(List<DayReviewModel> value) {
+  set reviewValue(DayReviewModel value) {
     _$reviewValueAtom.reportWrite(value, super.reviewValue, () {
       super.reviewValue = value;
     });
@@ -72,17 +72,6 @@ mixin _$DiaryScreenStore on _DiaryScreenStore, Store {
         name: '_DiaryScreenStore.getReviewData');
     try {
       return super.getReviewData();
-    } finally {
-      _$_DiaryScreenStoreActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void addDayReview(DayReviewModel dayReview) {
-    final _$actionInfo = _$_DiaryScreenStoreActionController.startAction(
-        name: '_DiaryScreenStore.addDayReview');
-    try {
-      return super.addDayReview(dayReview);
     } finally {
       _$_DiaryScreenStoreActionController.endAction(_$actionInfo);
     }
