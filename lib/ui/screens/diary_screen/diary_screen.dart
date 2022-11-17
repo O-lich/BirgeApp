@@ -11,6 +11,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/strings.dart';
 import '../../../domain/model/diary_model.dart';
 import '../../style/colors/app_colors.dart';
+import '../../widgets/buttons.dart';
 import '../../widgets/diary_screen_arguments.dart';
 import '../../widgets/widgets.dart';
 
@@ -26,6 +27,7 @@ class _DiaryScreenState extends State<DiaryScreen> {
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
   final _diaryScreenViewModel = DiaryScreenStore();
   final userId = FirebaseAuth.instance.currentUser?.uid;
+  final dayReviewController = TextEditingController();
 
   @override
   void initState() {
@@ -45,6 +47,7 @@ class _DiaryScreenState extends State<DiaryScreen> {
         child: SizedBox(
           width: Device.width,
           child: Observer(builder: (_) {
+            //_diaryScreenViewModel.date = args.date.toString().substring(0, 10);
             return Column(
               children: [
                 spacerHeight(50),
@@ -79,11 +82,26 @@ class _DiaryScreenState extends State<DiaryScreen> {
                           subtitle:
                               _diaryScreenViewModel.value[index].subtitle);
                     }),
-                DiaryTextField(
-                    onEditingComplete: () {
-                      onPressedDayReviewWrite;
-                    },
-                    width: width),
+                InkWell(
+                  onTap: () {
+                    //print(_diaryScreenViewModel.reviewValue[0].text);
+                    Navigator.pushNamed(
+                      context,
+                      '/day_review_screen',
+                    );
+                  },
+                  child: Container(
+                    width: width,
+                    padding: EdgeInsets.all(10),
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.elliptical(30, 30)),
+                    ),
+                    child: (_diaryScreenViewModel.reviewValue.text.isNotEmpty)
+                        ? Text(_diaryScreenViewModel.reviewValue.text)
+                        : Text(DiaryScreenStrings.hintText),
+                  ),
+                ),
                 spacerHeight(20),
                 RaitingWidget(),
                 spacerHeight(50),
@@ -94,15 +112,16 @@ class _DiaryScreenState extends State<DiaryScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          _showDialog(context, onPressedDiaryNoteWrite);
+          _showDialog(context, onPressedDiaryNoteWrite,
+              args.date.toString().substring(0, 10));
         },
         child: const Icon(Icons.add),
       ),
     );
   }
 
-  Future _showDialog(
-          BuildContext context, void Function(DiaryModel) onPressed) =>
+  Future _showDialog(BuildContext context, void Function(DiaryModel) onPressed,
+          String date) =>
       showGeneralDialog(
           context: context,
           barrierDismissible: false,
@@ -144,7 +163,8 @@ class _DiaryScreenState extends State<DiaryScreen> {
                             userId: userId,
                             title: titleController.text,
                             subtitle: subtitleController.text,
-                            id: '');
+                            id: '',
+                            date: date);
                         onPressed(diaryNote);
                         Navigator.pop(context);
                       },
@@ -168,16 +188,17 @@ class _DiaryScreenState extends State<DiaryScreen> {
     final diaryNoteModel = DiaryModel.create(
         userId: diaryNote.userId,
         title: diaryNote.title,
-        subtitle: diaryNote.subtitle);
+        subtitle: diaryNote.subtitle,
+        date: diaryNote.date);
     _diaryScreenViewModel.addDiaryNote(diaryNoteModel);
   }
 
-  onPressedDayReviewWrite(DayReviewModel dayReview) {
-    if (userId == null) {
-      return;
-    }
-    final dayReviewModel =
-        DayReviewModel.create(userId: dayReview.userId, text: dayReview.text);
-    _diaryScreenViewModel.addDayReview(dayReviewModel);
-  }
+// onPressedDayReviewWrite(DayReviewModel dayReview) {
+//   if (userId == null) {
+//     return;
+//   }
+//   final dayReviewModel = DayReviewModel.create(
+//       userId: dayReview.userId, text: dayReview.text, date: DateTime.now());
+//   _diaryScreenViewModel.addDayReview(dayReviewModel);
+// }
 }
