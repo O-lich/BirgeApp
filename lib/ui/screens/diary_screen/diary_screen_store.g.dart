@@ -25,8 +25,35 @@ mixin _$DiaryScreenStore on _DiaryScreenStore, Store {
     });
   }
 
+  late final _$reviewValueAtom =
+      Atom(name: '_DiaryScreenStore.reviewValue', context: context);
+
+  @override
+  List<DayReviewModel> get reviewValue {
+    _$reviewValueAtom.reportRead();
+    return super.reviewValue;
+  }
+
+  @override
+  set reviewValue(List<DayReviewModel> value) {
+    _$reviewValueAtom.reportWrite(value, super.reviewValue, () {
+      super.reviewValue = value;
+    });
+  }
+
   late final _$_DiaryScreenStoreActionController =
       ActionController(name: '_DiaryScreenStore', context: context);
+
+  @override
+  dynamic getData() {
+    final _$actionInfo = _$_DiaryScreenStoreActionController.startAction(
+        name: '_DiaryScreenStore.getData');
+    try {
+      return super.getData();
+    } finally {
+      _$_DiaryScreenStoreActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   void addDiaryNote(DiaryModel diaryNote) {
@@ -40,9 +67,32 @@ mixin _$DiaryScreenStore on _DiaryScreenStore, Store {
   }
 
   @override
+  dynamic getReviewData() {
+    final _$actionInfo = _$_DiaryScreenStoreActionController.startAction(
+        name: '_DiaryScreenStore.getReviewData');
+    try {
+      return super.getReviewData();
+    } finally {
+      _$_DiaryScreenStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void addDayReview(DayReviewModel dayReview) {
+    final _$actionInfo = _$_DiaryScreenStoreActionController.startAction(
+        name: '_DiaryScreenStore.addDayReview');
+    try {
+      return super.addDayReview(dayReview);
+    } finally {
+      _$_DiaryScreenStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-value: ${value}
+value: ${value},
+reviewValue: ${reviewValue}
     ''';
   }
 }
