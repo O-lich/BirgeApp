@@ -75,7 +75,6 @@ class DayReviewScreen extends StatelessWidget {
                     style: CommonTextStyle.blueButton,
                   ),
                 ),
-                RaitingWidget(),
                 spacerHeight(50),
               ],
             );
