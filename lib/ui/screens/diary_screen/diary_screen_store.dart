@@ -17,7 +17,7 @@ abstract class _DiaryScreenStore with Store {
   final DayReviewInteractor _dayReviewInteractor = DayReviewInteractor();
 
   @observable
-  DiaryScreenArguments args = DiaryScreenArguments(date: DateTime.now());
+  DiaryScreenArguments args = DiaryScreenArguments(date: DateTime.utc(2022));
 
   @observable
   List<DiaryModel> value = [];
@@ -29,10 +29,12 @@ abstract class _DiaryScreenStore with Store {
   @action
   void initDate(DiaryScreenArguments argsFromScreen) {
     args = argsFromScreen;
+    getData();
   }
 
   @action
   getData() {
+    // print(args.date.toString().substring(0, 10));
     _diaryInteractor
         .getStreamNotes(args.date.toString().substring(0, 10))
         .listen((notes) {
