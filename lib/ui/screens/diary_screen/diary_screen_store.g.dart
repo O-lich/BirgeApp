@@ -42,7 +42,7 @@ mixin _$DiaryScreenStore on _DiaryScreenStore, Store {
   }
 
   late final _$reviewValueAtom =
-  Atom(name: '_DiaryScreenStore.reviewValue', context: context);
+      Atom(name: '_DiaryScreenStore.reviewValue', context: context);
 
   @override
   DayReviewModel get reviewValue {

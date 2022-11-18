@@ -11,7 +11,7 @@ part 'diary_screen_store.g.dart';
 class DiaryScreenStore = _DiaryScreenStore with _$DiaryScreenStore;
 
 abstract class _DiaryScreenStore with Store {
-  DiaryInteractor _diaryInteractor = DiaryInteractor(date: "");
+  DiaryInteractor _diaryInteractor = DiaryInteractor();
 
   //late final DiaryInteractor _diaryInteractor = DiaryInteractor(date: '2022-11-17');
   final DayReviewInteractor _dayReviewInteractor = DayReviewInteractor();
@@ -29,14 +29,13 @@ abstract class _DiaryScreenStore with Store {
   @action
   void initDate(DiaryScreenArguments argsFromScreen) {
     args = argsFromScreen;
-    print(args.date.toString().substring(0, 10));
-    _diaryInteractor =
-        DiaryInteractor(date: args.date.toString().substring(0, 10));
   }
 
   @action
   getData() {
-    _diaryInteractor.streamNotes.listen((notes) {
+    _diaryInteractor
+        .getStreamNotes(args.date.toString().substring(0, 10))
+        .listen((notes) {
       value = notes;
     });
   }
