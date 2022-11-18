@@ -28,6 +28,7 @@ class _DiaryScreenState extends State<DiaryScreen> {
   final _diaryScreenViewModel = DiaryScreenStore();
   final userId = FirebaseAuth.instance.currentUser?.uid;
   final dayReviewController = TextEditingController();
+  final _ratingWidget = DayRatingWidget();
 
   @override
   void initState() {
@@ -105,7 +106,7 @@ class _DiaryScreenState extends State<DiaryScreen> {
                   ),
                 ),
                 spacerHeight(20),
-                RaitingWidget(),
+                _ratingWidget,
                 spacerHeight(50),
               ],
             );

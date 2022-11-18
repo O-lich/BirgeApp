@@ -9,7 +9,6 @@ class DiaryTextField extends StatelessWidget {
   const DiaryTextField(
       {required this.width, super.key, required this.controller});
 
-  // ToDo Add controller to store in Firebase
   @override
   Widget build(BuildContext context) {
     return Container(

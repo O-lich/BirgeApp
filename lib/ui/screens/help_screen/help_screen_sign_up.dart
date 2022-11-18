@@ -3,6 +3,7 @@ import 'package:birge_app/domain/model/help_model.dart';
 import 'package:birge_app/domain/model/help_signup_model.dart';
 import 'package:birge_app/ui/style/colors/app_colors.dart';
 import 'package:birge_app/ui/widgets/buttons.dart';
+import 'package:birge_app/ui/widgets/help_screen_calender.dart';
 import 'package:birge_app/ui/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -14,12 +15,12 @@ class HelpSignUpScreen extends StatelessWidget {
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
   final _emailController = TextEditingController();
   final _nameController = TextEditingController();
-  String _date = '';
 
   //final data = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
+    final _calendar = HelpScreenCalendar(width: width);
     return Scaffold(
       backgroundColor: backgroundColor,
       body: SingleChildScrollView(
@@ -66,22 +67,7 @@ class HelpSignUpScreen extends StatelessWidget {
                   const Text(
                     HelpScreenStrings.date,
                   ),
-                  Container(
-                    margin: EdgeInsets.symmetric(vertical: 20),
-                    width: width,
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.elliptical(12, 12)),
-                    ),
-                    child: CalendarDatePicker(
-                      initialDate: DateTime.now(),
-                      firstDate: DateTime(2010, 8),
-                      lastDate: DateTime.now().add(Duration(days: 100000)),
-                      onDateChanged: (DateTime value) {
-                        dateChange(value.toString().substring(0, 10));
-                      },
-                    ),
-                  ),
+                  _calendar,
                   spacerHeight(10),
                 ],
               ),
@@ -90,12 +76,11 @@ class HelpSignUpScreen extends StatelessWidget {
                 children: [
                   BlueButton(
                     onPressed: () {
-                      print(_date);
                       Navigator.pushNamed(
                         context,
                         '/help_telegram_screen',
                         arguments: HelpModel(
-                            date: _date,
+                            date: _calendar.date,
                             name: _nameController.text,
                             phone: _emailController.text),
                       );
@@ -127,10 +112,5 @@ class HelpSignUpScreen extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void dateChange(String value) {
-    _date = value;
-    print(_date);
   }
 }
