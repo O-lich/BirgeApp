@@ -9,6 +9,22 @@ part of 'diary_screen_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$DiaryScreenStore on _DiaryScreenStore, Store {
+  late final _$argsAtom =
+      Atom(name: '_DiaryScreenStore.args', context: context);
+
+  @override
+  DiaryScreenArguments get args {
+    _$argsAtom.reportRead();
+    return super.args;
+  }
+
+  @override
+  set args(DiaryScreenArguments value) {
+    _$argsAtom.reportWrite(value, super.args, () {
+      super.args = value;
+    });
+  }
+
   late final _$valueAtom =
       Atom(name: '_DiaryScreenStore.value', context: context);
 
@@ -26,7 +42,7 @@ mixin _$DiaryScreenStore on _DiaryScreenStore, Store {
   }
 
   late final _$reviewValueAtom =
-      Atom(name: '_DiaryScreenStore.reviewValue', context: context);
+  Atom(name: '_DiaryScreenStore.reviewValue', context: context);
 
   @override
   DayReviewModel get reviewValue {
@@ -43,6 +59,17 @@ mixin _$DiaryScreenStore on _DiaryScreenStore, Store {
 
   late final _$_DiaryScreenStoreActionController =
       ActionController(name: '_DiaryScreenStore', context: context);
+
+  @override
+  void initDate(DiaryScreenArguments argsFromScreen) {
+    final _$actionInfo = _$_DiaryScreenStoreActionController.startAction(
+        name: '_DiaryScreenStore.initDate');
+    try {
+      return super.initDate(argsFromScreen);
+    } finally {
+      _$_DiaryScreenStoreActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   dynamic getData() {
@@ -80,6 +107,7 @@ mixin _$DiaryScreenStore on _DiaryScreenStore, Store {
   @override
   String toString() {
     return '''
+args: ${args},
 value: ${value},
 reviewValue: ${reviewValue}
     ''';

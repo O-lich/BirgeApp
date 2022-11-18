@@ -34,20 +34,18 @@ class _DiaryScreenState extends State<DiaryScreen> {
     user = FirebaseAuth.instance.currentUser;
     _diaryScreenViewModel.getData();
     super.initState();
+
+    initDate();
   }
 
   @override
   Widget build(BuildContext context) {
-    final args =
-        ModalRoute.of(context)!.settings.arguments as DiaryScreenArguments;
-
     return Scaffold(
       backgroundColor: backgroundColor,
       body: SingleChildScrollView(
         child: SizedBox(
           width: Device.width,
           child: Observer(builder: (_) {
-            //_diaryScreenViewModel.date = args.date.toString().substring(0, 10);
             return Column(
               children: [
                 spacerHeight(50),
@@ -55,8 +53,10 @@ class _DiaryScreenState extends State<DiaryScreen> {
                     style: CommonTextStyle.mainHeader,
                     textAlign: TextAlign.center),
                 spacerHeight(10),
-                Text(args.date.toString().substring(0, 10),
-                    style: CommonTextStyle.mainText, textAlign: TextAlign.left),
+                Text(
+                    _diaryScreenViewModel.args.date.toString().substring(0, 10),
+                    style: CommonTextStyle.mainText,
+                    textAlign: TextAlign.left),
                 spacerHeight(50),
                 Container(
                   width: width,
@@ -113,7 +113,7 @@ class _DiaryScreenState extends State<DiaryScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _showDialog(context, onPressedDiaryNoteWrite,
-              args.date.toString().substring(0, 10));
+              _diaryScreenViewModel.args.date.toString().substring(0, 10));
         },
         child: const Icon(Icons.add),
       ),
@@ -191,6 +191,15 @@ class _DiaryScreenState extends State<DiaryScreen> {
         subtitle: diaryNote.subtitle,
         date: diaryNote.date);
     _diaryScreenViewModel.addDiaryNote(diaryNoteModel);
+  }
+
+  void initDate() async {
+    await Future.delayed(
+      Duration(seconds: 1),
+    );
+    final args =
+        ModalRoute.of(context)!.settings.arguments as DiaryScreenArguments;
+    _diaryScreenViewModel.initDate(args);
   }
 
 // onPressedDayReviewWrite(DayReviewModel dayReview) {

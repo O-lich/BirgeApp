@@ -4,14 +4,20 @@ import 'package:birge_app/ui/screens/diary_screen/diary_interactor.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../../domain/model/day_review_model.dart';
+import '../../widgets/diary_screen_arguments.dart';
 
 part 'diary_screen_store.g.dart';
 
 class DiaryScreenStore = _DiaryScreenStore with _$DiaryScreenStore;
 
 abstract class _DiaryScreenStore with Store {
-  final DiaryInteractor _diaryInteractor = DiaryInteractor(date: '2022-11-17');
+  DiaryInteractor _diaryInteractor = DiaryInteractor(date: "");
+
+  //late final DiaryInteractor _diaryInteractor = DiaryInteractor(date: '2022-11-17');
   final DayReviewInteractor _dayReviewInteractor = DayReviewInteractor();
+
+  @observable
+  DiaryScreenArguments args = DiaryScreenArguments(date: DateTime.now());
 
   @observable
   List<DiaryModel> value = [];
@@ -19,6 +25,14 @@ abstract class _DiaryScreenStore with Store {
   @observable
   DayReviewModel reviewValue =
       DayReviewModel(userId: '', date: DateTime.now(), id: '', text: '');
+
+  @action
+  void initDate(DiaryScreenArguments argsFromScreen) {
+    args = argsFromScreen;
+    print(args.date.toString().substring(0, 10));
+    _diaryInteractor =
+        DiaryInteractor(date: args.date.toString().substring(0, 10));
+  }
 
   @action
   getData() {
