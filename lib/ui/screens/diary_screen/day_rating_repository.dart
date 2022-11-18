@@ -17,7 +17,7 @@ class DayRatingRepository {
         DayRatingModel(rate: 0.0, id: '', date: '', userId: '');
         map.forEach((key, value) {
           dailyRating =
-              DayRatingModel(userId: userId, rate: 0.0, id: key, date: date);
+              DayRatingModel(userId: userId, rate: value, id: key, date: date);
         });
         yield dailyRating;
       }
