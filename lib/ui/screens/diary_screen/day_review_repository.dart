@@ -15,7 +15,7 @@ class DayReviewRepository {
       final map = event.snapshot.value as Map<dynamic, dynamic>?;
       if (map != null) {
         DayReviewModel dailyReview =
-            DayReviewModel(text: '', id: '', date: '', userId: '');
+        DayReviewModel(text: '', id: '', date: '', userId: '');
         map.forEach((key, value) {
           dailyReview =
               DayReviewModel(userId: userId, text: value, id: key, date: date);

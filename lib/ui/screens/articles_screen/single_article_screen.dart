@@ -3,6 +3,7 @@ import 'package:birge_app/domain/model/article_model.dart';
 import 'package:birge_app/ui/screens/articles_screen/single_article_screen_store.dart';
 import 'package:birge_app/ui/style/colors/app_colors.dart';
 import 'package:birge_app/ui/widgets/articles_screen_arguments.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';

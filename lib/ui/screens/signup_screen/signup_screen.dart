@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/strings.dart';
-import '../../../domain/model/signup_model.dart';
 import '../../../firebase/firebase_helper.dart';
 import '../../widgets/custom_form_field.dart';
 

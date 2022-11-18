@@ -57,6 +57,22 @@ mixin _$DiaryScreenStore on _DiaryScreenStore, Store {
     });
   }
 
+  late final _$ratingValueAtom =
+      Atom(name: '_DiaryScreenStore.ratingValue', context: context);
+
+  @override
+  DayRatingModel get ratingValue {
+    _$ratingValueAtom.reportRead();
+    return super.ratingValue;
+  }
+
+  @override
+  set ratingValue(DayRatingModel value) {
+    _$ratingValueAtom.reportWrite(value, super.ratingValue, () {
+      super.ratingValue = value;
+    });
+  }
+
   late final _$_DiaryScreenStoreActionController =
       ActionController(name: '_DiaryScreenStore', context: context);
 
@@ -105,11 +121,34 @@ mixin _$DiaryScreenStore on _DiaryScreenStore, Store {
   }
 
   @override
+  void addDayRating(DayRatingModel dayRating) {
+    final _$actionInfo = _$_DiaryScreenStoreActionController.startAction(
+        name: '_DiaryScreenStore.addDayRating');
+    try {
+      return super.addDayRating(dayRating);
+    } finally {
+      _$_DiaryScreenStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic getRatingData() {
+    final _$actionInfo = _$_DiaryScreenStoreActionController.startAction(
+        name: '_DiaryScreenStore.getRatingData');
+    try {
+      return super.getRatingData();
+    } finally {
+      _$_DiaryScreenStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 args: ${args},
 value: ${value},
-reviewValue: ${reviewValue}
+reviewValue: ${reviewValue},
+ratingValue: ${ratingValue}
     ''';
   }
 }

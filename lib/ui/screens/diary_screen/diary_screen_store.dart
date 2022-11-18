@@ -1,6 +1,8 @@
+import 'package:birge_app/domain/model/day_rating_model.dart';
 import 'package:birge_app/domain/model/diary_model.dart';
 import 'package:birge_app/ui/screens/diary_screen/day_review_interactor.dart';
 import 'package:birge_app/ui/screens/diary_screen/diary_interactor.dart';
+import 'package:birge_app/ui/screens/diary_screen/diary_rating_interactor.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../../domain/model/day_review_model.dart';
@@ -14,6 +16,7 @@ abstract class _DiaryScreenStore with Store {
   DiaryInteractor _diaryInteractor = DiaryInteractor();
 
   final DayReviewInteractor _dayReviewInteractor = DayReviewInteractor();
+  final DayRatingInteractor _dayRatingInteractor = DayRatingInteractor();
 
   @observable
   DiaryScreenArguments args = DiaryScreenArguments(date: DateTime.utc(2022));
@@ -25,11 +28,15 @@ abstract class _DiaryScreenStore with Store {
   DayReviewModel reviewValue =
       DayReviewModel(userId: '', date: '', id: '', text: '');
 
+  @observable
+  DayRatingModel ratingValue = DayRatingModel(date: '', userId: '', rate: 0.0, id: '');
+
   @action
   void initDate(DiaryScreenArguments argsFromScreen) {
     args = argsFromScreen;
     getData();
     getReviewData();
+    getRatingData();
   }
 
   @action
@@ -51,6 +58,19 @@ abstract class _DiaryScreenStore with Store {
         .getStreamDayReview(args.date.toString().substring(0, 10))
         .listen((dailyReview) {
       reviewValue = dailyReview;
+    });
+  }
+
+  @action
+  void addDayRating(DayRatingModel dayRating) =>
+      _dayRatingInteractor.addRating(dayRating);
+
+  @action
+  getRatingData() {
+    _dayRatingInteractor
+        .getStreamRating(args.date.toString().substring(0, 10))
+        .listen((dailyRating) {
+      ratingValue = dailyRating;
     });
   }
 
