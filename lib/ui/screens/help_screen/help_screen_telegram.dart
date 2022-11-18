@@ -5,17 +5,21 @@ import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../domain/model/help_model.dart';
 import '../../widgets/widgets.dart';
 
 class HelpTelegramScreen extends StatelessWidget {
   HelpTelegramScreen({Key? key}) : super(key: key);
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
 
-  final Uri _urlTelegram =
-      Uri.parse("whatsapp://send?phone=+phone&text=${Uri.parse("Привет")}");
+  final phone = '+527227962367';
 
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments as HelpModel;
+    final Uri urlTelegram = Uri.parse(
+        "whatsapp://send?phone=$phone&text=${Uri.parse("Добрый день! Меня зовут ${args.name}. Я бы хотел(а) записаться на ${args.date}. Мой телефон для связи ${args.phone}.")}");
+
     return Scaffold(
       backgroundColor: backgroundColor,
       body: SingleChildScrollView(
@@ -34,11 +38,15 @@ class HelpTelegramScreen extends StatelessWidget {
               spacerHeight(50),
               InkWell(
                 onTap: () {
-                  _launchUrl(_urlTelegram);
+                  _launchUrl(urlTelegram);
+                  Navigator.pushNamed(
+                    context,
+                    '/help_congrats_screen',
+                  );
                 },
                 child: const Image(
                   height: 80,
-                  image: NetworkImage(HelpScreenStrings.imageTelegram),
+                  image: NetworkImage(HelpScreenStrings.imageWhatsApp),
                 ),
               ),
               spacerHeight(20)

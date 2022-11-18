@@ -45,6 +45,8 @@ abstract class HelpScreenStrings {
   static const imageEmpty = 'assets/images/emptyImage.png';
   static const sighingUp = 'Запись';
   static const email = 'Почта';
+  static const phone = 'Телефон';
+  static const phoneOrEmail = 'Телефон или почта для связи';
   static const name = 'Имя';
   static const date = 'Дата';
   static const create = 'Создайте учетную запись, чтобы начать';
@@ -53,6 +55,8 @@ abstract class HelpScreenStrings {
   static const goMain = 'Вернуться на главную';
   static const chat = 'Нажмите для перехода в чат с психологом';
   static const urlTelegram = 'https://telegram.org/';
+  static const imageWhatsApp =
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/800px-WhatsApp.svg.png';
   static const imageTelegram =
       'https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Telegram_2019_Logo.svg/800px-Telegram_2019_Logo.svg.png';
 }
@@ -123,6 +127,7 @@ abstract class TaskScreenStrings {
 
 abstract class DiaryScreenStrings {
   static const diary = 'Дневник';
+  static const save = 'Сохранить';
   static const exampleTitle = 'Пример';
   static const exampleSubtitle =
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';

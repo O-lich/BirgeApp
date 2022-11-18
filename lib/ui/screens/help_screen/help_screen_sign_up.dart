@@ -1,22 +1,22 @@
 import 'package:birge_app/const/strings.dart';
+import 'package:birge_app/domain/model/help_model.dart';
 import 'package:birge_app/domain/model/help_signup_model.dart';
 import 'package:birge_app/ui/style/colors/app_colors.dart';
 import 'package:birge_app/ui/widgets/buttons.dart';
-import 'package:birge_app/ui/widgets/calendar.dart';
 import 'package:birge_app/ui/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../style/text_style/text_style.dart';
 import '../../widgets/custom_form_field.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class HelpSignUpScreen extends StatelessWidget {
   HelpSignUpScreen({Key? key}) : super(key: key);
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
   final _emailController = TextEditingController();
   final _nameController = TextEditingController();
-  final data = DateTime.now();
-  final Uri _url = Uri.parse(HelpScreenStrings.urlTelegram);
+  String _date = '';
+
+  //final data = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -57,8 +57,8 @@ class HelpSignUpScreen extends StatelessWidget {
                       HelpSignUpViewModel().validator('value', 'response');
                       return null;
                     },
-                    title: HelpScreenStrings.email,
-                    hintText: HelpScreenStrings.email,
+                    title: HelpScreenStrings.phoneOrEmail,
+                    hintText: HelpScreenStrings.phoneOrEmail,
                     context: context,
                     obscureText: false,
                   ),
@@ -66,9 +66,21 @@ class HelpSignUpScreen extends StatelessWidget {
                   const Text(
                     HelpScreenStrings.date,
                   ),
-                  Calendar(
+                  Container(
+                    margin: EdgeInsets.symmetric(vertical: 20),
                     width: width,
-                    path: '/help_congrats_screen',
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.elliptical(12, 12)),
+                    ),
+                    child: CalendarDatePicker(
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime(2010, 8),
+                      lastDate: DateTime.now().add(Duration(days: 100000)),
+                      onDateChanged: (DateTime value) {
+                        dateChange(value.toString().substring(0, 10));
+                      },
+                    ),
                   ),
                   spacerHeight(10),
                 ],
@@ -78,9 +90,14 @@ class HelpSignUpScreen extends StatelessWidget {
                 children: [
                   BlueButton(
                     onPressed: () {
+                      print(_date);
                       Navigator.pushNamed(
                         context,
                         '/help_telegram_screen',
+                        arguments: HelpModel(
+                            date: _date,
+                            name: _nameController.text,
+                            phone: _emailController.text),
                       );
                     },
                     width: width / 2,
@@ -91,17 +108,17 @@ class HelpSignUpScreen extends StatelessWidget {
                     ),
                   ),
                   spacerHeight(20),
-                  BlueButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    width: width / 2,
-                    child: Text(
-                      HelpScreenStrings.goBack,
-                      style: CommonTextStyle.blueButton,
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
+                  // BlueButton(
+                  //   onPressed: () {
+                  //     Navigator.of(context).pop();
+                  //   },
+                  //   width: width / 2,
+                  //   child: Text(
+                  //     HelpScreenStrings.goBack,
+                  //     style: CommonTextStyle.blueButton,
+                  //     textAlign: TextAlign.center,
+                  //   ),
+                  // ),
                 ],
               ),
               spacerHeight(20),
@@ -110,5 +127,10 @@ class HelpSignUpScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void dateChange(String value) {
+    _date = value;
+    print(_date);
   }
 }

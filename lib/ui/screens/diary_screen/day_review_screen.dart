@@ -52,10 +52,11 @@ class DayReviewScreen extends StatelessWidget {
                     border: Border.all(color: Colors.white, width: 2),
                     image: const DecorationImage(
                       fit: BoxFit.cover,
-                      image: AssetImage(DiaryScreenStrings.animationDiary),
+                      image: AssetImage(DiaryScreenStrings.animation),
                     ),
                   ),
                 ),
+                spacerHeight(20),
                 DiaryTextField(
                   width: width,
                   controller: dayReviewController,
@@ -73,7 +74,7 @@ class DayReviewScreen extends StatelessWidget {
                     Navigator.pop(context);
                   },
                   child: Text(
-                    'Save changes',
+                    DiaryScreenStrings.save,
                     style: CommonTextStyle.blueButton,
                   ),
                 ),
