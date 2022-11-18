@@ -33,9 +33,8 @@ class _DiaryScreenState extends State<DiaryScreen> {
   @override
   void initState() {
     user = FirebaseAuth.instance.currentUser;
-    _diaryScreenViewModel.getData();
+    //_diaryScreenViewModel.getData();
     super.initState();
-
     initDate();
   }
 
