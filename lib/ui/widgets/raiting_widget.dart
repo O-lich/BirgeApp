@@ -10,7 +10,9 @@ import 'diary_screen_arguments.dart';
 class DayRatingWidget extends StatelessWidget {
   DayRatingWidget({
     Key? key,
+    required this.rating,
   }) : super(key: key);
+  final double rating;
   double rate = 0;
   final userId = FirebaseAuth.instance.currentUser?.uid;
   final _diaryScreenViewModel = DiaryScreenStore();
@@ -18,11 +20,11 @@ class DayRatingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final args =
-    ModalRoute.of(context)!.settings.arguments as DiaryScreenArguments;
+        ModalRoute.of(context)!.settings.arguments as DiaryScreenArguments;
     return RatingBar(
       updateOnDrag: true,
       glow: false,
-      initialRating: 0,
+      initialRating: rating,
       minRating: 0,
       direction: Axis.horizontal,
       allowHalfRating: true,
@@ -44,6 +46,7 @@ class DayRatingWidget extends StatelessWidget {
       ),
       itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
       onRatingUpdate: (value) {
+        rate = value;
         final dayRatingNote = DayRatingModel(
             userId: userId,
             rate: value,
@@ -54,9 +57,9 @@ class DayRatingWidget extends StatelessWidget {
     );
   }
 
-  double rating() {
-    return rate;
-  }
+  // double rating() {
+  //   return rate;
+  // }
 
   onPressedDayRatingSet(DayRatingModel dayRating) {
     if (userId == null) {

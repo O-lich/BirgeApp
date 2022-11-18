@@ -16,8 +16,8 @@ class DayRatingRepository {
         DayRatingModel dailyRating =
         DayRatingModel(rate: 0.0, id: '', date: '', userId: '');
         map.forEach((key, value) {
-          dailyRating =
-              DayRatingModel(userId: userId, rate: value, id: key, date: date);
+          dailyRating = DayRatingModel(
+              userId: userId, rate: value + .0, id: key, date: date);
         });
         yield dailyRating;
       }
@@ -28,6 +28,6 @@ class DayRatingRepository {
     final userId = dayRatingModel.userId;
     final date = dayRatingModel.date.toString().substring(0, 10);
     final ref = FirebaseDatabase.instance.ref("rating/$userId/$date");
-    await ref.push().set(dayRatingModel.rate);
+    await ref.push().set(dayRatingModel.rate + .0);
   }
 }
