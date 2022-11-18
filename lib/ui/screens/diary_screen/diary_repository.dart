@@ -8,7 +8,6 @@ class DiaryRepository {
   List<DiaryModel> get diary => _diary;
 
   Stream<List<DiaryModel>> getUserNotesStream(String date) async* {
-    print(date);
     final userId = FirebaseAuth.instance.currentUser?.uid;
     final ref = FirebaseDatabase.instance.ref("notes/$userId/$date");
     await for (final event in ref.onValue) {

@@ -26,6 +26,8 @@ class DayReviewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final args =
+        ModalRoute.of(context)!.settings.arguments as DiaryScreenArguments;
     return Scaffold(
       backgroundColor: backgroundColor,
       body: SingleChildScrollView(
@@ -39,7 +41,7 @@ class DayReviewScreen extends StatelessWidget {
                     style: CommonTextStyle.mainHeader,
                     textAlign: TextAlign.center),
                 spacerHeight(10),
-                Text(DateTime.now().toString().substring(0, 10),
+                Text(args.date.toString().substring(0, 10),
                     style: CommonTextStyle.mainText, textAlign: TextAlign.left),
                 spacerHeight(50),
                 Container(
@@ -66,7 +68,7 @@ class DayReviewScreen extends StatelessWidget {
                         userId: userId,
                         text: dayReviewController.text,
                         id: '',
-                        date: DateTime.now());
+                        date: args.date.toString().substring(0, 10));
                     onPressedDayReviewWrite(dayReviewNote);
                     Navigator.pop(context);
                   },
@@ -89,7 +91,7 @@ class DayReviewScreen extends StatelessWidget {
       return;
     }
     final dayReviewModel = DayReviewModel.create(
-        userId: dayReview.userId, text: dayReview.text, date: DateTime.now());
+        userId: dayReview.userId, text: dayReview.text, date: dayReview.date);
     _dayReviewScreenViewModel.addDayReview(dayReviewModel);
   }
 }

@@ -88,6 +88,8 @@ class _DiaryScreenState extends State<DiaryScreen> {
                     Navigator.pushNamed(
                       context,
                       '/day_review_screen',
+                      arguments: DiaryScreenArguments(
+                          date: _diaryScreenViewModel.args.date),
                     );
                   },
                   child: Container(

@@ -13,7 +13,6 @@ class DiaryScreenStore = _DiaryScreenStore with _$DiaryScreenStore;
 abstract class _DiaryScreenStore with Store {
   DiaryInteractor _diaryInteractor = DiaryInteractor();
 
-  //late final DiaryInteractor _diaryInteractor = DiaryInteractor(date: '2022-11-17');
   final DayReviewInteractor _dayReviewInteractor = DayReviewInteractor();
 
   @observable
@@ -24,17 +23,17 @@ abstract class _DiaryScreenStore with Store {
 
   @observable
   DayReviewModel reviewValue =
-      DayReviewModel(userId: '', date: DateTime.now(), id: '', text: '');
+      DayReviewModel(userId: '', date: '', id: '', text: '');
 
   @action
   void initDate(DiaryScreenArguments argsFromScreen) {
     args = argsFromScreen;
     getData();
+    getReviewData();
   }
 
   @action
   getData() {
-    // print(args.date.toString().substring(0, 10));
     _diaryInteractor
         .getStreamNotes(args.date.toString().substring(0, 10))
         .listen((notes) {
@@ -48,7 +47,9 @@ abstract class _DiaryScreenStore with Store {
 
   @action
   getReviewData() {
-    _dayReviewInteractor.streamDayReview.listen((dailyReview) {
+    _dayReviewInteractor
+        .getStreamDayReview(args.date.toString().substring(0, 10))
+        .listen((dailyReview) {
       reviewValue = dailyReview;
     });
   }

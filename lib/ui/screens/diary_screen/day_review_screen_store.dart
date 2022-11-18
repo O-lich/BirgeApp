@@ -14,7 +14,7 @@ abstract class _DayReviewScreenStore with Store {
 
   @observable
   DayReviewModel reviewValue =
-      DayReviewModel(userId: '', date: DateTime.now(), id: '', text: '');
+      DayReviewModel(userId: '', date: '', id: '', text: '');
 
   @action
   void addDayReview(DayReviewModel dayReview) =>

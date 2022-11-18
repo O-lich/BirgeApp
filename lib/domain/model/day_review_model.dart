@@ -1,5 +1,5 @@
 class DayReviewModel {
-  final DateTime date;
+  final String date;
   final String text;
   final String? userId;
   final String id;
