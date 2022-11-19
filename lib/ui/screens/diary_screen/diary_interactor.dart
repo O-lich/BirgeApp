@@ -1,7 +1,6 @@
 import 'package:birge_app/domain/model/diary_model.dart';
 import 'diary_repository.dart';
 
-
 class DiaryInteractor {
   DiaryInteractor();
 

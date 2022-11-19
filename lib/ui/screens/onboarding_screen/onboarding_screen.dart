@@ -4,8 +4,11 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/strings.dart';
 import '../../widgets/buttons.dart';
 import '../../widgets/widgets.dart';
+import '../login_screen/login_screen.dart';
 
 class OnBoardingScreen extends StatelessWidget {
+  static const routeName = '/onboarding_screen';
+
   const OnBoardingScreen({Key? key}) : super(key: key);
 
   @override
@@ -40,7 +43,7 @@ class OnBoardingScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.pushNamed(
                     context,
-                    '/login_screen',
+                    LoginScreen.routeName,
                   );
                 },
                   width: width,

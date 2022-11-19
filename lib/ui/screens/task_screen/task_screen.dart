@@ -1,14 +1,37 @@
+import 'package:birge_app/ui/screens/task_screen/task_screen_store.dart';
 import 'package:birge_app/ui/style/text_style/text_style.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/strings.dart';
+import '../../../domain/model/task_model.dart';
 import '../../style/colors/app_colors.dart';
+import '../../widgets/diary_screen_arguments.dart';
 import '../../widgets/widgets.dart';
+import '../diary_screen/diary_screen_store.dart';
 
-class TaskScreen extends StatelessWidget {
+class TaskScreen extends StatefulWidget {
+  static const routeName = '/task_screen';
   TaskScreen({Key? key}) : super(key: key);
 
+  @override
+  State<TaskScreen> createState() => _TaskScreenState();
+}
+
+class _TaskScreenState extends State<TaskScreen> {
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
+  User? user;
+  final _taskScreenViewModel = TaskScreenStore();
+  final _diaryScreenViewModel = DiaryScreenStore();
+  final userId = FirebaseAuth.instance.currentUser?.uid;
+
+  @override
+  void initState() {
+    user = FirebaseAuth.instance.currentUser;
+    super.initState();
+    initDate();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,86 +40,126 @@ class TaskScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: SizedBox(
           width: Device.width,
-          child: Column(
-            children: [
-              spacerHeight(50),
-              Text(TaskScreenStrings.plan,
-                  style: CommonTextStyle.mainHeader,
-                  textAlign: TextAlign.center),
-              spacerHeight(50),
-              ListView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: 6,
-                  itemBuilder: (_, index) {
-                    return ListTile(
-                      onTap: () {},
-                      leading: const Icon(Icons.circle_outlined),
-                      title: Text('Action'),
-                    );
-                  }),
-              spacerHeight(20),
-            ],
-          ),
+          child: Observer(builder: (_) {
+            return Column(
+              children: [
+                spacerHeight(50),
+                Text(TaskScreenStrings.plan,
+                    style: CommonTextStyle.mainHeader,
+                    textAlign: TextAlign.center),
+                spacerHeight(10),
+                Text(_diaryScreenViewModel.args.date.toString().substring(0, 10),
+                    style: CommonTextStyle.mainText, textAlign: TextAlign.left),
+                spacerHeight(50),
+                ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: _taskScreenViewModel.taskValue.length,
+                    itemBuilder: (_, index) {
+                      return CheckboxListTile(
+                          value: _taskScreenViewModel.isChecked,
+                          onChanged: (bool? value) =>
+                              _taskScreenViewModel.changeIsChecked(),
+                          title:
+                              Text(_taskScreenViewModel.taskValue[index].text));
+                    }),
+                spacerHeight(20),
+              ],
+            );
+          }),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => _showDialog(context),
-        child: const Icon(Icons.add),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 100),
+        child: FloatingActionButton(
+          onPressed: () => _showDialog(context, onPressedTaskNoteWrite,
+              _diaryScreenViewModel.args.date.toString().substring(0, 10)),
+          child: const Icon(Icons.add),
+        ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
     );
   }
 
-  Future _showDialog(BuildContext context) => showGeneralDialog(
-      context: context,
-      barrierDismissible: false,
-      transitionBuilder: (context, a1, a2, widget) {
-        final titleController = TextEditingController();
-        final subtitleController = TextEditingController();
-        return Transform.scale(
-          scale: a1.value,
-          child: Opacity(
-            opacity: a1.value,
-            child: AlertDialog(
-              shape:
-                  OutlineInputBorder(borderRadius: BorderRadius.circular(16.0)),
-              title: Text(
-                TaskScreenStrings.plan,
-                style: CommonTextStyle.mainHeader,
-              ),
-              content: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  // TextField(
-                  //   controller: titleController,
-                  //   decoration:
-                  //   const InputDecoration(
-                  //       hintText: TaskScreenStrings.title),
-                  // ),
-                  TextField(
-                    keyboardType: TextInputType.multiline,
-                    maxLines: null,
-                    controller: subtitleController,
-                    decoration: const InputDecoration(
-                        hintText: TaskScreenStrings.subtitle),
+  Future _showDialog(BuildContext context, void Function(TaskModel) onPressed,
+          String date) =>
+      showGeneralDialog(
+          context: context,
+          barrierDismissible: false,
+          transitionBuilder: (context, a1, a2, widget) {
+            final textController = TextEditingController();
+            return Transform.scale(
+              scale: a1.value,
+              child: Opacity(
+                opacity: a1.value,
+                child: AlertDialog(
+                  shape: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16.0)),
+                  title: Text(
+                    TaskScreenStrings.plan,
+                    style: CommonTextStyle.mainHeader,
                   ),
-                ],
-              ),
-              actions: [
-                TextButton(
-                  onPressed: () async {
-                    Navigator.pop(context);
-                  },
-                  child: const Text(TaskScreenStrings.add),
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      // TextField(
+                      //   controller: titleController,
+                      //   decoration:
+                      //   const InputDecoration(
+                      //       hintText: TaskScreenStrings.title),
+                      // ),
+                      TextField(
+                        keyboardType: TextInputType.multiline,
+                        maxLines: null,
+                        controller: textController,
+                        decoration: const InputDecoration(
+                            hintText: TaskScreenStrings.subtitle),
+                      ),
+                    ],
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () async {
+                        final taskNote = TaskModel(
+                            userId: userId,
+                            text: textController.text,
+                            id: '',
+                            date: date);
+                        onPressed(taskNote);
+                        Navigator.pop(context);
+                      },
+                      child: const Text(TaskScreenStrings.add),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          ),
-        );
-      },
-      transitionDuration: const Duration(milliseconds: 200),
-      pageBuilder: (BuildContext context, Animation<double> animation,
-          Animation<double> secondaryAnimation) {
-        return const Text('data');
-      });
+              ),
+            );
+          },
+          transitionDuration: const Duration(milliseconds: 200),
+          pageBuilder: (BuildContext context, Animation<double> animation,
+              Animation<double> secondaryAnimation) {
+            return const Text('data');
+          });
+
+  onPressedTaskNoteWrite(TaskModel plan) {
+    if (userId == null) {
+      return;
+    }
+    final taskNoteModel =
+        TaskModel.create(
+            userId: plan.userId,
+            date: plan.date,
+            text: plan.text);
+    _taskScreenViewModel.addPlanNote(taskNoteModel);
+  }
+
+  void initDate() async {
+    await Future.delayed(
+      const Duration(seconds: 1),
+    );
+    final args =
+        ModalRoute.of(context)!.settings.arguments as DiaryScreenArguments;
+    _diaryScreenViewModel.initDate(args);
+    _taskScreenViewModel.initDate(args);
+  }
 }

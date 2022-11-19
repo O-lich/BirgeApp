@@ -9,6 +9,7 @@ import '../../style/text_style/text_style.dart';
 import '../../widgets/custom_form_field.dart';
 
 class PasswordRecoveryScreen extends StatelessWidget {
+  static const routeName = '/password_recovery_screen';
   PasswordRecoveryScreen({Key? key}) : super(key: key);
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
   final _emailController = TextEditingController();

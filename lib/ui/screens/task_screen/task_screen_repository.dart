@@ -1,7 +1,5 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
-
 import '../../../domain/model/task_model.dart';
 
 class TaskRepository {
@@ -18,7 +16,7 @@ class TaskRepository {
         map.forEach((key, value) {
           plans.add(TaskModel(
               userId: userId,
-              text: value['text'],
+              text: value,
               id: key,
               date: date));
         });

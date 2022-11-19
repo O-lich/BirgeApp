@@ -1,3 +1,5 @@
+import 'package:birge_app/ui/screens/diary_plan_choice_screen/diary_plan_choice_screen.dart';
+import 'package:birge_app/ui/screens/meditations_screen/meditations_screen.dart';
 import 'package:birge_app/ui/style/text_style/text_style.dart';
 import 'package:birge_app/ui/widgets/back_floating_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -10,8 +12,12 @@ import '../../widgets/buttons.dart';
 import '../../widgets/calendar.dart';
 import '../../widgets/diary_screen_arguments.dart';
 import '../../widgets/widgets.dart';
+import '../diary_screen/diary_screen.dart';
+import '../help_screen/help_screen.dart';
+import '../task_screen/task_screen.dart';
 
 class MainScreen extends StatelessWidget {
+  static const routeName = '/main_screen';
   MainScreen({Key? key}) : super(key: key);
 
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
@@ -38,7 +44,7 @@ class MainScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.pushNamed(
                         context,
-                        '/meditations_screen',
+                        MeditationsScreen.routeName,
                       );
                     },
                     child: Text(
@@ -51,7 +57,10 @@ class MainScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.pushNamed(
                         context,
-                        '/task_screen',
+                        TaskScreen.routeName,
+                        arguments: DiaryScreenArguments(
+                          date: DateTime.now(),
+                        ),
                       );
                     },
                     child: Text(
@@ -70,7 +79,7 @@ class MainScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.pushNamed(
                         context,
-                        '/help_screen',
+                        HelpScreen.routeName,
                       );
                     },
                     child: Text(
@@ -83,7 +92,7 @@ class MainScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.pushNamed(
                         context,
-                        '/diary_screen',
+                        DiaryScreen.routeName,
                         arguments: DiaryScreenArguments(
                           date: DateTime.now(),
                         ),
@@ -99,7 +108,7 @@ class MainScreen extends StatelessWidget {
               spacerHeight(50),
               Calendar(
                 width: width,
-                path: '/diary_plan_choice_screen',
+                path: DiaryPlanChoiceScreen.routeName,
               ),
               spacerHeight(100),
             ],

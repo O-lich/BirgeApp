@@ -1,3 +1,4 @@
+import 'package:birge_app/ui/screens/password_recovery_screen/password_recovery_screen.dart';
 import 'package:birge_app/ui/style/text_style/text_style.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -7,9 +8,12 @@ import '../../../firebase/firebase_helper.dart';
 import '../../widgets/buttons.dart';
 import '../../widgets/custom_form_field.dart';
 import '../../widgets/widgets.dart';
+import '../main_screen/main_screen.dart';
+import '../signup_screen/signup_screen.dart';
 import 'login_screen_store.dart';
 
 class LoginScreen extends StatelessWidget {
+  static const routeName = '/login_screen';
   LoginScreen({Key? key}) : super(key: key);
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
@@ -74,7 +78,7 @@ class LoginScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.pushNamed(
                     context,
-                    '/password_recovery_screen',
+                    PasswordRecoveryScreen.routeName,
                   );
                 },
                 width: width,
@@ -92,7 +96,7 @@ class LoginScreen extends StatelessWidget {
                   if (success) {
                     Navigator.pushNamed(
                       context,
-                      '/bottom_bar',
+                      MainScreen.routeName,
                     );
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
@@ -121,7 +125,7 @@ class LoginScreen extends StatelessWidget {
                         ..onTap = () {
                           Navigator.pushNamed(
                             context,
-                            '/signup_screen',
+                            SignupScreen.routeName,
                           );
                         }),
                 ]),

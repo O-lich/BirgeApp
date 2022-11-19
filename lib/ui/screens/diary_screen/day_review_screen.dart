@@ -17,6 +17,7 @@ import '../../widgets/widgets.dart';
 import 'day_review_screen_store.dart';
 
 class DayReviewScreen extends StatelessWidget {
+  static const routeName = '/day_review_screen';
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
   final dayReviewController = TextEditingController();
   final userId = FirebaseAuth.instance.currentUser?.uid;

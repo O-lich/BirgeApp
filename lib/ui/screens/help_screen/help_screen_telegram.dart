@@ -1,4 +1,5 @@
 import 'package:birge_app/const/strings.dart';
+import 'package:birge_app/ui/screens/help_screen/help_screen_congrats.dart';
 import 'package:birge_app/ui/style/colors/app_colors.dart';
 import 'package:birge_app/ui/style/text_style/text_style.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ import '../../../domain/model/help_model.dart';
 import '../../widgets/widgets.dart';
 
 class HelpTelegramScreen extends StatelessWidget {
+  static const routeName = '/help_telegram_screen';
   HelpTelegramScreen({Key? key}) : super(key: key);
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
 
@@ -41,7 +43,7 @@ class HelpTelegramScreen extends StatelessWidget {
                   _launchUrl(urlTelegram);
                   Navigator.pushNamed(
                     context,
-                    '/help_congrats_screen',
+                    HelpCongratsScreen.routeName,
                   );
                 },
                 child: const Image(

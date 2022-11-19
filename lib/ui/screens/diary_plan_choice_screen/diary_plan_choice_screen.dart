@@ -5,10 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/strings.dart';
 import '../../style/text_style/text_style.dart';
+import '../../widgets/back_floating_button.dart';
 import '../../widgets/diary_screen_arguments.dart';
 import '../../widgets/widgets.dart';
+import '../diary_screen/diary_screen.dart';
+import '../task_screen/task_screen.dart';
 
 class DiaryPlanChoiceScreen extends StatefulWidget {
+  static const routeName = '/diary_plan_choice_screen';
   DiaryPlanChoiceScreen({Key? key}) : super(key: key);
 
   @override
@@ -35,7 +39,7 @@ class _DiaryPlanChoiceScreenState extends State<DiaryPlanChoiceScreen> {
         height: Device.height / 2,
         child: Column(
           children: [
-            spacerHeight(70),
+            spacerHeight(100),
             Text(greetingMessage(user?.displayName),
                 style: CommonTextStyle.mainHeader,
                 textAlign: TextAlign.center),
@@ -50,7 +54,7 @@ class _DiaryPlanChoiceScreenState extends State<DiaryPlanChoiceScreen> {
                     onPressed: () {
                       Navigator.pushNamed(
                         context,
-                        '/diary_screen',
+                        DiaryScreen.routeName,
                         arguments: DiaryScreenArguments(
                           date: args.date,
                         ),
@@ -65,7 +69,10 @@ class _DiaryPlanChoiceScreenState extends State<DiaryPlanChoiceScreen> {
                     onPressed: () {
                       Navigator.pushNamed(
                         context,
-                        '/task_screen',
+                        TaskScreen.routeName,
+                        arguments: DiaryScreenArguments(
+                          date: args.date,
+                        ),
                       );
                     },
                     width: width / 2,
@@ -78,6 +85,8 @@ class _DiaryPlanChoiceScreenState extends State<DiaryPlanChoiceScreen> {
           ],
         ),
       ),
+      floatingActionButton: const BackFloatingButton(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniStartTop,
     );
   }
 }

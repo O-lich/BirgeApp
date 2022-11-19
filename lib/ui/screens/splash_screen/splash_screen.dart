@@ -9,11 +9,13 @@ import '../../style/colors/app_colors.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
+
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen>  with TickerProviderStateMixin {
+class _SplashScreenState extends State<SplashScreen>
+    with TickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
 
@@ -31,9 +33,16 @@ class _SplashScreenState extends State<SplashScreen>  with TickerProviderStateMi
     _controller.forward();
     Timer(
         const Duration(seconds: 3),
-        () => Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (BuildContext context) => FirebaseAuth.instance.currentUser == null ? OnBoardingScreen() : BottomBarScreen())));
+        () => {
+              FirebaseAuth.instance.currentUser == null
+                  ? Navigator.pushNamed(context, OnBoardingScreen.routeName)
+                  : Navigator.pushNamed(
+                      context,
+                      '/main_screen',
+                    ),
+            });
   }
+
   @override
   dispose() {
     _controller.dispose();

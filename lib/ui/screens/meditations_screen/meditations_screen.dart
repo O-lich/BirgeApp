@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:birge_app/const/strings.dart';
+import 'package:birge_app/ui/screens/meditations_screen/single_meditation_screen.dart';
 import 'package:birge_app/ui/style/text_style/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -7,6 +8,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/app_images.dart';
 import '../../../data/repository/meditation_repository.dart';
 import '../../style/colors/app_colors.dart';
+import '../../widgets/back_floating_button.dart';
 import '../../widgets/cards_grid_view_widget.dart';
 import '../../widgets/meditations_screen_arguments.dart';
 import '../../widgets/widgets.dart';
@@ -15,6 +17,7 @@ import 'meditations_screen_store.dart';
 final meditationsTotalList = MeditationRepository.getMeditations;
 
 class MeditationsScreen extends StatefulWidget {
+  static const routeName = '/meditations_screen';
   MeditationsScreen({Key? key}) : super(key: key);
 
   @override
@@ -33,7 +36,7 @@ class _MeditationsScreenState extends State<MeditationsScreen> {
         child: SizedBox(
           child: Column(
             children: [
-              spacerHeight(50),
+              spacerHeight(80),
               Text(MeditationsScreenStrings.meditations,
                   style: CommonTextStyle.mainHeader,
                   textAlign: TextAlign.center),
@@ -82,7 +85,7 @@ class _MeditationsScreenState extends State<MeditationsScreen> {
                                 onPressed: () {
                                   Navigator.pushNamed(
                                     context,
-                                    '/single_meditation_screen',
+                                    SingleMeditationScreen.routeName,
                                     arguments: MeditationScreenArguments(
                                       link: meditationsTotalList[index].link,
                                       image: meditationsTotalList[index].image,
@@ -101,7 +104,7 @@ class _MeditationsScreenState extends State<MeditationsScreen> {
                                 onPressed: () {
                                   Navigator.pushNamed(
                                     context,
-                                    '/single_meditation_screen',
+                                    SingleMeditationScreen.routeName,
                                     arguments: MeditationScreenArguments(
                                       link: meditationsTotalList[index].link,
                                       image: meditationsTotalList[index].image,
@@ -121,6 +124,8 @@ class _MeditationsScreenState extends State<MeditationsScreen> {
           ),
         ),
       ),
+      floatingActionButton: const BackFloatingButton(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniStartTop,
     );
   }
 

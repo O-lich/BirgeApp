@@ -1,8 +1,7 @@
-import 'package:birge_app/domain/model/day_review_model.dart';
+import 'package:birge_app/ui/screens/diary_screen/day_review_screen.dart';
 import 'package:birge_app/ui/screens/diary_screen/diary_screen_store.dart';
 import 'package:birge_app/ui/style/text_style/text_style.dart';
 import 'package:birge_app/ui/widgets/diary_list_tile.dart';
-import 'package:birge_app/ui/widgets/diary_text_field.dart';
 import 'package:birge_app/ui/widgets/raiting_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -11,11 +10,11 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/strings.dart';
 import '../../../domain/model/diary_model.dart';
 import '../../style/colors/app_colors.dart';
-import '../../widgets/buttons.dart';
 import '../../widgets/diary_screen_arguments.dart';
 import '../../widgets/widgets.dart';
 
 class DiaryScreen extends StatefulWidget {
+  static const routeName = '/diary_screen';
   DiaryScreen({Key? key}) : super(key: key);
 
   @override
@@ -86,7 +85,7 @@ class _DiaryScreenState extends State<DiaryScreen> {
                     //print(_diaryScreenViewModel.reviewValue[0].text);
                     Navigator.pushNamed(
                       context,
-                      '/day_review_screen',
+                      DayReviewScreen.routeName,
                       arguments: DiaryScreenArguments(
                           date: _diaryScreenViewModel.args.date),
                     );
@@ -100,7 +99,7 @@ class _DiaryScreenState extends State<DiaryScreen> {
                     ),
                     child: (_diaryScreenViewModel.reviewValue.text.isNotEmpty)
                         ? Text(_diaryScreenViewModel.reviewValue.text)
-                        : Text(DiaryScreenStrings.hintText),
+                        : const Text(DiaryScreenStrings.hintText),
                   ),
                 ),
                 spacerHeight(20),

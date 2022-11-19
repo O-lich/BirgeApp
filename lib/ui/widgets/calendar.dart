@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-import '../../const/strings.dart';
 import 'diary_screen_arguments.dart';
 
 class Calendar extends StatelessWidget {
@@ -26,7 +24,8 @@ class Calendar extends StatelessWidget {
           Navigator.pushNamed(
             context,
             path,
-            arguments: DiaryScreenArguments(
+            arguments:
+            DiaryScreenArguments(
               date: value,
             ),
           );

@@ -16,6 +16,7 @@ import '../../../data/repository/meditation_repository.dart';
 import '../../widgets/meditations_screen_arguments.dart';
 
 class SingleMeditationScreen extends StatefulWidget {
+  static const routeName = '/single_meditation_screen';
   const SingleMeditationScreen({
     Key? key,
   }) : super(key: key);

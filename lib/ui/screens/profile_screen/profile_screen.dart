@@ -6,10 +6,12 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/strings.dart';
 import '../../style/colors/app_colors.dart';
 import '../../style/text_style/text_style.dart';
+import '../../widgets/back_floating_button.dart';
 import '../../widgets/buttons.dart';
 import '../../widgets/widgets.dart';
 
 class ProfileScreen extends StatelessWidget {
+  static const routeName = '/profile_screen';
   ProfileScreen({Key? key}) : super(key: key);
 
   User? user = FirebaseAuth.instance.currentUser;
@@ -26,7 +28,7 @@ class ProfileScreen extends StatelessWidget {
           width: Device.width,
           child: Column(
             children: [
-              spacerHeight(50),
+              spacerHeight(80),
               InkWell(
                 onTap: () {
                   _showDialog(context);
@@ -106,6 +108,8 @@ class ProfileScreen extends StatelessWidget {
           ),
         ),
       ),
+      floatingActionButton: const BackFloatingButton(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniStartTop,
     );
   }
 

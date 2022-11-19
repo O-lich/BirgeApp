@@ -1,6 +1,7 @@
 import 'package:birge_app/const/strings.dart';
 import 'package:birge_app/domain/model/help_model.dart';
 import 'package:birge_app/domain/model/help_signup_model.dart';
+import 'package:birge_app/ui/screens/help_screen/help_screen_telegram.dart';
 import 'package:birge_app/ui/style/colors/app_colors.dart';
 import 'package:birge_app/ui/widgets/buttons.dart';
 import 'package:birge_app/ui/widgets/help_screen_calender.dart';
@@ -11,6 +12,7 @@ import '../../style/text_style/text_style.dart';
 import '../../widgets/custom_form_field.dart';
 
 class HelpSignUpScreen extends StatelessWidget {
+  static const routeName = '/help_signup_screen';
   HelpSignUpScreen({Key? key}) : super(key: key);
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
   final _emailController = TextEditingController();
@@ -78,7 +80,7 @@ class HelpSignUpScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.pushNamed(
                         context,
-                        '/help_telegram_screen',
+                        HelpTelegramScreen.routeName,
                         arguments: HelpModel(
                             date: _calendar.date,
                             name: _nameController.text,

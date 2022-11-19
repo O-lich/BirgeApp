@@ -1,20 +1,20 @@
 import 'dart:math';
 import 'package:birge_app/const/strings.dart';
 import 'package:birge_app/data/repository/article_repository.dart';
-import 'package:birge_app/domain/model/article_model.dart';
+import 'package:birge_app/ui/screens/articles_screen/single_article_screen.dart';
 import 'package:birge_app/ui/widgets/articles_screen_arguments.dart';
-import 'package:birge_app/ui/widgets/articles_widget.dart';
-import 'package:birge_app/ui/widgets/buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/app_images.dart';
 import '../../style/text_style/text_style.dart';
+import '../../widgets/back_floating_button.dart';
 import '../../widgets/cards_grid_view_widget.dart';
 import '../../widgets/widgets.dart';
 
 final articlesTotalList = ArticleRepository.getArticles;
 
 class ArticlesScreen extends StatelessWidget {
+  static const routeName = '/articles_screen';
   ArticlesScreen({Key? key}) : super(key: key);
 
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
@@ -26,7 +26,7 @@ class ArticlesScreen extends StatelessWidget {
         child: SizedBox(
           child: Column(
             children: [
-              spacerHeight(50),
+              spacerHeight(80),
               Text(ArticlesScreenStrings.articles,
                   style: CommonTextStyle.mainHeader,
                   textAlign: TextAlign.center),
@@ -51,7 +51,7 @@ class ArticlesScreen extends StatelessWidget {
                         onPressed: () {
                           Navigator.pushNamed(
                             context,
-                            '/single_article_screen',
+                            SingleArticleScreen.routeName,
                             arguments: ArticleScreenArguments(
                                 title: articlesTotalList[index].title,
                                 content: articlesTotalList[index].content,
@@ -68,6 +68,8 @@ class ArticlesScreen extends StatelessWidget {
           ),
         ),
       ),
+      floatingActionButton: const BackFloatingButton(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniStartTop,
     );
   }
 

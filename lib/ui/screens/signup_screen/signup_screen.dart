@@ -8,8 +8,10 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/strings.dart';
 import '../../../firebase/firebase_helper.dart';
 import '../../widgets/custom_form_field.dart';
+import '../main_screen/main_screen.dart';
 
 class SignupScreen extends StatelessWidget {
+  static const routeName = '/signup_screen';
   SignupScreen({Key? key}) : super(key: key);
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
@@ -116,7 +118,7 @@ class SignupScreen extends StatelessWidget {
                       final success = await FirebaseHelper.signUp(
                           email, password, signUpViewModel.username);
                       if (success) {
-                        Navigator.pushReplacementNamed(context, '/bottom_bar');
+                        Navigator.pushReplacementNamed(context, MainScreen.routeName);
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(

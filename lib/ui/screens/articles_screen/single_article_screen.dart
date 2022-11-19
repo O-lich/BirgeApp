@@ -15,6 +15,7 @@ import '../../widgets/widgets.dart';
 import 'package:readmore/readmore.dart';
 
 class SingleArticleScreen extends StatelessWidget {
+  static const routeName = '/single_article_screen';
   final String image;
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
   final _favoriteIcon = SingleArticleScreenStore();
