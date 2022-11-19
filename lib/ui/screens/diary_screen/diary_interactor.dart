@@ -10,4 +10,6 @@ class DiaryInteractor {
       _repository.getUserNotesStream(date);
 
   void addNote(DiaryModel diaryNote) => _repository.create(diaryNote);
+
+  void deleteNote(DiaryModel diaryNote) => _repository.delete(diaryNote);
 }

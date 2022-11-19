@@ -5,6 +5,7 @@ import '../../../domain/model/diary_model.dart';
 
 class DiaryRepository {
   final _diary = <DiaryModel>[];
+
   List<DiaryModel> get diary => _diary;
 
   Stream<List<DiaryModel>> getUserNotesStream(String date) async* {
@@ -26,6 +27,7 @@ class DiaryRepository {
       }
     }
   }
+
   Future create(DiaryModel diaryNoteModel) async {
     final userId = diaryNoteModel.userId;
     final date = diaryNoteModel.date.toString().substring(0, 10);
@@ -35,5 +37,11 @@ class DiaryRepository {
       "subtitle": diaryNoteModel.subtitle
     });
   }
-}
 
+  Future<void> delete(DiaryModel diaryNoteModel) async {
+    final userId = FirebaseAuth.instance.currentUser?.uid;
+    final ref = FirebaseDatabase.instance
+        .ref("notes/$userId/${diaryNoteModel.date}/${diaryNoteModel.id}");
+    ref.remove();
+  }
+}

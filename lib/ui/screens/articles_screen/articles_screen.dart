@@ -26,7 +26,7 @@ class ArticlesScreen extends StatelessWidget {
         child: SizedBox(
           child: Column(
             children: [
-              spacerHeight(80),
+              spacerHeight(50),
               Text(ArticlesScreenStrings.articles,
                   style: CommonTextStyle.mainHeader,
                   textAlign: TextAlign.center),

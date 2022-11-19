@@ -110,6 +110,17 @@ mixin _$DiaryScreenStore on _DiaryScreenStore, Store {
   }
 
   @override
+  void deleteDiaryNote(DiaryModel diaryNote) {
+    final _$actionInfo = _$_DiaryScreenStoreActionController.startAction(
+        name: '_DiaryScreenStore.deleteDiaryNote');
+    try {
+      return super.deleteDiaryNote(diaryNote);
+    } finally {
+      _$_DiaryScreenStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic getReviewData() {
     final _$actionInfo = _$_DiaryScreenStoreActionController.startAction(
         name: '_DiaryScreenStore.getReviewData');

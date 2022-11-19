@@ -7,6 +7,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../domain/model/help_model.dart';
+import '../../widgets/back_floating_button.dart';
 import '../../widgets/widgets.dart';
 
 class HelpTelegramScreen extends StatelessWidget {
@@ -20,7 +21,7 @@ class HelpTelegramScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as HelpModel;
     final Uri urlTelegram = Uri.parse(
-        "whatsapp://send?phone=$phone&text=${Uri.parse("Добрый день! Меня зовут ${args.name}. Я бы хотел(а) записаться на ${args.date}. Мой телефон для связи ${args.phone}.")}");
+        "whatsapp://send?phone=$phone&text=${Uri.parse("Добрый день! Меня зовут ${args.name}. Я бы хотел(а) записаться на ${args.date}. Мой контакт для связи ${args.phone}.")}");
 
     return Scaffold(
       backgroundColor: backgroundColor,
@@ -56,6 +57,8 @@ class HelpTelegramScreen extends StatelessWidget {
           ),
         ),
       ),
+      floatingActionButton: const BackFloatingButton(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniStartTop,
     );
   }
 

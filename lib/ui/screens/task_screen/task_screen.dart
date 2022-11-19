@@ -7,12 +7,14 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/strings.dart';
 import '../../../domain/model/task_model.dart';
 import '../../style/colors/app_colors.dart';
+import '../../widgets/back_floating_button.dart';
 import '../../widgets/diary_screen_arguments.dart';
 import '../../widgets/widgets.dart';
 import '../diary_screen/diary_screen_store.dart';
 
 class TaskScreen extends StatefulWidget {
   static const routeName = '/task_screen';
+
   TaskScreen({Key? key}) : super(key: key);
 
   @override
@@ -48,8 +50,10 @@ class _TaskScreenState extends State<TaskScreen> {
                     style: CommonTextStyle.mainHeader,
                     textAlign: TextAlign.center),
                 spacerHeight(10),
-                Text(_diaryScreenViewModel.args.date.toString().substring(0, 10),
-                    style: CommonTextStyle.mainText, textAlign: TextAlign.left),
+                Text(
+                    _diaryScreenViewModel.args.date.toString().substring(0, 10),
+                    style: CommonTextStyle.mainText,
+                    textAlign: TextAlign.left),
                 spacerHeight(50),
                 ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
@@ -146,10 +150,7 @@ class _TaskScreenState extends State<TaskScreen> {
       return;
     }
     final taskNoteModel =
-        TaskModel.create(
-            userId: plan.userId,
-            date: plan.date,
-            text: plan.text);
+        TaskModel.create(userId: plan.userId, date: plan.date, text: plan.text);
     _taskScreenViewModel.addPlanNote(taskNoteModel);
   }
 

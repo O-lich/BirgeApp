@@ -27,7 +27,7 @@ class DiaryListTile extends StatelessWidget {
             ),
             title: Text(title),
             subtitle: Text(subtitle),
-            trailing: const Icon(Icons.arrow_forward_ios),
+            trailing: const Icon(Icons.delete_outline),
             onTap: onTap,
           ),
         ),

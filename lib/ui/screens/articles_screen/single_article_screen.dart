@@ -10,6 +10,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/strings.dart';
 import '../../../domain/model/favorite_icon_model.dart';
 import '../../style/text_style/text_style.dart';
+import '../../widgets/back_floating_button.dart';
 import '../../widgets/random_image.dart';
 import '../../widgets/widgets.dart';
 import 'package:readmore/readmore.dart';
@@ -75,6 +76,8 @@ class SingleArticleScreen extends StatelessWidget {
           ),
         ),
       ),
+      floatingActionButton: const BackFloatingButton(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniStartTop,
     );
   }
 }

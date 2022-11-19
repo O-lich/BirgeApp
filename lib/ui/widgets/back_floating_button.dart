@@ -1,3 +1,4 @@
+import 'package:birge_app/ui/style/colors/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class BackFloatingButton extends StatelessWidget {
@@ -8,6 +9,9 @@ class BackFloatingButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(10),
       child: FloatingActionButton(
+        backgroundColor: Colors.transparent,
+        foregroundColor: mainAppColor,
+        elevation: 0,
         heroTag: "back",
         mini: true,
         onPressed: () {

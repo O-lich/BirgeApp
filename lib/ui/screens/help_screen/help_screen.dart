@@ -9,6 +9,7 @@ import '../../widgets/widgets.dart';
 
 class HelpScreen extends StatelessWidget {
   static const routeName = '/help_screen';
+
   HelpScreen({Key? key}) : super(key: key);
 
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
@@ -76,17 +77,6 @@ class HelpScreen extends StatelessWidget {
                 },
                 child: Text(
                   HelpScreenStrings.sighUp,
-                  style: CommonTextStyle.blueButton,
-                ),
-              ),
-              spacerHeight(20),
-              BlueButton(
-                width: width / 2,
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text(
-                  HelpScreenStrings.goBack,
                   style: CommonTextStyle.blueButton,
                 ),
               ),

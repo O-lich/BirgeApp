@@ -36,7 +36,7 @@ class _MeditationsScreenState extends State<MeditationsScreen> {
         child: SizedBox(
           child: Column(
             children: [
-              spacerHeight(80),
+              spacerHeight(50),
               Text(MeditationsScreenStrings.meditations,
                   style: CommonTextStyle.mainHeader,
                   textAlign: TextAlign.center),

@@ -9,10 +9,12 @@ import 'package:birge_app/ui/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../style/text_style/text_style.dart';
+import '../../widgets/back_floating_button.dart';
 import '../../widgets/custom_form_field.dart';
 
 class HelpSignUpScreen extends StatelessWidget {
   static const routeName = '/help_signup_screen';
+
   HelpSignUpScreen({Key? key}) : super(key: key);
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
   final _emailController = TextEditingController();
@@ -35,8 +37,11 @@ class HelpSignUpScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   spacerHeight(50),
-                  Text(HelpScreenStrings.sighingUp,
-                      style: CommonTextStyle.secondHeader),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(HelpScreenStrings.sighingUp,
+                        style: CommonTextStyle.mainHeader),
+                  ),
                   spacerHeight(10),
                   Text(HelpScreenStrings.create,
                       style: CommonTextStyle.mainText),
@@ -94,18 +99,6 @@ class HelpSignUpScreen extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  spacerHeight(20),
-                  // BlueButton(
-                  //   onPressed: () {
-                  //     Navigator.of(context).pop();
-                  //   },
-                  //   width: width / 2,
-                  //   child: Text(
-                  //     HelpScreenStrings.goBack,
-                  //     style: CommonTextStyle.blueButton,
-                  //     textAlign: TextAlign.center,
-                  //   ),
-                  // ),
                 ],
               ),
               spacerHeight(20),
@@ -113,6 +106,8 @@ class HelpSignUpScreen extends StatelessWidget {
           ),
         ),
       ),
+      floatingActionButton: const BackFloatingButton(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniStartTop,
     );
   }
 }

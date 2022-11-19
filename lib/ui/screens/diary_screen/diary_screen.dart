@@ -10,11 +10,13 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/strings.dart';
 import '../../../domain/model/diary_model.dart';
 import '../../style/colors/app_colors.dart';
+import '../../widgets/back_floating_button.dart';
 import '../../widgets/diary_screen_arguments.dart';
 import '../../widgets/widgets.dart';
 
 class DiaryScreen extends StatefulWidget {
   static const routeName = '/diary_screen';
+
   DiaryScreen({Key? key}) : super(key: key);
 
   @override
@@ -74,7 +76,10 @@ class _DiaryScreenState extends State<DiaryScreen> {
                     itemCount: _diaryScreenViewModel.value.length,
                     itemBuilder: (_, index) {
                       return DiaryListTile(
-                          onTap: () {},
+                          onTap: () {
+                            _deleteDialog(
+                                context, _diaryScreenViewModel.value[index]);
+                          },
                           width: width,
                           title: _diaryScreenViewModel.value[index].title,
                           subtitle:
@@ -203,6 +208,59 @@ class _DiaryScreenState extends State<DiaryScreen> {
         ModalRoute.of(context)!.settings.arguments as DiaryScreenArguments;
     _diaryScreenViewModel.initDate(args);
   }
+
+  Future _deleteDialog(BuildContext context, DiaryModel diaryModel) =>
+      showGeneralDialog(
+          context: context,
+          barrierDismissible: false,
+          transitionBuilder: (context, a1, a2, widget) {
+            return Transform.scale(
+              scale: a1.value,
+              child: Opacity(
+                opacity: a1.value,
+                child: AlertDialog(
+                  shape: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16.0)),
+                  title: Text(
+                    "Удалить запись?",
+                    style: CommonTextStyle.dialog,
+                  ),
+                  actions: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text(
+                            "Не удалять",
+                            style: CommonTextStyle.transparentButton,
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            _diaryScreenViewModel.deleteDiaryNote(diaryModel);
+                            initDate();
+                            Navigator.pop(context);
+                          },
+                          child: Text(
+                            "Удалить",
+                            style: CommonTextStyle.transparentButton,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+          transitionDuration: const Duration(milliseconds: 200),
+          pageBuilder: (BuildContext context, Animation<double> animation,
+              Animation<double> secondaryAnimation) {
+            return const Text('data');
+          });
 
 // onPressedDayReviewWrite(DayReviewModel dayReview) {
 //   if (userId == null) {
