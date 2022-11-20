@@ -32,11 +32,13 @@ abstract class _TaskScreenStore with Store {
   }
 
   @action
-  void addPlanNote(TaskModel taskNote) =>
-      _taskInteractor.addNote(taskNote);
+  void addPlanNote(TaskModel taskNote) => _taskInteractor.addNote(taskNote);
 
   @action
-   changeIsChecked(TaskModel taskModel) {
-    taskModel.isChecked = !taskModel.isChecked;
-  }
+  void deletePlanNote(TaskModel taskNote) =>
+      _taskInteractor.deleteNote(taskNote);
+
+  @action
+  void updatePlanNote(TaskModel taskNote) =>
+      _taskInteractor.updateNote(taskNote);
 }

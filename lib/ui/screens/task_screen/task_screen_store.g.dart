@@ -77,11 +77,22 @@ mixin _$TaskScreenStore on _TaskScreenStore, Store {
   }
 
   @override
-  dynamic changeIsChecked(TaskModel taskModel) {
+  void deletePlanNote(TaskModel taskNote) {
     final _$actionInfo = _$_TaskScreenStoreActionController.startAction(
-        name: '_TaskScreenStore.changeIsChecked');
+        name: '_TaskScreenStore.deletePlanNote');
     try {
-      return super.changeIsChecked(taskModel);
+      return super.deletePlanNote(taskNote);
+    } finally {
+      _$_TaskScreenStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void updatePlanNote(TaskModel taskNote) {
+    final _$actionInfo = _$_TaskScreenStoreActionController.startAction(
+        name: '_TaskScreenStore.updatePlanNote');
+    try {
+      return super.updatePlanNote(taskNote);
     } finally {
       _$_TaskScreenStoreActionController.endAction(_$actionInfo);
     }

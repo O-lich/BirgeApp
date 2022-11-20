@@ -60,10 +60,26 @@ class _TaskScreenState extends State<TaskScreen> {
                     shrinkWrap: true,
                     itemCount: _taskScreenViewModel.taskValue.length,
                     itemBuilder: (_, index) {
-                      return CheckboxListTile(
-                          value: _taskScreenViewModel.taskValue[index].isChecked,
-                          onChanged: (bool? value) =>
-                              _taskScreenViewModel.changeIsChecked(_taskScreenViewModel.taskValue[index]),
+                      return ListTile(
+                          leading: IconButton(
+                            icon: (_taskScreenViewModel
+                                    .taskValue[index].isChecked)
+                                ? Icon(Icons.check_box, color: mainAppColor)
+                                : Icon(Icons.check_box_outline_blank),
+                            onPressed: () {
+                              _taskScreenViewModel.updatePlanNote(
+                                  _taskScreenViewModel.taskValue[index]);
+                              initDate();
+                            },
+                          ),
+                          trailing: IconButton(
+                            icon: Icon(Icons.delete),
+                            onPressed: () {
+                              _taskScreenViewModel.deletePlanNote(
+                                  _taskScreenViewModel.taskValue[index]);
+                              initDate();
+                            },
+                          ),
                           title:
                               Text(_taskScreenViewModel.taskValue[index].text));
                     }),
@@ -106,12 +122,6 @@ class _TaskScreenState extends State<TaskScreen> {
                   content: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      // TextField(
-                      //   controller: titleController,
-                      //   decoration:
-                      //   const InputDecoration(
-                      //       hintText: TaskScreenStrings.title),
-                      // ),
                       TextField(
                         keyboardType: TextInputType.multiline,
                         maxLines: null,

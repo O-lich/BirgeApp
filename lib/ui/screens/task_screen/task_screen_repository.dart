@@ -25,6 +25,7 @@ class TaskRepository {
       }
     }
   }
+
   Future create(TaskModel taskNoteModel) async {
     final userId = taskNoteModel.userId;
     final date = taskNoteModel.date.toString().substring(0, 10);
@@ -32,6 +33,23 @@ class TaskRepository {
     await ref.push().set(<String, Object>{
       "text": taskNoteModel.text,
       "isChecked": taskNoteModel.isChecked
+    });
+  }
+
+  Future<void> delete(TaskModel taskNoteModel) async {
+    final userId = FirebaseAuth.instance.currentUser?.uid;
+    final ref = FirebaseDatabase.instance
+        .ref("plans/$userId/${taskNoteModel.date}/${taskNoteModel.id}");
+    ref.remove();
+  }
+
+  Future update(TaskModel taskNoteModel) async {
+    final userId = FirebaseAuth.instance.currentUser?.uid;
+    final ref = FirebaseDatabase.instance
+        .ref("plans/$userId/${taskNoteModel.date}/${taskNoteModel.id}");
+    await ref.set(<String, Object>{
+      "text": taskNoteModel.text,
+      "isChecked": !taskNoteModel.isChecked
     });
   }
 }

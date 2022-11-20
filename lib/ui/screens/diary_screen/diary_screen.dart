@@ -76,10 +76,14 @@ class _DiaryScreenState extends State<DiaryScreen> {
                     itemCount: _diaryScreenViewModel.value.length,
                     itemBuilder: (_, index) {
                       return DiaryListTile(
-                          onTap: () {
-                            _deleteDialog(
-                                context, _diaryScreenViewModel.value[index]);
-                          },
+                          trailing: IconButton(
+                            icon: Icon(Icons.delete),
+                            onPressed: () {
+                              _deleteDialog(
+                                  context, _diaryScreenViewModel.value[index]);
+                              initDate();
+                            },
+                          ),
                           width: width,
                           title: _diaryScreenViewModel.value[index].title,
                           subtitle:
