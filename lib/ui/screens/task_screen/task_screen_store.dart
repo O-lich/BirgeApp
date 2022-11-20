@@ -16,9 +16,6 @@ abstract class _TaskScreenStore with Store {
   @observable
   List<TaskModel> taskValue = [];
 
-  @observable
-  bool isChecked = false;
-
   @action
   void initDate(DiaryScreenArguments argsFromScreen) {
     args = argsFromScreen;
@@ -39,7 +36,7 @@ abstract class _TaskScreenStore with Store {
       _taskInteractor.addNote(taskNote);
 
   @action
-   changeIsChecked() {
-    isChecked = !isChecked;
+   changeIsChecked(TaskModel taskModel) {
+    taskModel.isChecked = !taskModel.isChecked;
   }
 }

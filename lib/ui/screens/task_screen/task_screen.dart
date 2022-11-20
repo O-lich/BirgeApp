@@ -61,9 +61,9 @@ class _TaskScreenState extends State<TaskScreen> {
                     itemCount: _taskScreenViewModel.taskValue.length,
                     itemBuilder: (_, index) {
                       return CheckboxListTile(
-                          value: _taskScreenViewModel.isChecked,
+                          value: _taskScreenViewModel.taskValue[index].isChecked,
                           onChanged: (bool? value) =>
-                              _taskScreenViewModel.changeIsChecked(),
+                              _taskScreenViewModel.changeIsChecked(_taskScreenViewModel.taskValue[index]),
                           title:
                               Text(_taskScreenViewModel.taskValue[index].text));
                     }),
@@ -128,7 +128,8 @@ class _TaskScreenState extends State<TaskScreen> {
                             userId: userId,
                             text: textController.text,
                             id: '',
-                            date: date);
+                            date: date,
+                            isChecked: false);
                         onPressed(taskNote);
                         Navigator.pop(context);
                       },

@@ -16,9 +16,10 @@ class TaskRepository {
         map.forEach((key, value) {
           plans.add(TaskModel(
               userId: userId,
-              text: value,
+              text: value['text'],
               id: key,
-              date: date));
+              date: date,
+              isChecked: value['isChecked']));
         });
         yield plans;
       }
@@ -28,6 +29,9 @@ class TaskRepository {
     final userId = taskNoteModel.userId;
     final date = taskNoteModel.date.toString().substring(0, 10);
     final ref = FirebaseDatabase.instance.ref("plans/$userId/$date");
-    await ref.push().set(taskNoteModel.text);
+    await ref.push().set(<String, Object>{
+      "text": taskNoteModel.text,
+      "isChecked": taskNoteModel.isChecked
+    });
   }
 }

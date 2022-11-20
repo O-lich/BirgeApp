@@ -40,22 +40,6 @@ mixin _$TaskScreenStore on _TaskScreenStore, Store {
     });
   }
 
-  late final _$isCheckedAtom =
-      Atom(name: '_TaskScreenStore.isChecked', context: context);
-
-  @override
-  bool get isChecked {
-    _$isCheckedAtom.reportRead();
-    return super.isChecked;
-  }
-
-  @override
-  set isChecked(bool value) {
-    _$isCheckedAtom.reportWrite(value, super.isChecked, () {
-      super.isChecked = value;
-    });
-  }
-
   late final _$_TaskScreenStoreActionController =
       ActionController(name: '_TaskScreenStore', context: context);
 
@@ -93,11 +77,11 @@ mixin _$TaskScreenStore on _TaskScreenStore, Store {
   }
 
   @override
-  dynamic changeIsChecked() {
+  dynamic changeIsChecked(TaskModel taskModel) {
     final _$actionInfo = _$_TaskScreenStoreActionController.startAction(
         name: '_TaskScreenStore.changeIsChecked');
     try {
-      return super.changeIsChecked();
+      return super.changeIsChecked(taskModel);
     } finally {
       _$_TaskScreenStoreActionController.endAction(_$actionInfo);
     }
@@ -107,8 +91,7 @@ mixin _$TaskScreenStore on _TaskScreenStore, Store {
   String toString() {
     return '''
 args: ${args},
-taskValue: ${taskValue},
-isChecked: ${isChecked}
+taskValue: ${taskValue}
     ''';
   }
 }
