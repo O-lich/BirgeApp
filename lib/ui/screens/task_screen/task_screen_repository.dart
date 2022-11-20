@@ -25,7 +25,6 @@ class TaskRepository {
       }
     }
   }
-
   Future create(TaskModel taskNoteModel) async {
     final userId = taskNoteModel.userId;
     final date = taskNoteModel.date.toString().substring(0, 10);

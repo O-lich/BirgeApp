@@ -15,7 +15,7 @@ class DayReviewRepository {
       final map = event.snapshot.value as Map<dynamic, dynamic>?;
       if (map != null) {
         DayReviewModel dailyReview =
-        DayReviewModel(text: '', id: '', date: '', userId: '');
+            DayReviewModel(text: '', id: '', date: '', userId: '');
         map.forEach((key, value) {
           dailyReview =
               DayReviewModel(userId: userId, text: value, id: key, date: date);
@@ -30,5 +30,12 @@ class DayReviewRepository {
     final date = dayReviewModel.date.toString().substring(0, 10);
     final ref = FirebaseDatabase.instance.ref("review/$userId/$date");
     await ref.push().set(dayReviewModel.text);
+  }
+
+  Future<void> update(DayReviewModel dayReviewModel) async {
+    final userId = FirebaseAuth.instance.currentUser?.uid;
+    final ref = FirebaseDatabase.instance
+        .ref("notes/$userId/${dayReviewModel.date}/${dayReviewModel.id}");
+    await ref.set(dayReviewModel.text);
   }
 }

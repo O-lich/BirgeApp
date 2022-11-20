@@ -121,13 +121,27 @@ class _DiaryScreenState extends State<DiaryScreen> {
           }),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _showDialog(context, onPressedDiaryNoteWrite,
-              _diaryScreenViewModel.args.date.toString().substring(0, 10));
-        },
-        child: const Icon(Icons.add),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const BackFloatingButton(),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 50),
+            child: FloatingActionButton(
+              onPressed: () {
+                _showDialog(
+                    context,
+                    onPressedDiaryNoteWrite,
+                    _diaryScreenViewModel.args.date
+                        .toString()
+                        .substring(0, 10));
+              },
+              child: const Icon(Icons.add),
+            ),
+          ),
+        ],
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniStartTop,
     );
   }
 

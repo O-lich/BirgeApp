@@ -19,4 +19,8 @@ abstract class _DayReviewScreenStore with Store {
   @action
   void addDayReview(DayReviewModel dayReview) =>
       _dayReviewInteractor.addNote(dayReview);
+
+  @action
+  void updateDayReview(DayReviewModel dayReview) =>
+      _dayReviewInteractor.updateNote(dayReview);
 }

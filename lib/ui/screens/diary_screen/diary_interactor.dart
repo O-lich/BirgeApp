@@ -12,4 +12,6 @@ class DiaryInteractor {
   void addNote(DiaryModel diaryNote) => _repository.create(diaryNote);
 
   void deleteNote(DiaryModel diaryNote) => _repository.delete(diaryNote);
+
+  void updateNote(DiaryModel diaryNote) => _repository.update(diaryNote);
 }

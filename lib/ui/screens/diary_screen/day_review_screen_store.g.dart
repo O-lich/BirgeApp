@@ -40,6 +40,17 @@ mixin _$DayReviewScreenStore on _DayReviewScreenStore, Store {
   }
 
   @override
+  void updateDayReview(DayReviewModel dayReview) {
+    final _$actionInfo = _$_DayReviewScreenStoreActionController.startAction(
+        name: '_DayReviewScreenStore.updateDayReview');
+    try {
+      return super.updateDayReview(dayReview);
+    } finally {
+      _$_DayReviewScreenStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 reviewValue: ${reviewValue}

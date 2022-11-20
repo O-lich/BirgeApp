@@ -12,4 +12,7 @@ class DayReviewInteractor {
 
   void addNote(DayReviewModel dayReviewNote) =>
       _repository.create(dayReviewNote);
+
+  void updateNote(DayReviewModel dayReviewNote) =>
+      _repository.update(dayReviewNote);
 }

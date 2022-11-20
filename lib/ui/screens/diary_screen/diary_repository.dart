@@ -44,4 +44,14 @@ class DiaryRepository {
         .ref("notes/$userId/${diaryNoteModel.date}/${diaryNoteModel.id}");
     ref.remove();
   }
+
+  Future<void> update(DiaryModel diaryNoteModel) async {
+    final userId = FirebaseAuth.instance.currentUser?.uid;
+    final ref = FirebaseDatabase.instance
+        .ref("notes/$userId/${diaryNoteModel.date}/${diaryNoteModel.id}");
+    await ref.set(<String, Object>{
+      "title": diaryNoteModel.title,
+      "subtitle": diaryNoteModel.subtitle
+    });
+  }
 }

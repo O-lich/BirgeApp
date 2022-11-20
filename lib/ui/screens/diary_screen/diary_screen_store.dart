@@ -57,6 +57,10 @@ abstract class _DiaryScreenStore with Store {
       _diaryInteractor.deleteNote(diaryNote);
 
   @action
+  void updateDiaryNote(DiaryModel diaryNote) =>
+      _diaryInteractor.updateNote(diaryNote);
+
+  @action
   getReviewData() {
     _dayReviewInteractor
         .getStreamDayReview(args.date.toString().substring(0, 10))

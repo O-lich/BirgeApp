@@ -121,6 +121,17 @@ mixin _$DiaryScreenStore on _DiaryScreenStore, Store {
   }
 
   @override
+  void updateDiaryNote(DiaryModel diaryNote) {
+    final _$actionInfo = _$_DiaryScreenStoreActionController.startAction(
+        name: '_DiaryScreenStore.updateDiaryNote');
+    try {
+      return super.updateDiaryNote(diaryNote);
+    } finally {
+      _$_DiaryScreenStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic getReviewData() {
     final _$actionInfo = _$_DiaryScreenStoreActionController.startAction(
         name: '_DiaryScreenStore.getReviewData');

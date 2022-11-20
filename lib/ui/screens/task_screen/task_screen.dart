@@ -44,6 +44,7 @@ class _TaskScreenState extends State<TaskScreen> {
           width: Device.width,
           child: Observer(builder: (_) {
             return Column(
+              mainAxisSize: MainAxisSize.max,
               children: [
                 spacerHeight(50),
                 Text(TaskScreenStrings.plan,
@@ -63,7 +64,7 @@ class _TaskScreenState extends State<TaskScreen> {
                       return ListTile(
                           leading: IconButton(
                             icon: (_taskScreenViewModel
-                                    .taskValue[index].isChecked)
+                                .taskValue[index].isChecked)
                                 ? Icon(Icons.check_box, color: mainAppColor)
                                 : Icon(Icons.check_box_outline_blank),
                             onPressed: () {
@@ -89,15 +90,21 @@ class _TaskScreenState extends State<TaskScreen> {
           }),
         ),
       ),
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(bottom: 100),
-        child: FloatingActionButton(
-          onPressed: () => _showDialog(context, onPressedTaskNoteWrite,
-              _diaryScreenViewModel.args.date.toString().substring(0, 10)),
-          child: const Icon(Icons.add),
-        ),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const BackFloatingButton(),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 130),
+            child: FloatingActionButton(
+              onPressed: () => _showDialog(context, onPressedTaskNoteWrite,
+                  _diaryScreenViewModel.args.date.toString().substring(0, 10)),
+              child: const Icon(Icons.add),
+            ),
+          ),
+        ],
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniStartTop,
     );
   }
 
