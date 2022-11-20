@@ -51,8 +51,32 @@ class PasswordRecoveryScreen extends StatelessWidget {
                   spacerHeight(20),
                   BlueButton(
                     onPressed: () async {
-                        _showDialog(context);
-                    },
+                      if (FirebaseHelper.resetPassword(
+                                _emailController.text) ==
+                            'success') {
+                          _showDialog(context);
+                        } else if (FirebaseHelper.resetPassword(
+                                _emailController.text) ==
+                            'auth/invalid-email') {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              backgroundColor: Colors.red.shade300,
+                              content: const Text(
+                                  'Проверьте правильность введённого email'),
+                            ),
+                          );
+                        } else if (FirebaseHelper.resetPassword(
+                                _emailController.text) ==
+                            'auth/user-not-found') {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              backgroundColor: Colors.red.shade300,
+                              content: const Text(
+                                  'Пользователь с таким email не зарегистрирован'),
+                            ),
+                          );
+                        }
+                      },
                     width: width,
                     child: Text(
                       PasswordRecoveryScreenStrings.getLink,

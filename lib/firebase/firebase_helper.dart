@@ -43,16 +43,19 @@ class FirebaseHelper {
     await FirebaseAuth.instance.signOut();
   }
 
-  static Future resetPassword(String email) async {
+  static Future<String?> resetPassword(String email) async {
     try {
       await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'auth/invalid-email') {
         print('Неверный e-mail');
-      } else if (e.code == 'auth/user-not-found'){
+        return e.code;
+      } else if (e.code == 'auth/user-not-found') {
         print('Такого пользователя не существует');
+        return e.code;
       }
       print(e);
+      return 'success';
     }
   }
 }
