@@ -87,7 +87,7 @@ class PasswordRecoveryScreen extends StatelessWidget {
                   spacerHeight(20),
                 ],
               ),
-            )
+            ),
           ),
         ),
       ),

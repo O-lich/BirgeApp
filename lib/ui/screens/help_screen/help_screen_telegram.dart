@@ -12,6 +12,7 @@ import '../../widgets/widgets.dart';
 
 class HelpTelegramScreen extends StatelessWidget {
   static const routeName = '/help_telegram_screen';
+
   HelpTelegramScreen({Key? key}) : super(key: key);
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
 
@@ -42,10 +43,12 @@ class HelpTelegramScreen extends StatelessWidget {
               InkWell(
                 onTap: () {
                   _launchUrl(urlTelegram);
-                  Navigator.pushNamed(
-                    context,
-                    HelpCongratsScreen.routeName,
-                  );
+                  Future.delayed(Duration(seconds: 2), () {
+                    Navigator.pushNamed(
+                      context,
+                      HelpCongratsScreen.routeName,
+                    );
+                  });
                 },
                 child: const Image(
                   height: 80,
