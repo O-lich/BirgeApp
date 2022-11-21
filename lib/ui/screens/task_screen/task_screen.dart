@@ -95,7 +95,7 @@ class _TaskScreenState extends State<TaskScreen> {
         children: [
           const BackFloatingButton(),
           Padding(
-            padding: const EdgeInsets.only(bottom: 130),
+            padding: const EdgeInsets.only(bottom: 50),
             child: FloatingActionButton(
               onPressed: () => _showDialog(context, onPressedTaskNoteWrite,
                   _diaryScreenViewModel.args.date.toString().substring(0, 10)),
