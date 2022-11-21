@@ -10,6 +10,7 @@ import '../../widgets/custom_form_field.dart';
 
 class PasswordRecoveryScreen extends StatelessWidget {
   static const routeName = '/password_recovery_screen';
+
   PasswordRecoveryScreen({Key? key}) : super(key: key);
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
   final _emailController = TextEditingController();
@@ -51,32 +52,20 @@ class PasswordRecoveryScreen extends StatelessWidget {
                   spacerHeight(20),
                   BlueButton(
                     onPressed: () async {
-                      if (FirebaseHelper.resetPassword(
-                                _emailController.text) ==
-                            'success') {
-                          _showDialog(context);
-                        } else if (FirebaseHelper.resetPassword(
-                                _emailController.text) ==
-                            'auth/invalid-email') {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              backgroundColor: Colors.red.shade300,
-                              content: const Text(
-                                  'Проверьте правильность введённого email'),
-                            ),
-                          );
-                        } else if (FirebaseHelper.resetPassword(
-                                _emailController.text) ==
-                            'auth/user-not-found') {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              backgroundColor: Colors.red.shade300,
-                              content: const Text(
-                                  'Пользователь с таким email не зарегистрирован'),
-                            ),
-                          );
-                        }
-                      },
+                      var response = await FirebaseHelper.resetPassword(
+                          _emailController.text);
+                      if (response.toString() == 'success') {
+                        _showDialog(context);
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            backgroundColor: Colors.red.shade300,
+                            content: const Text(
+                                'Пользователь с таким email не зарегистрирован. \nПроверьте правильность введённого email.'),
+                          ),
+                        );
+                      }
+                    },
                     width: width,
                     child: Text(
                       PasswordRecoveryScreenStrings.getLink,
