@@ -10,6 +10,7 @@ import '../../style/text_style/text_style.dart';
 import '../../widgets/back_floating_button.dart';
 import '../../widgets/buttons.dart';
 import '../../widgets/widgets.dart';
+import '../login_screen/login_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   static const routeName = '/profile_screen';
@@ -69,7 +70,7 @@ class ProfileScreen extends StatelessWidget {
                         const SizedBox(width: 10),
                         Expanded(
                           child: Text(
-                            'Избранные статьи',
+                            ProfileScreenStrings.favoriteArticles,
                             style: CommonTextStyle.blueButton,
                           ),
                         ),
@@ -89,7 +90,7 @@ class ProfileScreen extends StatelessWidget {
                         const SizedBox(width: 10),
                         Expanded(
                           child: Text(
-                            'Избранные медитации',
+                            ProfileScreenStrings.favoriteMeditations,
                             style: CommonTextStyle.blueButton,
                           ),
                         ),
@@ -183,7 +184,7 @@ class ProfileScreen extends StatelessWidget {
                         FirebaseHelper.signOut();
                         Navigator.pushNamed(
                           context,
-                          '/login_screen',
+                          LoginScreen.routeName,
                         );
                       },
                       child: Text(

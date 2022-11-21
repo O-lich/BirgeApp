@@ -197,6 +197,11 @@ abstract class PasswordRecoveryScreenStrings {
   static const okButton = 'Ок';
 }
 
+astract class ProfileScreenStrings {
+  static const favoriteArticles = 'Избранные статьи';
+  static const favoriteMeditations = 'Избранные медитации';
+}
+
 // const jsonMeditations = [
 //   '{ "link": "https://cdn.pixabay.com/audio/2022/10/30/audio_ba02fef115.mp3", "image": "https://cdn.pixabay.com/audio/2022/10/30/16-30-47-204_200x200.jpg","title": "Relaxing Music Vol.1","author": "RelaxingTime"}',
 //   '{"link": "https://cdn.pixabay.com/audio/2022/09/03/audio_7e44a45464.mp3","image": "https://cdn.pixabay.com/audio/2022/09/03/04-26-16-554_200x200.png","title": "Endless by PrabajithK","author": "MildRelaxation"}'
