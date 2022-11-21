@@ -1,12 +1,9 @@
 import 'dart:io';
 import 'package:birge_app/firebase/firebase_helper.dart';
 import 'package:birge_app/ui/screens/profile_screen/profile_screen_store.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import '../../../const/strings.dart';
 import '../../style/colors/app_colors.dart';
 import '../../style/text_style/text_style.dart';
