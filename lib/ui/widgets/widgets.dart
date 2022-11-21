@@ -44,21 +44,10 @@ Widget socialCircles(BuildContext context) {
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
       SocialNetworkButton.socialButtonCircle(
-          googleColor, FontAwesomeIcons.googlePlusG,
+          googleColor, FontAwesomeIcons.google,
           iconColor: Colors.white, onTap: () {
         Authentication.signinWithGoogle(context: context);
       }),
-      const SizedBox(
-        width: 20,
-      ),
-      SocialNetworkButton.socialButtonCircle(appleColor, FontAwesomeIcons.apple,
-          iconColor: Colors.white, onTap: () {}),
-      const SizedBox(
-        width: 20,
-      ),
-      SocialNetworkButton.socialButtonCircle(
-          facebookColor, FontAwesomeIcons.facebookF,
-          iconColor: Colors.white, onTap: () {}),
     ],
   );
 }

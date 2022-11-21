@@ -59,7 +59,7 @@ class ProfileScreen extends StatelessWidget {
                 spacerHeight(50),
                 Text(_profileViewModel.name, style: CommonTextStyle.mainHeader, textAlign: TextAlign.center),
                 spacerHeight(50),
-                Padding(
+                /*Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: FavoriteButton(
                     onPressed: () {},
@@ -97,8 +97,8 @@ class ProfileScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                ),
-                spacerHeight(50),
+                ),*/
+                spacerHeight(300),
                 BlueButton(
                   width: width / 2,
                   onPressed: () {

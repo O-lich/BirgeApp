@@ -101,10 +101,11 @@ class _DiaryScreenState extends State<DiaryScreen> {
                   },
                   child: Container(
                     width: width,
-                    padding: EdgeInsets.all(10),
+                    height: width / 8,
+                    padding: EdgeInsets.all((width / 8) / 3),
                     decoration: const BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.elliptical(30, 30)),
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
                     ),
                     child: (_diaryScreenViewModel.reviewValue.text.isNotEmpty)
                         ? Text(_diaryScreenViewModel.reviewValue.text)

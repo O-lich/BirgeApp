@@ -130,12 +130,10 @@ class LoginScreen extends StatelessWidget {
                         }),
                 ]),
               ),
-              spacerHeight(20),
               SizedBox(
                 height: 100,
                 child: Column(
                   children: [
-                    const Text(LoginScreenStrings.continueWith),
                     Expanded(flex: 3, child: socialCircles(context)),
                   ],
                 ),
