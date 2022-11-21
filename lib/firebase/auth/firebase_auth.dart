@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../../ui/screens/bottom_bar_screen/bottom_bar_screen.dart';
+import '../../ui/screens/main_screen/main_screen.dart';
 
 class Authentication {
 
@@ -11,8 +12,10 @@ class Authentication {
 
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => BottomBarScreen()));
+      Navigator.pushNamed(
+        context,
+        MainScreen.routeName,
+      );
     }
   }
 
@@ -38,8 +41,10 @@ class Authentication {
     try {
       final UserCredential userCredential = await auth.signInWithCredential(credential);
       final user = userCredential.user;
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => BottomBarScreen()));
+      Navigator.pushNamed(
+        context,
+        MainScreen.routeName,
+      );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'account-exists-with-different-credential') {
         print('account exist with different credential');

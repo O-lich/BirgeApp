@@ -17,6 +17,7 @@ class BottomBarScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return bottomBar();
     return Container(
       child: Observer(builder: (_) {
           return Positioned(
@@ -25,7 +26,7 @@ class BottomBarScreen extends StatelessWidget {
       }),
     );
   }
-    int getIndexByPagePath(String path) {
+    int getIndexByPagePath(String? path) {
        switch (path) {
         case  ArticlesScreen.routeName:
           return 1;
@@ -41,7 +42,7 @@ class BottomBarScreen extends StatelessWidget {
       height: 88,
       child: Builder(builder: (context) {
         final currentPath = ModalRoute.of(context)!.settings.name;
-        final data = getIndexByPagePath(currentPath!);
+        final data = getIndexByPagePath(currentPath);
         return BottomNavigationBar(
             showUnselectedLabels: true,
             backgroundColor: Colors.white,
@@ -124,14 +125,12 @@ class BottomBarScreen extends StatelessWidget {
   }
 
   menuItemClicked(BuildContext context, int index) {
-
     _bottomBarViewModel.changeIndex(index);
-
     switch (index) {
       case 0:
         Navigator.pushNamed(
           context,
-          '/main_screen',
+          MainScreen.routeName,
         );
         break;
       case 1:
@@ -143,13 +142,13 @@ class BottomBarScreen extends StatelessWidget {
       case 2:
         Navigator.pushNamed(
           context,
-          '/profile_screen',
+          ProfileScreen.routeName,
         );
         break;
       case 3:
         Navigator.pushNamed(
           context,
-          '/task_screen',
+          TaskScreen.routeName,
           arguments: DiaryScreenArguments(
             date: DateTime.now(),
           ),

@@ -7,17 +7,9 @@ class AuthorizedLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-        children: [
-          body,
-          Positioned(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                BottomBarScreen().bottomBar()
-              ],
-            ),
-          ),
-        ],);
+    return Scaffold(
+      body: body,
+      bottomNavigationBar: BottomBarScreen()
+    );
   }
 }
