@@ -62,6 +62,7 @@ class SingleArticleScreen extends StatelessWidget {
                 spacerHeight(20),
                 ReadMoreText(args.content,
                     trimLines: 3,
+                    textAlign: TextAlign.justify,
                     colorClickableText: mainAppColor,
                     moreStyle: CommonTextStyle.transparentButton,
                     lessStyle: CommonTextStyle.transparentButton,
