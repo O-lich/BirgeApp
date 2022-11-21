@@ -5,7 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:path/path.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import '../../../const/strings.dart';
@@ -14,7 +13,6 @@ import '../../style/text_style/text_style.dart';
 import '../../widgets/back_floating_button.dart';
 import '../../widgets/buttons.dart';
 import '../../widgets/widgets.dart';
-import 'package:image_picker/image_picker.dart';
 
 class ProfileScreen extends StatelessWidget {
   static const routeName = '/profile_screen';
@@ -26,9 +24,6 @@ class ProfileScreen extends StatelessWidget {
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
   firebase_storage.FirebaseStorage storage =
       firebase_storage.FirebaseStorage.instance;
-  File? _photo;
-
-  // UploadTask uploadTask;
   final _profileViewModel = ProfileScreenStore();
 
   @override
