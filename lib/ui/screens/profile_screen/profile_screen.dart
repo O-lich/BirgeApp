@@ -138,39 +138,6 @@ class ProfileScreen extends StatelessWidget {
                   onPressed: () async {
                     imgFromGallery();
                     Navigator.pop(context);
-                    _saveDialog(context);
-                  },
-                  child: const Text(TaskScreenStrings.add),
-                )
-              ],
-            ),
-          ),
-        );
-      },
-      transitionDuration: const Duration(milliseconds: 200),
-      pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-        return const Text('data');
-      });
-
-  Future _saveDialog(BuildContext context) => showGeneralDialog(
-      context: context,
-      barrierDismissible: false,
-      transitionBuilder: (context, a1, a2, widget) {
-        return Transform.scale(
-          scale: a1.value,
-          child: Opacity(
-            opacity: a1.value,
-            child: AlertDialog(
-              shape: OutlineInputBorder(borderRadius: BorderRadius.circular(16.0)),
-              title: Text(
-                'Сохранить эту картинку?',
-                style: CommonTextStyle.secondHeader,
-              ),
-              actions: [
-                TextButton(
-                  onPressed: () async {
-                    _profileViewModel.uploadFile();
-                    Navigator.pop(context);
                   },
                   child: const Text(TaskScreenStrings.add),
                 )
@@ -238,7 +205,5 @@ class ProfileScreen extends StatelessWidget {
 
   Future imgFromGallery() async {
     _profileViewModel.pickImage();
-
-    //_profileViewModel.pickedFileUpload(uploadFile, _profileViewModel.imageFile);
   }
 }

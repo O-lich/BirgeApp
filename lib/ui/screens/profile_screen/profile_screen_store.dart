@@ -41,25 +41,25 @@ abstract class _ProfileScreenStore with Store {
     }
   }
 
-  @action
-  Future uploadFile() async {
-    final userId = FirebaseAuth.instance.currentUser?.uid;
-    final file = File(imageFile!.path);
-    final destination = 'files/$userId';
-    try {
-      final ref = FirebaseStorage.instance.ref().child(destination);
-      UploadTask uploadTask = ref.putFile(file);
-      final snapshot = await uploadTask.whenComplete(() {});
-      downloadImage = await snapshot.ref.getDownloadURL();
-    } catch (e) {
-      print('error occurred $e');
-    }
-  }
+  // @action
+  // Future uploadFile() async {
+  //   final userId = FirebaseAuth.instance.currentUser?.uid;
+  //   final file = File(imageFile!.path);
+  //   final destination = 'files/$userId';
+  //   try {
+  //     final ref = FirebaseStorage.instance.ref().child(destination);
+  //     UploadTask uploadTask = ref.putFile(file);
+  //     final snapshot = await uploadTask.whenComplete(() {});
+  //     downloadImage = await snapshot.ref.getDownloadURL();
+  //   } catch (e) {
+  //     print('error occurred $e');
+  //   }
+  // }
 
   void listenChanges() {
     _repository.getImageUrl().listen((imageUrl) {
-        if (imageUrl == null) return;
-        downloadImage = imageUrl;
+      if (imageUrl == null) return;
+      downloadImage = imageUrl;
     });
   }
 }

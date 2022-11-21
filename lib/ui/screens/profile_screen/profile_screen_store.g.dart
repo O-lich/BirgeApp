@@ -49,14 +49,6 @@ mixin _$ProfileScreenStore on _ProfileScreenStore, Store {
     return _$pickImageAsyncAction.run(() => super.pickImage());
   }
 
-  late final _$uploadFileAsyncAction =
-      AsyncAction('_ProfileScreenStore.uploadFile', context: context);
-
-  @override
-  Future<dynamic> uploadFile() {
-    return _$uploadFileAsyncAction.run(() => super.uploadFile());
-  }
-
   @override
   String toString() {
     return '''
