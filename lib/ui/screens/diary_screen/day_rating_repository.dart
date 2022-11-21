@@ -28,6 +28,6 @@ class DayRatingRepository {
     final userId = dayRatingModel.userId;
     final date = dayRatingModel.date.toString().substring(0, 10);
     final ref = FirebaseDatabase.instance.ref("rating/$userId/$date");
-    await ref.push().set(dayRatingModel.rate + .0);
+    await ref.push().set(dayRatingModel.rate.toDouble());
   }
 }

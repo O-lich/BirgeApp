@@ -21,7 +21,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _profileViewModel.uploadFile();
+    _profileViewModel.listenChanges();
     return Scaffold(
       backgroundColor: backgroundColor,
       body: SingleChildScrollView(
