@@ -20,7 +20,6 @@ import 'day_review_screen_store.dart';
 class DayReviewScreen extends StatelessWidget {
   static const routeName = '/day_review_screen';
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
-  final dayReviewController = TextEditingController();
   final userId = FirebaseAuth.instance.currentUser?.uid;
   final _dayReviewScreenViewModel = DayReviewScreenStore();
 
@@ -28,8 +27,8 @@ class DayReviewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final args =
-        ModalRoute.of(context)!.settings.arguments as DiaryScreenArguments;
+    final args = ModalRoute.of(context)!.settings.arguments as DiaryScreenArguments;
+    _dayReviewScreenViewModel.listenChanges(args.date);
     return Scaffold(
       backgroundColor: backgroundColor,
       body: SingleChildScrollView(
@@ -61,17 +60,17 @@ class DayReviewScreen extends StatelessWidget {
                 spacerHeight(20),
                 DiaryTextField(
                   width: width,
-                  controller: dayReviewController,
+                  controller: _dayReviewScreenViewModel.dayReviewController,
                 ),
                 spacerHeight(20),
                 BlueButton(
                   width: width / 2,
                   onPressed: () {
-                    final dayReviewNote = DayReviewModel(
+                    final dayReviewNote = DayReviewModel.create(
                         userId: userId,
-                        text: dayReviewController.text,
-                        id: '',
-                        date: args.date.toString().substring(0, 10));
+                        text: _dayReviewScreenViewModel.dayReviewController.text,
+                        date: args.date.toString().substring(0, 10),
+                    );
                     onPressedDayReviewWrite(dayReviewNote);
                     Navigator.pop(context);
                   },
@@ -99,4 +98,15 @@ class DayReviewScreen extends StatelessWidget {
         userId: dayReview.userId, text: dayReview.text, date: dayReview.date);
     _dayReviewScreenViewModel.addDayReview(dayReviewModel);
   }
+}
+
+extension DateStringExt on DateTime {
+  // TODO refactor with DateFormat
+  // You can use DateFormat from intl package.
+  //
+  // import 'package:intl/intl.dart';
+  //
+  // DateTime now = DateTime.now();
+  // String formattedDate = DateFormat('yyyy-MM-dd – kk:mm').format(now);
+  String defaultFormat() => toString().substring(0, 10);
 }

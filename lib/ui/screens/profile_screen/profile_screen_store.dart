@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mobx/mobx.dart';
@@ -9,13 +11,12 @@ class ProfileScreenStore = _ProfileScreenStore with _$ProfileScreenStore;
 
 abstract class _ProfileScreenStore with Store {
   @observable
-  XFile? pickedFile;
-
-  @observable
   String? downloadImage;
 
   @observable
   File? imageFile;
+
+  String name = FirebaseAuth.instance.currentUser?.displayName ?? '';
 
   @action
   Future pickImage() async {
@@ -31,17 +32,21 @@ abstract class _ProfileScreenStore with Store {
   }
 
   @action
-  void pickedFileDownload(Future<dynamic> Function()) {
-    downloadImage = Function().toString();
-  }
+  Future uploadFile() async {
+    if (imageFile == null) {
+      return;
+    }
+    final userId = FirebaseAuth.instance.currentUser?.uid;
+    final file = File(imageFile!.path);
+    final destination = 'files/$userId';
+    try {
+      final ref = FirebaseStorage.instance.ref().child(destination);
+      UploadTask uploadTask = ref.putFile(file);
 
-// @action
-// void pickedFileupload(Future<dynamic> Function(), XFile? photo) {
-//   if (pickedFile != null) {
-//     photo = File(pickedFile!.path) as XFile?;
-//     Function();
-//   } else {
-//     print('No image selected.');
-//   }
-// }
+      final snapshot = await uploadTask.whenComplete(() {});
+      downloadImage = await snapshot.ref.getDownloadURL();
+    } catch (e) {
+      print('error occurred $e');
+    }
+  }
 }

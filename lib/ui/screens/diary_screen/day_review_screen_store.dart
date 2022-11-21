@@ -1,6 +1,8 @@
 import 'package:birge_app/domain/model/diary_model.dart';
 import 'package:birge_app/ui/screens/diary_screen/day_review_interactor.dart';
+import 'package:birge_app/ui/screens/diary_screen/day_review_screen.dart';
 import 'package:birge_app/ui/screens/diary_screen/diary_interactor.dart';
+import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../../domain/model/day_review_model.dart';
@@ -11,6 +13,7 @@ class DayReviewScreenStore = _DayReviewScreenStore with _$DayReviewScreenStore;
 
 abstract class _DayReviewScreenStore with Store {
   final DayReviewInteractor _dayReviewInteractor = DayReviewInteractor();
+  final dayReviewController = TextEditingController();
 
   @observable
   DayReviewModel reviewValue =
@@ -23,4 +26,10 @@ abstract class _DayReviewScreenStore with Store {
   @action
   void updateDayReview(DayReviewModel dayReview) =>
       _dayReviewInteractor.updateNote(dayReview);
+
+  void listenChanges(DateTime date) {
+    _dayReviewInteractor.getStreamDayReview(date.defaultFormat()).listen((dayReview) {
+      dayReviewController.text = dayReview.text;
+    });
+  }
 }

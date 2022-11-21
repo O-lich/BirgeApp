@@ -19,16 +19,12 @@ class ProfileScreen extends StatelessWidget {
 
   ProfileScreen({Key? key}) : super(key: key);
 
-  User? user = FirebaseAuth.instance.currentUser;
-  String? name = '';
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
-  firebase_storage.FirebaseStorage storage =
-      firebase_storage.FirebaseStorage.instance;
   final _profileViewModel = ProfileScreenStore();
 
   @override
   Widget build(BuildContext context) {
-    name = (user?.displayName == null) ? '' : user?.displayName;
+    _profileViewModel.uploadFile();
     return Scaffold(
       backgroundColor: backgroundColor,
       body: SingleChildScrollView(
@@ -42,50 +38,38 @@ class ProfileScreen extends StatelessWidget {
                   onTap: () {
                     _showImageDialog(context);
                   },
-                  child: _profileViewModel.imageFile != null
-                      ? Container(
-                          alignment: Alignment.bottomRight,
-                          width: width / 2,
-                          height: width / 2,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            border: Border.all(color: Colors.white, width: 2),
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: FileImage(_profileViewModel.imageFile!),
-                            ),
-                          ),
-                        )
-                      : Container(
-                          alignment: Alignment.bottomRight,
-                          width: width / 2,
-                          height: width / 2,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            border: Border.all(color: Colors.white, width: 2),
-                            image: const DecorationImage(
+                  child: Container(
+                    alignment: Alignment.bottomRight,
+                    width: width / 2,
+                    height: width / 2,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(color: Colors.white, width: 2),
+                      image: _profileViewModel.downloadImage == null
+                          ? const DecorationImage(
                               fit: BoxFit.cover,
                               image: AssetImage(HelpScreenStrings.imageEmpty),
+                            )
+                          : DecorationImage(
+                              image: NetworkImage(_profileViewModel.downloadImage!),
+                              fit: BoxFit.cover,
                             ),
-                          ),
-                          child:
-                              Icon(Icons.edit, color: mainAppColor, size: 40),
-                        ),
+                    ),
+                    child: const Icon(Icons.edit, color: mainAppColor, size: 40),
+                  ),
                 ),
                 spacerHeight(50),
-                Text(name!,
-                    style: CommonTextStyle.mainHeader,
-                    textAlign: TextAlign.center),
+                Text(_profileViewModel.name, style: CommonTextStyle.mainHeader, textAlign: TextAlign.center),
                 spacerHeight(50),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: FavoriteButton(
                     onPressed: () {},
                     width: width / 2,
                     child: Row(
                       children: [
                         Icon(Icons.favorite, color: Colors.red.shade200),
-                        SizedBox(width: 10),
+                        const SizedBox(width: 10),
                         Expanded(
                           child: Text(
                             'Избранные статьи',
@@ -98,14 +82,14 @@ class ProfileScreen extends StatelessWidget {
                 ),
                 spacerHeight(20),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: FavoriteButton(
                     onPressed: () {},
                     width: width / 2,
                     child: Row(
                       children: [
                         Icon(Icons.favorite, color: Colors.red.shade200),
-                        SizedBox(width: 10),
+                        const SizedBox(width: 10),
                         Expanded(
                           child: Text(
                             'Избранные медитации',
@@ -147,8 +131,7 @@ class ProfileScreen extends StatelessWidget {
           child: Opacity(
             opacity: a1.value,
             child: AlertDialog(
-              shape:
-                  OutlineInputBorder(borderRadius: BorderRadius.circular(16.0)),
+              shape: OutlineInputBorder(borderRadius: BorderRadius.circular(16.0)),
               title: Text(
                 'Выберите картинку из файла',
                 style: CommonTextStyle.secondHeader,
@@ -168,8 +151,7 @@ class ProfileScreen extends StatelessWidget {
         );
       },
       transitionDuration: const Duration(milliseconds: 200),
-      pageBuilder: (BuildContext context, Animation<double> animation,
-          Animation<double> secondaryAnimation) {
+      pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
         return const Text('data');
       });
 
@@ -182,8 +164,7 @@ class ProfileScreen extends StatelessWidget {
           child: Opacity(
             opacity: a1.value,
             child: AlertDialog(
-              shape:
-                  OutlineInputBorder(borderRadius: BorderRadius.circular(16.0)),
+              shape: OutlineInputBorder(borderRadius: BorderRadius.circular(16.0)),
               title: Text(
                 'Сохранить эту картинку?',
                 style: CommonTextStyle.secondHeader,
@@ -191,7 +172,7 @@ class ProfileScreen extends StatelessWidget {
               actions: [
                 TextButton(
                   onPressed: () async {
-                    uploadFile();
+                    _profileViewModel.uploadFile();
                     Navigator.pop(context);
                   },
                   child: const Text(TaskScreenStrings.add),
@@ -202,10 +183,9 @@ class ProfileScreen extends StatelessWidget {
         );
       },
       transitionDuration: const Duration(milliseconds: 200),
-      pageBuilder: (BuildContext context, Animation<double> animation,
-          Animation<double> secondaryAnimation) {
-            return const Text('data');
-          });
+      pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+        return const Text('data');
+      });
 
   Future _exitDialog(BuildContext context) => showGeneralDialog(
       context: context,
@@ -216,8 +196,7 @@ class ProfileScreen extends StatelessWidget {
           child: Opacity(
             opacity: a1.value,
             child: AlertDialog(
-              shape:
-                  OutlineInputBorder(borderRadius: BorderRadius.circular(16.0)),
+              shape: OutlineInputBorder(borderRadius: BorderRadius.circular(16.0)),
               title: Text(
                 Exit.areYouSure,
                 style: CommonTextStyle.dialog,
@@ -256,8 +235,7 @@ class ProfileScreen extends StatelessWidget {
         );
       },
       transitionDuration: const Duration(milliseconds: 200),
-      pageBuilder: (BuildContext context, Animation<double> animation,
-          Animation<double> secondaryAnimation) {
+      pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
         return const Text('data');
       });
 
@@ -265,25 +243,5 @@ class ProfileScreen extends StatelessWidget {
     _profileViewModel.pickImage();
 
     //_profileViewModel.pickedFileUpload(uploadFile, _profileViewModel.imageFile);
-  }
-
-  Future uploadFile() async {
-    if (_profileViewModel.imageFile == null) {
-      return 'empty';
-    }
-    final userId = FirebaseAuth.instance.currentUser?.uid;
-    final file = File(_profileViewModel.imageFile!.path);
-    final destination = 'files/$userId';
-    try {
-      final ref = FirebaseStorage.instance.ref().child(destination);
-      UploadTask uploadTask = ref.putFile(file);
-
-      final snapshot = await uploadTask.whenComplete(() {});
-      final urlDownload = await snapshot.ref.getDownloadURL();
-      print(urlDownload);
-      return urlDownload;
-    } catch (e) {
-      print('error occurred');
-    }
   }
 }
