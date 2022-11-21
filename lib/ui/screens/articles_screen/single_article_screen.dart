@@ -39,7 +39,7 @@ class SingleArticleScreen extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             child: Column(
               children: [
-                spacerHeight(50),
+                spacerHeight(70),
                 RandomImage(images: articlesImages),
                 spacerHeight(20),
                 Row(

@@ -77,7 +77,7 @@ abstract class QuestionnaireScreenStrings {
   static const startButton = 'Начнем!';
   static const firstQuestion = ['Первый вопрос', 'Ответ1', 'Ответ2', 'Ответ3'];
   static const secondQuestion = ['Второй вопрос', 'Ответ1', 'Ответ2', 'Ответ3'];
-  static const thirdQuestion = ['ЕТретий вопрос', 'Ответ1', 'Ответ2', 'Ответ3'];
+  static const thirdQuestion = ['Третий вопрос', 'Ответ1', 'Ответ2', 'Ответ3'];
   static const result = 'Результат';
   static const text = 'Текст';
   static const recommendations = 'Рекомендация';

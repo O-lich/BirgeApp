@@ -16,7 +16,7 @@ class HelpTelegramScreen extends StatelessWidget {
   HelpTelegramScreen({Key? key}) : super(key: key);
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
 
-  final phone = '+527227962367';
+  final phone = '+77718590907';
 
   @override
   Widget build(BuildContext context) {
