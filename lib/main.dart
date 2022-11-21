@@ -46,6 +46,27 @@ class MyApp extends StatelessWidget {
     ArticlesScreen.routeName: (context) => ArticlesScreen(),
     TaskScreen.routeName: (context) => TaskScreen(),
   };
+  final routes = {
+    OnBoardingScreen.routeName: (context) => OnBoardingScreen(),
+    SignupScreen.routeName: (context) => SignupScreen(),
+    LoginScreen.routeName: (context) => LoginScreen(),
+    PasswordRecoveryScreen.routeName: (context) =>
+        PasswordRecoveryScreen(),
+    MeditationsScreen.routeName: (context) => MeditationsScreen(),
+    DiaryScreen.routeName: (context) => DiaryScreen(),
+    SingleArticleScreen.routeName: (context) => SingleArticleScreen(
+      image: HelpScreenStrings.imageHello,
+    ),
+    SingleMeditationScreen.routeName: (context) =>
+    const SingleMeditationScreen(),
+    HelpScreen.routeName: (context) => HelpScreen(),
+    HelpSignUpScreen.routeName: (context) => HelpSignUpScreen(),
+    HelpTelegramScreen.routeName: (context) => HelpTelegramScreen(),
+    HelpCongratsScreen.routeName: (context) => HelpCongratsScreen(),
+    DiaryPlanChoiceScreen.routeName: (context) =>
+        DiaryPlanChoiceScreen(),
+    DayReviewScreen.routeName: (context) => DayReviewScreen(),
+  };
 
   MyApp({Key? key}) : super(key: key);
 
@@ -64,34 +85,23 @@ class MyApp extends StatelessWidget {
           ),
           home: const SplashScreen(),
           onGenerateRoute: (settings) {
-            return MaterialPageRoute(
-                builder: (context) {
+            if (routes.containsKey(settings.name)) {
+              return PageRouteBuilder(
+                  settings: settings,
+                  pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+                    return routes[settings.name!]!(context);
+                  },
+                  transitionDuration: Duration.zero,
+                  );
+            }
+            return PageRouteBuilder(
+                pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
                   return AuthorizedLayout(
                       body: routesWithBottomBar[settings.name!]!(context));
                 },
+                transitionDuration: Duration.zero,
                 settings: settings);
-          },
-          routes: {
-            OnBoardingScreen.routeName: (context) => OnBoardingScreen(),
-            SignupScreen.routeName: (context) => SignupScreen(),
-            LoginScreen.routeName: (context) => LoginScreen(),
-            PasswordRecoveryScreen.routeName: (context) =>
-                PasswordRecoveryScreen(),
-            MeditationsScreen.routeName: (context) => MeditationsScreen(),
-            DiaryScreen.routeName: (context) => DiaryScreen(),
-            SingleArticleScreen.routeName: (context) => SingleArticleScreen(
-                  image: HelpScreenStrings.imageHello,
-                ),
-            SingleMeditationScreen.routeName: (context) =>
-                const SingleMeditationScreen(),
-            HelpScreen.routeName: (context) => HelpScreen(),
-            HelpSignUpScreen.routeName: (context) => HelpSignUpScreen(),
-            HelpTelegramScreen.routeName: (context) => HelpTelegramScreen(),
-            HelpCongratsScreen.routeName: (context) => HelpCongratsScreen(),
-            DiaryPlanChoiceScreen.routeName: (context) =>
-                DiaryPlanChoiceScreen(),
-            DayReviewScreen.routeName: (context) => DayReviewScreen(),
-          });
+          },);
     });
   }
 }
