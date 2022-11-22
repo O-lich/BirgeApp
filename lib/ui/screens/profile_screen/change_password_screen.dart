@@ -1,5 +1,6 @@
 import 'package:birge_app/const/strings.dart';
 import 'package:birge_app/ui/screens/login_screen/login_screen.dart';
+import 'package:birge_app/ui/screens/profile_screen/change_password_screen_store.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -18,6 +19,7 @@ class ChangePasswordScreen extends StatelessWidget {
   final newPasswordController = TextEditingController();
   final newPasswordConfirmController = TextEditingController();
   User? user = FirebaseAuth.instance.currentUser;
+  final _viewModel = ChangePasswordScreenStore();
 
   @override
   Widget build(BuildContext context) {
@@ -39,11 +41,11 @@ class ChangePasswordScreen extends StatelessWidget {
                     CustomFormField(
                       width: width,
                       context: context,
-                      title: 'Текущий пароль',
-                      hintText: ChangePasswordScreenStrings.createPassword,
+                      title: ChangePasswordScreenStrings.currentPassword,
+                      hintText: ChangePasswordScreenStrings.currentPassword,
                       controller: currentPasswordController,
                       validator: (value) {
-
+                        return _viewModel.validator(value, ChangePasswordScreenStrings.fieldEmpty);
                       },
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       obscureText: true,
@@ -55,7 +57,7 @@ class ChangePasswordScreen extends StatelessWidget {
                       hintText: ChangePasswordScreenStrings.createPassword,
                       controller: newPasswordController,
                       validator: (value) {
-
+                        return _viewModel.validatorPassword(value);
                       },
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       obscureText: true,
@@ -67,11 +69,12 @@ class ChangePasswordScreen extends StatelessWidget {
                       hintText: ChangePasswordScreenStrings.confirmPassword,
                       controller: newPasswordConfirmController,
                       validator: (value) {
-
+                        return _viewModel.validatorPassword(value);
                       },
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       obscureText: true,
                     ),
+                    spacerHeight(20),
                     BlueButton(
                       width: width,
                       onPressed: () async {
@@ -99,13 +102,13 @@ class ChangePasswordScreen extends StatelessWidget {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                               backgroundColor: Colors.red,
-                              content: Text(SignupScreenStrings.pwdsNotMatch),
+                              content: Text(ChangePasswordScreenStrings.pwdsNotMatch),
                             ),
                           );
                         }
                       },
                       child: Text(
-                        LoginScreenStrings.enterButton,
+                        ChangePasswordScreenStrings.changePassword,
                         style: CommonTextStyle.blueButton,
                       ),
                     ),

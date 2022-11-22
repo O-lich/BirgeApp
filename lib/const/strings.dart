@@ -189,6 +189,7 @@ abstract class Exit {
 }
 
 abstract class ChangePasswordScreenStrings {
+  static const currentPassword = "Текущий пароль";
   static const changePassword = "Поменять пароль";
   static const password = "Пароль";
   static const createPassword = "Создайте пароль";
@@ -197,6 +198,7 @@ abstract class ChangePasswordScreenStrings {
   static const success = 'Пароль успешно изменён';
   static const enterAccount = "Войти в аккаунт";
   static const somethingWentWrong = "Что-то пошло не так";
+  static const fieldEmpty = 'Поле не может быть пустым';
 }
 
 
