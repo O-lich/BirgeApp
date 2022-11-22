@@ -60,7 +60,7 @@ class SingleArticleScreen extends StatelessWidget {
                   ],
                 ),
                 spacerHeight(20),
-                ReadMoreText(args.content,
+                ReadMoreText(args.content.replaceAll("\\n", "\n"),
                     trimLines: 3,
                     textAlign: TextAlign.justify,
                     colorClickableText: mainAppColor,
