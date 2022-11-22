@@ -10,4 +10,5 @@ class DayRatingInteractor {
       _repository.getUserDailyRatingStream(date);
 
   void addRating(DayRatingModel dayRating) => _repository.create(dayRating);
+  void updateRating(DayRatingModel dayRating) => _repository.update(dayRating);
 }

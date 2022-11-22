@@ -35,7 +35,7 @@ class DayReviewRepository {
   Future<void> update(DayReviewModel dayReviewModel) async {
     final userId = FirebaseAuth.instance.currentUser?.uid;
     final ref = FirebaseDatabase.instance
-        .ref("notes/$userId/${dayReviewModel.date}/${dayReviewModel.id}");
+        .ref("review/$userId/${dayReviewModel.date}/${dayReviewModel.id}");
     await ref.set(dayReviewModel.text);
   }
 }

@@ -72,6 +72,9 @@ abstract class _DiaryScreenStore with Store {
   @action
   void addDayRating(DayRatingModel dayRating) =>
       _dayRatingInteractor.addRating(dayRating);
+  @action
+  void updateDayRating(DayRatingModel dayRating) =>
+      _dayRatingInteractor.updateRating(dayRating);
 
   @action
   getRatingData() {

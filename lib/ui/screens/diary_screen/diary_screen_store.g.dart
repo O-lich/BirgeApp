@@ -154,6 +154,17 @@ mixin _$DiaryScreenStore on _DiaryScreenStore, Store {
   }
 
   @override
+  void updateDayRating(DayRatingModel dayRating) {
+    final _$actionInfo = _$_DiaryScreenStoreActionController.startAction(
+        name: '_DiaryScreenStore.updateDayRating');
+    try {
+      return super.updateDayRating(dayRating);
+    } finally {
+      _$_DiaryScreenStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic getRatingData() {
     final _$actionInfo = _$_DiaryScreenStoreActionController.startAction(
         name: '_DiaryScreenStore.getRatingData');

@@ -30,4 +30,11 @@ class DayRatingRepository {
     final ref = FirebaseDatabase.instance.ref("rating/$userId/$date");
     await ref.push().set(dayRatingModel.rate.toDouble());
   }
+
+  Future update(DayRatingModel dayRatingModel) async {
+    final userId = FirebaseAuth.instance.currentUser?.uid;
+    final ref = FirebaseDatabase.instance
+        .ref("rating/$userId/${dayRatingModel.date}/${dayRatingModel.id}");
+    await ref.set(dayRatingModel.rate.toDouble());
+  }
 }

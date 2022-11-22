@@ -66,15 +66,17 @@ class ProfileScreen extends StatelessWidget {
                 spacerHeight(50),
                 InkWell(
                   child: Card(
-                    elevation: 10,
+                    color: backgroundColor,
+                    elevation: 4,
                     child: SizedBox(
-                      width: width / 2,
-                        height: width / 10,
+                      width: width,
+                        height: width / 8,
                         child: Center(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                                Text('Поменять пароль', style: CommonTextStyle.mainText,),
+                                SizedBox(width: width / 2,),
                                 Icon(Icons.arrow_forward_ios, size: 10),
                             ],
                           ),
@@ -124,7 +126,7 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ),
                 ),*/
-                spacerHeight(200),
+                spacerHeight(width / 1.5),
                 BlueButton(
                   width: width / 2,
                   onPressed: () {

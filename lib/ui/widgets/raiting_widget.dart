@@ -21,6 +21,7 @@ class DayRatingWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final args =
         ModalRoute.of(context)!.settings.arguments as DiaryScreenArguments;
+    _diaryScreenViewModel.getRatingData();
     return RatingBar(
       updateOnDrag: true,
       glow: false,
@@ -46,6 +47,7 @@ class DayRatingWidget extends StatelessWidget {
       ),
       itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
       onRatingUpdate: (value) {
+        if (_diaryScreenViewModel.ratingValue.id == '') {
         rate = value;
         final dayRatingNote = DayRatingModel(
             userId: userId,
@@ -53,7 +55,16 @@ class DayRatingWidget extends StatelessWidget {
             id: '',
             date: args.date.toString().substring(0, 10));
         onPressedDayRatingSet(dayRatingNote);
-      },
+      } else {
+          rate = value;
+          final dayRatingNote = DayRatingModel(
+              date: args.date.toString().substring(0, 10),
+              userId: userId,
+              rate: rate,
+              id: _diaryScreenViewModel.ratingValue.id);
+          _diaryScreenViewModel.updateDayRating(dayRatingNote);
+        }
+        },
     );
   }
 

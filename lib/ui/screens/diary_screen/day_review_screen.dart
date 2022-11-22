@@ -85,7 +85,7 @@ class DayReviewScreen extends StatelessWidget {
                       );
                       _dayReviewScreenViewModel.updateDayReview(dayReviewNote);
                     }
-                    // Navigator.pop(context);
+                    Navigator.pop(context);
                   },
                   child: Text(
                     DiaryScreenStrings.save,
