@@ -147,6 +147,7 @@ abstract class OnBoardingScreenStrings {
   static const goOn = 'Дальше';
   static const imageImage = 'assets/images/onboarding_image.jpg';
   static const imageArrow = 'assets/images/arrow.png';
+  static const animationOnBoarding = 'assets/images/animation_onboarding.gif';
 }
 
 abstract class SignupScreenStrings {
