@@ -1,6 +1,4 @@
-import 'dart:io';
 import 'package:birge_app/firebase/firebase_helper.dart';
-import 'package:birge_app/ui/screens/login_screen/login_screen.dart';
 import 'package:birge_app/ui/screens/onboarding_screen/onboarding_screen.dart';
 import 'package:birge_app/ui/screens/profile_screen/profile_screen_store.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +10,7 @@ import '../../style/text_style/text_style.dart';
 import '../../widgets/back_floating_button.dart';
 import '../../widgets/buttons.dart';
 import '../../widgets/widgets.dart';
-import '../login_screen/login_screen.dart';
+import 'change_password_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   static const routeName = '/profile_screen';
@@ -21,6 +19,7 @@ class ProfileScreen extends StatelessWidget {
 
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
   final _profileViewModel = ProfileScreenStore();
+
 
   @override
   Widget build(BuildContext context) {
@@ -51,16 +50,41 @@ class ProfileScreen extends StatelessWidget {
                               image: AssetImage(HelpScreenStrings.imageEmpty),
                             )
                           : DecorationImage(
-                              image: NetworkImage(_profileViewModel.downloadImage!),
+                              image: NetworkImage(
+                                  _profileViewModel.downloadImage!),
                               fit: BoxFit.cover,
                             ),
                     ),
-                    child: const Icon(Icons.edit, color: mainAppColor, size: 40),
+                    child:
+                        const Icon(Icons.edit, color: mainAppColor, size: 40),
                   ),
                 ),
                 spacerHeight(50),
-                Text(_profileViewModel.name, style: CommonTextStyle.mainHeader, textAlign: TextAlign.center),
+                Text(_profileViewModel.name,
+                    style: CommonTextStyle.mainHeader,
+                    textAlign: TextAlign.center),
                 spacerHeight(50),
+                InkWell(
+                  child: Card(
+                    elevation: 10,
+                    child: SizedBox(
+                      width: width / 2,
+                        height: width / 10,
+                        child: Center(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                               Text('Поменять пароль', style: CommonTextStyle.mainText,),
+                                Icon(Icons.arrow_forward_ios, size: 10),
+                            ],
+                          ),
+                        )),
+                  ),
+                  onTap: () => Navigator.pushNamed(
+                    context,
+                    ChangePasswordScreen.routeName,
+                  ),
+                ),
                 /*Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: FavoriteButton(
@@ -100,7 +124,7 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ),
                 ),*/
-                spacerHeight(300),
+                spacerHeight(200),
                 BlueButton(
                   width: width / 2,
                   onPressed: () {
@@ -131,7 +155,8 @@ class ProfileScreen extends StatelessWidget {
           child: Opacity(
             opacity: a1.value,
             child: AlertDialog(
-              shape: OutlineInputBorder(borderRadius: BorderRadius.circular(16.0)),
+              shape:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(16.0)),
               title: Text(
                 'Выберите картинку из файла',
                 style: CommonTextStyle.secondHeader,
@@ -150,7 +175,8 @@ class ProfileScreen extends StatelessWidget {
         );
       },
       transitionDuration: const Duration(milliseconds: 200),
-      pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+      pageBuilder: (BuildContext context, Animation<double> animation,
+          Animation<double> secondaryAnimation) {
         return const Text('data');
       });
 
@@ -163,7 +189,8 @@ class ProfileScreen extends StatelessWidget {
           child: Opacity(
             opacity: a1.value,
             child: AlertDialog(
-              shape: OutlineInputBorder(borderRadius: BorderRadius.circular(16.0)),
+              shape:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(16.0)),
               title: Text(
                 Exit.areYouSure,
                 style: CommonTextStyle.dialog,
@@ -205,7 +232,8 @@ class ProfileScreen extends StatelessWidget {
         );
       },
       transitionDuration: const Duration(milliseconds: 200),
-      pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+      pageBuilder: (BuildContext context, Animation<double> animation,
+          Animation<double> secondaryAnimation) {
         return const Text('data');
       });
 

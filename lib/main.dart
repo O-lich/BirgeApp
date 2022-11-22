@@ -15,6 +15,7 @@ import 'package:birge_app/ui/screens/meditations_screen/meditations_screen.dart'
 import 'package:birge_app/ui/screens/meditations_screen/single_meditation_screen.dart';
 import 'package:birge_app/ui/screens/onboarding_screen/onboarding_screen.dart';
 import 'package:birge_app/ui/screens/password_recovery_screen/password_recovery_screen.dart';
+import 'package:birge_app/ui/screens/profile_screen/change_password_screen.dart';
 import 'package:birge_app/ui/screens/profile_screen/profile_screen.dart';
 import 'package:birge_app/ui/screens/signup_screen/signup_screen.dart';
 import 'package:birge_app/ui/screens/splash_screen/splash_screen.dart';
@@ -24,6 +25,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:material_color_generator/material_color_generator.dart';
+import 'package:path/path.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'data/repository/article_repository.dart';
 import 'data/repository/meditation_repository.dart';
@@ -47,6 +49,7 @@ class MyApp extends StatelessWidget {
     TaskScreen.routeName: (context) => TaskScreen(),
   };
   final routes = {
+    ChangePasswordScreen.routeName: (context) => ChangePasswordScreen(),
     OnBoardingScreen.routeName: (context) => OnBoardingScreen(),
     SignupScreen.routeName: (context) => SignupScreen(),
     LoginScreen.routeName: (context) => LoginScreen(),

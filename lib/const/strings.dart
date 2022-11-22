@@ -178,7 +178,7 @@ abstract class BottomBarStrings {
   static const menu = 'Меню';
   static const articles = 'Статьи';
   static const profile = 'Профиль';
-  static const todo = 'Список планов';
+  static const todo = 'Планы';
 }
 
 abstract class Exit {
@@ -187,6 +187,18 @@ abstract class Exit {
   static const leave = 'Выйти';
   static const stay = 'Остаться';
 }
+
+abstract class ChangePasswordScreenStrings {
+  static const changePassword = "Поменять пароль";
+  static const password = "Пароль";
+  static const createPassword = "Создайте пароль";
+  static const confirmPassword = "Подтвердите пароль";
+  static const pwdsNotMatch = 'Пароли не совпадают';
+  static const success = 'Пароль успешно изменён';
+  static const enterAccount = "Войти в аккаунт";
+  static const somethingWentWrong = "Что-то пошло не так";
+}
+
 
 abstract class PasswordRecoveryScreenStrings {
   static const changePassword = 'Изменить пароль';
