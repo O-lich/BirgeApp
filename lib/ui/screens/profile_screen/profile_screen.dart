@@ -1,5 +1,7 @@
 import 'dart:io';
 import 'package:birge_app/firebase/firebase_helper.dart';
+import 'package:birge_app/ui/screens/login_screen/login_screen.dart';
+import 'package:birge_app/ui/screens/onboarding_screen/onboarding_screen.dart';
 import 'package:birge_app/ui/screens/profile_screen/profile_screen_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -181,10 +183,13 @@ class ProfileScreen extends StatelessWidget {
                     TextButton(
                       onPressed: () {
                         FirebaseHelper.signOut();
-                        Navigator.pushNamed(
-                          context,
-                          '/login_screen',
-                        );
+                        Navigator.of(context).pushNamedAndRemoveUntil(
+                            OnBoardingScreen.routeName, (route) => false);
+                        // Navigator.pushAndRemoveUntil<void>(
+                        //   context,
+                        //   MaterialPageRoute<void>(builder: (BuildContext context) => const OnBoardingScreen()),
+                        //   ModalRoute.withName(OnBoardingScreen.routeName),
+                        // );
                       },
                       child: Text(
                         Exit.leave,
