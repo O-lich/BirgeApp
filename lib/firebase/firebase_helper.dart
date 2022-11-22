@@ -62,4 +62,24 @@ class FirebaseHelper {
     print(response);
     return response;
   }
-}
+
+  static Future<String?> changePassword(String currentPassword, String newPassword) async {
+    String? response = 'success';
+    final user = await FirebaseAuth.instance.currentUser!;
+      final cred = EmailAuthProvider.credential(
+          email: user.email!,
+          password: currentPassword);
+      FirebaseAuth.instance.currentUser
+          ?.reauthenticateWithCredential(cred)
+          .then((value) async {
+        await FirebaseAuth.instance.currentUser
+            ?.updatePassword(newPassword)
+            .then((_) {
+          print("Successfully changed password");
+        }).catchError((error) {
+          print("Password can't be changed" + error.toString());
+          response = error.toString();
+        });
+      });
+    return response;
+}}
