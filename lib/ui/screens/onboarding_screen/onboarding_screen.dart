@@ -22,37 +22,45 @@ class OnBoardingScreen extends StatelessWidget {
             padding: const EdgeInsets.all(30),
             child: Column(
               children: [
-              spacerHeight(20),
-              Image.asset(
-                OnBoardingScreenStrings.imageImage,
-                height:
-                    Device.orientation == Orientation.landscape ? 50.w : 60.h,
-                width: width,
-              ),
-              spacerHeight(20),
-              Text(
-                OnBoardingScreenStrings.youAreNotAlone,
-                style: CommonTextStyle.onboardingText,
-              ),
-              spacerHeight(10),
-              const Text(OnBoardingScreenStrings.weAreHere),
-              spacerHeight(20),
-              Image.asset(OnBoardingScreenStrings.imageArrow),
-              spacerHeight(20),
-              BlueButton(
-                onPressed: () {
-                  Navigator.pushNamed(
-                    context,
-                    LoginScreen.routeName,
-                  );
-                },
+                spacerHeight(20),
+                Container(
+                  height:
+                      Device.orientation == Orientation.landscape ? 50.w : 60.h,
+                  width: width,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(color: Colors.white, width: 2),
+                    image: const DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage(
+                          OnBoardingScreenStrings.animationOnBoarding),
+                    ),
+                  ),
+                ),
+                spacerHeight(20),
+                Text(
+                  OnBoardingScreenStrings.youAreNotAlone,
+                  style: CommonTextStyle.onboardingText,
+                ),
+                spacerHeight(10),
+                const Text(OnBoardingScreenStrings.weAreHere),
+                spacerHeight(20),
+                Image.asset(OnBoardingScreenStrings.imageArrow),
+                spacerHeight(20),
+                BlueButton(
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      LoginScreen.routeName,
+                    );
+                  },
                   width: width,
                   child: const Text(OnBoardingScreenStrings.goOn),
                 )
               ],
             ),
           ),
-        )
+        ),
       ),
     );
   }
