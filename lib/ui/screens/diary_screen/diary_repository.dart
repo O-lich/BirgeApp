@@ -24,6 +24,9 @@ class DiaryRepository {
               date: date));
         });
         yield notes;
+      } else {
+        final List<DiaryModel> notes = [];
+        yield notes;
       }
     }
   }

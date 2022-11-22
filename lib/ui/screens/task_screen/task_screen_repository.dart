@@ -4,6 +4,7 @@ import '../../../domain/model/task_model.dart';
 
 class TaskRepository {
   final _plan = <TaskModel>[];
+
   List<TaskModel> get plan => _plan;
 
   Stream<List<TaskModel>> getUserTaskNotesStream(String date) async* {
@@ -22,9 +23,13 @@ class TaskRepository {
               isChecked: value['isChecked']));
         });
         yield plans;
+      } else {
+        final List<TaskModel> plans = [];
+        yield plans;
       }
     }
   }
+
   Future create(TaskModel taskNoteModel) async {
     final userId = taskNoteModel.userId;
     final date = taskNoteModel.date.toString().substring(0, 10);
