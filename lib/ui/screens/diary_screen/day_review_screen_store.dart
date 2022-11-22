@@ -29,6 +29,7 @@ abstract class _DayReviewScreenStore with Store {
 
   void listenChanges(DateTime date) {
     _dayReviewInteractor.getStreamDayReview(date.defaultFormat()).listen((dayReview) {
+      reviewValue = dayReview;
       dayReviewController.text = dayReview.text;
     });
   }

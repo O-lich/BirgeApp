@@ -27,7 +27,8 @@ class DayReviewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final args = ModalRoute.of(context)!.settings.arguments as DiaryScreenArguments;
+    final args =
+        ModalRoute.of(context)!.settings.arguments as DiaryScreenArguments;
     _dayReviewScreenViewModel.listenChanges(args.date);
     return Scaffold(
       backgroundColor: backgroundColor,
@@ -66,13 +67,25 @@ class DayReviewScreen extends StatelessWidget {
                 BlueButton(
                   width: width / 2,
                   onPressed: () {
-                    final dayReviewNote = DayReviewModel.create(
+                    if (_dayReviewScreenViewModel.reviewValue.id == '') {
+                      final dayReviewNote = DayReviewModel.create(
                         userId: userId,
-                        text: _dayReviewScreenViewModel.dayReviewController.text,
+                        text:
+                            _dayReviewScreenViewModel.dayReviewController.text,
                         date: args.date.toString().substring(0, 10),
-                    );
-                    onPressedDayReviewWrite(dayReviewNote);
-                    Navigator.pop(context);
+                      );
+                      onPressedDayReviewWrite(dayReviewNote);
+                    } else {
+                      final dayReviewNote = DayReviewModel(
+                        userId: userId,
+                        text:
+                            _dayReviewScreenViewModel.dayReviewController.text,
+                        date: args.date.toString().substring(0, 10),
+                        id: _dayReviewScreenViewModel.reviewValue.id,
+                      );
+                      _dayReviewScreenViewModel.updateDayReview(dayReviewNote);
+                    }
+                    // Navigator.pop(context);
                   },
                   child: Text(
                     DiaryScreenStrings.save,
