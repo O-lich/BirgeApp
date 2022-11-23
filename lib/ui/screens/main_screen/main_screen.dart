@@ -32,9 +32,12 @@ class MainScreen extends StatelessWidget {
           child: Column(
             children: [
               spacerHeight(50),
-              Text(MainScreenStrings.question,
-                  style: CommonTextStyle.mainHeader,
-                  textAlign: TextAlign.center),
+              Container(
+                width: width * 0.8,
+                child: Text(MainScreenStrings.question,
+                    style: CommonTextStyle.mainHeader,
+                    textAlign: TextAlign.center),
+              ),
               spacerHeight(50),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -115,6 +118,8 @@ class MainScreen extends StatelessWidget {
           ),
         ),
       ),
+      floatingActionButton: const MainBackFloatingButton(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniStartTop,
     );
   }
 }
