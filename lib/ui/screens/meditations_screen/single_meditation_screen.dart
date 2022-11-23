@@ -1,6 +1,4 @@
-import 'dart:convert';
 import 'dart:math';
-import 'package:birge_app/domain/model/meditation_model.dart';
 import 'package:birge_app/ui/screens/meditations_screen/single_meditation_screen_store.dart';
 import 'package:birge_app/ui/style/colors/app_colors.dart';
 import 'package:birge_app/ui/style/text_style/text_style.dart';
@@ -9,14 +7,13 @@ import 'package:birge_app/ui/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-
 import '../../../const/app_images.dart';
 import '../../../const/strings.dart';
-import '../../../data/repository/meditation_repository.dart';
 import '../../widgets/meditations_screen_arguments.dart';
 
 class SingleMeditationScreen extends StatefulWidget {
   static const routeName = '/single_meditation_screen';
+
   const SingleMeditationScreen({
     Key? key,
   }) : super(key: key);
@@ -58,7 +55,7 @@ class _SingleMeditationScreenState extends State<SingleMeditationScreen> {
             top: height * 0.2,
             height: height * 0.45,
             child: Container(
-              padding: EdgeInsets.only(bottom: 20),
+              padding: const EdgeInsets.only(bottom: 20),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(40), color: Colors.white),
               child: Observer(builder: (_) {
@@ -106,7 +103,7 @@ class _SingleMeditationScreenState extends State<SingleMeditationScreen> {
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(color: Colors.white, width: 2),
                   image: (_singleMeditationViewModel.args.image ==
-                          SingleArticleScreenStrings.imageSimple)
+                          imageSimple)
                       ? DecorationImage(
                           fit: BoxFit.cover,
                           image: image(),
@@ -136,7 +133,7 @@ class _SingleMeditationScreenState extends State<SingleMeditationScreen> {
 
   void initAudio() async {
     await Future.delayed(
-      Duration(seconds: 1),
+      const Duration(seconds: 1),
     );
     final args =
         ModalRoute.of(context)!.settings.arguments as MeditationScreenArguments;

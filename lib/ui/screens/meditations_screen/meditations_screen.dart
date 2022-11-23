@@ -18,7 +18,8 @@ final meditationsTotalList = MeditationRepository.getMeditations;
 
 class MeditationsScreen extends StatefulWidget {
   static const routeName = '/meditations_screen';
-  MeditationsScreen({Key? key}) : super(key: key);
+
+  const MeditationsScreen({Key? key}) : super(key: key);
 
   @override
   State<MeditationsScreen> createState() => _MeditationsScreenState();
@@ -78,7 +79,7 @@ class _MeditationsScreenState extends State<MeditationsScreen> {
                       itemCount: _meditationsViewModel.searchList.length,
                       itemBuilder: (BuildContext ctx, index) {
                         return (meditationsTotalList[index].image ==
-                                SingleArticleScreenStrings.imageSimple)
+                                imageSimple)
                             ? CardsGridViewWidget(
                                 image: image(),
                                 title: _meditationsViewModel.searchList[index],
@@ -98,7 +99,7 @@ class _MeditationsScreenState extends State<MeditationsScreen> {
                                 width: width,
                               )
                             : CardsGridViewWidget(
-                          image: NetworkImage(
+                                image: NetworkImage(
                                     meditationsTotalList[index].image),
                                 title: _meditationsViewModel.searchList[index],
                                 onPressed: () {
@@ -112,10 +113,10 @@ class _MeditationsScreenState extends State<MeditationsScreen> {
                                           meditationsTotalList[index].author,
                                       title: meditationsTotalList[index].title,
                                     ),
-                            );
-                          },
-                          width: width,
-                        );
+                                  );
+                                },
+                                width: width,
+                              );
                       });
                 }),
               ),

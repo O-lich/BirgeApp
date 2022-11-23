@@ -4,7 +4,6 @@ import 'package:birge_app/ui/style/colors/app_colors.dart';
 import 'package:birge_app/ui/widgets/diary_screen_arguments.dart';
 import 'package:flutter/material.dart';
 import 'package:birge_app/ui/style/text_style/text_style.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import '../../../const/strings.dart';
 import '../articles_screen/articles_screen.dart';
 import '../task_screen/task_screen.dart';
@@ -18,13 +17,6 @@ class BottomBarScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return bottomBar();
-    return Container(
-      child: Observer(builder: (_) {
-          return Positioned(
-            child: bottomBar(),
-          );
-      }),
-    );
   }
     int getIndexByPagePath(String? path) {
        switch (path) {

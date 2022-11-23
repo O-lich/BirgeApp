@@ -3,6 +3,7 @@ import 'package:birge_app/ui/style/text_style/text_style.dart';
 import 'package:birge_app/ui/widgets/back_floating_button.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../const/app_images.dart';
 import '../../../const/strings.dart';
 import '../../widgets/buttons.dart';
 import '../../widgets/widgets.dart';
@@ -42,7 +43,7 @@ class HelpScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Image.asset(HelpScreenStrings.imageHello),
+                  Image.asset(imageHello),
                 ],
               ),
               spacerHeight(50),

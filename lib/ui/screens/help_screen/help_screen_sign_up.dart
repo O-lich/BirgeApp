@@ -20,11 +20,9 @@ class HelpSignUpScreen extends StatelessWidget {
   final _emailController = TextEditingController();
   final _nameController = TextEditingController();
 
-  //final data = DateTime.now();
-
   @override
   Widget build(BuildContext context) {
-    final _calendar = HelpScreenCalendar(width: width);
+    final calendar = HelpScreenCalendar(width: width);
     return Scaffold(
       backgroundColor: backgroundColor,
       body: SingleChildScrollView(
@@ -74,7 +72,7 @@ class HelpSignUpScreen extends StatelessWidget {
                   const Text(
                     HelpScreenStrings.date,
                   ),
-                  _calendar,
+                  calendar,
                   spacerHeight(10),
                 ],
               ),
@@ -87,7 +85,7 @@ class HelpSignUpScreen extends StatelessWidget {
                         context,
                         HelpTelegramScreen.routeName,
                         arguments: HelpModel(
-                            date: _calendar.date,
+                            date: calendar.date,
                             name: _nameController.text,
                             phone: _emailController.text),
                       );
