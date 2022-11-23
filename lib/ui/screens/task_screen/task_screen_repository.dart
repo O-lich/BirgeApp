@@ -24,8 +24,7 @@ class TaskRepository {
         });
         yield plans;
       } else {
-        final List<TaskModel> plans = [];
-        yield plans;
+        yield [];
       }
     }
   }

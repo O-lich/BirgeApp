@@ -77,7 +77,7 @@ class _DiaryScreenState extends State<DiaryScreen> {
                     itemBuilder: (_, index) {
                       return DiaryListTile(
                           trailing: IconButton(
-                            icon: Icon(Icons.delete),
+                            icon: const Icon(Icons.delete),
                             onPressed: () {
                               _deleteDialog(
                                   context, _diaryScreenViewModel.value[index]);
