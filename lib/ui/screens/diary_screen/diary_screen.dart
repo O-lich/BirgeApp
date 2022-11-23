@@ -101,15 +101,15 @@ class _DiaryScreenState extends State<DiaryScreen> {
                   },
                   child: Container(
                     width: width,
-                    height: width / 8,
+                    height: width / 6,
                     padding: EdgeInsets.all((width / 8) / 3),
                     decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(15)),
                     ),
                     child: (_diaryScreenViewModel.reviewValue.text.isNotEmpty)
-                        ? Text(_diaryScreenViewModel.reviewValue.text)
-                        : const Text(DiaryScreenStrings.hintText),
+                        ? Center(child: Align(child: Text(_diaryScreenViewModel.reviewValue.text), alignment: Alignment.centerLeft,))
+                        : Center(child: Align(child: Text(DiaryScreenStrings.hintText), alignment: Alignment.centerLeft,)),
                   ),
                 ),
                 spacerHeight(20),
