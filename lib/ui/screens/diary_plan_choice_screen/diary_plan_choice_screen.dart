@@ -40,7 +40,7 @@ class _DiaryPlanChoiceScreenState extends State<DiaryPlanChoiceScreen> {
         height: Device.height / 2,
         child: Column(
           children: [
-            spacerHeight(6.h),
+            spacerHeight(10.h),
             Text(
                 //greetingMessage(user?.displayName),
                 'Привет, ${user?.displayName}',

@@ -84,17 +84,28 @@ class ChangePasswordScreen extends StatelessWidget {
                         final confirmNewPassword =
                             newPasswordConfirmController.text;
                         final currentPassword = currentPasswordController.text;
-                        if (newPassword == confirmNewPassword) {
-                          final response = await FirebaseHelper.changePassword(
-                              currentPassword, newPassword);
-                          if (response == 'success') {
-                            _showDialog(context);
-                          } else {
+                        if (newPassword.isNotEmpty && confirmNewPassword.isNotEmpty) {
+                          if (newPassword == confirmNewPassword) {
+                            final response = await FirebaseHelper.changePassword(
+                                currentPassword, newPassword);
+                            if (response == 'success') {
+                              _showDialog(context);
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  backgroundColor: Colors.red,
+                                  content: Text(ChangePasswordScreenStrings
+                                      .somethingWentWrong),
+                                ),
+                              );
+                            }
+                          }
+                          else {
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
                                 backgroundColor: Colors.red,
-                                content: Text(ChangePasswordScreenStrings
-                                    .somethingWentWrong),
+                                content: Text(
+                                    ChangePasswordScreenStrings.pwdsNotMatch),
                               ),
                             );
                           }
@@ -103,10 +114,11 @@ class ChangePasswordScreen extends StatelessWidget {
                             const SnackBar(
                               backgroundColor: Colors.red,
                               content: Text(
-                                  ChangePasswordScreenStrings.pwdsNotMatch),
+                                  ChangePasswordScreenStrings.fieldEmpty),
                             ),
                           );
                         }
+
                       },
                       child: Text(
                         ChangePasswordScreenStrings.changePassword,

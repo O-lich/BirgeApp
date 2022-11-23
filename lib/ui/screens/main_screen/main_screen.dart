@@ -2,6 +2,7 @@ import 'package:birge_app/ui/screens/diary_plan_choice_screen/diary_plan_choice_
 import 'package:birge_app/ui/screens/meditations_screen/meditations_screen.dart';
 import 'package:birge_app/ui/style/text_style/text_style.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/strings.dart';
 import '../../style/colors/app_colors.dart';
@@ -23,7 +24,10 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return WillPopScope(onWillPop: () async {
+       SystemNavigator.pop();
+       return true;
+    }, child: Scaffold(
       backgroundColor: backgroundColor,
       body: SingleChildScrollView(
         child: SizedBox(
@@ -119,6 +123,6 @@ class MainScreen extends StatelessWidget {
       ),
       floatingActionButton: const MainBackFloatingButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniStartTop,
-    );
+    ));
   }
 }
