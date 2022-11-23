@@ -4,6 +4,7 @@ import 'package:birge_app/ui/screens/profile_screen/profile_screen_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../const/app_images.dart';
 import '../../../const/strings.dart';
 import '../../style/colors/app_colors.dart';
 import '../../style/text_style/text_style.dart';
@@ -19,7 +20,6 @@ class ProfileScreen extends StatelessWidget {
 
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
   final _profileViewModel = ProfileScreenStore();
-
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,7 @@ class ProfileScreen extends StatelessWidget {
                       image: _profileViewModel.downloadImage == null
                           ? const DecorationImage(
                               fit: BoxFit.cover,
-                              image: AssetImage(HelpScreenStrings.imageEmpty),
+                              image: AssetImage(imageEmpty),
                             )
                           : DecorationImage(
                               image: NetworkImage(
@@ -69,15 +69,20 @@ class ProfileScreen extends StatelessWidget {
                     color: backgroundColor,
                     elevation: 4,
                     child: SizedBox(
-                      width: width,
+                        width: width,
                         height: width / 8,
                         child: Center(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                               Text('Поменять пароль', style: CommonTextStyle.mainText,),
-                                SizedBox(width: width / 2,),
-                                Icon(Icons.arrow_forward_ios, size: 10),
+                              Text(
+                                'Поменять пароль',
+                                style: CommonTextStyle.mainText,
+                              ),
+                              SizedBox(
+                                width: width / 2,
+                              ),
+                              const Icon(Icons.arrow_forward_ios, size: 10),
                             ],
                           ),
                         )),
@@ -160,7 +165,7 @@ class ProfileScreen extends StatelessWidget {
               shape:
                   OutlineInputBorder(borderRadius: BorderRadius.circular(16.0)),
               title: Text(
-                'Выберите картинку из файла',
+                ProfileScreenStrings.pickImage,
                 style: CommonTextStyle.secondHeader,
               ),
               actions: [
@@ -215,11 +220,6 @@ class ProfileScreen extends StatelessWidget {
                         FirebaseHelper.signOut();
                         Navigator.of(context).pushNamedAndRemoveUntil(
                             OnBoardingScreen.routeName, (route) => false);
-                        // Navigator.pushAndRemoveUntil<void>(
-                        //   context,
-                        //   MaterialPageRoute<void>(builder: (BuildContext context) => const OnBoardingScreen()),
-                        //   ModalRoute.withName(OnBoardingScreen.routeName),
-                        // );
                       },
                       child: Text(
                         Exit.leave,

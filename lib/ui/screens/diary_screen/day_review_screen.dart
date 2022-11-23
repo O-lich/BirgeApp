@@ -1,15 +1,12 @@
 import 'package:birge_app/domain/model/day_review_model.dart';
-import 'package:birge_app/ui/screens/diary_screen/diary_screen_store.dart';
 import 'package:birge_app/ui/style/text_style/text_style.dart';
-import 'package:birge_app/ui/widgets/diary_list_tile.dart';
 import 'package:birge_app/ui/widgets/diary_text_field.dart';
-import 'package:birge_app/ui/widgets/raiting_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../const/app_images.dart';
 import '../../../const/strings.dart';
-import '../../../domain/model/diary_model.dart';
 import '../../style/colors/app_colors.dart';
 import '../../widgets/back_floating_button.dart';
 import '../../widgets/buttons.dart';
@@ -54,7 +51,7 @@ class DayReviewScreen extends StatelessWidget {
                     border: Border.all(color: Colors.white, width: 2),
                     image: const DecorationImage(
                       fit: BoxFit.cover,
-                      image: AssetImage(DiaryScreenStrings.animation),
+                      image: AssetImage(animation),
                     ),
                   ),
                 ),

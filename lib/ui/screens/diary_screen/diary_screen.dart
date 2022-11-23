@@ -7,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../const/app_images.dart';
 import '../../../const/strings.dart';
 import '../../../domain/model/diary_model.dart';
 import '../../style/colors/app_colors.dart';
@@ -17,7 +18,7 @@ import '../../widgets/widgets.dart';
 class DiaryScreen extends StatefulWidget {
   static const routeName = '/diary_screen';
 
-  DiaryScreen({Key? key}) : super(key: key);
+  const DiaryScreen({Key? key}) : super(key: key);
 
   @override
   State<DiaryScreen> createState() => _DiaryScreenState();
@@ -66,7 +67,7 @@ class _DiaryScreenState extends State<DiaryScreen> {
                     border: Border.all(color: Colors.white, width: 2),
                     image: const DecorationImage(
                       fit: BoxFit.cover,
-                      image: AssetImage(DiaryScreenStrings.animationDiary),
+                      image: AssetImage(animationDiary),
                     ),
                   ),
                 ),
@@ -77,7 +78,7 @@ class _DiaryScreenState extends State<DiaryScreen> {
                     itemBuilder: (_, index) {
                       return DiaryListTile(
                           trailing: IconButton(
-                            icon: Icon(Icons.delete),
+                            icon: const Icon(Icons.delete),
                             onPressed: () {
                               _deleteDialog(
                                   context, _diaryScreenViewModel.value[index]);
@@ -91,7 +92,6 @@ class _DiaryScreenState extends State<DiaryScreen> {
                     }),
                 InkWell(
                   onTap: () {
-                    //print(_diaryScreenViewModel.reviewValue[0].text);
                     Navigator.pushNamed(
                       context,
                       DayReviewScreen.routeName,
@@ -221,7 +221,7 @@ class _DiaryScreenState extends State<DiaryScreen> {
 
   void initDate() async {
     await Future.delayed(
-      Duration(seconds: 1),
+      const Duration(seconds: 1),
     );
     final args =
         ModalRoute.of(context)!.settings.arguments as DiaryScreenArguments;
@@ -241,7 +241,7 @@ class _DiaryScreenState extends State<DiaryScreen> {
                   shape: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(16.0)),
                   title: Text(
-                    "Удалить запись?",
+                    DiaryScreenStrings.deleteNote,
                     style: CommonTextStyle.dialog,
                   ),
                   actions: [
@@ -253,7 +253,7 @@ class _DiaryScreenState extends State<DiaryScreen> {
                             Navigator.pop(context);
                           },
                           child: Text(
-                            "Не удалять",
+                            DiaryScreenStrings.notDelete,
                             style: CommonTextStyle.transparentButton,
                           ),
                         ),
@@ -264,7 +264,7 @@ class _DiaryScreenState extends State<DiaryScreen> {
                             Navigator.pop(context);
                           },
                           child: Text(
-                            "Удалить",
+                            DiaryScreenStrings.delete,
                             style: CommonTextStyle.transparentButton,
                           ),
                         ),
@@ -280,13 +280,4 @@ class _DiaryScreenState extends State<DiaryScreen> {
               Animation<double> secondaryAnimation) {
             return const Text('data');
           });
-
-// onPressedDayReviewWrite(DayReviewModel dayReview) {
-//   if (userId == null) {
-//     return;
-//   }
-//   final dayReviewModel = DayReviewModel.create(
-//       userId: dayReview.userId, text: dayReview.text, date: DateTime.now());
-//   _diaryScreenViewModel.addDayReview(dayReviewModel);
-// }
 }

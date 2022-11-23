@@ -5,7 +5,7 @@ import 'package:birge_app/ui/style/text_style/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
-
+import '../../../const/app_images.dart';
 import '../../../domain/model/help_model.dart';
 import '../../widgets/back_floating_button.dart';
 import '../../widgets/widgets.dart';
@@ -29,7 +29,7 @@ class HelpTelegramScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Container(
           height: Device.height,
-          margin: EdgeInsets.symmetric(horizontal: 60),
+          margin: const EdgeInsets.symmetric(horizontal: 60),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -43,7 +43,7 @@ class HelpTelegramScreen extends StatelessWidget {
               InkWell(
                 onTap: () {
                   _launchUrl(urlTelegram);
-                  Future.delayed(Duration(seconds: 2), () {
+                  Future.delayed(const Duration(seconds: 2), () {
                     Navigator.pushNamed(
                       context,
                       HelpCongratsScreen.routeName,
@@ -52,7 +52,7 @@ class HelpTelegramScreen extends StatelessWidget {
                 },
                 child: const Image(
                   height: 80,
-                  image: NetworkImage(HelpScreenStrings.imageWhatsApp),
+                  image: AssetImage(imageWhatsApp),
                 ),
               ),
               spacerHeight(20)

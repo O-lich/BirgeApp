@@ -13,7 +13,6 @@ abstract class LoginScreenStrings {
   static const dontHaveAcc = 'Нет аккаунта? ';
   static const signUp = 'Зарегистрируйтесь';
   static const continueWith = 'Или продолжить с';
-  static const imageLogin = 'assets/images/welcome_image.jpg';
   static const wrongEmailOrPwd = 'Неправильное имя пользователя или пароль';
 }
 
@@ -40,9 +39,6 @@ abstract class HelpScreenStrings {
       'Вам не хватает мотивации что-либо делать или просто наплевать на то, что происходит вокруг вас. Это часто длится долго. У вас может отсутствовать желание делать что-либо, что связано с мышлением или вашими эмоциями. Каждый человек в тот или иной момент теряет интерес к вещам, но когда это происходит часто, это может повлиять на ваши отношения, вашу работу и вашу способность наслаждаться жизнью.';
   static const sighUp = 'Записаться';
   static const goBack = 'Вернуться назад';
-  static const imageHello = 'assets/images/help_screen_image.png';
-  static const imageCongrats = 'assets/images/help_screen_image_congrats.png';
-  static const imageEmpty = 'assets/images/emptyImage.png';
   static const sighingUp = 'Запись';
   static const email = 'Почта';
   static const phone = 'Телефон';
@@ -55,10 +51,6 @@ abstract class HelpScreenStrings {
   static const goMain = 'Вернуться на главную';
   static const chat = 'Нажмите для перехода в чат с психологом';
   static const urlTelegram = 'https://telegram.org/';
-  static const imageWhatsApp =
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/800px-WhatsApp.svg.png';
-  static const imageTelegram =
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Telegram_2019_Logo.svg/800px-Telegram_2019_Logo.svg.png';
 }
 
 abstract class ProfileScreenStrings {
@@ -70,6 +62,7 @@ abstract class ProfileScreenStrings {
   static const newPassword = 'Новый пароль';
   static const favoriteArticles = 'Избранные статьи';
   static const favoriteMeditations = 'Избранные медитации';
+  static const pickImage = 'Выберите картинку из файла';
 }
 
 abstract class QuestionnaireScreenStrings {
@@ -100,9 +93,6 @@ abstract class ArticlesScreenStrings {
 abstract class SingleArticleScreenStrings {
   static const continueReading = ' Читать далee';
   static const hide = ' Скрыть';
-  static const imageSimple =
-      'https://cdn-icons-png.flaticon.com/512/1384/1384029.png';
-  static const imageMeditation = 'assets/images/meditation_image_1.png';
 }
 
 abstract class MeditationsScreenStrings {
@@ -136,8 +126,11 @@ abstract class DiaryScreenStrings {
   static const exampleDiaryNote =
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum';
   static const hintText = 'Как прошел Ваш день?';
-  static const animation = 'assets/images/animation.gif';
-  static const animationDiary = 'assets/images/animation_diary.gif';
+  static const deleteNote = "Удалить запись?";
+  static const notDelete = "Не удалять";
+  static const delete = "Удалить";
+
+
 }
 
 abstract class OnBoardingScreenStrings {
@@ -145,9 +138,6 @@ abstract class OnBoardingScreenStrings {
   static const weAreHere =
       'Чувствуете себя подавленным? Мы здесь, чтобы поддержать вас.';
   static const goOn = 'Дальше';
-  static const imageImage = 'assets/images/onboarding_image.jpg';
-  static const imageArrow = 'assets/images/arrow.png';
-  static const animationOnBoarding = 'assets/images/animation_onboarding.gif';
 }
 
 abstract class SignupScreenStrings {
@@ -212,6 +202,7 @@ abstract class PasswordRecoveryScreenStrings {
       'Мы отправили ссылку для восстановления пароля на вашу почту. Вы получите её в течение 2-х минут. '
       '\nНе забудьте проверить папку "Спам".';
   static const okButton = 'Ок';
+  static const checkEmail = 'Пользователь с таким email не зарегистрирован. \nПроверьте правильность введённого email';
 }
 
 

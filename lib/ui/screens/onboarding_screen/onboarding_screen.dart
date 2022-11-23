@@ -1,6 +1,7 @@
 import 'package:birge_app/ui/style/text_style/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../const/app_images.dart';
 import '../../../const/strings.dart';
 import '../../widgets/buttons.dart';
 import '../../widgets/widgets.dart';
@@ -24,9 +25,9 @@ class OnBoardingScreen extends StatelessWidget {
               children: [
                 spacerHeight(20),
                 Image.asset(
-                  OnBoardingScreenStrings.imageImage,
+                  imageImage,
                   height:
-                  Device.orientation == Orientation.landscape ? 50.w : 60.h,
+                      Device.orientation == Orientation.landscape ? 50.w : 60.h,
                   width: width,
                 ),
                 spacerHeight(20),
@@ -37,7 +38,7 @@ class OnBoardingScreen extends StatelessWidget {
                 spacerHeight(10),
                 const Text(OnBoardingScreenStrings.weAreHere),
                 spacerHeight(20),
-                Image.asset(OnBoardingScreenStrings.imageArrow),
+                Image.asset(imageArrow),
                 spacerHeight(20),
                 BlueButton(
                   onPressed: () {

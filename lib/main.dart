@@ -27,6 +27,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:material_color_generator/material_color_generator.dart';
 import 'package:path/path.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'const/app_images.dart';
 import 'data/repository/article_repository.dart';
 import 'data/repository/meditation_repository.dart';
 import 'firebase/firebase_options.dart';
@@ -58,7 +59,7 @@ class MyApp extends StatelessWidget {
     MeditationsScreen.routeName: (context) => MeditationsScreen(),
     DiaryScreen.routeName: (context) => DiaryScreen(),
     SingleArticleScreen.routeName: (context) => SingleArticleScreen(
-      image: HelpScreenStrings.imageHello,
+      image: imageHello,
     ),
     SingleMeditationScreen.routeName: (context) =>
     const SingleMeditationScreen(),

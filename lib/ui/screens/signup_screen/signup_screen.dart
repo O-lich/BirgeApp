@@ -12,6 +12,7 @@ import '../main_screen/main_screen.dart';
 
 class SignupScreen extends StatelessWidget {
   static const routeName = '/signup_screen';
+
   SignupScreen({Key? key}) : super(key: key);
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
@@ -71,7 +72,6 @@ class SignupScreen extends StatelessWidget {
                         hintText: SignupScreenStrings.emailExample,
                         controller: _emailController,
                         validator: (value) {
-                          //print(signUpViewModel.validatorEmail(value));
                           return signUpViewModel.validatorEmail(value);
                         },
                         autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -118,7 +118,8 @@ class SignupScreen extends StatelessWidget {
                       final success = await FirebaseHelper.signUp(
                           email, password, signUpViewModel.username);
                       if (success) {
-                        Navigator.pushReplacementNamed(context, MainScreen.routeName);
+                        Navigator.pushReplacementNamed(
+                            context, MainScreen.routeName);
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(

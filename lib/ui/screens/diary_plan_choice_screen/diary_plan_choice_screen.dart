@@ -13,7 +13,7 @@ import '../task_screen/task_screen.dart';
 
 class DiaryPlanChoiceScreen extends StatefulWidget {
   static const routeName = '/diary_plan_choice_screen';
-  DiaryPlanChoiceScreen({Key? key}) : super(key: key);
+  const DiaryPlanChoiceScreen({Key? key}) : super(key: key);
 
   @override
   State<DiaryPlanChoiceScreen> createState() => _DiaryPlanChoiceScreenState();

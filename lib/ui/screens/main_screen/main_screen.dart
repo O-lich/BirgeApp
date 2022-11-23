@@ -1,12 +1,9 @@
 import 'package:birge_app/ui/screens/diary_plan_choice_screen/diary_plan_choice_screen.dart';
 import 'package:birge_app/ui/screens/meditations_screen/meditations_screen.dart';
 import 'package:birge_app/ui/style/text_style/text_style.dart';
-import 'package:birge_app/ui/widgets/back_floating_button.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/strings.dart';
-import '../../../data/repository/meditation_repository.dart';
 import '../../style/colors/app_colors.dart';
 import '../../widgets/buttons.dart';
 import '../../widgets/calendar.dart';
@@ -18,6 +15,7 @@ import '../task_screen/task_screen.dart';
 
 class MainScreen extends StatelessWidget {
   static const routeName = '/main_screen';
+
   MainScreen({Key? key}) : super(key: key);
 
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;

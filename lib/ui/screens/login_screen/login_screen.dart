@@ -3,6 +3,7 @@ import 'package:birge_app/ui/style/text_style/text_style.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../const/app_images.dart';
 import '../../../const/strings.dart';
 import '../../../firebase/firebase_helper.dart';
 import '../../widgets/buttons.dart';
@@ -14,6 +15,7 @@ import 'login_screen_store.dart';
 
 class LoginScreen extends StatelessWidget {
   static const routeName = '/login_screen';
+
   LoginScreen({Key? key}) : super(key: key);
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
@@ -34,7 +36,7 @@ class LoginScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(30),
                 child: Container(
                   height:
-                  Device.orientation == Orientation.landscape ? 30.w : 40.h,
+                      Device.orientation == Orientation.landscape ? 30.w : 40.h,
                   width: width,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
@@ -42,7 +44,7 @@ class LoginScreen extends StatelessWidget {
                     image: const DecorationImage(
                       fit: BoxFit.fill,
                       image: AssetImage(
-                          OnBoardingScreenStrings.animationOnBoarding),
+                          animationOnBoarding),
                     ),
                   ),
                 ),
@@ -75,7 +77,6 @@ class LoginScreen extends StatelessWidget {
                       controller: _passwordController,
                       validator: (value) {
                         return loginViewModel.validatorPassword(value);
-
                       },
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       obscureText: true,

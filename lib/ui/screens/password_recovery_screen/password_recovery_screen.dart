@@ -61,7 +61,7 @@ class PasswordRecoveryScreen extends StatelessWidget {
                           SnackBar(
                             backgroundColor: Colors.red.shade300,
                             content: const Text(
-                                'Пользователь с таким email не зарегистрирован. \nПроверьте правильность введённого email.'),
+                                PasswordRecoveryScreenStrings.checkEmail),
                           ),
                         );
                       }
