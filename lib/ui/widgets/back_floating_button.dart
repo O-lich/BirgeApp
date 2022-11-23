@@ -1,5 +1,6 @@
 import 'package:birge_app/ui/style/colors/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../screens/onboarding_screen/onboarding_screen.dart';
 
@@ -39,8 +40,7 @@ class MainBackFloatingButton extends StatelessWidget {
         heroTag: "backMain",
         mini: true,
         onPressed: () {
-          Navigator.of(context).pushNamedAndRemoveUntil(
-              OnBoardingScreen.routeName, (route) => false);
+          SystemNavigator.pop();
         },
         child: const Icon(Icons.arrow_back_ios_new),
       ),

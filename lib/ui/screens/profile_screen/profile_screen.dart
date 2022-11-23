@@ -10,6 +10,7 @@ import '../../style/text_style/text_style.dart';
 import '../../widgets/back_floating_button.dart';
 import '../../widgets/buttons.dart';
 import '../../widgets/widgets.dart';
+import '../login_screen/login_screen.dart';
 import 'change_password_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -19,7 +20,6 @@ class ProfileScreen extends StatelessWidget {
 
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
   final _profileViewModel = ProfileScreenStore();
-
 
   @override
   Widget build(BuildContext context) {
@@ -69,15 +69,20 @@ class ProfileScreen extends StatelessWidget {
                     color: backgroundColor,
                     elevation: 4,
                     child: SizedBox(
-                      width: width,
+                        width: width,
                         height: width / 8,
                         child: Center(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                               Text('Поменять пароль', style: CommonTextStyle.mainText,),
-                                SizedBox(width: width / 2,),
-                                Icon(Icons.arrow_forward_ios, size: 10),
+                              Text(
+                                'Поменять пароль',
+                                style: CommonTextStyle.mainText,
+                              ),
+                              SizedBox(
+                                width: width / 2,
+                              ),
+                              Icon(Icons.arrow_forward_ios, size: 10),
                             ],
                           ),
                         )),
@@ -214,12 +219,8 @@ class ProfileScreen extends StatelessWidget {
                       onPressed: () {
                         FirebaseHelper.signOut();
                         Navigator.of(context).pushNamedAndRemoveUntil(
-                            OnBoardingScreen.routeName, (route) => false);
-                        // Navigator.pushAndRemoveUntil<void>(
-                        //   context,
-                        //   MaterialPageRoute<void>(builder: (BuildContext context) => const OnBoardingScreen()),
-                        //   ModalRoute.withName(OnBoardingScreen.routeName),
-                        // );
+                            LoginScreen.routeName, (route) => false);
+                        //SystemNavigator.pop();
                       },
                       child: Text(
                         Exit.leave,
