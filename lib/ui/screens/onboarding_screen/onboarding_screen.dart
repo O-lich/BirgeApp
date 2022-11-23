@@ -13,7 +13,7 @@ class OnBoardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
+    final width = Device.orientation == Orientation.landscape ? 30.w : 40.h;
     return Scaffold(
       body: SingleChildScrollView(
         child: SizedBox(
@@ -23,19 +23,11 @@ class OnBoardingScreen extends StatelessWidget {
             child: Column(
               children: [
                 spacerHeight(20),
-                Container(
+                Image.asset(
+                  OnBoardingScreenStrings.imageImage,
                   height:
-                      Device.orientation == Orientation.landscape ? 50.w : 60.h,
+                  Device.orientation == Orientation.landscape ? 50.w : 60.h,
                   width: width,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: Colors.white, width: 2),
-                    image: const DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage(
-                          OnBoardingScreenStrings.animationOnBoarding),
-                    ),
-                  ),
                 ),
                 spacerHeight(20),
                 Text(

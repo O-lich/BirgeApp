@@ -32,10 +32,19 @@ class LoginScreen extends StatelessWidget {
               spacerHeight(20),
               Padding(
                 padding: const EdgeInsets.all(30),
-                child: Image.asset(
-                  LoginScreenStrings.imageLogin,
-                  height: width / 1.5,
-                  width: width / 1.5,
+                child: Container(
+                  height:
+                  Device.orientation == Orientation.landscape ? 30.w : 40.h,
+                  width: width,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(color: Colors.white, width: 2),
+                    image: const DecorationImage(
+                      fit: BoxFit.fill,
+                      image: AssetImage(
+                          OnBoardingScreenStrings.animationOnBoarding),
+                    ),
+                  ),
                 ),
               ),
               Text(LoginScreenStrings.welcome,
