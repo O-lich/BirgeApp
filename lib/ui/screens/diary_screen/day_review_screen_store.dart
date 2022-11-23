@@ -1,7 +1,5 @@
-import 'package:birge_app/domain/model/diary_model.dart';
 import 'package:birge_app/ui/screens/diary_screen/day_review_interactor.dart';
 import 'package:birge_app/ui/screens/diary_screen/day_review_screen.dart';
-import 'package:birge_app/ui/screens/diary_screen/diary_interactor.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 

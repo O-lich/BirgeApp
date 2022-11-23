@@ -108,8 +108,19 @@ class _DiaryScreenState extends State<DiaryScreen> {
                       borderRadius: BorderRadius.all(Radius.circular(15)),
                     ),
                     child: (_diaryScreenViewModel.reviewValue.text.isNotEmpty)
-                        ? Center(child: Align(child: Text(_diaryScreenViewModel.reviewValue.text), alignment: Alignment.centerLeft,))
-                        : Center(child: Align(child: Text(DiaryScreenStrings.hintText), alignment: Alignment.centerLeft,)),
+                        ? Center(
+                            child: Align(
+                              child:
+                                  Text(_diaryScreenViewModel.reviewValue.text),
+                              alignment: Alignment.centerLeft,
+                            ),
+                          )
+                        : Center(
+                            child: Align(
+                              child: Text(DiaryScreenStrings.hintText),
+                              alignment: Alignment.centerLeft,
+                            ),
+                          ),
                   ),
                 ),
                 spacerHeight(20),

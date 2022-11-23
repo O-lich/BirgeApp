@@ -11,7 +11,7 @@ abstract class _TaskScreenStore with Store {
   TaskInteractor _taskInteractor = TaskInteractor();
 
   @observable
-  DiaryScreenArguments args = DiaryScreenArguments(date: DateTime.utc(2022));
+  DiaryScreenArguments args = DiaryScreenArguments(date: DateTime.now());
 
   @observable
   List<TaskModel> taskValue = [];

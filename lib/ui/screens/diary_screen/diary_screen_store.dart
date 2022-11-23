@@ -19,7 +19,7 @@ abstract class _DiaryScreenStore with Store {
   final DayRatingInteractor _dayRatingInteractor = DayRatingInteractor();
 
   @observable
-  DiaryScreenArguments args = DiaryScreenArguments(date: DateTime.utc(2022));
+  DiaryScreenArguments args = DiaryScreenArguments(date: DateTime.now());
 
   @observable
   List<DiaryModel> value = [];
@@ -29,7 +29,8 @@ abstract class _DiaryScreenStore with Store {
       DayReviewModel(userId: '', date: '', id: '', text: '');
 
   @observable
-  DayRatingModel ratingValue = DayRatingModel(date: '', userId: '', rate: 0.0, id: '');
+  DayRatingModel ratingValue =
+      DayRatingModel(date: '', userId: '', rate: 0.0, id: '');
 
   @action
   void initDate(DiaryScreenArguments argsFromScreen) {
