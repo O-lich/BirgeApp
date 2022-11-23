@@ -11,6 +11,7 @@ import '../../style/text_style/text_style.dart';
 import '../../widgets/back_floating_button.dart';
 import '../../widgets/buttons.dart';
 import '../../widgets/widgets.dart';
+import '../login_screen/login_screen.dart';
 import 'change_password_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -69,7 +70,7 @@ class ProfileScreen extends StatelessWidget {
                     color: backgroundColor,
                     elevation: 4,
                     child: SizedBox(
-                        width: width,
+                      width: width,
                         height: width / 8,
                         child: Center(
                           child: Row(
