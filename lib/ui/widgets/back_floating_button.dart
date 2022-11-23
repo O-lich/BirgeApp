@@ -2,8 +2,6 @@ import 'package:birge_app/ui/style/colors/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../screens/onboarding_screen/onboarding_screen.dart';
-
 class BackFloatingButton extends StatelessWidget {
   const BackFloatingButton({super.key});
 
