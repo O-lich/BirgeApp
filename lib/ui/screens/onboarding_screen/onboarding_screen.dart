@@ -23,23 +23,23 @@ class OnBoardingScreen extends StatelessWidget {
             padding: const EdgeInsets.all(30),
             child: Column(
               children: [
-                spacerHeight(20),
+                spacerHeight(2.h),
                 Image.asset(
                   imageImage,
                   height:
                       Device.orientation == Orientation.landscape ? 50.w : 60.h,
                   width: width,
                 ),
-                spacerHeight(20),
+                spacerHeight(2.h),
                 Text(
                   OnBoardingScreenStrings.youAreNotAlone,
                   style: CommonTextStyle.onboardingText,
                 ),
                 spacerHeight(10),
                 const Text(OnBoardingScreenStrings.weAreHere),
-                spacerHeight(20),
+                spacerHeight(2.h),
                 Image.asset(imageArrow),
-                spacerHeight(20),
+                spacerHeight(2.h),
                 BlueButton(
                   onPressed: () {
                     Navigator.pushNamed(
@@ -49,7 +49,7 @@ class OnBoardingScreen extends StatelessWidget {
                   },
                   width: width,
                   child: const Text(OnBoardingScreenStrings.goOn),
-                )
+                ),
               ],
             ),
           ),

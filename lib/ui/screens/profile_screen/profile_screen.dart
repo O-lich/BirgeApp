@@ -33,7 +33,7 @@ class ProfileScreen extends StatelessWidget {
           child: Observer(builder: (_) {
             return Column(
               children: [
-                spacerHeight(80),
+                spacerHeight(10.h),
                 InkWell(
                   onTap: () {
                     _showImageDialog(context);
@@ -60,24 +60,24 @@ class ProfileScreen extends StatelessWidget {
                         const Icon(Icons.edit, color: mainAppColor, size: 40),
                   ),
                 ),
-                spacerHeight(50),
+                spacerHeight(5.h),
                 Text(_profileViewModel.name,
                     style: CommonTextStyle.mainHeader,
                     textAlign: TextAlign.center),
-                spacerHeight(50),
+                spacerHeight(5.h),
                 InkWell(
                   child: Card(
                     color: backgroundColor,
                     elevation: 4,
                     child: SizedBox(
-                      width: width,
+                        width: width,
                         height: width / 8,
                         child: Center(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Text(
-                                'Поменять пароль',
+                                ProfileScreenStrings.changePassword,
                                 style: CommonTextStyle.mainText,
                               ),
                               SizedBox(

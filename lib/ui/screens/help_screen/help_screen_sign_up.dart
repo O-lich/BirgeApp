@@ -34,16 +34,16 @@ class HelpSignUpScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  spacerHeight(50),
+                  spacerHeight(6.h),
                   Align(
                     alignment: Alignment.center,
                     child: Text(HelpScreenStrings.sighingUp,
                         style: CommonTextStyle.mainHeader),
                   ),
-                  spacerHeight(10),
+                  spacerHeight(1.h),
                   Text(HelpScreenStrings.create,
                       style: CommonTextStyle.mainText),
-                  spacerHeight(10),
+                  spacerHeight(1.h),
                   CustomFormField(
                     width: width,
                     controller: _nameController,
@@ -68,12 +68,12 @@ class HelpSignUpScreen extends StatelessWidget {
                     context: context,
                     obscureText: false,
                   ),
-                  spacerHeight(10),
+                  spacerHeight(1.h),
                   const Text(
                     HelpScreenStrings.date,
                   ),
                   calendar,
-                  spacerHeight(10),
+                  spacerHeight(1.h),
                 ],
               ),
               Column(
@@ -99,7 +99,7 @@ class HelpSignUpScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              spacerHeight(20),
+              spacerHeight(2.h),
             ],
           ),
         ),

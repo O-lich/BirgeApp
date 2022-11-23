@@ -24,11 +24,11 @@ class HelpCongratsScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              spacerHeight(50),
+              spacerHeight(6.h),
               Text(HelpScreenStrings.congrats,
                   style: CommonTextStyle.mainHeader, textAlign: TextAlign.left),
               Image.asset(imageCongrats),
-              spacerHeight(50),
+              spacerHeight(5.h),
               Column(
                 children: [
                   BlueButton(
@@ -41,7 +41,7 @@ class HelpCongratsScreen extends StatelessWidget {
                       style: CommonTextStyle.blueButton,
                     ),
                   ),
-                  spacerHeight(20),
+                  spacerHeight(2.h),
                   BlueButton(
                     width: width / 2,
                     onPressed: () {
@@ -58,7 +58,7 @@ class HelpCongratsScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              spacerHeight(20),
+              spacerHeight(2.h),
             ],
           ),
         ),

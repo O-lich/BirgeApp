@@ -49,7 +49,7 @@ class _DiaryScreenState extends State<DiaryScreen> {
           child: Observer(builder: (_) {
             return Column(
               children: [
-                spacerHeight(50),
+                spacerHeight(6.h),
                 Text(DiaryScreenStrings.diary,
                     style: CommonTextStyle.mainHeader,
                     textAlign: TextAlign.center),
@@ -58,7 +58,7 @@ class _DiaryScreenState extends State<DiaryScreen> {
                     _diaryScreenViewModel.args.date.toString().substring(0, 10),
                     style: CommonTextStyle.mainText,
                     textAlign: TextAlign.left),
-                spacerHeight(50),
+                spacerHeight(5.h),
                 Container(
                   width: width,
                   height: width / 1.5,
@@ -111,11 +111,11 @@ class _DiaryScreenState extends State<DiaryScreen> {
                         : Text(DiaryScreenStrings.hintText),
                   ),
                 ),
-                spacerHeight(20),
+                spacerHeight(2.h),
                 DayRatingWidget(
                   rating: _diaryScreenViewModel.ratingValue.rate,
                 ),
-                spacerHeight(50),
+                spacerHeight(5.h),
               ],
             );
           }),

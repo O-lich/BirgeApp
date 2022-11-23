@@ -33,13 +33,13 @@ class HelpTelegramScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              spacerHeight(50),
+              spacerHeight(6.h),
               Text(
                 HelpScreenStrings.chat,
                 style: CommonTextStyle.mainHeader,
                 textAlign: TextAlign.center,
               ),
-              spacerHeight(50),
+              spacerHeight(5.h),
               InkWell(
                 onTap: () {
                   _launchUrl(urlTelegram);

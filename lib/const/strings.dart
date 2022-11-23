@@ -63,6 +63,7 @@ abstract class ProfileScreenStrings {
   static const favoriteArticles = 'Избранные статьи';
   static const favoriteMeditations = 'Избранные медитации';
   static const pickImage = 'Выберите картинку из файла';
+  static const changePassword = 'Поменять пароль';
 }
 
 abstract class QuestionnaireScreenStrings {

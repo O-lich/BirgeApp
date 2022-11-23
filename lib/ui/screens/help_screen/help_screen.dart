@@ -24,7 +24,7 @@ class HelpScreen extends StatelessWidget {
           width: Device.width,
           child: Column(
             children: [
-              spacerHeight(80),
+              spacerHeight(9.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -46,7 +46,7 @@ class HelpScreen extends StatelessWidget {
                   Image.asset(imageHello),
                 ],
               ),
-              spacerHeight(50),
+              spacerHeight(5.h),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -56,7 +56,7 @@ class HelpScreen extends StatelessWidget {
                         style: CommonTextStyle.mainHeader,
                         textAlign: TextAlign.left),
                   ),
-                  spacerHeight(20),
+                  spacerHeight(2.h),
                   Padding(
                     padding: EdgeInsets.only(
                         left: (Device.width - width) / 4,
@@ -67,7 +67,7 @@ class HelpScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              spacerHeight(50),
+              spacerHeight(5.h),
               BlueButton(
                 width: width / 2,
                 onPressed: () {
@@ -81,7 +81,7 @@ class HelpScreen extends StatelessWidget {
                   style: CommonTextStyle.blueButton,
                 ),
               ),
-              spacerHeight(20),
+              spacerHeight(2.h),
             ],
           ),
         ),

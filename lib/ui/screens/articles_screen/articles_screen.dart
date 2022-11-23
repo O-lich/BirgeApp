@@ -26,11 +26,11 @@ class ArticlesScreen extends StatelessWidget {
         child: SizedBox(
           child: Column(
             children: [
-              spacerHeight(50),
+              spacerHeight(6.h),
               Text(ArticlesScreenStrings.articles,
                   style: CommonTextStyle.mainHeader,
                   textAlign: TextAlign.center),
-              spacerHeight(20),
+              spacerHeight(2.h),
               Container(
                 padding: EdgeInsets.symmetric(
                     horizontal: (Device.width - width) / 8),
@@ -63,7 +63,7 @@ class ArticlesScreen extends StatelessWidget {
                       );
                     }),
               ),
-              spacerHeight(100),
+              spacerHeight(5.h),
             ],
           ),
         ),

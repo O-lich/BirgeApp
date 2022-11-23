@@ -25,100 +25,102 @@ class ChangePasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
-      child: SizedBox(
-        width: width,
-        child: Column(
-          children: [
-            spacerHeight(50),
-            Text(PasswordRecoveryScreenStrings.changePassword,
-                style: CommonTextStyle.mainHeader, textAlign: TextAlign.center),
-            spacerHeight(20),
-            Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  CustomFormField(
-                    width: width,
-                    context: context,
-                    title: ChangePasswordScreenStrings.currentPassword,
-                    hintText: ChangePasswordScreenStrings.currentPassword,
-                    controller: currentPasswordController,
-                    validator: (value) {
-                      return _viewModel.validator(
-                          value, ChangePasswordScreenStrings.fieldEmpty);
-                    },
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    obscureText: true,
-                  ),
-                  CustomFormField(
-                    width: width,
-                    context: context,
-                    title: ChangePasswordScreenStrings.password,
-                    hintText: ChangePasswordScreenStrings.createPassword,
-                    controller: newPasswordController,
-                    validator: (value) {
-                      return _viewModel.validatorPassword(value);
-                    },
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    obscureText: true,
-                  ),
-                  CustomFormField(
-                    width: width,
-                    context: context,
-                    title: '',
-                    hintText: ChangePasswordScreenStrings.confirmPassword,
-                    controller: newPasswordConfirmController,
-                    validator: (value) {
-                      return _viewModel.validatorPassword(value);
-                    },
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    obscureText: true,
-                  ),
-                  spacerHeight(20),
-                  BlueButton(
-                    width: width,
-                    onPressed: () async {
-                      final newPassword = newPasswordController.text;
-                      final confirmNewPassword =
-                          newPasswordConfirmController.text;
-                      final currentPassword = currentPasswordController.text;
-                      if (newPassword == confirmNewPassword) {
-                        final response = await FirebaseHelper.changePassword(
-                            currentPassword, newPassword);
-                        if (response == 'success') {
-                          _showDialog(context);
+      body: Center(
+        child: SizedBox(
+          width: width,
+          child: Column(
+            children: [
+              spacerHeight(5.h),
+              Text(PasswordRecoveryScreenStrings.changePassword,
+                  style: CommonTextStyle.mainHeader,
+                  textAlign: TextAlign.center),
+              spacerHeight(2.h),
+              Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    CustomFormField(
+                      width: width,
+                      context: context,
+                      title: ChangePasswordScreenStrings.currentPassword,
+                      hintText: ChangePasswordScreenStrings.currentPassword,
+                      controller: currentPasswordController,
+                      validator: (value) {
+                        return _viewModel.validator(
+                            value, ChangePasswordScreenStrings.fieldEmpty);
+                      },
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      obscureText: true,
+                    ),
+                    CustomFormField(
+                      width: width,
+                      context: context,
+                      title: ChangePasswordScreenStrings.password,
+                      hintText: ChangePasswordScreenStrings.createPassword,
+                      controller: newPasswordController,
+                      validator: (value) {
+                        return _viewModel.validatorPassword(value);
+                      },
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      obscureText: true,
+                    ),
+                    CustomFormField(
+                      width: width,
+                      context: context,
+                      title: '',
+                      hintText: ChangePasswordScreenStrings.confirmPassword,
+                      controller: newPasswordConfirmController,
+                      validator: (value) {
+                        return _viewModel.validatorPassword(value);
+                      },
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      obscureText: true,
+                    ),
+                    spacerHeight(2.h),
+                    BlueButton(
+                      width: width,
+                      onPressed: () async {
+                        final newPassword = newPasswordController.text;
+                        final confirmNewPassword =
+                            newPasswordConfirmController.text;
+                        final currentPassword = currentPasswordController.text;
+                        if (newPassword == confirmNewPassword) {
+                          final response = await FirebaseHelper.changePassword(
+                              currentPassword, newPassword);
+                          if (response == 'success') {
+                            _showDialog(context);
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                backgroundColor: Colors.red,
+                                content: Text(ChangePasswordScreenStrings
+                                    .somethingWentWrong),
+                              ),
+                            );
+                          }
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                               backgroundColor: Colors.red,
-                              content: Text(ChangePasswordScreenStrings
-                                  .somethingWentWrong),
+                              content: Text(
+                                  ChangePasswordScreenStrings.pwdsNotMatch),
                             ),
                           );
                         }
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            backgroundColor: Colors.red,
-                            content:
-                                Text(ChangePasswordScreenStrings.pwdsNotMatch),
-                          ),
-                        );
-                      }
-                    },
-                    child: Text(
-                      ChangePasswordScreenStrings.changePassword,
-                      style: CommonTextStyle.blueButton,
+                      },
+                      child: Text(
+                        ChangePasswordScreenStrings.changePassword,
+                        style: CommonTextStyle.blueButton,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
-    ));
+    );
   }
 
   Future _showDialog(BuildContext context) => showGeneralDialog(

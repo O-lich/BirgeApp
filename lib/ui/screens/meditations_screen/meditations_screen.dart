@@ -37,11 +37,11 @@ class _MeditationsScreenState extends State<MeditationsScreen> {
         child: SizedBox(
           child: Column(
             children: [
-              spacerHeight(50),
+              spacerHeight(6.h),
               Text(MeditationsScreenStrings.meditations,
                   style: CommonTextStyle.mainHeader,
                   textAlign: TextAlign.center),
-              spacerHeight(20),
+              spacerHeight(2.h),
               Padding(
                 padding: EdgeInsets.symmetric(
                     horizontal: (Device.width - width) / 8),
@@ -120,7 +120,7 @@ class _MeditationsScreenState extends State<MeditationsScreen> {
                       });
                 }),
               ),
-              spacerHeight(20),
+              spacerHeight(2.h),
             ],
           ),
         ),

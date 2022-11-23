@@ -39,9 +39,9 @@ class SingleArticleScreen extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             child: Column(
               children: [
-                spacerHeight(70),
+                spacerHeight(6.h),
                 RandomImage(images: articlesImages),
-                spacerHeight(20),
+                spacerHeight(2.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -59,7 +59,7 @@ class SingleArticleScreen extends StatelessWidget {
                     }),
                   ],
                 ),
-                spacerHeight(20),
+                spacerHeight(2.h),
                 ReadMoreText(args.content.replaceAll("\\n", "\n"),
                     trimLines: 3,
                     textAlign: TextAlign.justify,
@@ -71,7 +71,7 @@ class SingleArticleScreen extends StatelessWidget {
                     trimCollapsedText:
                         SingleArticleScreenStrings.continueReading,
                     trimExpandedText: SingleArticleScreenStrings.hide),
-                spacerHeight(20),
+                spacerHeight(2.h),
               ],
             ),
           ),

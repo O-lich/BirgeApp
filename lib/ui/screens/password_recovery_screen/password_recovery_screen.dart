@@ -31,12 +31,12 @@ class PasswordRecoveryScreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  spacerHeight(50),
+                  spacerHeight(6.h),
                   Text(PasswordRecoveryScreenStrings.changePassword,
                       style: CommonTextStyle.secondHeader),
-                  spacerHeight(10),
+                  spacerHeight(1.h),
                   const Text(PasswordRecoveryScreenStrings.enterEmail),
-                  spacerHeight(10),
+                  spacerHeight(1.h),
                   CustomFormField(
                     width: width,
                     context: context,
@@ -49,7 +49,7 @@ class PasswordRecoveryScreen extends StatelessWidget {
                     obscureText: false,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                   ),
-                  spacerHeight(20),
+                  spacerHeight(2.h),
                   BlueButton(
                     onPressed: () async {
                       var response = await FirebaseHelper.resetPassword(
@@ -73,7 +73,7 @@ class PasswordRecoveryScreen extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  spacerHeight(20),
+                  spacerHeight(2.h),
                 ],
               ),
             ),

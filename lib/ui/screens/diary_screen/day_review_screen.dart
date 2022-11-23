@@ -35,14 +35,14 @@ class DayReviewScreen extends StatelessWidget {
           child: Observer(builder: (_) {
             return Column(
               children: [
-                spacerHeight(50),
+                spacerHeight(6.h),
                 Text(DiaryScreenStrings.diary,
                     style: CommonTextStyle.mainHeader,
                     textAlign: TextAlign.center),
                 spacerHeight(10),
                 Text(args.date.toString().substring(0, 10),
                     style: CommonTextStyle.mainText, textAlign: TextAlign.left),
-                spacerHeight(50),
+                spacerHeight(5.h),
                 Container(
                   width: width,
                   height: width / 1.5,
@@ -55,12 +55,12 @@ class DayReviewScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                spacerHeight(20),
+                spacerHeight(2.h),
                 DiaryTextField(
                   width: width,
                   controller: _dayReviewScreenViewModel.dayReviewController,
                 ),
-                spacerHeight(20),
+                spacerHeight(2.h),
                 BlueButton(
                   width: width / 2,
                   onPressed: () {
@@ -89,7 +89,7 @@ class DayReviewScreen extends StatelessWidget {
                     style: CommonTextStyle.blueButton,
                   ),
                 ),
-                spacerHeight(50),
+                spacerHeight(5.h),
               ],
             );
           }),

@@ -46,7 +46,7 @@ class _TaskScreenState extends State<TaskScreen> {
             return Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                spacerHeight(50),
+                spacerHeight(6.h),
                 Text(TaskScreenStrings.plan,
                     style: CommonTextStyle.mainHeader,
                     textAlign: TextAlign.center),
@@ -55,7 +55,7 @@ class _TaskScreenState extends State<TaskScreen> {
                     _diaryScreenViewModel.args.date.toString().substring(0, 10),
                     style: CommonTextStyle.mainText,
                     textAlign: TextAlign.left),
-                spacerHeight(50),
+                spacerHeight(5.h),
                 ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
@@ -64,7 +64,7 @@ class _TaskScreenState extends State<TaskScreen> {
                       return ListTile(
                           leading: IconButton(
                             icon: (_taskScreenViewModel
-                                .taskValue[index].isChecked)
+                                    .taskValue[index].isChecked)
                                 ? Icon(Icons.check_box, color: mainAppColor)
                                 : Icon(Icons.check_box_outline_blank),
                             onPressed: () {
@@ -84,7 +84,7 @@ class _TaskScreenState extends State<TaskScreen> {
                           title:
                               Text(_taskScreenViewModel.taskValue[index].text));
                     }),
-                spacerHeight(20),
+                spacerHeight(2.h),
               ],
             );
           }),
