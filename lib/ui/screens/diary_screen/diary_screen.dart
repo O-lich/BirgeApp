@@ -101,7 +101,6 @@ class _DiaryScreenState extends State<DiaryScreen> {
                   },
                   child: Container(
                     width: width,
-                    height: width / 6,
                     padding: EdgeInsets.all((width / 8) / 3),
                     decoration: const BoxDecoration(
                       color: Colors.white,
