@@ -36,15 +36,14 @@ class LoginScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(30),
                 child: Container(
                   height:
-                      Device.orientation == Orientation.landscape ? 30.w : 40.h,
-                  width: width,
+                      Device.orientation == Orientation.landscape ? 30.w : 30.h,
+                  //width: width,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     border: Border.all(color: Colors.white, width: 2),
                     image: const DecorationImage(
-                      fit: BoxFit.fill,
-                      image: AssetImage(
-                          animationOnBoarding),
+                      fit: BoxFit.contain,
+                      image: AssetImage(animationOnBoarding),
                     ),
                   ),
                 ),

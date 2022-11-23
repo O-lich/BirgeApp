@@ -30,14 +30,14 @@ class MainScreen extends StatelessWidget {
           width: Device.width,
           child: Column(
             children: [
-              spacerHeight(50),
+              spacerHeight(6.h),
               Container(
                 width: width * 0.8,
                 child: Text(MainScreenStrings.question,
                     style: CommonTextStyle.mainHeader,
                     textAlign: TextAlign.center),
               ),
-              spacerHeight(50),
+              spacerHeight(5.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -72,7 +72,7 @@ class MainScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              spacerHeight(20),
+              spacerHeight(2.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -107,12 +107,12 @@ class MainScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              spacerHeight(50),
+              spacerHeight(5.h),
               Calendar(
                 width: width,
                 path: DiaryPlanChoiceScreen.routeName,
               ),
-              spacerHeight(100),
+              spacerHeight(5.h),
             ],
           ),
         ),

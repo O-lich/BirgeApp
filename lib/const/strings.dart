@@ -161,8 +161,8 @@ abstract class SignupScreenStrings {
   static const userExists = 'Пользователь с таким e-mail уже зарегистрирован';
   static const pwdsNotMatch = 'Пароли не совпадают';
   static const longPwd = 'Пароль должен быть более 8 символов';
-  static const strongPwd =
-      'Пароль должен содержать хотя бы одну заглавную букву и хотя бы одну цифру';
+  static const strongPwdLet = 'Пароль должен содержать заглавную букву';
+  static const strongPwdNum = 'Пароль должен содержать хотя бы одну цифру';
 }
 
 abstract class BottomBarStrings {

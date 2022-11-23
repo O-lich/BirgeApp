@@ -12,13 +12,13 @@ abstract class _ChangePasswordScreenStore with Store {
   String? password = '';
 
   RegExp numReg = RegExp(r".*[0-9].*");
-  RegExp letterReg = RegExp(r".*[A-Za-z].*");
+  RegExp letterReg = RegExp(r".*[A-Z].*");
 
   @action
   String? validator(String? value, String response) {
     if (value!.isEmpty) {
       return response;
-    }  else {
+    } else {
       return null;
     }
   }
@@ -30,8 +30,10 @@ abstract class _ChangePasswordScreenStore with Store {
       return SignupScreenStrings.plsEnterPwd;
     } else if (password!.length < 8) {
       return SignupScreenStrings.longPwd;
-    } else if (!letterReg.hasMatch(password!) || !numReg.hasMatch(password!)) {
-      return SignupScreenStrings.strongPwd;
+    } else if (!letterReg.hasMatch(password!)) {
+      return SignupScreenStrings.strongPwdLet;
+    } else if (!numReg.hasMatch(password!)) {
+      return SignupScreenStrings.strongPwdNum;
     } else {
       return null;
     }
