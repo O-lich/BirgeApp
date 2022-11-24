@@ -1,13 +1,18 @@
+import 'package:birge_app/ui/screens/signup_screen/signup_screen_store.dart';
 import 'package:birge_app/ui/style/text_style/text_style.dart';
 import 'package:birge_app/ui/widgets/buttons.dart';
 import 'package:birge_app/ui/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/strings.dart';
-import '../../../domain/model/signup_model.dart';
+import '../../../firebase/firebase_helper.dart';
 import '../../widgets/custom_form_field.dart';
+import '../main_screen/main_screen.dart';
 
 class SignupScreen extends StatelessWidget {
+  static const routeName = '/signup_screen';
+
   SignupScreen({Key? key}) : super(key: key);
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
@@ -15,31 +20,33 @@ class SignupScreen extends StatelessWidget {
   final _passwordController = TextEditingController();
   final _passwordAgainController = TextEditingController();
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
-  final signUpViewModel = SignUpViewModel();
+  final signUpViewModel = SignUpScreenStore();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: (Device.width - width) / 2),
-          child: Column(
-            children: [
-              spacerHeight(50),
-              Align(
-                alignment: Alignment.topLeft,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(SignupScreenStrings.registration,
-                        style: CommonTextStyle.secondHeader),
-                    spacerHeight(10),
-                    const Text(SignupScreenStrings.registrationSubtitle),
-                  ],
+      body: Observer(builder: (_) {
+        return SingleChildScrollView(
+          child: Padding(
+            padding:
+                EdgeInsets.symmetric(horizontal: (Device.width - width) / 2),
+            child: Column(
+              children: [
+                spacerHeight(50),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(SignupScreenStrings.registration,
+                          style: CommonTextStyle.secondHeader),
+                      spacerHeight(10),
+                      const Text(SignupScreenStrings.registrationSubtitle),
+                    ],
+                  ),
                 ),
-              ),
-              spacerHeight(10),
-              Form(
+                spacerHeight(10),
+                Form(
                   key: _formKey,
                   child: Column(
                     children: [
@@ -49,9 +56,14 @@ class SignupScreen extends StatelessWidget {
                         title: SignupScreenStrings.name,
                         hintText: SignupScreenStrings.enterName,
                         controller: _nameController,
-                        validation: signUpViewModel.validator(
-                            _nameController.text,
-                            SignupScreenStrings.plsEnterName),
+                        validator: (value) {
+                          return signUpViewModel.validator(
+                              value!, SignupScreenStrings.plsEnterName);
+                        },
+                        onChanged: (value) =>
+                            signUpViewModel.setUsername(value),
+                        obscureText: false,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
                       ),
                       CustomFormField(
                         width: width,
@@ -59,9 +71,11 @@ class SignupScreen extends StatelessWidget {
                         title: SignupScreenStrings.email,
                         hintText: SignupScreenStrings.emailExample,
                         controller: _emailController,
-                        validation: signUpViewModel.validator(
-                            _emailController.text,
-                            SignupScreenStrings.plsEnterEmail),
+                        validator: (value) {
+                          return signUpViewModel.validatorEmail(value);
+                        },
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        obscureText: false,
                       ),
                       CustomFormField(
                         width: width,
@@ -69,9 +83,13 @@ class SignupScreen extends StatelessWidget {
                         title: SignupScreenStrings.password,
                         hintText: SignupScreenStrings.createPwd,
                         controller: _passwordController,
-                        validation: signUpViewModel.validator(
-                            _passwordController.text,
-                            SignupScreenStrings.plsEnterPwd),
+                        validator: (value) {
+                          return signUpViewModel.validatorPassword(
+                            value,
+                          );
+                        },
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        obscureText: true,
                       ),
                       CustomFormField(
                         width: width,
@@ -79,26 +97,58 @@ class SignupScreen extends StatelessWidget {
                         title: SignupScreenStrings.confirmPwd,
                         hintText: SignupScreenStrings.confirmPwd,
                         controller: _passwordAgainController,
-                        validation: signUpViewModel.validator(
-                            _passwordAgainController.text,
-                            SignupScreenStrings.plsConfirmPwd),
+                        validator: (value) {
+                          return signUpViewModel.validator(
+                              value, SignupScreenStrings.plsConfirmPwd);
+                        },
+                        obscureText: true,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
                       ),
                     ],
-                  )),
-              spacerHeight(20),
-              BlueButton(
-                width: width,
-                onPressed: () {},
-                child: const Text(
-                  SignupScreenStrings.signUp,
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                  ),
                 ),
-              ),
-              spacerHeight(20),
-            ],
+                spacerHeight(20),
+                BlueButton(
+                  width: width,
+                  onPressed: () async {
+                    final email = _emailController.text;
+                    final password = _passwordController.text;
+                    final passwordAgain = _passwordAgainController.text;
+                    if (password == passwordAgain) {
+                      final success = await FirebaseHelper.signUp(
+                          email, password, signUpViewModel.username);
+                      if (success) {
+                        Navigator.pushReplacementNamed(
+                            context, MainScreen.routeName);
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            backgroundColor: Colors.red,
+                            content:
+                                Text(SignupScreenStrings.somethingWentWrong),
+                          ),
+                        );
+                      }
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          backgroundColor: Colors.red,
+                          content: Text(SignupScreenStrings.pwdsNotMatch),
+                        ),
+                      );
+                    }
+                  },
+                  child: const Text(
+                    SignupScreenStrings.signUp,
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                  ),
+                ),
+                spacerHeight(20),
+              ],
+            ),
           ),
-        ),
-      ),
+        );
+      }),
     );
   }
 }

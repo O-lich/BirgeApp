@@ -5,7 +5,7 @@ import '../style/colors/app_colors.dart';
 import '../style/text_style/text_style.dart';
 
 class CardsGridViewWidget extends StatelessWidget {
-  final AssetImage image;
+  final ImageProvider image;
   final void Function() onPressed;
   final double width;
   final String title;
@@ -35,22 +35,24 @@ class CardsGridViewWidget extends StatelessWidget {
             Container(
               height: width * 3 / 8,
               width: width / 2,
-              //alignment: Alignment.center,
               decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(15),
-                    topRight: Radius.circular(15),
-                  ),
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: image,
-                  )),
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(15),
+                  topRight: Radius.circular(15),
+                ),
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: image,
+                ),
+              ),
             ),
             spacerHeight(10),
-            Text(
-              title,
-              style: CommonTextStyle.meditationTitle,
-              textAlign: TextAlign.center,
+            Expanded(
+              child: Text(
+                title,
+                style: CommonTextStyle.meditationTitle,
+                textAlign: TextAlign.center,
+              ),
             ),
             spacerHeight(10),
           ],

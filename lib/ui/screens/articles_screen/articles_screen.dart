@@ -1,18 +1,22 @@
 import 'dart:math';
 import 'package:birge_app/const/strings.dart';
-import 'package:birge_app/ui/widgets/articles_widget.dart';
+import 'package:birge_app/data/repository/article_repository.dart';
+import 'package:birge_app/ui/screens/articles_screen/single_article_screen.dart';
+import 'package:birge_app/ui/widgets/articles_screen_arguments.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/app_images.dart';
 import '../../style/text_style/text_style.dart';
+import '../../widgets/back_floating_button.dart';
 import '../../widgets/cards_grid_view_widget.dart';
 import '../../widgets/widgets.dart';
 
+final articlesTotalList = ArticleRepository.getArticles;
+
 class ArticlesScreen extends StatelessWidget {
+  static const routeName = '/articles_screen';
   ArticlesScreen({Key? key}) : super(key: key);
-  final List<Map> articlesList =
-      List.generate(30, (index) => {"id": index, "name": "Статья $index"})
-          .toList();
+
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
 
   @override
@@ -22,11 +26,11 @@ class ArticlesScreen extends StatelessWidget {
         child: SizedBox(
           child: Column(
             children: [
-              spacerHeight(50),
+              spacerHeight(6.h),
               Text(ArticlesScreenStrings.articles,
                   style: CommonTextStyle.mainHeader,
                   textAlign: TextAlign.center),
-              spacerHeight(20),
+              spacerHeight(2.h),
               Container(
                 padding: EdgeInsets.symmetric(
                     horizontal: (Device.width - width) / 8),
@@ -34,7 +38,7 @@ class ArticlesScreen extends StatelessWidget {
                     scrollDirection: Axis.vertical,
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    itemCount: articlesList.length,
+                    itemCount: articlesTotalList.length,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
@@ -47,19 +51,25 @@ class ArticlesScreen extends StatelessWidget {
                         onPressed: () {
                           Navigator.pushNamed(
                             context,
-                            '/single_article_screen',
+                            SingleArticleScreen.routeName,
+                            arguments: ArticleScreenArguments(
+                                title: articlesTotalList[index].title,
+                                content: articlesTotalList[index].content,
+                                image: image()),
                           );
                         },
                         width: width,
-                        title: articlesList[index]["name"],
+                        title: articlesTotalList[index].title,
                       );
                     }),
               ),
-              spacerHeight(100),
+              spacerHeight(5.h),
             ],
           ),
         ),
       ),
+      floatingActionButton: const BackFloatingButton(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniStartTop,
     );
   }
 

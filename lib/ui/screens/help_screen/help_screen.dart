@@ -1,11 +1,16 @@
+import 'package:birge_app/ui/screens/help_screen/help_screen_sign_up.dart';
 import 'package:birge_app/ui/style/text_style/text_style.dart';
+import 'package:birge_app/ui/widgets/back_floating_button.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../const/app_images.dart';
 import '../../../const/strings.dart';
 import '../../widgets/buttons.dart';
 import '../../widgets/widgets.dart';
 
 class HelpScreen extends StatelessWidget {
+  static const routeName = '/help_screen';
+
   HelpScreen({Key? key}) : super(key: key);
 
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
@@ -19,7 +24,7 @@ class HelpScreen extends StatelessWidget {
           width: Device.width,
           child: Column(
             children: [
-              spacerHeight(50),
+              spacerHeight(9.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -38,10 +43,10 @@ class HelpScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Image.asset(HelpScreenStrings.imageHello),
+                  Image.asset(imageHello),
                 ],
               ),
-              spacerHeight(50),
+              spacerHeight(5.h),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -51,7 +56,7 @@ class HelpScreen extends StatelessWidget {
                         style: CommonTextStyle.mainHeader,
                         textAlign: TextAlign.left),
                   ),
-                  spacerHeight(20),
+                  spacerHeight(2.h),
                   Padding(
                     padding: EdgeInsets.only(
                         left: (Device.width - width) / 4,
@@ -62,13 +67,13 @@ class HelpScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              spacerHeight(50),
+              spacerHeight(5.h),
               BlueButton(
                 width: width / 2,
                 onPressed: () {
                   Navigator.pushNamed(
                     context,
-                    '/help_signup_screen',
+                    HelpSignUpScreen.routeName,
                   );
                 },
                 child: Text(
@@ -76,22 +81,13 @@ class HelpScreen extends StatelessWidget {
                   style: CommonTextStyle.blueButton,
                 ),
               ),
-              spacerHeight(20),
-              BlueButton(
-                width: width / 2,
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text(
-                  HelpScreenStrings.goBack,
-                  style: CommonTextStyle.blueButton,
-                ),
-              ),
-              spacerHeight(20),
+              spacerHeight(2.h),
             ],
           ),
         ),
       ),
+      floatingActionButton: const BackFloatingButton(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniStartTop,
     );
   }
 }

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "618921286918",
+    "firebase_url": "https://birgeapp-210dc-default-rtdb.firebaseio.com",
+    "project_id": "birgeapp-210dc",
+    "storage_bucket": "birgeapp-210dc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:618921286918:android:31c10196e2c13201bb1287",
+        "android_client_info": {
+          "package_name": "com.birge.birge_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "618921286918-4kqn3f4af7rjm37n44saf1ouh484t40t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.birge.birge_app",
+            "certificate_hash": "7bb15525218b934de24ae5309d4d528223ad23b0"
+          }
+        },
+        {
+          "client_id": "618921286918-ooff119pbqjm3ia6ntuaj6514e21tfsb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4JxacFGTrFlKScTnAeRN_ZTmshXLMWvw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "618921286918-ooff119pbqjm3ia6ntuaj6514e21tfsb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "618921286918-ob5f5p5deq0pmb3is7e6obvn1nulpqat.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.birge.birgeApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

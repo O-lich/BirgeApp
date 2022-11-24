@@ -2,17 +2,17 @@ import 'package:birge_app/ui/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class DiaryListTile extends StatelessWidget {
-  final void Function() onTap;
   final double width;
   final String title;
   final String subtitle;
+  final Widget trailing;
 
   const DiaryListTile(
-      {required this.onTap,
-      required this.width,
+      {required this.width,
       super.key,
       required this.title,
-      required this.subtitle});
+      required this.subtitle,
+      required this.trailing});
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +27,7 @@ class DiaryListTile extends StatelessWidget {
             ),
             title: Text(title),
             subtitle: Text(subtitle),
-            trailing: const Icon(Icons.arrow_forward_ios),
-            onTap: onTap,
+            trailing: trailing,
           ),
         ),
         spacerHeight(20),
