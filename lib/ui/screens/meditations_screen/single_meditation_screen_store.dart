@@ -2,9 +2,14 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
+import '../../../data/repository/meditation_repository.dart';
+import '../../widgets/meditations_screen_arguments.dart';
+
 part 'single_meditation_screen_store.g.dart';
 
 const path = 'https://cdn.pixabay.com/audio/2022/04/14/audio_083f6fd7b4.mp3';
+final meditationsListLinks =
+    MeditationRepository.getMeditations.map((e) => e.link).toList();
 
 class SingleMeditationScreenStore = _SingleMeditationScreenStore
     with _$SingleMeditationScreenStore;
@@ -21,13 +26,18 @@ abstract class _SingleMeditationScreenStore with Store {
   bool isPaused = false;
   @observable
   bool isRepeat = false;
+  @observable
+  MeditationScreenArguments args =
+      MeditationScreenArguments(author: '', title: '', image: '', link: '');
+  @observable
+  bool isFavorite = false;
+
   Color iconColor = Colors.black;
-  late final String author;
-  late final String title;
   late AudioPlayer audioPlayer = AudioPlayer();
 
-
-  _SingleMeditationScreenStore() {
+  @action
+  void initAudio(MeditationScreenArguments argsFromScreen) {
+    args = argsFromScreen;
     _initPlayer();
   }
 
@@ -58,7 +68,7 @@ abstract class _SingleMeditationScreenStore with Store {
   @action
   void playingMode() {
     if (!isPlaying) {
-      audioPlayer.play(UrlSource(path));
+      audioPlayer.play(UrlSource(args.link));
     } else {
       audioPlayer.pause();
     }
@@ -81,9 +91,18 @@ abstract class _SingleMeditationScreenStore with Store {
     value = value;
   }
 
+  @action
+  void changeFavorite() {
+    isFavorite = !isFavorite;
+  }
+
   void changeToSecond(int second) {
     Duration newDuration = Duration(seconds: second);
     audioPlayer.seek(newDuration);
+  }
+
+  Future dispose() async {
+    await audioPlayer.dispose();
   }
 
   void _initPlayer() {
@@ -93,7 +112,7 @@ abstract class _SingleMeditationScreenStore with Store {
     audioPlayer.onPositionChanged.listen((newPosition) {
       changePosition(newPosition);
     });
-    audioPlayer.setSourceUrl(path);
+    audioPlayer.setSourceUrl(args.link);
     audioPlayer.onPlayerComplete.listen((event) {
       onPlayerComplete();
     });

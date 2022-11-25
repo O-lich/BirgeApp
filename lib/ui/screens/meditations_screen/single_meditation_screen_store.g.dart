@@ -89,8 +89,51 @@ mixin _$SingleMeditationScreenStore on _SingleMeditationScreenStore, Store {
     });
   }
 
+  late final _$argsAtom =
+      Atom(name: '_SingleMeditationScreenStore.args', context: context);
+
+  @override
+  MeditationScreenArguments get args {
+    _$argsAtom.reportRead();
+    return super.args;
+  }
+
+  @override
+  set args(MeditationScreenArguments value) {
+    _$argsAtom.reportWrite(value, super.args, () {
+      super.args = value;
+    });
+  }
+
+  late final _$isFavoriteAtom =
+      Atom(name: '_SingleMeditationScreenStore.isFavorite', context: context);
+
+  @override
+  bool get isFavorite {
+    _$isFavoriteAtom.reportRead();
+    return super.isFavorite;
+  }
+
+  @override
+  set isFavorite(bool value) {
+    _$isFavoriteAtom.reportWrite(value, super.isFavorite, () {
+      super.isFavorite = value;
+    });
+  }
+
   late final _$_SingleMeditationScreenStoreActionController =
       ActionController(name: '_SingleMeditationScreenStore', context: context);
+
+  @override
+  void initAudio(MeditationScreenArguments argsFromScreen) {
+    final _$actionInfo = _$_SingleMeditationScreenStoreActionController
+        .startAction(name: '_SingleMeditationScreenStore.initAudio');
+    try {
+      return super.initAudio(argsFromScreen);
+    } finally {
+      _$_SingleMeditationScreenStoreActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   void changeDuration(Duration newDuration) {
@@ -159,13 +202,26 @@ mixin _$SingleMeditationScreenStore on _SingleMeditationScreenStore, Store {
   }
 
   @override
+  void changeFavorite() {
+    final _$actionInfo = _$_SingleMeditationScreenStoreActionController
+        .startAction(name: '_SingleMeditationScreenStore.changeFavorite');
+    try {
+      return super.changeFavorite();
+    } finally {
+      _$_SingleMeditationScreenStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 duration: ${duration},
 position: ${position},
 isPlaying: ${isPlaying},
 isPaused: ${isPaused},
-isRepeat: ${isRepeat}
+isRepeat: ${isRepeat},
+args: ${args},
+isFavorite: ${isFavorite}
     ''';
   }
 }

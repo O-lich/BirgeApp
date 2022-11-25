@@ -1,3 +1,4 @@
+import 'package:birge_app/ui/style/colors/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../style/button/button.dart';
@@ -17,7 +18,7 @@ class BlueButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: width,
-      decoration: CustomButton.buttonDecoration(context),
+      decoration: CustomButton.buttonDecoration(context, mainAppColor),
       child: ElevatedButton(
         style: CustomButton().buttonStyle(50, 350),
         onPressed: onPressed,
@@ -48,6 +49,31 @@ class TransparentButton extends StatelessWidget {
           onPressed: onPressed,
           child: child,
         ),
+      ),
+    );
+  }
+}
+
+class FavoriteButton extends StatelessWidget {
+  final double width;
+  final Widget child;
+  final void Function() onPressed;
+
+  const FavoriteButton(
+      {required this.child,
+      required this.onPressed,
+      super.key,
+      required this.width});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: width,
+      decoration: CustomButton.buttonDecoration(context, imageColor),
+      child: ElevatedButton(
+        style: CustomButton().buttonStyle(50, 350),
+        onPressed: onPressed,
+        child: child,
       ),
     );
   }

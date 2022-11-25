@@ -1,15 +1,15 @@
-import 'package:birge_app/domain/model/login_model.dart';
 import 'package:birge_app/ui/style/text_style/text_style.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../const/app_images.dart';
 import '../../../const/strings.dart';
-import '../../style/colors/app_colors.dart';
 import '../../widgets/buttons.dart';
-import '../../widgets/calendar.dart';
 import '../../widgets/widgets.dart';
+import '../main_screen/main_screen.dart';
 
 class HelpCongratsScreen extends StatelessWidget {
+  static const routeName = '/help_congrats_screen';
+
   HelpCongratsScreen({Key? key}) : super(key: key);
 
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
@@ -24,11 +24,10 @@ class HelpCongratsScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              spacerHeight(50),
-              Text(HelpScreenStrings.congrats,
-                  style: CommonTextStyle.mainHeader, textAlign: TextAlign.left),
-              Image.asset(HelpScreenStrings.imageCongrats),
-              spacerHeight(50),
+              spacerHeight(6.h),
+              Text(HelpScreenStrings.congrats, style: CommonTextStyle.mainHeader, textAlign: TextAlign.left),
+              Image.asset(imageCongrats),
+              spacerHeight(5.h),
               Column(
                 children: [
                   BlueButton(
@@ -41,13 +40,13 @@ class HelpCongratsScreen extends StatelessWidget {
                       style: CommonTextStyle.blueButton,
                     ),
                   ),
-                  spacerHeight(20),
+                  spacerHeight(2.h),
                   BlueButton(
                     width: width / 2,
                     onPressed: () {
                       Navigator.pushNamed(
                         context,
-                        '/bottom_bar',
+                        MainScreen.routeName,
                       );
                     },
                     child: Text(
@@ -58,7 +57,7 @@ class HelpCongratsScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              spacerHeight(20),
+              spacerHeight(2.h),
             ],
           ),
         ),

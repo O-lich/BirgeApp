@@ -7,7 +7,10 @@ class CustomFormField extends StatelessWidget {
   final String title;
   final String hintText;
   final TextEditingController controller;
-  final String? validation;
+  final String? Function(String?)? validator;
+  final void Function(String)? onChanged;
+  final bool obscureText;
+  final AutovalidateMode? autovalidateMode;
 
   const CustomFormField(
       {required this.width,
@@ -16,7 +19,10 @@ class CustomFormField extends StatelessWidget {
       required this.title,
       required this.hintText,
       required this.controller,
-      this.validation});
+      this.validator,
+      this.onChanged,
+      this.autovalidateMode,
+      required this.obscureText});
 
   // ToDo Add controller to store in Firebase
   @override
@@ -37,12 +43,12 @@ class CustomFormField extends StatelessWidget {
               context,
               hintText: hintText,
             ),
-            validator: (value) {
-              validation;
-              return null;
-            },
+            validator: validator,
+            autovalidateMode: autovalidateMode,
             controller: controller,
             textInputAction: TextInputAction.next,
+            onChanged: onChanged,
+            obscureText: obscureText,
           ),
         ],
       ),

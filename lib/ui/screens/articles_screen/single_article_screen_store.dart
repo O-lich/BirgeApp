@@ -1,3 +1,4 @@
+import 'package:birge_app/data/repository/article_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mobx/mobx.dart';
 
@@ -11,6 +12,8 @@ abstract class _SingleArticleScreenStore with Store {
   @observable
   bool isFavorite = false;
 
+  final articlesTotalList = ArticleRepository.getArticles;
+
   // Action -- метод, в котором вы обновляете данные. Если обновляются сразу
   // несколько observables, то все наблюдатели будут уведомлены только после
   // всех вычислений.
@@ -20,11 +23,11 @@ abstract class _SingleArticleScreenStore with Store {
   }
 
   @action
-  Icon? changeIcon(bool isFavorite, Icon redIcon, Icon blackIcon) {
+  Icon? changeIcon(bool isFavorite, Icon activeIcon, Icon inactiveIcon) {
     if (isFavorite == true) {
-      return redIcon;
+      return activeIcon;
     } else {
-      return blackIcon;
+      return inactiveIcon;
     }
   }
 }

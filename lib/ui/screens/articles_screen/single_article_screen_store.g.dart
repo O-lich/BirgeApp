@@ -40,11 +40,11 @@ mixin _$SingleArticleScreenStore on _SingleArticleScreenStore, Store {
   }
 
   @override
-  Icon? changeIcon(bool isFavorite, Icon redIcon, Icon blackIcon) {
+  Icon? changeIcon(bool isFavorite, Icon activeIcon, Icon inactiveIcon) {
     final _$actionInfo = _$_SingleArticleScreenStoreActionController
         .startAction(name: '_SingleArticleScreenStore.changeIcon');
     try {
-      return super.changeIcon(isFavorite, redIcon, blackIcon);
+      return super.changeIcon(isFavorite, activeIcon, inactiveIcon);
     } finally {
       _$_SingleArticleScreenStoreActionController.endAction(_$actionInfo);
     }

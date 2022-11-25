@@ -2,8 +2,8 @@
     package="com.birge.birge_app">
     <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:usesCleartextTraffic="true"
         android:label="birge_app"
+        android:usesCleartextTraffic="true"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

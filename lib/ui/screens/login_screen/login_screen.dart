@@ -1,20 +1,28 @@
-import 'package:birge_app/domain/model/login_model.dart';
+import 'package:birge_app/data/service/firebase/firebase_helper.dart';
+import 'package:birge_app/ui/screens/password_recovery_screen/password_recovery_screen.dart';
 import 'package:birge_app/ui/style/text_style/text_style.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../const/app_images.dart';
 import '../../../const/strings.dart';
 import '../../widgets/buttons.dart';
 import '../../widgets/custom_form_field.dart';
 import '../../widgets/widgets.dart';
+import '../main_screen/main_screen.dart';
+import '../signup_screen/signup_screen.dart';
+import 'login_screen_store.dart';
 
 class LoginScreen extends StatelessWidget {
+  static const routeName = '/login_screen';
+
   LoginScreen({Key? key}) : super(key: key);
+
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
-  final loginViewModel = LoginViewModel();
+  final loginViewModel = LoginScreenStore();
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +35,18 @@ class LoginScreen extends StatelessWidget {
               spacerHeight(20),
               Padding(
                 padding: const EdgeInsets.all(30),
-                child: Image.asset(
-                  LoginScreenStrings.imageLogin,
-                  height: width / 1.5,
-                  width: width / 1.5,
+                child: Container(
+                  height:
+                      Device.orientation == Orientation.landscape ? 30.w : 30.h,
+                  //width: width,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(color: Colors.white, width: 2),
+                    image: const DecorationImage(
+                      fit: BoxFit.contain,
+                      image: AssetImage(animationOnBoarding),
+                    ),
+                  ),
                 ),
               ),
               Text(LoginScreenStrings.welcome,
@@ -47,9 +63,11 @@ class LoginScreen extends StatelessWidget {
                       title: LoginScreenStrings.email,
                       hintText: LoginScreenStrings.enterEmail,
                       controller: _emailController,
-                      validation: loginViewModel.validator(
-                          _emailController.text,
-                          LoginScreenStrings.pleaseEnterEmail),
+                      validator: (value) {
+                        return loginViewModel.validatorEmail(value);
+                      },
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      obscureText: false,
                     ),
                     CustomFormField(
                       width: width,
@@ -57,9 +75,11 @@ class LoginScreen extends StatelessWidget {
                       title: LoginScreenStrings.password,
                       hintText: LoginScreenStrings.enterPassword,
                       controller: _passwordController,
-                      validation: loginViewModel.validator(
-                          _passwordController.text,
-                          LoginScreenStrings.pleaseEnterPwd),
+                      validator: (value) {
+                        return loginViewModel.validatorPassword(value);
+                      },
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      obscureText: true,
                     ),
                   ],
                 ),
@@ -68,7 +88,7 @@ class LoginScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.pushNamed(
                     context,
-                    '/password_recovery_screen',
+                    PasswordRecoveryScreen.routeName,
                   );
                 },
                 width: width,
@@ -79,11 +99,23 @@ class LoginScreen extends StatelessWidget {
               ),
               BlueButton(
                 width: width,
-                onPressed: () {
-                  Navigator.pushNamed(
-                    context,
-                    '/bottom_bar',
-                  );
+                onPressed: () async {
+                  final email = _emailController.text;
+                  final password = _passwordController.text;
+                  final success = await FirebaseHelper.login(email, password);
+                  if (success) {
+                    Navigator.pushNamed(
+                      context,
+                      MainScreen.routeName,
+                    );
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        backgroundColor: Colors.red.shade300,
+                        content: const Text(LoginScreenStrings.wrongEmailOrPwd),
+                      ),
+                    );
+                  }
                 },
                 child: Text(
                   LoginScreenStrings.enterButton,
@@ -103,18 +135,16 @@ class LoginScreen extends StatelessWidget {
                         ..onTap = () {
                           Navigator.pushNamed(
                             context,
-                            '/signup_screen',
+                            SignupScreen.routeName,
                           );
                         }),
                 ]),
               ),
-              spacerHeight(20),
               SizedBox(
                 height: 100,
                 child: Column(
                   children: [
-                    const Text(LoginScreenStrings.continueWith),
-                    Expanded(flex: 3, child: socialCircles()),
+                    Expanded(flex: 3, child: socialCircles(context)),
                   ],
                 ),
               )

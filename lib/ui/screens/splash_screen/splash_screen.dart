@@ -1,16 +1,20 @@
 import 'dart:async';
-import 'package:birge_app/ui/screens/login_screen/login_screen.dart';
+import 'package:birge_app/ui/screens/main_screen/main_screen.dart';
 import 'package:birge_app/ui/screens/onboarding_screen/onboarding_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import '../../../const/app_images.dart';
 import '../../style/colors/app_colors.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
+
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen>  with TickerProviderStateMixin {
+class _SplashScreenState extends State<SplashScreen>
+    with TickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
 
@@ -28,9 +32,16 @@ class _SplashScreenState extends State<SplashScreen>  with TickerProviderStateMi
     _controller.forward();
     Timer(
         const Duration(seconds: 3),
-        () => Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (BuildContext context) => OnBoardingScreen())));
+        () => {
+              FirebaseAuth.instance.currentUser == null
+                  ? Navigator.pushNamed(context, OnBoardingScreen.routeName)
+                  : Navigator.pushNamed(
+                      context,
+                      MainScreen.routeName,
+                    ),
+            });
   }
+
   @override
   dispose() {
     _controller.dispose();
@@ -47,8 +58,7 @@ class _SplashScreenState extends State<SplashScreen>  with TickerProviderStateMi
             child: SizeTransition(
               sizeFactor: _animation,
               child: Container(
-                  color: splashBackgroundColor,
-                  child: Image.asset('assets/logo/logo.png')),
+                  color: splashBackgroundColor, child: Image.asset(logo)),
             )),
       ),
     );

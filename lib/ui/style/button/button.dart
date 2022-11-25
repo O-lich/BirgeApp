@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CustomButton {
-  static BoxDecoration buttonDecoration(BuildContext context) {
+  static BoxDecoration buttonDecoration(BuildContext context, Color color) {
     return BoxDecoration(
-      color: Theme.of(context).primaryColor,
+      color: color,
       borderRadius: const BorderRadius.all(Radius.elliptical(12, 12)),
     );
   }

@@ -1,32 +1,47 @@
+import 'package:birge_app/ui/screens/diary_plan_choice_screen/diary_plan_choice_screen.dart';
+import 'package:birge_app/ui/screens/meditations_screen/meditations_screen.dart';
 import 'package:birge_app/ui/style/text_style/text_style.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/strings.dart';
 import '../../style/colors/app_colors.dart';
+import '../../widgets/back_floating_button.dart';
 import '../../widgets/buttons.dart';
 import '../../widgets/calendar.dart';
 import '../../widgets/diary_screen_arguments.dart';
 import '../../widgets/widgets.dart';
+import '../diary_screen/diary_screen.dart';
+import '../help_screen/help_screen.dart';
+import '../task_screen/task_screen.dart';
 
 class MainScreen extends StatelessWidget {
+  static const routeName = '/main_screen';
+
   MainScreen({Key? key}) : super(key: key);
 
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return WillPopScope(onWillPop: () async {
+       SystemNavigator.pop();
+       return true;
+    }, child: Scaffold(
       backgroundColor: backgroundColor,
       body: SingleChildScrollView(
         child: SizedBox(
           width: Device.width,
           child: Column(
             children: [
-              spacerHeight(50),
-              Text(MainScreenStrings.question,
-                  style: CommonTextStyle.mainHeader,
-                  textAlign: TextAlign.center),
-              spacerHeight(50),
+              spacerHeight(6.h),
+              Container(
+                width: width * 0.8,
+                child: Text(MainScreenStrings.question,
+                    style: CommonTextStyle.mainHeader,
+                    textAlign: TextAlign.center),
+              ),
+              spacerHeight(5.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -35,7 +50,7 @@ class MainScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.pushNamed(
                         context,
-                        '/meditations_screen',
+                        MeditationsScreen.routeName,
                       );
                     },
                     child: Text(
@@ -48,7 +63,10 @@ class MainScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.pushNamed(
                         context,
-                        '/task_screen',
+                        TaskScreen.routeName,
+                        arguments: DiaryScreenArguments(
+                          date: DateTime.now(),
+                        ),
                       );
                     },
                     child: Text(
@@ -58,7 +76,7 @@ class MainScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              spacerHeight(20),
+              spacerHeight(2.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -67,7 +85,7 @@ class MainScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.pushNamed(
                         context,
-                        '/help_screen',
+                        HelpScreen.routeName,
                       );
                     },
                     child: Text(
@@ -80,7 +98,7 @@ class MainScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.pushNamed(
                         context,
-                        '/diary_screen',
+                        DiaryScreen.routeName,
                         arguments: DiaryScreenArguments(
                           date: DateTime.now(),
                         ),
@@ -93,16 +111,18 @@ class MainScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              spacerHeight(50),
+              spacerHeight(5.h),
               Calendar(
                 width: width,
-                path: '/diary_plan_choice_screen',
+                path: DiaryPlanChoiceScreen.routeName,
               ),
-              spacerHeight(100),
+              spacerHeight(5.h),
             ],
           ),
         ),
       ),
-    );
+      floatingActionButton: const MainBackFloatingButton(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniStartTop,
+    ));
   }
 }
