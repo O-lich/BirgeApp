@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 
-import '../../../domain/model/diary_model.dart';
+import '../../domain/model/diary_model.dart';
 
 class DiaryRepository {
   final _diary = <DiaryModel>[];

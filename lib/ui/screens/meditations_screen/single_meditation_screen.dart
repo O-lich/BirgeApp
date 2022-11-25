@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/app_images.dart';
-import '../../../const/strings.dart';
 import '../../widgets/meditations_screen_arguments.dart';
 
 class SingleMeditationScreen extends StatefulWidget {
@@ -30,8 +29,13 @@ class _SingleMeditationScreenState extends State<SingleMeditationScreen> {
   @override
   void initState() {
     super.initState();
-
     initAudio();
+  }
+
+  @override
+  Future dispose() async {
+    await _singleMeditationViewModel.dispose();
+    super.dispose();
   }
 
   @override

@@ -1,5 +1,6 @@
-import 'package:birge_app/ui/screens/diary_screen/day_review_interactor.dart';
+import 'package:birge_app/domain/interactor/day_review_interactor.dart';
 import 'package:birge_app/ui/screens/diary_screen/day_review_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
@@ -18,8 +19,22 @@ abstract class _DayReviewScreenStore with Store {
       DayReviewModel(userId: '', date: '', id: '', text: '');
 
   @action
-  void addDayReview(DayReviewModel dayReview) =>
-      _dayReviewInteractor.addNote(dayReview);
+  void addDayReview(String date) {
+    final userId = FirebaseAuth.instance.currentUser?.uid;
+
+    final dayReviewNote = DayReviewModel.create(
+      userId: userId,
+      text: dayReviewController.text,
+      date: date,
+      id: reviewValue.id,
+    );
+
+    if (reviewValue.id == '') {
+      _dayReviewInteractor.addNote(dayReviewNote);
+    } else {
+      _dayReviewInteractor.updateNote(dayReviewNote);
+    }
+  }
 
   @action
   void updateDayReview(DayReviewModel dayReview) =>

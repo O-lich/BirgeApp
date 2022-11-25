@@ -1,5 +1,5 @@
-import '../../../domain/model/day_rating_model.dart';
-import 'day_rating_repository.dart';
+import '../model/day_rating_model.dart';
+import '../../data/repository/day_rating_repository.dart';
 
 class DayRatingInteractor {
   DayRatingInteractor();

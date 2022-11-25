@@ -1,7 +1,5 @@
-import 'package:birge_app/domain/model/day_review_model.dart';
 import 'package:birge_app/ui/style/text_style/text_style.dart';
 import 'package:birge_app/ui/widgets/diary_text_field.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -17,7 +15,6 @@ import 'day_review_screen_store.dart';
 class DayReviewScreen extends StatelessWidget {
   static const routeName = '/day_review_screen';
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
-  final userId = FirebaseAuth.instance.currentUser?.uid;
   final _dayReviewScreenViewModel = DayReviewScreenStore();
 
   DayReviewScreen({Key? key}) : super(key: key);
@@ -64,24 +61,7 @@ class DayReviewScreen extends StatelessWidget {
                 BlueButton(
                   width: width / 2,
                   onPressed: () {
-                    if (_dayReviewScreenViewModel.reviewValue.id == '') {
-                      final dayReviewNote = DayReviewModel.create(
-                        userId: userId,
-                        text:
-                            _dayReviewScreenViewModel.dayReviewController.text,
-                        date: args.date.toString().substring(0, 10),
-                      );
-                      onPressedDayReviewWrite(dayReviewNote);
-                    } else {
-                      final dayReviewNote = DayReviewModel(
-                        userId: userId,
-                        text:
-                            _dayReviewScreenViewModel.dayReviewController.text,
-                        date: args.date.toString().substring(0, 10),
-                        id: _dayReviewScreenViewModel.reviewValue.id,
-                      );
-                      _dayReviewScreenViewModel.updateDayReview(dayReviewNote);
-                    }
+                    _dayReviewScreenViewModel.addDayReview(args.date.defaultFormat());
                     Navigator.pop(context);
                   },
                   child: Text(
@@ -98,15 +78,6 @@ class DayReviewScreen extends StatelessWidget {
       floatingActionButton: const BackFloatingButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniStartTop,
     );
-  }
-
-  onPressedDayReviewWrite(DayReviewModel dayReview) {
-    if (userId == null) {
-      return;
-    }
-    final dayReviewModel = DayReviewModel.create(
-        userId: dayReview.userId, text: dayReview.text, date: dayReview.date);
-    _dayReviewScreenViewModel.addDayReview(dayReviewModel);
   }
 }
 

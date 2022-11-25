@@ -101,6 +101,10 @@ abstract class _SingleMeditationScreenStore with Store {
     audioPlayer.seek(newDuration);
   }
 
+  Future dispose() async {
+    await audioPlayer.dispose();
+  }
+
   void _initPlayer() {
     audioPlayer.onDurationChanged.listen((newDuration) {
       changeDuration(newDuration);

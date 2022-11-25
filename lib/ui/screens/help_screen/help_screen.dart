@@ -31,15 +31,12 @@ class HelpScreen extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(HelpScreenStrings.hello,
-                          style: CommonTextStyle.mainHeader,
-                          textAlign: TextAlign.left),
+                      Text(HelpScreenStrings.hello, style: CommonTextStyle.mainHeader, textAlign: TextAlign.left),
                       spacerHeight(20),
-                      Container(
+                      SizedBox(
                         width: width / 2,
                         child: Text(HelpScreenStrings.helloText,
-                            style: CommonTextStyle.mainText,
-                            textAlign: TextAlign.left),
+                            style: CommonTextStyle.mainText, textAlign: TextAlign.left),
                       ),
                     ],
                   ),
@@ -52,18 +49,14 @@ class HelpScreen extends StatelessWidget {
                 children: [
                   Padding(
                     padding: EdgeInsets.only(left: (Device.width - width) / 4),
-                    child: Text(HelpScreenStrings.therapist,
-                        style: CommonTextStyle.mainHeader,
-                        textAlign: TextAlign.left),
+                    child:
+                        Text(HelpScreenStrings.therapist, style: CommonTextStyle.mainHeader, textAlign: TextAlign.left),
                   ),
                   spacerHeight(2.h),
                   Padding(
-                    padding: EdgeInsets.only(
-                        left: (Device.width - width) / 4,
-                        right: (Device.width - width) / 4),
+                    padding: EdgeInsets.only(left: (Device.width - width) / 4, right: (Device.width - width) / 4),
                     child: Text(HelpScreenStrings.therapistAbout,
-                        style: CommonTextStyle.mainText,
-                        textAlign: TextAlign.left),
+                        style: CommonTextStyle.mainText, textAlign: TextAlign.left),
                   ),
                 ],
               ),

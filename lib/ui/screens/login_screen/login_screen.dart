@@ -1,3 +1,4 @@
+import 'package:birge_app/data/service/firebase/firebase_helper.dart';
 import 'package:birge_app/ui/screens/password_recovery_screen/password_recovery_screen.dart';
 import 'package:birge_app/ui/style/text_style/text_style.dart';
 import 'package:flutter/gestures.dart';
@@ -5,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/app_images.dart';
 import '../../../const/strings.dart';
-import '../../../firebase/firebase_helper.dart';
 import '../../widgets/buttons.dart';
 import '../../widgets/custom_form_field.dart';
 import '../../widgets/widgets.dart';
@@ -17,6 +17,7 @@ class LoginScreen extends StatelessWidget {
   static const routeName = '/login_screen';
 
   LoginScreen({Key? key}) : super(key: key);
+
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();

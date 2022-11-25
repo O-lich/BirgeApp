@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 
-import '../../../domain/model/day_review_model.dart';
+import '../../domain/model/day_review_model.dart';
 
 class DayReviewRepository {
   final _dayReview = DayReviewModel(text: '', id: '', date: '', userId: '');

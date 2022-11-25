@@ -28,13 +28,14 @@ class _DiaryScreenState extends State<DiaryScreen> {
   User? user;
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
   final _diaryScreenViewModel = DiaryScreenStore();
+
+  // TODO
   final userId = FirebaseAuth.instance.currentUser?.uid;
   final dayReviewController = TextEditingController();
 
   @override
   void initState() {
     user = FirebaseAuth.instance.currentUser;
-    //_diaryScreenViewModel.getData();
     super.initState();
     initDate();
   }
@@ -50,14 +51,10 @@ class _DiaryScreenState extends State<DiaryScreen> {
             return Column(
               children: [
                 spacerHeight(6.h),
-                Text(DiaryScreenStrings.diary,
-                    style: CommonTextStyle.mainHeader,
-                    textAlign: TextAlign.center),
+                Text(DiaryScreenStrings.diary, style: CommonTextStyle.mainHeader, textAlign: TextAlign.center),
                 spacerHeight(10),
-                Text(
-                    _diaryScreenViewModel.args.date.toString().substring(0, 10),
-                    style: CommonTextStyle.mainText,
-                    textAlign: TextAlign.left),
+                Text(_diaryScreenViewModel.args.date.toString().substring(0, 10),
+                    style: CommonTextStyle.mainText, textAlign: TextAlign.left),
                 spacerHeight(5.h),
                 Container(
                   width: width,
@@ -80,23 +77,20 @@ class _DiaryScreenState extends State<DiaryScreen> {
                           trailing: IconButton(
                             icon: const Icon(Icons.delete),
                             onPressed: () {
-                              _deleteDialog(
-                                  context, _diaryScreenViewModel.value[index]);
+                              _deleteDialog(context, _diaryScreenViewModel.value[index]);
                               initDate();
                             },
                           ),
                           width: width,
                           title: _diaryScreenViewModel.value[index].title,
-                          subtitle:
-                              _diaryScreenViewModel.value[index].subtitle);
+                          subtitle: _diaryScreenViewModel.value[index].subtitle);
                     }),
                 InkWell(
                   onTap: () {
                     Navigator.pushNamed(
                       context,
                       DayReviewScreen.routeName,
-                      arguments: DiaryScreenArguments(
-                          date: _diaryScreenViewModel.args.date),
+                      arguments: DiaryScreenArguments(date: _diaryScreenViewModel.args.date),
                     );
                   },
                   child: Container(
@@ -108,7 +102,7 @@ class _DiaryScreenState extends State<DiaryScreen> {
                     ),
                     child: (_diaryScreenViewModel.reviewValue.text.isNotEmpty)
                         ? Text(_diaryScreenViewModel.reviewValue.text)
-                        : Text(DiaryScreenStrings.hintText),
+                        : const Text(DiaryScreenStrings.hintText),
                   ),
                 ),
                 spacerHeight(2.h),
@@ -130,11 +124,7 @@ class _DiaryScreenState extends State<DiaryScreen> {
             child: FloatingActionButton(
               onPressed: () {
                 _showDialog(
-                    context,
-                    onPressedDiaryNoteWrite,
-                    _diaryScreenViewModel.args.date
-                        .toString()
-                        .substring(0, 10));
+                    context, onPressedDiaryNoteWrite, _diaryScreenViewModel.args.date.toString().substring(0, 10));
               },
               child: const Icon(Icons.add),
             ),
@@ -145,76 +135,67 @@ class _DiaryScreenState extends State<DiaryScreen> {
     );
   }
 
-  Future _showDialog(BuildContext context, void Function(DiaryModel) onPressed,
-          String date) =>
-      showGeneralDialog(
-          context: context,
-          barrierDismissible: false,
-          transitionBuilder: (context, a1, a2, widget) {
-            final titleController = TextEditingController();
-            final subtitleController = TextEditingController();
-            return Transform.scale(
-              scale: a1.value,
-              child: Opacity(
-                opacity: a1.value,
-                child: AlertDialog(
-                  shape: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(16.0)),
-                  title: Text(
-                    TaskScreenStrings.plan,
-                    style: CommonTextStyle.mainHeader,
-                  ),
-                  content: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      TextField(
-                        controller: titleController,
-                        decoration: const InputDecoration(
-                            hintText: TaskScreenStrings.title),
-                      ),
-                      TextField(
-                        keyboardType: TextInputType.multiline,
-                        maxLines: null,
-                        controller: subtitleController,
-                        decoration: const InputDecoration(
-                            hintText: TaskScreenStrings.subtitle),
-                      ),
-                    ],
-                  ),
-                  actions: [
-                    TextButton(
-                      onPressed: () async {
-                        final diaryNote = DiaryModel(
-                            userId: userId,
-                            title: titleController.text,
-                            subtitle: subtitleController.text,
-                            id: '',
-                            date: date);
-                        onPressed(diaryNote);
-                        Navigator.pop(context);
-                      },
-                      child: const Text(TaskScreenStrings.add),
-                    )
-                  ],
-                ),
+  Future _showDialog(BuildContext context, void Function(DiaryModel) onPressed, String date) => showGeneralDialog(
+      context: context,
+      barrierDismissible: false,
+      transitionBuilder: (context, a1, a2, widget) {
+        final titleController = TextEditingController();
+        final subtitleController = TextEditingController();
+        return Transform.scale(
+          scale: a1.value,
+          child: Opacity(
+            opacity: a1.value,
+            child: AlertDialog(
+              shape: OutlineInputBorder(borderRadius: BorderRadius.circular(16.0)),
+              title: Text(
+                TaskScreenStrings.plan,
+                style: CommonTextStyle.mainHeader,
               ),
-            );
-          },
-          transitionDuration: const Duration(milliseconds: 200),
-          pageBuilder: (BuildContext context, Animation<double> animation,
-              Animation<double> secondaryAnimation) {
-            return const Text('data');
-          });
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextField(
+                    controller: titleController,
+                    decoration: const InputDecoration(hintText: TaskScreenStrings.title),
+                  ),
+                  TextField(
+                    keyboardType: TextInputType.multiline,
+                    maxLines: null,
+                    controller: subtitleController,
+                    decoration: const InputDecoration(hintText: TaskScreenStrings.subtitle),
+                  ),
+                ],
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () async {
+                    final diaryNote = DiaryModel(
+                        userId: userId,
+                        title: titleController.text,
+                        subtitle: subtitleController.text,
+                        id: '',
+                        date: date);
+                    onPressed(diaryNote);
+                    Navigator.pop(context);
+                  },
+                  child: const Text(TaskScreenStrings.add),
+                )
+              ],
+            ),
+          ),
+        );
+      },
+      transitionDuration: const Duration(milliseconds: 200),
+      pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+        return const Text('data');
+      });
 
   onPressedDiaryNoteWrite(DiaryModel diaryNote) {
     if (userId == null) {
       return;
     }
     final diaryNoteModel = DiaryModel.create(
-        userId: diaryNote.userId,
-        title: diaryNote.title,
-        subtitle: diaryNote.subtitle,
-        date: diaryNote.date);
+        userId: diaryNote.userId, title: diaryNote.title, subtitle: diaryNote.subtitle, date: diaryNote.date);
     _diaryScreenViewModel.addDiaryNote(diaryNoteModel);
   }
 
@@ -222,61 +203,57 @@ class _DiaryScreenState extends State<DiaryScreen> {
     await Future.delayed(
       const Duration(seconds: 1),
     );
-    final args =
-        ModalRoute.of(context)!.settings.arguments as DiaryScreenArguments;
+    final args = ModalRoute.of(context)!.settings.arguments as DiaryScreenArguments;
     _diaryScreenViewModel.initDate(args);
   }
 
-  Future _deleteDialog(BuildContext context, DiaryModel diaryModel) =>
-      showGeneralDialog(
-          context: context,
-          barrierDismissible: false,
-          transitionBuilder: (context, a1, a2, widget) {
-            return Transform.scale(
-              scale: a1.value,
-              child: Opacity(
-                opacity: a1.value,
-                child: AlertDialog(
-                  shape: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(16.0)),
-                  title: Text(
-                    DiaryScreenStrings.deleteNote,
-                    style: CommonTextStyle.dialog,
-                  ),
-                  actions: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: Text(
-                            DiaryScreenStrings.notDelete,
-                            style: CommonTextStyle.transparentButton,
-                          ),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            _diaryScreenViewModel.deleteDiaryNote(diaryModel);
-                            initDate();
-                            Navigator.pop(context);
-                          },
-                          child: Text(
-                            DiaryScreenStrings.delete,
-                            style: CommonTextStyle.transparentButton,
-                          ),
-                        ),
-                      ],
+  Future _deleteDialog(BuildContext context, DiaryModel diaryModel) => showGeneralDialog(
+      context: context,
+      barrierDismissible: false,
+      transitionBuilder: (context, a1, a2, widget) {
+        return Transform.scale(
+          scale: a1.value,
+          child: Opacity(
+            opacity: a1.value,
+            child: AlertDialog(
+              shape: OutlineInputBorder(borderRadius: BorderRadius.circular(16.0)),
+              title: Text(
+                DiaryScreenStrings.deleteNote,
+                style: CommonTextStyle.dialog,
+              ),
+              actions: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text(
+                        DiaryScreenStrings.notDelete,
+                        style: CommonTextStyle.transparentButton,
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        _diaryScreenViewModel.deleteDiaryNote(diaryModel);
+                        initDate();
+                        Navigator.pop(context);
+                      },
+                      child: Text(
+                        DiaryScreenStrings.delete,
+                        style: CommonTextStyle.transparentButton,
+                      ),
                     ),
                   ],
                 ),
-              ),
-            );
-          },
-          transitionDuration: const Duration(milliseconds: 200),
-          pageBuilder: (BuildContext context, Animation<double> animation,
-              Animation<double> secondaryAnimation) {
-            return const Text('data');
-          });
+              ],
+            ),
+          ),
+        );
+      },
+      transitionDuration: const Duration(milliseconds: 200),
+      pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+        return const Text('data');
+      });
 }

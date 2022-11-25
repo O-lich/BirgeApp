@@ -15,6 +15,7 @@ final articlesTotalList = ArticleRepository.getArticles;
 
 class ArticlesScreen extends StatelessWidget {
   static const routeName = '/articles_screen';
+
   ArticlesScreen({Key? key}) : super(key: key);
 
   final width = Device.orientation == Orientation.landscape ? 70.w : 40.h;
@@ -27,24 +28,21 @@ class ArticlesScreen extends StatelessWidget {
           child: Column(
             children: [
               spacerHeight(6.h),
-              Text(ArticlesScreenStrings.articles,
-                  style: CommonTextStyle.mainHeader,
-                  textAlign: TextAlign.center),
+              Text(ArticlesScreenStrings.articles, style: CommonTextStyle.mainHeader, textAlign: TextAlign.center),
               spacerHeight(2.h),
               Container(
-                padding: EdgeInsets.symmetric(
-                    horizontal: (Device.width - width) / 8),
+                padding: EdgeInsets.symmetric(horizontal: (Device.width - width) / 8),
                 child: GridView.builder(
                     scrollDirection: Axis.vertical,
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: articlesTotalList.length,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            childAspectRatio: 1.0,
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 10),
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 1.0,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                    ),
                     itemBuilder: (BuildContext ctx, index) {
                       return CardsGridViewWidget(
                         image: image(),
@@ -53,9 +51,10 @@ class ArticlesScreen extends StatelessWidget {
                             context,
                             SingleArticleScreen.routeName,
                             arguments: ArticleScreenArguments(
-                                title: articlesTotalList[index].title,
-                                content: articlesTotalList[index].content,
-                                image: image()),
+                              title: articlesTotalList[index].title,
+                              content: articlesTotalList[index].content,
+                              image: image(),
+                            ),
                           );
                         },
                         width: width,

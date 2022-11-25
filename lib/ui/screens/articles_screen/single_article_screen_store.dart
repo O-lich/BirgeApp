@@ -1,3 +1,4 @@
+import 'package:birge_app/data/repository/article_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mobx/mobx.dart';
 
@@ -10,6 +11,8 @@ abstract class _SingleArticleScreenStore with Store {
   // Наблюдаемое, при изменении которого, обновятся все наблюдатели (Observers)
   @observable
   bool isFavorite = false;
+
+  final articlesTotalList = ArticleRepository.getArticles;
 
   // Action -- метод, в котором вы обновляете данные. Если обновляются сразу
   // несколько observables, то все наблюдатели будут уведомлены только после

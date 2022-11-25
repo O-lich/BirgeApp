@@ -1,7 +1,7 @@
+import 'package:birge_app/data/service/firebase/auth/firebase_auth.dart';
 import 'package:birge_app/ui/widgets/social_network_button.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../../firebase/auth/firebase_auth.dart';
 import '../style/colors/social_network_colors.dart';
 import '../style/text_field/text_field.dart';
 

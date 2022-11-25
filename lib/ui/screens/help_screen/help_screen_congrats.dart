@@ -25,8 +25,7 @@ class HelpCongratsScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               spacerHeight(6.h),
-              Text(HelpScreenStrings.congrats,
-                  style: CommonTextStyle.mainHeader, textAlign: TextAlign.left),
+              Text(HelpScreenStrings.congrats, style: CommonTextStyle.mainHeader, textAlign: TextAlign.left),
               Image.asset(imageCongrats),
               spacerHeight(5.h),
               Column(

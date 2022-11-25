@@ -1,7 +1,6 @@
-import 'package:birge_app/const/strings.dart';
+import 'package:birge_app/data/service/firebase/firebase_options.dart';
 import 'package:birge_app/ui/screens/articles_screen/articles_screen.dart';
 import 'package:birge_app/ui/screens/articles_screen/single_article_screen.dart';
-import 'package:birge_app/ui/screens/bottom_bar_screen/bottom_bar_screen.dart';
 import 'package:birge_app/ui/screens/diary_plan_choice_screen/diary_plan_choice_screen.dart';
 import 'package:birge_app/ui/screens/diary_screen/day_review_screen.dart';
 import 'package:birge_app/ui/screens/diary_screen/diary_screen.dart';
@@ -25,12 +24,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:material_color_generator/material_color_generator.dart';
-import 'package:path/path.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'const/app_images.dart';
 import 'data/repository/article_repository.dart';
 import 'data/repository/meditation_repository.dart';
-import 'firebase/firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -54,21 +51,16 @@ class MyApp extends StatelessWidget {
     OnBoardingScreen.routeName: (context) => OnBoardingScreen(),
     SignupScreen.routeName: (context) => SignupScreen(),
     LoginScreen.routeName: (context) => LoginScreen(),
-    PasswordRecoveryScreen.routeName: (context) =>
-        PasswordRecoveryScreen(),
+    PasswordRecoveryScreen.routeName: (context) => PasswordRecoveryScreen(),
     MeditationsScreen.routeName: (context) => MeditationsScreen(),
     DiaryScreen.routeName: (context) => DiaryScreen(),
-    SingleArticleScreen.routeName: (context) => SingleArticleScreen(
-      image: imageHello,
-    ),
-    SingleMeditationScreen.routeName: (context) =>
-    const SingleMeditationScreen(),
+    SingleArticleScreen.routeName: (context) => SingleArticleScreen(image: imageHello),
+    SingleMeditationScreen.routeName: (context) => const SingleMeditationScreen(),
     HelpScreen.routeName: (context) => HelpScreen(),
     HelpSignUpScreen.routeName: (context) => HelpSignUpScreen(),
     HelpTelegramScreen.routeName: (context) => HelpTelegramScreen(),
     HelpCongratsScreen.routeName: (context) => HelpCongratsScreen(),
-    DiaryPlanChoiceScreen.routeName: (context) =>
-        DiaryPlanChoiceScreen(),
+    DiaryPlanChoiceScreen.routeName: (context) => DiaryPlanChoiceScreen(),
     DayReviewScreen.routeName: (context) => DayReviewScreen(),
   };
 
@@ -79,33 +71,33 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ResponsiveSizer(builder: (context, orientation, deviceType) {
       return MaterialApp(
-          title: 'Flutter Demo',
-          theme: ThemeData(
-            textTheme: GoogleFonts.interTextTheme(
-              Theme.of(context).textTheme,
-            ),
-            primarySwatch:
-                generateMaterialColor(color: const Color(0xFF006FFD)),
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          textTheme: GoogleFonts.interTextTheme(
+            Theme.of(context).textTheme,
           ),
-          home: const SplashScreen(),
-          onGenerateRoute: (settings) {
-            if (routes.containsKey(settings.name)) {
-              return PageRouteBuilder(
-                  settings: settings,
-                  pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-                    return routes[settings.name!]!(context);
-                  },
-                  transitionDuration: Duration.zero,
-                  );
-            }
+          primarySwatch: generateMaterialColor(color: const Color(0xFF006FFD)),
+        ),
+        home: const SplashScreen(),
+        onGenerateRoute: (settings) {
+          if (routes.containsKey(settings.name)) {
             return PageRouteBuilder(
-                pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-                  return AuthorizedLayout(
-                      body: routesWithBottomBar[settings.name!]!(context));
-                },
-                transitionDuration: Duration.zero,
-                settings: settings);
-          },);
+              settings: settings,
+              pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+                return routes[settings.name!]!(context);
+              },
+              transitionDuration: Duration.zero,
+            );
+          }
+          return PageRouteBuilder(
+            pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+              return AuthorizedLayout(body: routesWithBottomBar[settings.name!]!(context));
+            },
+            transitionDuration: Duration.zero,
+            settings: settings,
+          );
+        },
+      );
     });
   }
 }

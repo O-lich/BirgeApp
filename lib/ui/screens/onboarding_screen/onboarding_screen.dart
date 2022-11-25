@@ -26,8 +26,7 @@ class OnBoardingScreen extends StatelessWidget {
                 spacerHeight(2.h),
                 Image.asset(
                   imageImage,
-                  height:
-                      Device.orientation == Orientation.landscape ? 50.w : 60.h,
+                  height: Device.orientation == Orientation.landscape ? 50.w : 60.h,
                   width: width,
                 ),
                 spacerHeight(2.h),

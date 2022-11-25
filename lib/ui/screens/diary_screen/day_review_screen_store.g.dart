@@ -29,11 +29,11 @@ mixin _$DayReviewScreenStore on _DayReviewScreenStore, Store {
       ActionController(name: '_DayReviewScreenStore', context: context);
 
   @override
-  void addDayReview(DayReviewModel dayReview) {
+  void addDayReview(String date) {
     final _$actionInfo = _$_DayReviewScreenStoreActionController.startAction(
         name: '_DayReviewScreenStore.addDayReview');
     try {
-      return super.addDayReview(dayReview);
+      return super.addDayReview(date);
     } finally {
       _$_DayReviewScreenStoreActionController.endAction(_$actionInfo);
     }

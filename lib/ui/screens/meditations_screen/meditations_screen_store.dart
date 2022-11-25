@@ -1,15 +1,12 @@
-import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../../data/repository/meditation_repository.dart';
 
 part 'meditations_screen_store.g.dart';
 
-final meditationsList =
-    MeditationRepository.getMeditations.map((e) => e.title).toList();
+final meditationsList = MeditationRepository.getMeditations.map((e) => e.title).toList();
 
-class MeditationsScreenStore = _MeditationsScreenStore
-    with _$MeditationsScreenStore;
+class MeditationsScreenStore = _MeditationsScreenStore with _$MeditationsScreenStore;
 
 abstract class _MeditationsScreenStore with Store {
   // Наблюдаемое, при изменении которого, обновятся все наблюдатели (Observers)
@@ -24,9 +21,7 @@ abstract class _MeditationsScreenStore with Store {
     if (text.isEmpty) {
       searchList = meditationsList;
     } else {
-      searchList = meditationsList
-          .where((element) => element.toLowerCase().contains(text))
-          .toList();
+      searchList = meditationsList.where((element) => element.toLowerCase().contains(text)).toList();
     }
   }
 }

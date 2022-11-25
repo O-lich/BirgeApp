@@ -52,6 +52,7 @@ class CardsGridViewWidget extends StatelessWidget {
                 title,
                 style: CommonTextStyle.meditationTitle,
                 textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
             spacerHeight(10),

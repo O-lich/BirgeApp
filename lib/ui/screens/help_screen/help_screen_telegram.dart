@@ -10,6 +10,7 @@ import '../../../domain/model/help_model.dart';
 import '../../widgets/back_floating_button.dart';
 import '../../widgets/widgets.dart';
 
+// TODO rename me
 class HelpTelegramScreen extends StatelessWidget {
   static const routeName = '/help_telegram_screen';
 
@@ -21,7 +22,7 @@ class HelpTelegramScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as HelpModel;
-    final Uri urlTelegram = Uri.parse(
+    final Uri urlWhatsapp = Uri.parse(
         "whatsapp://send?phone=$phone&text=${Uri.parse("Добрый день! Меня зовут ${args.name}. Я бы хотел(а) записаться на ${args.date}. Мой контакт для связи ${args.phone}.")}");
 
     return Scaffold(
@@ -42,7 +43,7 @@ class HelpTelegramScreen extends StatelessWidget {
               spacerHeight(5.h),
               InkWell(
                 onTap: () {
-                  _launchUrl(urlTelegram);
+                  _launchUrl(urlWhatsapp);
                   Future.delayed(const Duration(seconds: 2), () {
                     Navigator.pushNamed(
                       context,

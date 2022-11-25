@@ -1,4 +1,4 @@
-import 'package:birge_app/ui/screens/task_screen/task_screen_interactor.dart';
+import 'package:birge_app/domain/interactor/task_screen_interactor.dart';
 import 'package:mobx/mobx.dart';
 import '../../../domain/model/task_model.dart';
 import '../../widgets/diary_screen_arguments.dart';

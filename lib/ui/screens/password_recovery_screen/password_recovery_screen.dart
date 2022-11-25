@@ -1,10 +1,10 @@
 import 'package:birge_app/const/strings.dart';
+import 'package:birge_app/data/service/firebase/firebase_helper.dart';
 import 'package:birge_app/ui/screens/password_recovery_screen/password_recovery_screen_store.dart';
 import 'package:birge_app/ui/widgets/buttons.dart';
 import 'package:birge_app/ui/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../firebase/firebase_helper.dart';
 import '../../style/text_style/text_style.dart';
 import '../../widgets/custom_form_field.dart';
 

@@ -23,11 +23,3 @@ class MeditationModel {
         'title': title,
       };
 }
-
-// factory MeditationModel.fromJson(Map<String, dynamic> json) {
-//   return MeditationModel(
-//       image: json['image'],
-//       link: json['link'],
-//       author: json['author'],
-//       title: json['title']);
-// }

@@ -32,8 +32,7 @@ class _DiaryPlanChoiceScreenState extends State<DiaryPlanChoiceScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final args =
-        ModalRoute.of(context)!.settings.arguments as DiaryScreenArguments;
+    final args = ModalRoute.of(context)!.settings.arguments as DiaryScreenArguments;
     return Scaffold(
       body: SizedBox(
         width: Device.width,
@@ -41,14 +40,9 @@ class _DiaryPlanChoiceScreenState extends State<DiaryPlanChoiceScreen> {
         child: Column(
           children: [
             spacerHeight(10.h),
-            Text(
-                //greetingMessage(user?.displayName),
-                'Привет, ${user?.displayName}',
-                style: CommonTextStyle.mainHeader,
-                textAlign: TextAlign.center),
+            Text('Привет, ${user?.displayName}', style: CommonTextStyle.mainHeader, textAlign: TextAlign.center),
             spacerHeight(2.h),
-            Text(args.date.toString().substring(0, 10),
-                style: CommonTextStyle.mainText, textAlign: TextAlign.left),
+            Text(args.date.toString().substring(0, 10), style: CommonTextStyle.mainText, textAlign: TextAlign.left),
             spacerHeight(2.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

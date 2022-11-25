@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:birge_app/ui/screens/profile_screen/url_image_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -13,6 +14,9 @@ class ProfileScreenStore = _ProfileScreenStore with _$ProfileScreenStore;
 abstract class _ProfileScreenStore with Store {
   @observable
   String? downloadImage;
+
+  @observable
+  File? localImage;
 
   @observable
   File? imageFile;
@@ -31,6 +35,7 @@ abstract class _ProfileScreenStore with Store {
       imageFile = imageTemp;
       final userId = FirebaseAuth.instance.currentUser?.uid;
       final file = File(imageFile!.path);
+      localImage = file;
       final destination = 'files/$userId';
       final ref = FirebaseStorage.instance.ref().child(destination);
       UploadTask uploadTask = ref.putFile(file);

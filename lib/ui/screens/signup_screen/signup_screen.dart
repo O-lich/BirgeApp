@@ -1,3 +1,4 @@
+import 'package:birge_app/data/service/firebase/firebase_helper.dart';
 import 'package:birge_app/ui/screens/signup_screen/signup_screen_store.dart';
 import 'package:birge_app/ui/style/text_style/text_style.dart';
 import 'package:birge_app/ui/widgets/buttons.dart';
@@ -6,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../const/strings.dart';
-import '../../../firebase/firebase_helper.dart';
 import '../../widgets/custom_form_field.dart';
 import '../main_screen/main_screen.dart';
 

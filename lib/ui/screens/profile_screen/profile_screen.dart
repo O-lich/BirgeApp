@@ -1,4 +1,4 @@
-import 'package:birge_app/firebase/firebase_helper.dart';
+import 'package:birge_app/data/service/firebase/firebase_helper.dart';
 import 'package:birge_app/ui/screens/onboarding_screen/onboarding_screen.dart';
 import 'package:birge_app/ui/screens/profile_screen/profile_screen_store.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +11,6 @@ import '../../style/text_style/text_style.dart';
 import '../../widgets/back_floating_button.dart';
 import '../../widgets/buttons.dart';
 import '../../widgets/widgets.dart';
-import '../login_screen/login_screen.dart';
 import 'change_password_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -45,25 +44,26 @@ class ProfileScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(color: Colors.white, width: 2),
-                      image: _profileViewModel.downloadImage == null
+                      image: _profileViewModel.downloadImage == null && _profileViewModel.localImage == null
                           ? const DecorationImage(
                               fit: BoxFit.cover,
                               image: AssetImage(imageEmpty),
                             )
-                          : DecorationImage(
-                              image: NetworkImage(
-                                  _profileViewModel.downloadImage!),
-                              fit: BoxFit.cover,
-                            ),
+                          : _profileViewModel.downloadImage == null
+                              ? DecorationImage(
+                                  image: FileImage(_profileViewModel.localImage!),
+                                  fit: BoxFit.cover,
+                                )
+                              : DecorationImage(
+                                  image: NetworkImage(_profileViewModel.downloadImage!),
+                                  fit: BoxFit.cover,
+                                ),
                     ),
-                    child:
-                        const Icon(Icons.edit, color: mainAppColor, size: 40),
+                    child: const Icon(Icons.edit, color: mainAppColor, size: 40),
                   ),
                 ),
                 spacerHeight(5.h),
-                Text(_profileViewModel.name,
-                    style: CommonTextStyle.mainHeader,
-                    textAlign: TextAlign.center),
+                Text(_profileViewModel.name, style: CommonTextStyle.mainHeader, textAlign: TextAlign.center),
                 spacerHeight(5.h),
                 InkWell(
                   child: Card(
@@ -163,8 +163,7 @@ class ProfileScreen extends StatelessWidget {
           child: Opacity(
             opacity: a1.value,
             child: AlertDialog(
-              shape:
-                  OutlineInputBorder(borderRadius: BorderRadius.circular(16.0)),
+              shape: OutlineInputBorder(borderRadius: BorderRadius.circular(16.0)),
               title: Text(
                 ProfileScreenStrings.pickImage,
                 style: CommonTextStyle.secondHeader,
@@ -183,8 +182,7 @@ class ProfileScreen extends StatelessWidget {
         );
       },
       transitionDuration: const Duration(milliseconds: 200),
-      pageBuilder: (BuildContext context, Animation<double> animation,
-          Animation<double> secondaryAnimation) {
+      pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
         return const Text('data');
       });
 
@@ -197,8 +195,7 @@ class ProfileScreen extends StatelessWidget {
           child: Opacity(
             opacity: a1.value,
             child: AlertDialog(
-              shape:
-                  OutlineInputBorder(borderRadius: BorderRadius.circular(16.0)),
+              shape: OutlineInputBorder(borderRadius: BorderRadius.circular(16.0)),
               title: Text(
                 Exit.areYouSure,
                 style: CommonTextStyle.dialog,
@@ -219,8 +216,7 @@ class ProfileScreen extends StatelessWidget {
                     TextButton(
                       onPressed: () {
                         FirebaseHelper.signOut();
-                        Navigator.of(context).pushNamedAndRemoveUntil(
-                            OnBoardingScreen.routeName, (route) => false);
+                        Navigator.of(context).pushNamedAndRemoveUntil(OnBoardingScreen.routeName, (route) => false);
                       },
                       child: Text(
                         Exit.leave,
@@ -235,8 +231,7 @@ class ProfileScreen extends StatelessWidget {
         );
       },
       transitionDuration: const Duration(milliseconds: 200),
-      pageBuilder: (BuildContext context, Animation<double> animation,
-          Animation<double> secondaryAnimation) {
+      pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
         return const Text('data');
       });
 

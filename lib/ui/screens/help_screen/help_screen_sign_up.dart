@@ -1,6 +1,5 @@
 import 'package:birge_app/const/strings.dart';
 import 'package:birge_app/domain/model/help_model.dart';
-import 'package:birge_app/domain/model/help_signup_model.dart';
 import 'package:birge_app/ui/screens/help_screen/help_screen_telegram.dart';
 import 'package:birge_app/ui/style/colors/app_colors.dart';
 import 'package:birge_app/ui/widgets/buttons.dart';
@@ -37,18 +36,15 @@ class HelpSignUpScreen extends StatelessWidget {
                   spacerHeight(6.h),
                   Align(
                     alignment: Alignment.center,
-                    child: Text(HelpScreenStrings.sighingUp,
-                        style: CommonTextStyle.mainHeader),
+                    child: Text(HelpScreenStrings.sighingUp, style: CommonTextStyle.mainHeader),
                   ),
                   spacerHeight(1.h),
-                  Text(HelpScreenStrings.create,
-                      style: CommonTextStyle.mainText),
+                  Text(HelpScreenStrings.create, style: CommonTextStyle.mainText),
                   spacerHeight(1.h),
                   CustomFormField(
                     width: width,
                     controller: _nameController,
                     validator: (value) {
-                      HelpSignUpViewModel().validator('value', 'response');
                       return null;
                     },
                     title: HelpScreenStrings.name,
@@ -60,7 +56,6 @@ class HelpSignUpScreen extends StatelessWidget {
                     width: width,
                     controller: _emailController,
                     validator: (value) {
-                      HelpSignUpViewModel().validator('value', 'response');
                       return null;
                     },
                     title: HelpScreenStrings.phoneOrEmail,
@@ -84,10 +79,8 @@ class HelpSignUpScreen extends StatelessWidget {
                       Navigator.pushNamed(
                         context,
                         HelpTelegramScreen.routeName,
-                        arguments: HelpModel(
-                            date: calendar.date,
-                            name: _nameController.text,
-                            phone: _emailController.text),
+                        arguments:
+                            HelpModel(date: calendar.date, name: _nameController.text, phone: _emailController.text),
                       );
                     },
                     width: width / 2,

@@ -18,17 +18,19 @@ class BottomBarScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return bottomBar();
   }
-    int getIndexByPagePath(String? path) {
-       switch (path) {
-        case  ArticlesScreen.routeName:
-          return 1;
-         case ProfileScreen.routeName:
-           return 2;
-         case TaskScreen.routeName:
-           return 3;
-      }
-      return 0;
+
+  int getIndexByPagePath(String? path) {
+    switch (path) {
+      case ArticlesScreen.routeName:
+        return 1;
+      case ProfileScreen.routeName:
+        return 2;
+      case TaskScreen.routeName:
+        return 3;
     }
+    return 0;
+  }
+
   Widget bottomBar() {
     return SizedBox(
       height: 88,
@@ -109,7 +111,7 @@ class BottomBarScreen extends StatelessWidget {
             selectedLabelStyle: CommonTextStyle.bottomBarItemSelected,
             unselectedLabelStyle: CommonTextStyle.bottomBarItem,
             onTap: (index) {
-             menuItemClicked(context, index);
+              menuItemClicked(context, index);
             } //onItemTapped
             );
       }),

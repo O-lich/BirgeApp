@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
-import '../../../domain/model/day_rating_model.dart';
+import '../../domain/model/day_rating_model.dart';
 
 class DayRatingRepository {
   final _dayRating = DayRatingModel(rate: 0.0, id: '', date: '', userId: '');
@@ -13,11 +13,9 @@ class DayRatingRepository {
     await for (final event in ref.onValue) {
       final map = event.snapshot.value as Map<dynamic, dynamic>?;
       if (map != null) {
-        DayRatingModel dailyRating =
-        DayRatingModel(rate: 0.0, id: '', date: '', userId: '');
+        DayRatingModel dailyRating = DayRatingModel(rate: 0.0, id: '', date: '', userId: '');
         map.forEach((key, value) {
-          dailyRating = DayRatingModel(
-              userId: userId, rate: value + .0, id: key, date: date);
+          dailyRating = DayRatingModel(userId: userId, rate: value + .0, id: key, date: date);
         });
         yield dailyRating;
       }
@@ -33,8 +31,7 @@ class DayRatingRepository {
 
   Future update(DayRatingModel dayRatingModel) async {
     final userId = FirebaseAuth.instance.currentUser?.uid;
-    final ref = FirebaseDatabase.instance
-        .ref("rating/$userId/${dayRatingModel.date}/${dayRatingModel.id}");
+    final ref = FirebaseDatabase.instance.ref("rating/$userId/${dayRatingModel.date}/${dayRatingModel.id}");
     await ref.set(dayRatingModel.rate.toDouble());
   }
 }

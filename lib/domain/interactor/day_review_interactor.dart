@@ -1,6 +1,6 @@
 
-import '../../../domain/model/day_review_model.dart';
-import 'day_review_repository.dart';
+import '../model/day_review_model.dart';
+import '../../data/repository/day_review_repository.dart';
 
 class DayReviewInteractor {
   DayReviewInteractor();

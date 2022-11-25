@@ -25,6 +25,22 @@ mixin _$ProfileScreenStore on _ProfileScreenStore, Store {
     });
   }
 
+  late final _$localImageAtom =
+      Atom(name: '_ProfileScreenStore.localImage', context: context);
+
+  @override
+  File? get localImage {
+    _$localImageAtom.reportRead();
+    return super.localImage;
+  }
+
+  @override
+  set localImage(File? value) {
+    _$localImageAtom.reportWrite(value, super.localImage, () {
+      super.localImage = value;
+    });
+  }
+
   late final _$imageFileAtom =
       Atom(name: '_ProfileScreenStore.imageFile', context: context);
 
@@ -53,6 +69,7 @@ mixin _$ProfileScreenStore on _ProfileScreenStore, Store {
   String toString() {
     return '''
 downloadImage: ${downloadImage},
+localImage: ${localImage},
 imageFile: ${imageFile}
     ''';
   }

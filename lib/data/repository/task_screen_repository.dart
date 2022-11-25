@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
-import '../../../domain/model/task_model.dart';
+import '../../domain/model/task_model.dart';
 
 class TaskRepository {
   final _plan = <TaskModel>[];

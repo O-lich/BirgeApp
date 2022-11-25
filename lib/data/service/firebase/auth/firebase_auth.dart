@@ -1,9 +1,8 @@
+import 'package:birge_app/ui/screens/main_screen/main_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import '../../ui/screens/bottom_bar_screen/bottom_bar_screen.dart';
-import '../../ui/screens/main_screen/main_screen.dart';
 
 class Authentication {
 

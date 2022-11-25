@@ -15,7 +15,7 @@ import '../diary_screen/diary_screen_store.dart';
 class TaskScreen extends StatefulWidget {
   static const routeName = '/task_screen';
 
-  TaskScreen({Key? key}) : super(key: key);
+  const TaskScreen({Key? key}) : super(key: key);
 
   @override
   State<TaskScreen> createState() => _TaskScreenState();
