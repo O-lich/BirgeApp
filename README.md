@@ -24,5 +24,5 @@ This project is a starting point for a Flutter application.
 
 ## Result:
 
-<a href="https://play.google.com/store/apps/details?id=com.birge.birge_app/"><img align="left" src="https://icons-for-free.com/iconfiles/png/512/google+googleplay+logo+multimedia+play+player+icon-1320193181644092930.png" alt="LinkedIn" width="50px"/></a>
+<a href="https://play.google.com/store/apps/details?id=com.birge.birge_app"><img align="left" src="https://icons-for-free.com/iconfiles/png/512/google+googleplay+logo+multimedia+play+player+icon-1320193181644092930.png" alt="LinkedIn" width="50px"/></a>
 
